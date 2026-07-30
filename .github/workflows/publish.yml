@@ -1,0 +1,74 @@
+name: Publicar site e PDFs
+
+# Este workflow foi escrito e testado localmente (`mkdocs build --strict` e
+# `python3 pdf/build_pdf.py` já validados) mas só entra em ação de fato quando
+# esta pasta virar a raiz do repositório público e o GitHub Pages estiver
+# habilitado nele (Settings -> Pages -> Source: GitHub Actions).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "pdf/**"
+      - "requirements.txt"
+      - ".github/workflows/publish.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar mkdocs-material
+        run: pip install -r requirements.txt
+
+      - name: Instalar TeX Live, pandoc e fontes DejaVu
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            texlive-xetex texlive-latex-extra texlive-fonts-extra \
+            texlive-lang-european fonts-dejavu pandoc
+
+      - name: Build dos PDFs (pandoc + xelatex)
+        run: python3 pdf/build_pdf.py
+
+      - name: Colocar os PDFs em docs/downloads/ (mkdocs copia como arquivo estático)
+        run: |
+          mkdir -p docs/downloads
+          cp info2m-livro.pdf docs/downloads/
+          cp info3m-livro.pdf docs/downloads/
+
+      - name: Build do site (mkdocs)
+        run: mkdocs build --strict
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

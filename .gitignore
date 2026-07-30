@@ -1,0 +1,16 @@
+# Ambiente Python local (mkdocs-material)
+.venv/
+
+# Build artefatos do mkdocs
+site/
+
+# PDFs gerados (build artifact — regenerado pelo pipeline, tanto local quanto CI)
+*.pdf
+docs/downloads/
+
+# Python
+__pycache__/
+*.pyc
+
+# Sistema
+.DS_Store

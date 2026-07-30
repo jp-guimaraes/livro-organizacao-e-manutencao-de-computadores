@@ -1,0 +1,36 @@
+\input{preambulo-livro.tex}
+
+$if(title)$
+\title{$title$}
+$endif$
+$if(subtitle)$
+\subtitle{$subtitle$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$else$
+\date{\today}
+$endif$
+
+% --- suporte a blocos de código (caso algum capítulo use trecho de código/comando) ---
+\usepackage{fvextra}
+\fvset{breaklines=true, breakanywhere=true}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+$if(toc)$
+\tableofcontents
+$endif$
+
+\mainmatter
+
+$body$
+
+\end{document}

@@ -1,0 +1,59 @@
+% Preâmbulo compartilhado dos PDFs do livro — pensado para qualidade de impressão.
+\documentclass[12pt, a4paper, oneside, open=any]{scrbook}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{brazil}
+% DejaVu Serif tem cobertura Unicode ampla (símbolos como ⊂ usados no capítulo
+% de arquitetura), diferente da Latin Modern padrão.
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{left=2.8cm, right=2.2cm, top=2.8cm, bottom=2.8cm}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+\usepackage{graphicx}
+\setkeys{Gin}{width=0.85\linewidth, keepaspectratio}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+% (scrbook/KOMA-Script já provê estilização de seção nativa; titlesec conflita
+% com a classe e foi removido de propósito)
+
+% Cabeçalho corrente: nome do livro à esquerda, capítulo à direita
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\nouppercase{\rightmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Numeração e estilo de seção herdados do KOMA-Script (scrbook já cuida bem disso)
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+% Caixa de destaque para "Figura pendente" (usada pelo filtro Lua)
+\newtcolorbox{figurapendente}{
+  colback=yellow!8, colframe=yellow!60!black,
+  title=Figura pendente, fonttitle=\bfseries,
+  breakable
+}
+
+% Caixa de destaque para analogias/exemplos didáticos (opcional, uso futuro)
+\newtcolorbox{analogiabox}{
+  colback=blue!4, colframe=blue!40!black,
+  breakable
+}
