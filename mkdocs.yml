@@ -3,6 +3,7 @@ site_description: >-
   Livro didático em duas partes para o curso técnico de informática do IFRN —
   Organização e Montagem de Computadores, e Manutenção de Computadores.
 site_url: https://jp-guimaraes.github.io/livro-organizacao-e-manutencao-de-computadores/
+site_author: João Paulo Ferreira Guimarães
 copyright: Versão 0.1 — João Paulo Ferreira Guimarães
 
 theme:
