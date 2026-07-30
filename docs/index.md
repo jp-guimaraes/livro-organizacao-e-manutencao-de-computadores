@@ -4,11 +4,11 @@ Material didático produzido para o curso técnico integrado de informática do 
 
 ## Livro 1 — Organização e Montagem de Computadores
 
-Fundamentos de arquitetura, memória, sistemas operacionais e hardware físico. [Comece por aqui →](info2m/index.md) · [Baixar PDF](downloads/info2m-livro.pdf)
+Fundamentos de arquitetura, memória, sistemas operacionais e hardware físico. [Comece por aqui →](organizacao-e-montagem/index.md) · [Baixar PDF](downloads/organizacao-e-montagem-livro.pdf)
 
 ## Livro 2 — Manutenção de Computadores
 
-Continuação direta do primeiro livro: eletricidade, fontes de alimentação, processadores e suporte técnico. [Comece por aqui →](info3m/index.md) · [Baixar PDF](downloads/info3m-livro.pdf)
+Continuação direta do primeiro livro: eletricidade, fontes de alimentação, processadores e suporte técnico. [Comece por aqui →](manutencao-de-computadores/index.md) · [Baixar PDF](downloads/manutencao-de-computadores-livro.pdf)
 
 ---
 

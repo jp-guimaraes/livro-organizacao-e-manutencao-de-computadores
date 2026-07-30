@@ -12,7 +12,10 @@ Um sistema operacional (SO, do inglês *Operating System*, OS) é um software cu
 
 Em termos de camadas, o hardware ocupa a base do sistema; sobre ele executa o sistema operacional, cujo núcleo é chamado de **kernel**; e acima do sistema operacional executam os demais programas — desde o próprio ambiente gráfico (o menu iniciar, os ícones, as janelas) até os aplicativos que o usuário abre, como um navegador ou um editor de texto.
 
-[IMAGEM: diagrama em camadas — hardware na base, kernel do sistema operacional no meio, aplicativos e usuário no topo]
+
+!!! warning "Figura pendente"
+    diagrama em camadas — hardware na base, kernel do sistema operacional no meio, aplicativos e usuário no topo
+
 
 ### 3.1.1 Abstração e plataforma
 
@@ -38,7 +41,10 @@ A unidade mínima de alocação de espaço em disco para arquivos e diretórios 
 
 Ao formatar uma unidade de armazenamento, o sistema operacional solicita, entre outras informações, o **tamanho da unidade de alocação** (o tamanho do cluster). Valores típicos oferecidos pelo Windows incluem 8.192 bytes, 16 KB, 32 KB e 64 KB, além de um tamanho padrão sugerido para o dispositivo.
 
-[IMAGEM: janela de formatação do Windows mostrando a escolha do sistema de arquivo (FAT32, NTFS, exFAT) e do tamanho da unidade de alocação]
+
+!!! warning "Figura pendente"
+    janela de formatação do Windows mostrando a escolha do sistema de arquivo (FAT32, NTFS, exFAT) e do tamanho da unidade de alocação
+
 
 ### 3.2.1 File slack
 
@@ -81,7 +87,10 @@ A **lixeira** do sistema operacional é uma lista de arquivos cuja referência e
 
 **Aplicação prática.** Se um computador estiver infectado por um malware capturando dados do usuário, formatar o disco elimina o malware — mas também elimina, junto com ele, todos os demais dados do usuário, incluindo aqueles que se desejaria preservar. É, na expressão usada em aula, "matar uma mosca com uma bazuca": resolve o problema, mas com um custo desproporcional se não houver backup prévio (Seção 3.9).
 
-[IMAGEM: esquema comparando a tabela de referências antes e depois da exclusão de um arquivo]
+
+!!! warning "Figura pendente"
+    esquema comparando a tabela de referências antes e depois da exclusão de um arquivo
+
 
 ---
 
@@ -110,7 +119,10 @@ Quando um computador com múltiplos sistemas operacionais instalados é ligado e
 | Linux (ex.: Ubuntu) | EXT4 (historicamente, EXT3) |
 | Pendrives / mídias removíveis | FAT32 ou exFAT |
 
-[IMAGEM: captura do gerenciador de disco do Windows mostrando um disco físico dividido em múltiplas partições]
+
+!!! warning "Figura pendente"
+    captura do gerenciador de disco do Windows mostrando um disco físico dividido em múltiplas partições
+
 
 ---
 
@@ -153,7 +165,10 @@ Cada disco identificado em GPT recebe um **GUID** (*Globally Unique Identifier*)
 | Redundância da tabela | Não | Sim |
 | Firmware associado historicamente | BIOS | UEFI |
 
-[IMAGEM: diagrama do layout de um disco em MBR — código de inicialização, tabela de partições e partições de dados]
+
+!!! warning "Figura pendente"
+    diagrama do layout de um disco em MBR — código de inicialização, tabela de partições e partições de dados
+
 
 ---
 
@@ -185,9 +200,15 @@ Concluído o POST com sucesso, o próximo passo padrão é o **boot** (inicializ
 
 Para saber onde procurar o sistema operacional entre as possivelmente várias partições e discos existentes, o computador consulta a variável de ordem de inicialização gravada na memória da placa-mãe (Seção 3.6.2). É possível interromper esse fluxo padrão e forçar a inicialização a partir de outro dispositivo — como um pendrive — de duas formas: alterando permanentemente a ordem de boot dentro do Setup, ou acionando, na tela do POST, um atalho de teclado que abre o chamado **boot menu**, uma lista de dispositivos disponíveis para inicialização imediata (nas máquinas descritas em aula, a tecla de atalho variava entre **F9**, **F11**/**F12** ou a sequência **10 → F12**, dependendo do fabricante).
 
-[IMAGEM: tela de POST/BIOS de um computador real, mostrando o logotipo do fabricante e a instrução para acessar o boot menu]
 
-[IMAGEM: tela de Setup/BIOS com a configuração de ordem de inicialização (boot order) destacada]
+!!! warning "Figura pendente"
+    tela de POST/BIOS de um computador real, mostrando o logotipo do fabricante e a instrução para acessar o boot menu
+
+
+
+!!! warning "Figura pendente"
+    tela de Setup/BIOS com a configuração de ordem de inicialização (boot order) destacada
+
 
 ### 3.6.4 Segurança e ética do acesso físico
 
@@ -215,7 +236,10 @@ Como o UEFI é retrocompatível com o BIOS (Seção 3.5.2), um pendrive gravado 
 
 **Aplicação prática.** Se um dado computador não reconhece o pendrive de instalação, ou apresenta uma mensagem de erro mencionando GPT e EFI (ou MBR), a causa mais provável é uma incompatibilidade entre o esquema de partição gravado na mídia e o tipo de firmware daquele computador.
 
-[IMAGEM: captura de tela do Rufus com os campos de esquema de partição (MBR/GPT) e sistema de destino (BIOS/UEFI) destacados]
+
+!!! warning "Figura pendente"
+    captura de tela do Rufus com os campos de esquema de partição (MBR/GPT) e sistema de destino (BIOS/UEFI) destacados
+
 
 ---
 
@@ -251,7 +275,10 @@ Um problema comum na primeira experiência com instalação de sistemas operacio
 
 A correção consiste em, após concluída a instalação, remover a mídia USB ou reconfigurar a ordem de boot no Setup para priorizar o disco interno (HD ou SSD) sobre a mídia externa.
 
-[IMAGEM: tela típica de instalador solicitando "pressione qualquer tecla para iniciar a partir do CD ou DVD"]
+
+!!! warning "Figura pendente"
+    tela típica de instalador solicitando "pressione qualquer tecla para iniciar a partir do CD ou DVD"
+
 
 ---
 
@@ -265,7 +292,10 @@ No modo Live CD/USB, o sistema operacional completo é executado diretamente a p
 
 Por oferecer privilégios administrativos completos sobre uma máquina sem exigir senha, o Live CD/USB é também a ferramenta central por trás do risco de segurança descrito na Seção 3.6.4: qualquer pessoa com acesso físico e um pendrive de instalação preparado pode acessar dados de um disco sem autenticação.
 
-[IMAGEM: tela de boas-vindas de um instalador Linux com as opções "Experimentar" (Try) e "Instalar" (Install)]
+
+!!! warning "Figura pendente"
+    tela de boas-vindas de um instalador Linux com as opções "Experimentar" (Try) e "Instalar" (Install)
+
 
 ---
 
@@ -283,7 +313,10 @@ Além da partição raiz, a instalação típica de uma distribuição Linux req
 
 **Exemplo de particionamento típico para instalação do Ubuntu:** partição de swap de 8–10 GB e partição raiz (`/`) ocupando o espaço restante — por exemplo, em um espaço livre de 100 GB, aproximadamente 90 GB para `/` e 10 GB para swap.
 
-[IMAGEM: tela do particionador avançado de um instalador Linux, mostrando a criação da partição swap e a seleção do ponto de montagem `/`]
+
+!!! warning "Figura pendente"
+    tela do particionador avançado de um instalador Linux, mostrando a criação da partição swap e a seleção do ponto de montagem `/`
+
 
 ---
 
@@ -302,7 +335,10 @@ Para instalar Windows e Linux em dual boot no mesmo disco, a **ordem de instala�
 3. Inicializar a mídia do Linux nesse espaço livre, criando a partição raiz (`/`) e a partição swap.
 4. Ao final, o GRUB é instalado automaticamente e passa a apresentar, a cada boot, a opção de carregar Windows ou Linux.
 
-[IMAGEM: tela do menu GRUB listando as opções de inicialização Windows e Ubuntu]
+
+!!! warning "Figura pendente"
+    tela do menu GRUB listando as opções de inicialização Windows e Ubuntu
+
 
 ---
 
@@ -322,10 +358,52 @@ Historicamente, drivers eram distribuídos em mídias físicas (CD, disquete) qu
 
 Do ponto de vista de diagnóstico técnico, muitos sintomas atribuídos erroneamente a defeito de hardware — ausência de som, Wi-Fi ou Bluetooth não funcionando, touchpad sem responder a gestos — são, na realidade, causados pela ausência ou desatualização do driver correspondente, sendo corrigidos pela instalação ou reinstalação do software apropriado, sem qualquer intervenção física no componente.
 
-[IMAGEM: gerenciador de dispositivos do Windows, mostrando a lista de hardware detectado e o status dos drivers instalados]
+
+!!! warning "Figura pendente"
+    gerenciador de dispositivos do Windows, mostrando a lista de hardware detectado e o status dos drivers instalados
+
+
+---
+
+## 3.13 Atualização do sistema operacional e do firmware
+
+### 3.13.1 Atualização do sistema operacional
+
+Um sistema operacional instalado (Seção 3.8) não é um produto estático: o fabricante publica, periodicamente, **atualizações** que corrigem falhas de segurança recém-descobertas, corrigem defeitos de funcionamento (*bugs*) e, com menor frequência, adicionam funcionalidades novas ou trocam a versão do kernel disponível (Seção 3.11, a propósito do GRUB). Do ponto de vista do usuário, a rotina de manutenção preventiva de software (aprofundada na disciplina de Manutenção de Computadores) inclui manter essas atualizações em dia — a maior parte das infecções por malware (Seção 3.8.1) explora falhas de segurança já corrigidas pelo fabricante, mas não aplicadas pelo usuário.
+
+**Nota prática.** Uma atualização de sistema operacional, sobretudo uma troca de versão maior (por exemplo, de uma versão do Windows para a seguinte), pode alterar a compatibilidade de drivers já instalados (Seção 3.12) — um hardware antigo, sem driver atualizado disponível pelo fabricante, pode deixar de funcionar corretamente após a atualização. Por essa razão, uma atualização importante deve ser precedida de backup (Seção 3.8.1), da mesma forma que uma reinstalação completa.
+
+### 3.13.2 Atualização de firmware: por que o BIOS passou a ser atualizável
+
+A Seção 3.6 apresentou o BIOS/UEFI como o firmware responsável por inicializar o hardware antes do sistema operacional. Historicamente, esse firmware era gravado numa memória do tipo **ROM** — na acepção mais restrita do termo (Capítulo 2, §2.12): gravada uma única vez na fábrica, sem possibilidade de alteração posterior. Um defeito ou limitação identificado depois da fabricação da placa-mãe (por exemplo, não reconhecer um processador lançado meses depois) não tinha correção possível por software — a única solução era substituir fisicamente o chip de BIOS, quando o fabricante disponibilizava essa opção.
+
+A mesma evolução de memória descrita no Capítulo 2 (§2.12) — de ROM para PROM, EPROM, EEPROM e, por fim, memória **flash** — chegou também ao chip de BIOS/UEFI das placas-mãe modernas: hoje ele é gravado em memória flash, **eletricamente regravável**, sem qualquer equipamento especial. Esse é o motivo técnico exato pelo qual o procedimento popularmente chamado de "**flashar a BIOS**" existe: atualizar o firmware da placa-mãe passou a ser tão simples quanto rodar um utilitário fornecido pelo fabricante (às vezes acessível diretamente de dentro do próprio Setup, Seção 3.6.2) que regrava o conteúdo daquela memória flash com uma versão mais nova.
+
+**Por que atualizar o firmware.** As razões mais comuns para atualizar a BIOS/UEFI de uma placa-mãe são: oferecer suporte a um processador lançado depois da placa (Capítulo 4, §4.6, sobre compatibilidade de soquete e geração), corrigir uma vulnerabilidade de segurança do próprio firmware, ou resolver um problema de estabilidade documentado pelo fabricante.
+
+**Atenção — risco de "brickar" a placa-mãe.** Diferente de uma atualização de sistema operacional, que ocorre com o sistema já carregado e com redundância de software, a atualização de firmware sobrescreve a única cópia do programa que a placa-mãe usa para sequer iniciar o POST (Capítulo 4, §4.3). Uma interrupção no meio desse processo — uma queda de energia, por exemplo — pode corromper essa memória de forma irrecuperável pelos meios usuais, inutilizando a placa-mãe (um problema popularmente chamado de "*brickar*" o equipamento, numa referência a transformar o dispositivo num "tijolo" sem função). Por essa razão, atualizar o firmware exige alimentação estável (idealmente com um nobreak, tema do livro de Manutenção de Computadores) e nunca deve ser interrompida manualmente.
+
+### 3.13.3 Recuperação de firmware corrompido: regravador externo e troca de chip
+
+Quando uma atualização de firmware falha e a placa-mãe deixa de dar POST (Capítulo 4, §4.3.4), existem, em ordem crescente de intervenção física, três caminhos de recuperação:
+
+1. **Recuperação assistida pela própria placa** — muitas placas-mãe modernas guardam, além da memória flash principal, uma pequena rotina de recuperação (frequentemente chamada de *BIOS Flashback* ou nome equivalente do fabricante) capaz de regravar o firmware a partir de um pendrive, mesmo sem processador, memória ou vídeo instalados — o próprio chipset (Capítulo 4, §4.10.2) executa essa rotina de resgate de forma independente do restante do sistema.
+2. **Regravador externo (*programmer*).** Quando esse recurso não existe ou também falha, o chip de memória flash da BIOS — fisicamente soquetado na maioria das placas-mãe, tipicamente num encapsulamento SOIC-8 — pode ser removido com cuidado e regravado fora da placa-mãe, usando um dispositivo dedicado chamado **regravador** (ou *programmer*, o mesmo tipo de equipamento historicamente usado para gravar uma EPROM antes da existência da memória flash — Capítulo 2, §2.12). O regravador se conecta a um computador auxiliar, recebe o arquivo de firmware correto e o grava diretamente nos terminais do chip, sem depender de o sistema já defeituoso conseguir executar qualquer software. Depois de regravado, o chip é reencaixado no soquete da placa-mãe.
+3. **Troca do chip.** Quando o chip de BIOS está fisicamente danificado (e não apenas com o conteúdo corrompido), ou quando não há regravador disponível, a alternativa é substituí-lo por um chip novo, da mesma referência, já gravado de fábrica com o firmware correto — um serviço oferecido por fornecedores especializados em peças de reposição de placa-mãe. Esse procedimento só é possível em placas cujo chip de BIOS é soquetado (destacável); em placas nas quais o chip é soldado diretamente à placa-mãe, a troca exige retrabalho de solda em nível de componente, um serviço mais especializado e caro.
+
+### 3.13.4 BIOS duplo (*Dual BIOS*)
+
+Algumas placas-mãe de gama mais alta mitigam o risco descrito acima já em nível de projeto, incorporando um **BIOS duplo**: dois chips de memória flash fisicamente independentes na mesma placa, um designado **principal** e outro **de backup**, ambos capazes de armazenar o firmware completo. Durante o boot, um pequeno circuito de controle valida a integridade do chip principal (por meio de uma soma de verificação, ou *checksum*); se essa validação falhar — por exemplo, após uma atualização interrompida por queda de energia —, a placa alterna automaticamente para o chip de backup, que assume a inicialização e, em muitos modelos, oferece a opção de regravar o chip principal corrompido a partir do próprio backup, sem exigir regravador externo (Seção 3.13.3) nem substituição física de peça. Algumas placas expõem ainda um interruptor físico dedicado, permitindo alternar manualmente entre os dois chips — por exemplo, para testar deliberadamente uma versão de firmware mais nova no chip secundário, mantendo o chip principal como versão estável conhecida.
+
+Esse mecanismo é uma aplicação, em hardware e em pequena escala, do mesmo princípio de redundância apresentado a propósito de servidores no Capítulo 1 (§1.11.2): duplicar um componente crítico para que a falha de uma cópia não interrompa o funcionamento do sistema como um todo.
+
+
+!!! warning "Figura pendente"
+    foto de uma placa-mãe de gama alta evidenciando os dois chips de BIOS lado a lado, com o interruptor de seleção entre eles
+
 
 ---
 
 ## Síntese do capítulo
 
-Este capítulo apresentou o sistema operacional como a camada de interface entre hardware, software e usuário, detalhando como essa camada organiza o armazenamento secundário — introduzido no Capítulo 2 em termos de blocos, páginas e setores — por meio de clusters, sistemas de arquivo e partições. Foram estudadas as duas soluções de tabela de partição em uso, MBR e GPT, o procedimento completo de inicialização do computador (POST, Setup/BIOS e boot) e o processo integral de instalação de um sistema operacional, da preparação da mídia à instalação de drivers, passando por backup, dual boot e diagnóstico via Live CD/USB. Esses procedimentos dependem diretamente dos componentes físicos tratados no Capítulo 4 — a placa-mãe, seus barramentos e os próprios dispositivos de armazenamento — e do firmware gravado nesses componentes, cuja relação com a arquitetura de processadores será aprofundada no Capítulo 5.
+Este capítulo apresentou o sistema operacional como a camada de interface entre hardware, software e usuário, detalhando como essa camada organiza o armazenamento secundário — introduzido no Capítulo 2 em termos de blocos, páginas e setores — por meio de clusters, sistemas de arquivo e partições. Foram estudadas as duas soluções de tabela de partição em uso, MBR e GPT, o procedimento completo de inicialização do computador (POST, Setup/BIOS e boot) e o processo integral de instalação de um sistema operacional, da preparação da mídia à instalação de drivers, passando por backup, dual boot e diagnóstico via Live CD/USB. O capítulo fechou com a manutenção contínua dessa camada de software e firmware — atualização do sistema operacional, atualização e recuperação do firmware da placa-mãe, e a redundância de hardware que o BIOS duplo oferece contra esse risco. Esses procedimentos dependem diretamente dos componentes físicos tratados no Capítulo 4 — a placa-mãe, seus barramentos e os próprios dispositivos de armazenamento — e do firmware gravado nesses componentes, cuja relação com a arquitetura de processadores será aprofundada no Capítulo 5.

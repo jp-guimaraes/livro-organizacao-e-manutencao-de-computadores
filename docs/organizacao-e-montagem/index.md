@@ -10,4 +10,4 @@ Primeiro semestre da disciplina técnica de informática do IFRN. O livro parte 
 4. **Hardware Físico e Montagem** — componentes essenciais, desmontagem e remontagem, POST, CPU e soquetes, refrigeração.
 5. **Arquitetura e Organização de Processadores** — arquitetura vs. organização, CISC e RISC, x86/x64, ARM e AVR.
 
-[Baixar este livro em PDF](../downloads/info2m-livro.pdf) · Continua no [Livro 2 — Manutenção de Computadores](../info3m/index.md).
+[Baixar este livro em PDF](../downloads/organizacao-e-montagem-livro.pdf) · Continua no [Livro 2 — Manutenção de Computadores](../manutencao-de-computadores/index.md).

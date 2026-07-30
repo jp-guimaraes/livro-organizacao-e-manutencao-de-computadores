@@ -202,7 +202,7 @@ Da camada mais rápida (e mais cara) para a mais lenta (e mais barata):
 
 ### 1.10.5 Processadores especializados: CPU, GPU e NPU
 
-Um computador moderno tipicamente integra mais de um tipo de processador:
+Um computador moderno tipicamente integra mais de um tipo de processador — a Seção 1.11 aprofunda essa taxonomia e a estende a outros tipos de processador e a outros perfis de máquina além do desktop.
 
 - **CPU** (*Central Processing Unit*) — processamento de propósito geral.
 - **GPU** (*Graphical Processing Unit*) — processador dedicado a tarefas gráficas, com memória de alta velocidade própria (VRAM).
@@ -219,6 +219,67 @@ Um computador moderno tipicamente integra mais de um tipo de processador:
 
 ---
 
+## 1.11 Processadores especializados e perfis de máquina
+
+A Seção 1.9 apresentou os quatro componentes mínimos de um desktop, e a Seção 1.10 introduziu a hierarquia de memória e uma primeira taxonomia de processadores (CPU, GPU, NPU). Esta seção fecha o Capítulo 1 respondendo a uma pergunta que fica em aberto até aqui: um computador moderno raramente tem *um* processador — ele tem vários, cada um especializado numa tarefa —, e a combinação desses processadores muda radicalmente conforme o tipo de máquina considerado (um desktop, um notebook, um smartphone ou um servidor).
+
+### 1.11.1 Taxonomia de processadores
+
+- **CPU** (*Central Processing Unit*) — processamento de propósito geral; já apresentado na Seção 1.10.5.
+- **GPU** (*Graphics Processing Unit*) — processador dedicado a tarefas gráficas, com memória de alta velocidade própria (VRAM); já apresentado na Seção 1.10.5.
+- **NPU** (*Neural Processing Unit*) — processador dedicado a cargas de trabalho de inteligência artificial, cada vez mais comum em dispositivos móveis e notebooks; já apresentado na Seção 1.10.5.
+- **APU** (*Accelerated Processing Unit*) — termo cunhado pela AMD para designar um chip que combina, no mesmo encapsulamento, uma CPU e uma GPU integrada. Hoje praticamente todo processador de desktop e notebook tem vídeo integrado (Capítulo 4, §4.1), então "APU" deixou de ser uma categoria à parte e passou a descrever quase qualquer CPU moderna — o termo sobrevive principalmente como nome comercial de determinadas linhas de produto.
+- **DSP** (*Digital Signal Processor*) — processador especializado em processar sinais contínuos (áudio, imagem, rádio) por meio de operações matemáticas repetitivas (somas e multiplicações em sequência) sobre grandes volumes de amostras. Diferente da CPU, que precisa lidar com qualquer tipo de instrução, o DSP é otimizado apenas para esse tipo de cálculo — e por isso executa essas operações com muito mais eficiência energética. Está presente, por exemplo, no microfone e na câmera de um smartphone, processando o sinal bruto antes que ele chegue à CPU ou à NPU.
+- **SoC** (*System on a Chip*, sistema em um único chip) — não é um tipo de processador, mas uma **estratégia de integração**: reunir, num único encapsulamento, CPU, GPU, controlador de memória, modem de rede e demais controladores que, num desktop, estariam espalhados entre processador, chipset e placa-mãe (Capítulo 4, §4.10, trata do chipset e da interconexão desses componentes). Praticamente todo smartphone, tablet e Raspberry Pi é organizado em torno de um SoC.
+
+**Analogia.** A diferença entre esses processadores é comparável à de uma cozinha profissional: a CPU é o cozinheiro generalista, capaz de preparar qualquer prato do cardápio, ainda que sem a velocidade de um especialista; a GPU é o cozinheiro que só faz uma tarefa (por exemplo, grelhar) mas prepara centenas de porções simultaneamente; o DSP é o cozinheiro que só sabe temperar, mas o faz de forma extremamente rápida e consistente; a NPU é o cozinheiro treinado especificamente para reconhecer, por experiência acumulada, qual tempero combina com qual prato. O SoC, nessa analogia, não é mais um cozinheiro — é a decisão de montar a cozinha inteira dentro de um único módulo compacto, em vez de espalhar fogão, geladeira e bancada em cômodos separados.
+
+
+!!! warning "Figura pendente"
+    diagrama de um SoC de smartphone mostrando CPU, GPU, NPU, DSP e modem integrados no mesmo chip, ao lado de um diagrama de desktop com CPU, GPU discreta e chipset como blocos separados
+
+
+### 1.11.2 Hardware para diferentes perfis de uso
+
+O mesmo conjunto de conceitos — CPU, memória, armazenamento, interconexão — se organiza de formas muito diferentes conforme o perfil de uso da máquina. Quatro perfis cobrem a maior parte do mercado: **desktop**, **notebook**, **dispositivo móvel** e **servidor**.
+
+| Característica | Desktop | Notebook | Dispositivo móvel | Servidor |
+|---|---|---|---|---|
+| Processador | CPU substituível, soquete próprio (Capítulo 4, §4.6) | CPU frequentemente soldada à placa | SoC (CPU+GPU+modem integrados) | Um ou mais soquetes de CPU na mesma placa-mãe |
+| Memória RAM | Módulos substituíveis, geralmente Dual Channel (Capítulo 2, §2.7) | Módulos substituíveis ou soldados, conforme o modelo | Soldada/empacotada junto ao SoC | Módulos ECC (ver adiante), muitos slots, capacidade na casa de centenas de GB a TB |
+| Alimentação | Fonte ATX interna (Capítulo 4, §4.1) | Bateria + fonte externa | Bateria interna | Uma ou mais fontes redundantes |
+| Prioridade de projeto | Custo-benefício e desempenho bruto | Portabilidade e autonomia de bateria | Autonomia de bateria acima de tudo | Disponibilidade contínua (*uptime*) e capacidade de processar muitas requisições simultâneas |
+| Forma física | Gabinete de mesa (torre, *desk*) | Chassi único e fino | Chassi único, sem abertura para manutenção | Chassi em formato *rack*, dimensionado em unidades **U** (1U, 2U, 4U) para empilhamento em um armário de rede |
+
+**Servidores: redundância como princípio de projeto.** Um servidor difere de um desktop não por processar "mais rápido" — muitas vezes o processador de um servidor tem clock por núcleo *menor* que o de um desktop, priorizando número de núcleos e eficiência energética sob operação contínua —, mas por ser projetado para **nunca parar**. Essa exigência se traduz em componentes redundantes: duas ou mais fontes de alimentação (se uma falha, a outra assume sem interrupção), discos organizados em arranjos com redundância de dados (de forma que a falha de um disco não cause perda de dados, tema aprofundado na disciplina de Manutenção de Computadores), e placas-mãe capazes de hospedar mais de um processador físico simultaneamente.
+
+**Bit flip: causa física.** Um ***bit flip*** (também chamado ***soft error*** ou *single-event upset*, SEU) é a inversão espontânea do valor armazenado numa célula de memória — um 0 que passa a 1, ou vice-versa —, sem que a célula tenha sofrido qualquer dano físico permanente: se regravada com o valor correto, ela volta a funcionar normalmente. A literatura técnica — a partir de um estudo seminal da Intel, em 1978, que primeiro identificou o fenômeno em DRAM `[1]` — aponta **duas** causas físicas bem estabelecidas, ambas formas de radiação ionizante, hoje normatizadas por um padrão da indústria de testes de memória `[2]`:
+
+1. **Raios cósmicos secundários.** Partículas de altíssima energia vindas do espaço colidem com a atmosfera terrestre e produzem um chuveiro de partículas secundárias — na superfície da Terra, majoritariamente **nêutrons**. Um nêutron não tem carga elétrica e não perturba um circuito diretamente, mas, ao colidir com o núcleo de um átomo de silício do chip, pode gerar partículas carregadas secundárias, que então depositam carga suficiente para inverter o estado de um capacitor de DRAM (Capítulo 2, §2.3) ou de um flip-flop de SRAM (Capítulo 2, §2.2).
+2. **Partículas alfa de contaminantes radioativos no encapsulamento.** Os próprios materiais usados para embalar e soldar o chip (a "casca" plástica ou cerâmica do processador ou do módulo de memória) contêm, em quantidade mínima, traços de elementos radioativos residuais dos processos de mineração e refino usados para produzi-los. Esses traços emitem, de forma constante e previsível, partículas alfa — e, por estarem fisicamente muito próximos da própria célula de memória, essas partículas depositam carga da mesma forma que um nêutron secundário.
+
+**Bit flip não é o mesmo fenômeno que a vulnerabilidade do HD a campos magnéticos (Capítulo 2, §2.10 e §2.14).** Um HD armazena dados por meio da orientação magnética de uma região do prato — por isso um ímã suficientemente forte de fato ameaça um HD, ao reescrever essa orientação. Uma célula de RAM, em contraste, armazena dado como **carga elétrica** (DRAM) ou como **estado lógico de um circuito** (SRAM) — não existe, na literatura sobre soft errors, um mecanismo estabelecido de bit flip por campo magnético externo; um ímã comum, mesmo forte, não tem como induzir diretamente a carga necessária para inverter um bit de RAM da forma como raios cósmicos e partículas alfa fazem. As duas ameaças — magnética para o HD, radiação ionizante para a RAM — têm mecanismos físicos distintos e não devem ser confundidas.
+
+**Memória ECC.** Servidores costumam usar módulos de memória **ECC** (*Error-Correcting Code*), um tipo de RAM capaz de detectar e corrigir automaticamente um erro de bit flip de um único bit por palavra de memória, usando bits extras de paridade/verificação gravados junto com o dado. Quanto menor a litografia do chip de memória (o livro de Manutenção de Computadores trata da litografia em profundidade) e quanto maior a quantidade total de memória instalada, maior a probabilidade estatística de que um bit flip ocorra em algum lugar do sistema. Num desktop doméstico, um bit flip ocasional é, na pior hipótese, uma tela azul isolada; num servidor operando 24 horas por dia com centenas de gigabytes de RAM, o mesmo tipo de erro, acumulado ao longo de meses, pode corromper silenciosamente um banco de dados inteiro — daí o uso de ECC ser padrão nesse perfil de máquina, e praticamente inexistente em desktops e notebooks comuns.
+
+**Notebooks: compromisso entre modularidade e portabilidade.** O princípio de modularidade apresentado na Seção 1.6.2 — trocar um módulo suspeito para diagnosticar uma falha — se aplica com menos liberdade a um notebook do que a um desktop. Para reduzir espessura, peso e consumo de energia, fabricantes de notebook soldam diretamente à placa componentes que, num desktop, seriam módulos substituíveis: a memória RAM e, cada vez mais, também o processador. Um técnico ainda consegue substituir bateria, SSD (quando não soldado) e tela na maioria dos modelos, mas a possibilidade de "testar trocando o módulo" (Seção 1.6.2) fica mais restrita — e, quando o componente soldado falha, a reparação deixa de ser uma troca simples e passa a exigir retrabalho de solda em nível de placa, ou a substituição da placa-mãe inteira.
+
+**Dispositivos móveis: o extremo da integração.** Um smartphone leva a lógica do notebook ao limite: por trás de um SoC único não há sequer um soquete de processador — CPU, GPU, NPU, modem e, com frequência, a própria memória, estão fisicamente empilhados no mesmo encapsulamento (uma técnica chamada *package-on-package*). Não existe, na prática, "abrir o aparelho e trocar a CPU" nesse perfil de máquina — a modularidade da Seção 1.6.2 se desloca inteiramente para fora do hardware, para o nível de aplicativos e serviços.
+
+
+!!! warning "Figura pendente"
+    fotos comparativas lado a lado — placa-mãe de desktop com CPU socketed e RAM em slots, placa de notebook com RAM soldada, e um SoC de smartphone isolado
+
+
+---
+
 ## Síntese do capítulo
 
-Este capítulo apresentou a definição técnica de computador, sua origem histórica e evolução até o computador pessoal moderno, o princípio de modularidade que fundamenta a manutenção de computadores, e uma primeira introdução à hierarquia de memória. Esses conceitos serão retomados e aprofundados nos capítulos seguintes: memória (Capítulo 2), sistema operacional e instalação (Capítulo 3), hardware físico e montagem (Capítulo 4) e arquitetura de processadores (Capítulo 5).
+Este capítulo apresentou a definição técnica de computador, sua origem histórica e evolução até o computador pessoal moderno, o princípio de modularidade que fundamenta a manutenção de computadores, uma primeira introdução à hierarquia de memória, e como esses mesmos componentes se recombinam em diferentes perfis de máquina — do desktop ao servidor. Esses conceitos serão retomados e aprofundados nos capítulos seguintes: memória (Capítulo 2), sistema operacional e instalação (Capítulo 3), hardware físico e montagem (Capítulo 4) e arquitetura de processadores (Capítulo 5).
+
+---
+
+## Referências
+
+1. MAY, T. C.; WOODS, M. H. A new physical mechanism for soft errors in dynamic memories. In: *Proceedings of the 16th Annual Reliability Physics Symposium*. IEEE, 1978. p. 33–40. Publicado também como: MAY, T. C.; WOODS, M. H. Alpha-particle-induced soft errors in dynamic memories. *IEEE Transactions on Electron Devices*, v. 26, n. 1, p. 2–9, jan. 1979.
+2. JEDEC SOLID STATE TECHNOLOGY ASSOCIATION. *JESD89B: Measurement and Reporting of Alpha Particle and Terrestrial Cosmic Ray Induced Soft Errors in Semiconductor Devices*. Arlington, VA: JEDEC, 2021.

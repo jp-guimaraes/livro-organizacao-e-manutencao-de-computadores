@@ -22,7 +22,10 @@ Se o processador fosse tratado como uma classe de programação, seus atributos 
 
 Esses atributos formam a "ficha técnica" completa de um processador, tal como aparece nos anúncios comerciais. O restante deste capítulo desenvolve cada um desses atributos e apresenta a metodologia — baseada em *benchmark* — que permite comparar processadores diferentes de forma objetiva.
 
-[IMAGEM: anúncio real de processador com os atributos arquitetura, litografia, soquete, núcleos, threads, potência e clock destacados]
+
+!!! warning "Figura pendente"
+    anúncio real de processador com os atributos arquitetura, litografia, soquete, núcleos, threads, potência e clock destacados
+
 
 ## 3.2 Arquiteturas RISC e CISC
 
@@ -65,8 +68,14 @@ Reduzir a litografia traz dois benefícios simultâneos e vinculados por física
 
 Historicamente, a Intel controlava tanto o projeto quanto a fabricação (fundição) de seus próprios chips. Outros fabricantes — AMD, Apple, Qualcomm — projetam seus chips mas terceirizam a fabricação para fundições especializadas, principalmente a TSMC (*Taiwan Semiconductor Manufacturing Company*), sediada em Taiwan. A dificuldade da Intel em reduzir sua própria litografia abaixo de 10 nm é um fator relevante da perda de competitividade da empresa nos últimos anos, a ponto de ela também ter passado a recorrer a fundições terceirizadas para parte de sua produção. A concentração geográfica dessa capacidade de fabricação de semicondutores de ponta em Taiwan é, adicionalmente, um fator de tensão geopolítica relevante, dado o contexto de disputa territorial entre Taiwan e a China — um ponto que tem desdobramentos diretos sobre preço e disponibilidade de chips no mercado global.
 
-[IMAGEM: fotografia de um wafer de silício antes e depois do processo de litografia]
-[IMAGEM: gráfico da contagem de transistores por chip ao longo do tempo, 1970–2016]
+
+!!! warning "Figura pendente"
+    fotografia de um wafer de silício antes e depois do processo de litografia
+
+
+!!! warning "Figura pendente"
+    gráfico da contagem de transistores por chip ao longo do tempo, 1970–2016
+
 
 ## 3.4 Calor, thermal throttling e o fim do núcleo único
 
@@ -80,7 +89,10 @@ O *thermal throttling* deixou de ser apenas uma medida de emergência e passa a 
 
 **O limite que originou o multicore.** No início dos anos 2000, a Intel chegou a planejar um Pentium 4 de 4 GHz, mas cancelou o lançamento: a dissipação de calor necessária tornava o produto inviável para os computadores da época. A solução encontrada pela indústria não foi continuar aumentando a densidade de transistores num único núcleo, mas **duplicar o número de núcleos de processamento** dentro do mesmo encapsulamento — cada um mais simples e mais frio do que seria um único núcleo hipertrofiado. Nasceu assim a era **multicore**, por volta de 2005 (marco documentado, entre outras fontes, em artigo publicado naquele ano pela revista da IEEE — *Institute of Electrical and Electronic Engineers*). Essa mudança de direção arquitetural se mantém até hoje: não houve retorno ao paradigma de núcleo único, apenas a adição de novas unidades de processamento especializadas (GPU, NPU), tratadas ao final deste capítulo.
 
-[IMAGEM: gráfico comparando temperatura e FPS de um processador com e sem cooler durante um jogo]
+
+!!! warning "Figura pendente"
+    gráfico comparando temperatura e FPS de um processador com e sem cooler durante um jogo
+
 
 ## 3.5 A era multicore: núcleos, cache e hyper-threading
 
@@ -96,7 +108,10 @@ Uma **thread**, por sua vez, é uma unidade lógica — uma simulação em softw
 
 Essa complexidade, no entanto, tem um custo que sobe para as camadas de software: programação paralela (a técnica de dividir um algoritmo para ser executado simultaneamente em múltiplos núcleos) é uma disciplina distinta e mais difícil do que a programação sequencial convencional, e a maioria dos programas aplicativos comuns não é otimizada para tirar proveito de mais do que quatro a seis núcleos simultâneos. A consequência prática desse descompasso — poder computacional disponível, mas ocioso — é discutida na Seção 3.11.
 
-[IMAGEM: fotografia (die shot) de um processador com quatro núcleos, cache L1/L2 por núcleo e cache L3 compartilhada identificados]
+
+!!! warning "Figura pendente"
+    fotografia (die shot) de um processador com quatro núcleos, cache L1/L2 por núcleo e cache L3 compartilhada identificados
+
 
 ## 3.6 Pipeline: sobreposição de estágios de execução
 
@@ -106,7 +121,10 @@ O ciclo básico de funcionamento de uma CPU consiste em três etapas repetidas c
 
 É essa mesma lógica de aproveitamento de estágios ociosos do circuito de busca–decodificação–execução que permite ao hyper-threading (Seção 3.5) fazer um único núcleo físico atender a duas instruções em estágios diferentes do pipeline ao mesmo tempo, simulando dois processadores lógicos. O termo *pipeline* não é exclusivo da arquitetura de computadores — é usado de forma equivalente em engenharia de produção industrial para descrever qualquer processo organizado em estágios reaproveitáveis e encadeados.
 
-[IMAGEM: diagrama de linha do tempo mostrando quatro estágios de pipeline sobrepostos ao longo de sete unidades de tempo]
+
+!!! warning "Figura pendente"
+    diagrama de linha do tempo mostrando quatro estágios de pipeline sobrepostos ao longo de sete unidades de tempo
+
 
 ## 3.7 Soquete, geração e compatibilidade de mercado
 
@@ -118,7 +136,10 @@ Esse detalhe tem consequência direta para o trabalho de manutenção. Historica
 
 Esse tipo de escolha de projeto — que reduz a vida útil economicamente viável de um componente ainda funcional — se aproxima do fenômeno mais amplo de **obsolescência programada**, observável em outras indústrias (por exemplo, cartuchos de impressora com contadores de página que interrompem o funcionamento após um número predefinido de impressões, mesmo com tinta disponível). Do ponto de vista puramente técnico, isso reforça por que a análise de soquete e longevidade de plataforma deve fazer parte da recomendação de compra ao cliente, e não apenas a comparação de desempenho bruto — que é tratada, com apoio de benchmark, na Seção 3.9. Cabe notar, entretanto, que a Intel frequentemente compensa essa desvantagem de longevidade praticando preços mais agressivos, de modo que a escolha entre os dois fabricantes é sempre uma decisão de custo-benefício, não uma resposta única.
 
-[IMAGEM: foto comparativa de soquete AMD (AM4/AM5) e soquete Intel (LGA) com os pinos/contatos visíveis]
+
+!!! warning "Figura pendente"
+    foto comparativa de soquete AMD (AM4/AM5) e soquete Intel (LGA) com os pinos/contatos visíveis
+
 
 ## 3.8 Resolução, taxa de quadros e demanda gráfica
 
@@ -146,7 +167,10 @@ A diferença entre os dois cenários é de aproximadamente 4,5 vezes — um salt
 
 Vale registrar que nem toda queda de desempenho percebida em jogos multijogador tem origem no processamento local: quando o computador atua como cliente de um servidor remoto (típico de jogos *online*), atrasos de rede (Wi-Fi, latência do provedor, disponibilidade do servidor) também produzem sensação de travamento, independentemente da capacidade da CPU e da GPU locais.
 
-[IMAGEM: comparação lado a lado da mesma imagem renderizada em diferentes resoluções, evidenciando o tamanho dos pixels]
+
+!!! warning "Figura pendente"
+    comparação lado a lado da mesma imagem renderizada em diferentes resoluções, evidenciando o tamanho dos pixels
+
 
 ## 3.9 Benchmark: metodologia de comparação e dimensionamento
 
@@ -173,8 +197,14 @@ Uma forma particularmente útil de visualizar essas comparações é o gráfico 
 
 **Exemplo — RISC contra CISC, lado a lado.** A comparação mais didática de eficiência energética entre arquiteturas usa um processador RISC de origem móvel (o Apple A18 Pro, originalmente projetado para iPhone e reaproveitado num MacBook) contra um processador CISC de laptop equivalente: o A18 Pro obteve cerca de 4.000 pontos *single-thread* e quase 12.000 pontos *multi-thread*, consumindo entre 4 W e 10 W; o processador CISC equivalente consumiu cerca de dez vezes mais potência para entregar uma nota inferior. É esse tipo de comparação, quantificada por benchmark, que explica por que a autonomia de bateria de dispositivos com chips RISC é tão superior — e por que a indústria de desktops e laptops caminha na direção descrita no quadro da Seção 3.2.
 
-[IMAGEM: captura de tela do PassMark comparando dois processadores lado a lado, com notas single-thread e multi-thread destacadas]
-[IMAGEM: gráfico de dispersão (scatter plot) de nota de benchmark por preço, com pontos coloridos por fabricante]
+
+!!! warning "Figura pendente"
+    captura de tela do PassMark comparando dois processadores lado a lado, com notas single-thread e multi-thread destacadas
+
+
+!!! warning "Figura pendente"
+    gráfico de dispersão (scatter plot) de nota de benchmark por preço, com pontos coloridos por fabricante
+
 
 ## 3.10 Diagnóstico em campo: CPU-Z e HWMonitor
 
@@ -190,8 +220,14 @@ Duas ferramentas de software, de uso corrente entre técnicos, permitem levantar
 
 Esse teste de estresse cumpre dupla função de diagnóstico: verifica, simultaneamente, se a **fonte de alimentação** (ou a bateria, no caso de notebooks) é capaz de entregar a potência de pico exigida pelo hardware sob carga máxima — tema do Capítulo 2 —, e se a **refrigeração** é adequada para sustentar essa carga sem superaquecimento. É o procedimento indicado, por exemplo, para validar se a troca de pasta térmica resolveu um quadro de reinicializações intermitentes atribuídas a superaquecimento.
 
-[IMAGEM: captura de tela do CPU-Z mostrando núcleos, threads, caches e clock de um processador real]
-[IMAGEM: captura de tela do HWMonitor durante um teste de estresse, evidenciando o ciclo de thermal throttling]
+
+!!! warning "Figura pendente"
+    captura de tela do CPU-Z mostrando núcleos, threads, caches e clock de um processador real
+
+
+!!! warning "Figura pendente"
+    captura de tela do HWMonitor durante um teste de estresse, evidenciando o ciclo de thermal throttling
+
 
 ## 3.11 Gargalo e dimensionamento orientado à aplicação
 
@@ -223,10 +259,52 @@ Esse valor de 850 W representa o **pico teórico**, isto é, a soma dos consumos
 
 Esse raciocínio fecha o ciclo entre o dimensionamento do processador (e dos demais componentes de processamento) e o dimensionamento da fonte de alimentação: nenhuma escolha de hardware de processamento pode ser tomada de forma isolada da capacidade de entrega de energia do sistema.
 
-[IMAGEM: tabela de orçamento de potência de um servidor, com a soma dos componentes e a faixa de operação típica marcada sobre a curva de eficiência de uma fonte ATX]
+
+!!! warning "Figura pendente"
+    tabela de orçamento de potência de um servidor, com a soma dos componentes e a faixa de operação típica marcada sobre a curva de eficiência de uma fonte ATX
+
+
+---
+
+## 3.12 Manutenção preventiva e corretiva em notebooks
+
+As seções anteriores deste capítulo trataram o processador de forma geral, aplicável tanto a desktops quanto a notebooks. Esta seção fecha o capítulo tratando especificamente do que muda quando o computador em questão é portátil — um recorte que soma, mas não substitui, tudo o que já foi visto sobre refrigeração (livro de Organização e Montagem, Capítulo 4), fonte de alimentação (Capítulo 2) e thermal throttling (Seção 3.4).
+
+### 3.12.1 Bateria: o componente que só o notebook tem
+
+A bateria de um notebook é uma célula de íon de lítio (ou polímero de lítio), sujeita a um processo de degradação química irreversível — diferente de qualquer componente puramente eletrônico já estudado neste livro, que falha por defeito, não por desgaste químico natural. Duas práticas de manutenção preventiva reduzem essa degradação:
+
+- **Evitar ciclos completos de descarga.** Descarregar a bateria até 0% com frequência acelera sua degradação química, de forma análoga (guardadas as proporções) ao desgaste por ciclo de escrita da memória flash (livro de Organização e Montagem, Capítulo 2, §2.12): a bateria de íon de lítio se degrada menos quando mantida, na maior parte do tempo, numa faixa intermediária de carga (por exemplo, entre 20% e 80%) do que quando ciclada repetidamente entre 0% e 100%.
+- **Evitar calor prolongado.** A degradação química da bateria acelera com a temperatura — manter o notebook conectado à energia e sob carga de processamento pesada por longos períodos, numa superfície que restrinja a ventilação (uma cama, um sofá), combina justamente os dois fatores que mais aceleram esse desgaste: calor e carga elétrica sustentada.
+
+**Diagnóstico corretivo.** Uma bateria degradada não perde a capacidade de operação instantaneamente — ela perde **capacidade total** (a autonomia cai progressivamente) e pode passar a apresentar inchaço físico, visível como uma leve deformação do chassi ou do touchpad. Um notebook com a bateria fisicamente inchada não deve continuar em uso: o inchaço indica acúmulo de gases internos por decomposição química da célula, um risco real de incêndio caso a célula seja perfurada ou continue sendo carregada.
+
+### 3.12.2 Refrigeração: o desafio do espaço reduzido
+
+A Seção 4.7 do livro de Organização e Montagem apresentou dissipador e ventoinha como os dois componentes do resfriamento a ar. Num notebook, o mesmo princípio se aplica, mas dentro de um volume drasticamente menor — o que tem duas consequências práticas diretas:
+
+- **Acúmulo de poeira em menos espaço, com efeito proporcionalmente maior.** As aletas do dissipador de um notebook são mais finas e mais próximas entre si do que as de um cooler de desktop, para caber no chassi fino. Uma mesma quantidade de poeira acumulada obstrui, proporcionalmente, uma fração muito maior da área de passagem de ar — o que explica por que notebooks tendem a apresentar thermal throttling (Seção 3.4) por acúmulo de poeira num intervalo de tempo menor do que um desktop equivalente. A limpeza preventiva do dissipador e da ventoinha (normalmente com ar comprimido, sem desmontar o notebook por completo) é, por essa razão, mais frequente em notebooks do que em desktops.
+- **Repasse de pasta térmica mais delicado.** O procedimento de troca de pasta térmica (livro de Organização e Montagem, Capítulo 4, §4.8) segue o mesmo princípio físico num notebook, mas a desmontagem para acessar o processador é, em geral, mais invasiva: exige remover a placa inteira do chassi em muitos modelos, em vez de apenas liberar um dissipador preso por presilhas externas como num desktop. Por isso, esse é um procedimento tipicamente reservado a um técnico com experiência prévia em desmontagem daquele modelo específico — um manual de serviço (*service manual*) do fabricante, quando disponível, é a referência mais confiável para essa etapa.
+
+### 3.12.3 Componentes soldados: o que muda no diagnóstico por substituição
+
+O Capítulo 1 do livro de Organização e Montagem (§1.11.2) já apresentou o compromisso entre modularidade e portabilidade: memória RAM e, cada vez mais, o próprio processador vêm soldados à placa num notebook. Isso tem uma consequência direta sobre o método de diagnóstico por substituição de módulo (livro de Organização e Montagem, Capítulo 1, §1.6.2): quando o componente suspeito está soldado, não é possível simplesmente trocá-lo por um equivalente para testar a hipótese. As alternativas de diagnóstico corretivo, nesse cenário, são:
+
+- Testar o mesmo sintoma num live USB (Capítulo 3 do livro de Organização e Montagem, §3.9) para isolar hardware de software, já que essa técnica não depende de trocar peça alguma.
+- Testar o componente suspeito em outro notebook do mesmo modelo, quando disponível (por exemplo, numa bancada com máquinas de reposição), como forma indireta de aplicar o mesmo princípio de substituição sem precisar desoldar nada.
+- Quando a suspeita se confirma e o componente é de fato o defeituoso, a correção deixa de ser uma troca de módulo e passa a ser retrabalho de solda em nível de placa — fora do escopo de manutenção de bancada convencional na maioria dos casos, e que costuma justificar, financeiramente, a comparação entre o custo do reparo e o custo de um equipamento novo (a mesma lógica de obsolescência econômica já discutida a propósito de soquetes de CPU, Seção 3.7).
+
+### 3.12.4 Reparos mais comuns: tela e teclado
+
+Diferente do processador e da memória, tela e teclado são, na prática de bancada, os componentes de notebook mais frequentemente substituídos — não por serem tecnologicamente mais frágeis, mas por estarem fisicamente mais expostos a dano por impacto, derramamento de líquido e desgaste de uso repetitivo. Em praticamente todo modelo de notebook, ambos são módulos destacáveis (presos por parafusos e conectores do tipo *ribbon cable*, uma fita plana de contatos), o que os torna reparáveis por substituição direta mesmo em modelos que soldam processador e RAM — uma peça de reposição compatível, comprada do fabricante ou de um fornecedor terceirizado, restaura o equipamento sem exigir retrabalho de solda.
+
+
+!!! warning "Figura pendente"
+    notebook com a tampa inferior removida, evidenciando bateria, dissipador miniaturizado e conectores tipo *ribbon cable* da tela e do teclado
+
 
 ---
 
 ## Síntese do capítulo
 
-Este capítulo apresentou o processador como peça central da tarefa de especificação de um computador: a distinção entre arquiteturas RISC e CISC, os limites físicos impostos pela litografia e pelo calor, a organização interna de um processador multicore (núcleos, threads, cache e pipeline), a relação entre resolução de vídeo e demanda computacional, e a metodologia de benchmark que transforma requisitos descritivos de software em notas numéricas comparáveis entre fabricantes, arquiteturas e gerações diferentes. O exemplo de orçamento de potência da Seção 3.11 retoma diretamente o dimensionamento de fonte de alimentação estudado no Capítulo 2, evidenciando que a escolha de processador, GPU e armazenamento nunca é independente da capacidade de entrega de energia do sistema. Os conceitos de diagnóstico por eliminação de módulos, teste de estresse e identificação de gargalo, exercitados aqui com CPU-Z e HWMonitor, serão retomados e sistematizados no Capítulo 4, dedicado ao atendimento e suporte técnico.
+Este capítulo apresentou o processador como peça central da tarefa de especificação de um computador: a distinção entre arquiteturas RISC e CISC, os limites físicos impostos pela litografia e pelo calor, a organização interna de um processador multicore (núcleos, threads, cache e pipeline), a relação entre resolução de vídeo e demanda computacional, e a metodologia de benchmark que transforma requisitos descritivos de software em notas numéricas comparáveis entre fabricantes, arquiteturas e gerações diferentes. O exemplo de orçamento de potência da Seção 3.11 retoma diretamente o dimensionamento de fonte de alimentação estudado no Capítulo 2, evidenciando que a escolha de processador, GPU e armazenamento nunca é independente da capacidade de entrega de energia do sistema. O capítulo fechou aplicando esses mesmos princípios — refrigeração, energia, diagnóstico por substituição — ao caso específico do notebook, cujo espaço reduzido e componentes soldados exigem adaptações do método geral. Os conceitos de diagnóstico por eliminação de módulos, teste de estresse e identificação de gargalo, exercitados aqui com CPU-Z e HWMonitor, serão retomados e sistematizados no Capítulo 4, dedicado ao atendimento e suporte técnico.

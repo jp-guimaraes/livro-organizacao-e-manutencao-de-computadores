@@ -5,14 +5,14 @@ Lê de capitulos/ (não de docs/) — o pipeline de PDF é independente do
 pipeline do site: docs/ tem os placeholders [IMAGEM: ...] já convertidos
 para admonition do mkdocs-material, capitulos/ mantém o texto original,
 que é o que o filtro Lua deste pipeline (filtro-imagem-pendente.lua)
-espera. capitulos/ é sincronizado a partir de ../info2m e ../info3m por
-scripts/sync_chapters.py (só no repositório privado) — deliberadamente
-não lê ../info2m e ../info3m diretamente, para que este script funcione
-sem alterações quando publicacao/ vira a raiz de um repositório público
-separado (que não tem acesso aos *_material_para_o_professor.md do
-repositório privado).
+espera. capitulos/ é sincronizado a partir de ../organizacao-e-montagem e
+../manutencao-de-computadores por scripts/sync_chapters.py (só no
+repositório privado) — deliberadamente não lê essas pastas diretamente,
+para que este script funcione sem alterações quando publicacao/ vira a
+raiz de um repositório público separado (que não tem acesso aos
+*_material_para_o_professor.md do repositório privado).
 
-Uso: python3 pdf/build_pdf.py [info2m] [info3m]
+Uso: python3 pdf/build_pdf.py [organizacao-e-montagem] [manutencao-de-computadores]
 """
 import subprocess
 import sys
@@ -21,7 +21,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent  # publicacao/
 CAPITULOS = ROOT / "capitulos"
 PDF_DIR = ROOT / "pdf"
-LIVROS = {"info2m": "info2m-livro.pdf", "info3m": "info3m-livro.pdf"}
+LIVROS = {
+    "organizacao-e-montagem": "organizacao-e-montagem-livro.pdf",
+    "manutencao-de-computadores": "manutencao-de-computadores-livro.pdf",
+}
 
 
 def is_chapter_file(path: Path) -> bool:

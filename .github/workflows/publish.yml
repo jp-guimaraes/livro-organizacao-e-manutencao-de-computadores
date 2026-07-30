@@ -1,9 +1,7 @@
 name: Publicar site e PDFs
 
-# Este workflow foi escrito e testado localmente (`mkdocs build --strict` e
-# `python3 pdf/build_pdf.py` já validados) mas só entra em ação de fato quando
-# esta pasta virar a raiz do repositório público e o GitHub Pages estiver
-# habilitado nele (Settings -> Pages -> Source: GitHub Actions).
+# Ativo no repositório público (livro-organizacao-e-manutencao-de-computadores);
+# esta cópia em publicacao/ é a fonte de verdade, replicada manualmente para lá.
 
 on:
   push:
@@ -54,8 +52,8 @@ jobs:
       - name: Colocar os PDFs em docs/downloads/ (mkdocs copia como arquivo estático)
         run: |
           mkdir -p docs/downloads
-          cp info2m-livro.pdf docs/downloads/
-          cp info3m-livro.pdf docs/downloads/
+          cp organizacao-e-montagem-livro.pdf docs/downloads/
+          cp manutencao-de-computadores-livro.pdf docs/downloads/
 
       - name: Build do site (mkdocs)
         run: mkdocs build --strict

@@ -14,10 +14,7 @@ Esse ponto único é a **central de serviços**, também chamada de *service des
 
 No âmbito do IFRN, a central de serviços é operada pelo sistema **SUAP** (Sistema Unificado de Administração Pública), tratado em detalhe na Seção 4.6.
 
-
-!!! warning "Figura pendente"
-    fluxograma — usuário identifica problema → local ou infraestrutura? → abertura de chamado na central de serviços → triagem
-
+[IMAGEM: fluxograma — usuário identifica problema → local ou infraestrutura? → abertura de chamado na central de serviços → triagem]
 
 ## 4.2 Categorização das demandas: evento, incidente e solicitação
 
@@ -71,10 +68,7 @@ A combinação desses dois fatores define a prioridade de atendimento:
 
 Quando não existe um sistema formal de chamados — como ocorre em equipes pequenas de suporte —, a definição de prioridade cabe ao critério do supervisor responsável, que aplica a política da organização mesmo sem registrá-la formalmente em um sistema. Um técnico que ingressa em uma empresa recebe, na fase de treinamento, a orientação sobre qual política de priorização deve seguir.
 
-
-!!! warning "Figura pendente"
-    matriz impacto x urgência com quadrantes de prioridade destacados
-
+[IMAGEM: matriz impacto x urgência com quadrantes de prioridade destacados]
 
 ## 4.4 Níveis de suporte e o custo do atendimento
 
@@ -91,10 +85,7 @@ A escalada de um nível para outro não é gratuita: cada nível tem um custo ma
 
 **Exemplo real de escalonamento.** Uma operadora de internet que enfrentou uma queda prolongada e generalizada em sua qualidade de serviço (o mesmo caso citado na Seção 4.1) precisou recorrer ao Nível 3 — especialistas e fabricantes de equipamento de infraestrutura — porque o problema não se resolveu em um dia, nem em uma semana, evidenciando uma falha estrutural que os níveis anteriores de suporte não tinham capacidade de resolver sozinhos.
 
-
-!!! warning "Figura pendente"
-    diagrama de escalonamento nível 0 → nível 1 → nível 2 → nível 3, com custo crescente indicado
-
+[IMAGEM: diagrama de escalonamento nível 0 → nível 1 → nível 2 → nível 3, com custo crescente indicado]
 
 ## 4.5 Acesso remoto: ferramentas e uso ético
 
@@ -113,10 +104,7 @@ Por envolver o controle total do computador de outra pessoa — muitas vezes com
 
 Esses princípios se relacionam diretamente com a **Lei Geral de Proteção de Dados (LGPD)**: dados pessoais de terceiros não podem ser tratados sem o devido consentimento, o que se aplica tanto ao conteúdo acessado durante uma sessão remota quanto aos registros gerados por ela.
 
-
-!!! warning "Figura pendente"
-    tela de autenticação de uma ferramenta de acesso remoto, com destaque para o código de sessão e o aviso de consentimento
-
+[IMAGEM: tela de autenticação de uma ferramenta de acesso remoto, com destaque para o código de sessão e o aviso de consentimento]
 
 ## 4.6 Sistemas de chamados na prática
 
@@ -132,14 +120,8 @@ Um mesmo caso é útil para revisar a categorização apresentada na Seção 4.2
 
 Antes de permitir a abertura de um chamado, o próprio SUAP oferece, quando disponível, um guia de solução (por exemplo, um tutorial de configuração de rede) — uma tentativa de resolver o problema em Nível 0, sem necessidade de acionar a equipe de TI.
 
-
-!!! warning "Figura pendente"
-    captura de tela do SUAP — árvore de categorias de serviço até "Rede sem fio"
-
-
-!!! warning "Figura pendente"
-    captura de tela do SUAP — formulário de abertura de chamado preenchido, com campos de descrição, interessados e anexo
-
+[IMAGEM: captura de tela do SUAP — árvore de categorias de serviço até "Rede sem fio"]
+[IMAGEM: captura de tela do SUAP — formulário de abertura de chamado preenchido, com campos de descrição, interessados e anexo]
 
 ### 4.6.2 O mesmo modelo no desenvolvimento de software
 
@@ -149,8 +131,68 @@ Vale registrar uma ressalva prática sobre sistemas de chamados em geral: a exig
 
 ---
 
+## 4.7 Troubleshooting: problemas comuns e possíveis soluções
+
+Encerrado o percurso teórico do livro, esta seção consolida, em formato de referência rápida, os problemas mais comumente relatados por um usuário e o roteiro de hipóteses (Seção 1.4) que um técnico deveria seguir para diagnosticá-los — sem repetir a explicação de cada mecanismo, já detalhada no capítulo correspondente.
+
+### 4.7.1 Computador não liga
+
+| Hipótese, em ordem de custo de verificação | Onde aprofundar |
+|---|---|
+| Tomada, régua ou disjuntor sem energia | Capítulo 2, §2.3 |
+| Cabo de força ou fonte com defeito (teste do jumper PS_ON/COM) | Capítulo 2, §2.8.2 |
+| Botão do painel frontal ou sua fiação | Livro de Organização e Montagem, Capítulo 4, §4.5.2 |
+| Mau contato de memória RAM | Capítulo 2, §2.10.3 |
+
+### 4.7.2 Liga, mas não dá POST (sem imagem, com ou sem bipes)
+
+| Hipótese | Onde aprofundar |
+|---|---|
+| Memória RAM ausente, com defeito ou mal encaixada | Livro de Organização e Montagem, Capítulo 4, §4.3.1 e §4.3.3 |
+| Fonte energiza, mas não sustenta carga real | Capítulo 2, §2.8.2 (nota de atenção) |
+| *Speaker* de aviso desconectado ou invertido (falso negativo de "sem bipe") | Capítulo 2, §2.10.3 |
+| CPU incompatível com a placa-mãe (soquete/geração) | Livro de Organização e Montagem, Capítulo 4, §4.6.1 |
+
+### 4.7.3 Trava, reinicia sozinho ou perde desempenho sob carga
+
+| Hipótese | Onde aprofundar |
+|---|---|
+| *Thermal throttling* por refrigeração insuficiente ou pasta térmica ressecada | Seção 3.4; livro de Organização e Montagem, Capítulo 4, §4.8 |
+| Fonte incapaz de sustentar o pico de potência da configuração | Seção 3.11 |
+| Memória RAM configurada acima da frequência suportada pelo conjunto placa-mãe/processador | Livro de Organização e Montagem, Capítulo 2, §2.5 |
+| Acúmulo de poeira no dissipador (mais comum em notebooks) | Seção 3.12.2 |
+
+### 4.7.4 Sem som, Wi-Fi, Bluetooth ou touchpad
+
+| Hipótese | Onde aprofundar |
+|---|---|
+| Driver ausente ou desatualizado (causa mais provável) | Livro de Organização e Montagem, Capítulo 3, §3.12 |
+| Isolar hardware vs. software testando em um Live USB | Livro de Organização e Montagem, Capítulo 3, §3.9 |
+| Dispositivo fisicamente desabilitado no firmware | Livro de Organização e Montagem, Capítulo 3, §3.6.2 |
+
+### 4.7.5 Computador lento no uso geral
+
+| Hipótese | Onde aprofundar |
+|---|---|
+| Pouca memória RAM disponível, sistema recorrendo a memória virtual | Livro de Organização e Montagem, Capítulo 2, §2.9 |
+| Malware em execução em segundo plano | Seção 1.5 |
+| Armazenamento mecânico (HD) como gargalo do sistema | Livro de Organização e Montagem, Capítulo 2, §2.10; Seção 3.11 |
+| Fragmentação de disco (sistemas com HD) | Livro de Organização e Montagem, Capítulo 3, §3.2.2 |
+
+### 4.7.6 Perda de dados ou suspeita de arquivo corrompido/apagado
+
+| Hipótese | Onde aprofundar |
+|---|---|
+| Arquivo apagado, mas cluster ainda não sobrescrito (recuperável) | Livro de Organização e Montagem, Capítulo 3, §3.3.1 |
+| Backup ausente ou desatualizado no momento da falha | Seção 1.3; livro de Organização e Montagem, Capítulo 3, §3.8.1 |
+| Mídia de armazenamento com falha física iminente | Livro de Organização e Montagem, Capítulo 2, §2.10 e §2.12 |
+
+**Como usar esta tabela.** Cada linha é ordenada, sempre que possível, da hipótese mais barata de testar para a mais cara — o mesmo princípio de priorização apresentado na Seção 1.4. Esta seção não substitui o raciocínio de diagnóstico: é um ponto de partida para gerar hipóteses, não uma lista de respostas prontas a aplicar sem investigação.
+
+---
+
 ## Síntese do capítulo
 
-Este capítulo apresentou a organização do suporte técnico: a central de serviços como ponto único de entrada das demandas, a categorização em evento, incidente e solicitação, a priorização por impacto e urgência, o escalonamento por níveis de suporte com custo crescente, o uso ético do acesso remoto e o funcionamento prático de um sistema de chamados institucional, o SUAP.
+Este capítulo apresentou a organização do suporte técnico: a central de serviços como ponto único de entrada das demandas, a categorização em evento, incidente e solicitação, a priorização por impacto e urgência, o escalonamento por níveis de suporte com custo crescente, o uso ético do acesso remoto e o funcionamento prático de um sistema de chamados institucional, o SUAP. Fechou com uma referência rápida de troubleshooting, remetendo os problemas mais comuns relatados por usuários de volta aos mecanismos explicados ao longo dos quatro capítulos.
 
 Com isso se encerra a formação teórica do curso de Manutenção de Computadores. O percurso começou pela definição do computador e pelo princípio de modularidade que estrutura todo diagnóstico técnico (Capítulo 1); avançou para a base elétrica do funcionamento de um computador, com a fonte de alimentação como ponto de partida de qualquer diagnóstico de hardware (Capítulo 2); tratou do processador e dos critérios objetivos de avaliação de desempenho por meio de benchmarks (Capítulo 3); e fecha, neste capítulo, com a dimensão de atendimento da manutenção — como organizar, priorizar e conduzir eticamente o suporte ao usuário. Resta ao curso a etapa final, prática: a apresentação dos trabalhos de dimensionamento de computadores para perfis de uso específicos, na qual os conceitos estudados ao longo dos quatro capítulos são aplicados a um caso concreto de especificação de hardware.

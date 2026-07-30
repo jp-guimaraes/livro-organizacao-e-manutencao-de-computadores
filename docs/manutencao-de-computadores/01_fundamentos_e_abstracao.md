@@ -26,7 +26,10 @@ Como já visto no estudo introdutório de computadores, um sistema computacional
 
 Repare que, no terceiro caso, não há defeito de hardware nem de software: o problema está inteiramente na operação. É comum que problemas relatados como falha técnica sejam, na prática, erro de uso — por isso o técnico precisa investigar as três frentes antes de concluir qualquer diagnóstico.
 
-[IMAGEM: diagrama "sistema computacional = hardware + software + pessoas" com o exemplo do mouse ramificando nas três hipóteses]
+
+!!! warning "Figura pendente"
+    diagrama "sistema computacional = hardware + software + pessoas" com o exemplo do mouse ramificando nas três hipóteses
+
 
 ## 1.3 Manutenção corretiva e manutenção preventiva
 
@@ -40,6 +43,16 @@ Não existe uma periodicidade única para a manutenção preventiva — ela depe
 **Analogia.** A ausência de uma regra fixa de periodicidade é comparável à manutenção automotiva: a troca de óleo e de determinadas peças de um carro de uso severo precisa ser mais frequente do que a de um carro de uso ocasional. Em ambos os casos — carro e computador —, a periodicidade correta é definida pelas condições reais de trabalho, não por uma tabela genérica.
 
 Manutenção corretiva e preventiva se aplicam às três frentes do sistema computacional (Seção 1.2): existem ações preventivas relacionadas a hardware (limpeza, inspeção), a software (backup, atualização) e também a pessoas — treinamento e orientação do usuário para reduzir erros de operação recorrentes.
+
+### 1.3.1 Condições reais e ideais de trabalho
+
+A qualidade de uma manutenção não depende só do diagnóstico correto (Seção 1.4): depende também das condições físicas em que o reparo é executado. Três fatores concentram a maior parte do risco evitável numa bancada de manutenção.
+
+**Controle eletrostático (ESD).** O corpo humano acumula, por atrito simples (caminhar sobre um carpete, por exemplo), uma carga eletrostática que pode chegar a milhares de volts — imperceptível ao toque, mas suficiente para danificar permanentemente um circuito integrado sensível, cuja tolerância a descargas é medida em dezenas ou centenas de volts. A condição ideal de bancada inclui uma superfície de trabalho **antiestática** (um tapete condutor aterrado) e, quando disponível uma instalação de aterramento confiável (Capítulo 2, §2.4), uma pulseira antiestática conectando o técnico a essa mesma referência de terra — a mesma ressalva já feita no Capítulo 2 (§2.11.2) se aplica aqui: só vale a pena se conectar a um aterramento em que se confia.
+
+**Umidade e risco de condensação.** Um componente eletrônico transportado de um ambiente frio (por exemplo, um veículo com ar-condicionado) para um ambiente quente e úmido pode sofrer condensação de água em sua superfície — o mesmo fenômeno que embaça um copo gelado num dia quente. Água condensada sobre um circuito energizado é um risco direto de curto-circuito. A prática recomendada é deixar o equipamento estabilizar à temperatura ambiente, ainda desligado, antes de energizá-lo.
+
+**Organização como parte do método, não só do ambiente.** Ao desmontar um equipamento com múltiplos parafusos e cabos semelhantes entre si (Capítulo 4, do livro de Organização e Montagem de Computadores, trata o procedimento de desmontagem em detalhe), separar e identificar cada peça na ordem de remoção evita o erro mais comum de reparo malsucedido: a remontagem incorreta. Essa organização não é uma questão de estética de bancada — é uma extensão direta do método de diagnóstico por hipóteses (Seção 1.4): um técnico que não sabe de onde veio cada parafuso não consegue isolar, com confiança, se um problema após a remontagem foi causado pelo reparo em si ou por uma montagem incorreta.
 
 ## 1.4 O raciocínio diagnóstico: hipóteses e método científico
 
@@ -77,7 +90,10 @@ Ainda assim, a reinstalação continua sendo uma ferramenta legítima de manuten
 1. **Perda de dados**: a reinstalação apaga o disco. É dever do técnico alertar o usuário e obter confirmação de que uma cópia de segurança (backup) dos dados relevantes foi realizada antes de iniciar o procedimento.
 2. **A reinstalação só resolve problemas de software**: se o sintoma reaparecer após uma reinstalação bem-sucedida, a hipótese de defeito de hardware sobe de prioridade.
 
-[IMAGEM: fluxograma de decisão — sintoma relatado → hipótese hardware/software/usuário → teste da hipótese mais barata → correção pontual ou reinstalação]
+
+!!! warning "Figura pendente"
+    fluxograma de decisão — sintoma relatado → hipótese hardware/software/usuário → teste da hipótese mais barata → correção pontual ou reinstalação
+
 
 ## 1.7 Criação de mídia de instalação: Rufus, MBR/GPT e UEFI
 
@@ -114,7 +130,10 @@ Essa organização em camadas — software sobre navegador, navegador sobre sist
 
 A estratégia de camadas não é exclusiva da relação hardware-software: a mesma lógica organiza, por exemplo, os protocolos de rede em camadas (física, enlace, transporte, aplicação). Este capítulo adota uma abordagem **top-down** (do software visível ao usuário até o hardware que o executa) para, nas seções seguintes, reconstruir a mesma pilha de forma **bottom-up** (do transistor até a linguagem de programação).
 
-[IMAGEM: pilha de camadas — software aplicativo → navegador → sistema operacional → hardware, com setas de dependência apontando para baixo]
+
+!!! warning "Figura pendente"
+    pilha de camadas — software aplicativo → navegador → sistema operacional → hardware, com setas de dependência apontando para baixo
+
 
 ## 1.9 Do transistor às portas lógicas
 
@@ -140,7 +159,10 @@ A partir dessa chave elementar, é possível construir as portas lógicas estuda
 
 **Analogia.** O ponto notável desse processo — e a razão de ele ser descrito em aula como "extraordinário" — é que um punhado de areia (silício) e um pouco de fio de cobre, arranjados segundo esses princípios, realizam uma operação lógica. Não há nada além de física de materiais e geometria de circuito por trás da porta lógica que se manipula em alto nível de abstração.
 
-[IMAGEM: três circuitos lado a lado — porta AND (transistores em série), porta OR (transistores em paralelo) e porta NOT (transistor inversor), com tabela-verdade de cada uma]
+
+!!! warning "Figura pendente"
+    três circuitos lado a lado — porta AND (transistores em série), porta OR (transistores em paralelo) e porta NOT (transistor inversor), com tabela-verdade de cada uma
+
 
 ## 1.10 Circuitos aritméticos: o meio-somador
 
@@ -161,7 +183,10 @@ Observando essa tabela, nota-se que a coluna "Soma" corresponde exatamente à ta
 
 O circuito que combina uma porta XOR (para o bit de soma) e uma porta AND (para o bit de vai-um), ambas recebendo as mesmas duas entradas A e B, é chamado **meio-somador** (*half adder*). Ele soma dois bits e produz dois resultados: o bit de soma e o bit de transporte para a próxima posição. Encadeando vários meios-somadores (com o acréscimo da entrada de vai-um recebido da posição anterior, o que dá origem ao **somador completo**, ou *full adder*), constrói-se um circuito capaz de somar números de qualquer quantidade de bits — o tamanho da palavra binária que um processador consegue somar de uma vez (32 bits, 64 bits) é justamente definido por quantos desses circuitos estão encadeados no hardware.
 
-[IMAGEM: circuito do meio-somador — porta XOR e porta AND recebendo as entradas A e B, produzindo Soma e Carry]
+
+!!! warning "Figura pendente"
+    circuito do meio-somador — porta XOR e porta AND recebendo as entradas A e B, produzindo Soma e Carry
+
 
 ## 1.11 Memória: o flip-flop e os sinais de controle
 
@@ -192,7 +217,10 @@ A operação de leitura e escrita não esgota o funcionamento de um chip de mem�
 
 Esses sinais — de ligar/desligar, de habilitar saída, de selecionar entre operações possíveis de um chip — reaparecem em praticamente todo circuito digital: um somador, um circuito de memória, um controlador de barramento. Entender que eles existem é o que permite compreender a camada seguinte da abstração, tratada na próxima seção.
 
-[IMAGEM: registrador de 4 bits com entradas de dados, clock, reset e habilitação de saída identificadas]
+
+!!! warning "Figura pendente"
+    registrador de 4 bits com entradas de dados, clock, reset e habilitação de saída identificadas
+
 
 ## 1.12 A hierarquia de linguagens: de L0 a L5
 
@@ -236,7 +264,10 @@ Essa arquitetura organiza o computador em quatro unidades funcionais:
 
 No computador desktop moderno, a via de dados que interliga processador, memória e dispositivos de entrada e saída — o **barramento** — é fisicamente provida pela placa-mãe.
 
-[IMAGEM: diagrama da arquitetura de von Neumann — CPU (unidade de controle + ULA), memória, entrada e saída interligados por um barramento central]
+
+!!! warning "Figura pendente"
+    diagrama da arquitetura de von Neumann — CPU (unidade de controle + ULA), memória, entrada e saída interligados por um barramento central
+
 
 ## 1.14 O gargalo de von Neumann
 

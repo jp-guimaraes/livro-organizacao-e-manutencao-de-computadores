@@ -3,6 +3,7 @@ site_description: >-
   Livro didático em duas partes para o curso técnico de informática do IFRN —
   Organização e Montagem de Computadores, e Manutenção de Computadores.
 site_url: https://jp-guimaraes.github.io/livro-organizacao-e-manutencao-de-computadores/
+copyright: Versão 0.1 — João Paulo Ferreira Guimarães
 
 theme:
   name: material
@@ -43,15 +44,15 @@ markdown_extensions:
 nav:
   - Início: index.md
   - Livro 1 — Organização e Montagem:
-      - Apresentação: info2m/index.md
-      - "1. Fundamentos: o que é um computador": info2m/01_fundamentos_o_que_e_um_computador.md
-      - "2. Memória": info2m/02_memoria.md
-      - "3. Sistema Operacional, Sistemas de Arquivo e Instalação": info2m/03_sistema_operacional_instalacao.md
-      - "4. Hardware Físico e Montagem": info2m/04_hardware_fisico_montagem.md
-      - "5. Arquitetura e Organização de Processadores": info2m/05_arquitetura_organizacao_processadores.md
+      - Apresentação: organizacao-e-montagem/index.md
+      - "1. Fundamentos: o que é um computador": organizacao-e-montagem/01_fundamentos_o_que_e_um_computador.md
+      - "2. Memória": organizacao-e-montagem/02_memoria.md
+      - "3. Sistema Operacional, Sistemas de Arquivo e Instalação": organizacao-e-montagem/03_sistema_operacional_instalacao.md
+      - "4. Hardware Físico e Montagem": organizacao-e-montagem/04_hardware_fisico_montagem.md
+      - "5. Arquitetura e Organização de Processadores": organizacao-e-montagem/05_arquitetura_organizacao_processadores.md
   - Livro 2 — Manutenção de Computadores:
-      - Apresentação: info3m/index.md
-      - "1. Fundamentos e Abstração": info3m/01_fundamentos_e_abstracao.md
-      - "2. Eletricidade e Fonte de Alimentação": info3m/02_eletricidade_fonte.md
-      - "3. Processador, Benchmark e Dimensionamento": info3m/03_processador_benchmark_dimensionamento.md
-      - "4. Suporte e Gestão de Serviços": info3m/04_suporte_gestao_servicos.md
+      - Apresentação: manutencao-de-computadores/index.md
+      - "1. Fundamentos e Abstração": manutencao-de-computadores/01_fundamentos_e_abstracao.md
+      - "2. Eletricidade e Fonte de Alimentação": manutencao-de-computadores/02_eletricidade_fonte.md
+      - "3. Processador, Benchmark e Dimensionamento": manutencao-de-computadores/03_processador_benchmark_dimensionamento.md
+      - "4. Suporte e Gestão de Serviços": manutencao-de-computadores/04_suporte_gestao_servicos.md
