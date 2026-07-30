@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "capitulos/**"
       - "mkdocs.yml"
       - "pdf/**"
       - "requirements.txt"
@@ -42,8 +43,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            texlive-xetex texlive-latex-extra texlive-fonts-extra \
-            texlive-lang-european fonts-dejavu pandoc
+            texlive-xetex texlive-latex-extra texlive-latex-recommended \
+            texlive-fonts-extra texlive-lang-european fonts-dejavu pandoc
 
       - name: Build dos PDFs (pandoc + xelatex)
         run: python3 pdf/build_pdf.py
