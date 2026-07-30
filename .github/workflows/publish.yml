@@ -44,7 +44,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             texlive-xetex texlive-latex-extra texlive-latex-recommended \
-            texlive-fonts-extra texlive-lang-european fonts-dejavu pandoc
+            texlive-fonts-extra texlive-fonts-recommended \
+            texlive-lang-european texlive-lang-portuguese \
+            fonts-dejavu pandoc
 
       - name: Build dos PDFs (pandoc + xelatex)
         run: python3 pdf/build_pdf.py
