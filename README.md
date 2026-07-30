@@ -25,6 +25,6 @@ mkdocs serve
 Build de PDF (requer `pandoc` e `xelatex`):
 
 ```bash
-python3 pdf/build_pdf.py            # gera info2m-livro.pdf e info3m-livro.pdf
-python3 pdf/build_pdf.py info2m     # só um dos dois, se preferir
+python3 pdf/build_pdf.py                          # gera organizacao-e-montagem-livro.pdf e manutencao-de-computadores-livro.pdf
+python3 pdf/build_pdf.py organizacao-e-montagem   # só um dos dois, se preferir
 ```
