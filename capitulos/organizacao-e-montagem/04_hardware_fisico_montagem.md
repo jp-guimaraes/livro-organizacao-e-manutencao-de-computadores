@@ -140,7 +140,7 @@ O painel frontal também disponibiliza, tipicamente, um segundo botão equivalen
 
 ## 4.6 CPU: fabricantes, soquetes e gerações
 
-O processador é, em geral, um dos componentes mais caros de um computador desktop. O mercado de CPUs para desktop é dominado por dois fabricantes: **Intel** e **AMD** — ao contrário do mercado de notebooks, no qual, cada vez mais, a CPU vem soldada diretamente à placa-mãe, eliminando a possibilidade de substituição. A imensa maioria dos computadores desktop disponíveis no mercado utiliza processadores da arquitetura **x64**, cujos detalhes de conjunto de instruções são tratados no Capítulo 5.
+O processador é, em geral, um dos componentes mais caros de um computador desktop. O mercado de CPUs para desktop é dominado por dois fabricantes: **Intel** e **AMD** — ao contrário do mercado de notebooks, no qual, cada vez mais, a CPU vem soldada diretamente à placa-mãe, eliminando a possibilidade de substituição. A imensa maioria dos computadores desktop disponíveis no mercado utiliza, em 2026, processadores da arquitetura **x64**, cujos detalhes de conjunto de instruções são tratados no Capítulo 5.
 
 ### 4.6.1 Compatibilidade entre CPU e placa-mãe: o soquete
 
@@ -149,11 +149,11 @@ O **soquete** é o conector físico da placa-mãe no qual o processador é encai
 Além da compatibilidade entre fabricantes, é preciso observar a compatibilidade entre **gerações** de processador dentro de um mesmo fabricante:
 
 - A **Intel**, historicamente, altera o soquete a cada uma ou duas gerações de processador. Em alguns casos, duas gerações consecutivas compartilham o mesmo soquete físico, mas ainda assim são incompatíveis entre si — a placa-mãe precisa ter sido projetada especificamente para aquela geração.
-- A **AMD** tende a manter um mesmo soquete (por exemplo, o soquete AM4) por várias gerações consecutivas de processadores, por vezes exigindo apenas uma atualização de BIOS para suportar uma geração mais recente.
+- A **AMD** tende a manter um mesmo soquete (por exemplo, o soquete AM4, mantido de 2016 a 2022) por várias gerações consecutivas de processadores, por vezes exigindo apenas uma atualização de BIOS para suportar uma geração mais recente `[1]`.
 
 **Analogia.** A abordagem da Intel para soquetes pode ser comparada a um cenário hipotético em que cada geração de um smartphone tivesse seu próprio carregador, incompatível com o carregador da geração anterior.
 
-**Exemplo real.** O soquete LGA1155, usado em algumas placas-mãe Intel, suporta processadores de 2ª geração (nome de código Sandy Bridge) e de 3ª geração (Ivy Bridge). Identificar qual geração uma determinada placa-mãe suporta é informação disponível no manual do fabricante — não é conhecimento a ser memorizado, mas sim consultado no momento da especificação ou do reparo.
+**Exemplo real.** O soquete LGA1155, usado em algumas placas-mãe Intel, suporta processadores de 2ª geração (nome de código Sandy Bridge) e de 3ª geração (Ivy Bridge) `[2]`. Identificar qual geração uma determinada placa-mãe suporta é informação disponível no manual do fabricante — não é conhecimento a ser memorizado, mas sim consultado no momento da especificação ou do reparo. **Atenção:** o soquete compartilhado não garante, por si só, compatibilidade total — o chipset **H61**, por exemplo, é LGA1155 mas não suporta Ivy Bridge mesmo com atualização de BIOS.
 
 ### 4.6.2 Diferenças físicas entre os soquetes Intel e AMD
 
@@ -161,6 +161,8 @@ Um processador é conectado à placa-mãe por meio de um conjunto de contatos el
 
 - **Intel**: os pinos ficam alojados no **soquete da placa-mãe**; o processador possui apenas contatos planos (sem pinos salientes).
 - **AMD** (na abordagem tradicional): os **pinos ficam no próprio processador**, e o soquete da placa-mãe possui os furos correspondentes.
+
+**Atenção:** a AMD abandonou essa abordagem tradicional a partir do soquete **AM5** (lançado em 2022, usado pelos Ryzen 7000 em diante), que passou a ser LGA — os pinos ficaram na placa-mãe, como na Intel `[3]`. A descrição acima vale para os soquetes AMD anteriores ao AM5 (como o AM4).
 
 Em ambos os casos, um pino entortado é um dano frequentemente irreparável: quando localizado na placa-mãe, compromete a placa inteira; quando localizado no processador, compromete o processador. Por isso, o manuseio de processadores e soquetes exige cuidado e nunca deve envolver força excessiva.
 
@@ -173,7 +175,7 @@ Todo processador possui uma marca de alinhamento (tipicamente um pequeno triâng
 
 Além do fabricante, geração e soquete, os processadores variam amplamente em preço e capacidade de processamento — de modelos de entrada a modelos de milhares de reais. Uma capacidade de processamento maior não se traduz automaticamente em melhor desempenho para toda e qualquer aplicação: o desempenho real depende também de como o software em uso foi projetado para tirar proveito do hardware disponível.
 
-**Exemplo.** Um caso amplamente comentado envolveu um usuário que investiu um valor elevado (equivalente ao preço de um carro) em um processador de alto número de núcleos, esperando desempenho superior em um jogo popular. O resultado, entretanto, ficou aquém do esperado: o jogo em questão foi desenvolvido para utilizar poucos núcleos simultaneamente, de modo que o excesso de núcleos disponíveis não pôde ser aproveitado — o gargalo estava na interdependência entre hardware e software, não na capacidade bruta do processador.
+**Exemplo hipotético.** Imagine um usuário que investisse um valor elevado em um processador de alto número de núcleos, esperando desempenho superior em um jogo popular. O resultado, nesse cenário, ficaria aquém do esperado: se o jogo em questão foi desenvolvido para utilizar poucos núcleos simultaneamente, o excesso de núcleos disponíveis não poderia ser aproveitado — o gargalo estaria na interdependência entre hardware e software, não na capacidade bruta do processador.
 
 Esse caso ilustra um princípio central da disciplina: **não existe "o melhor" componente em termos absolutos — existe o componente mais adequado a um orçamento e a uma finalidade específicos.** O mesmo raciocínio se aplica a outras decisões de hardware e rede: uma rede Wi-Fi em 2,4 GHz oferece maior alcance com menor velocidade, enquanto uma rede em 5 GHz oferece maior velocidade com menor alcance — trata-se de uma escolha de compromisso, não da existência de uma opção objetivamente superior. Da mesma forma, um processador de maior capacidade de processamento tende a consumir mais energia, o que é indesejável em um dispositivo móvel dependente de bateria. Essas relações de compromisso estão associadas à **arquitetura** do processador, tema aprofundado no Capítulo 5.
 
@@ -192,23 +194,23 @@ O sistema de refrigeração a ar (*air cooler*) mais comum é composto por dois 
 
 ### 4.7.2 Condutividade térmica dos materiais
 
-A eficiência de um sistema de refrigeração depende diretamente da condutividade térmica do meio utilizado para transferir o calor. A tabela a seguir apresenta valores relativos de condutividade térmica para materiais mencionados em aula:
+A eficiência de um sistema de refrigeração depende diretamente da condutividade térmica do meio utilizado para transferir o calor. A tabela a seguir apresenta valores relativos de condutividade térmica para os materiais discutidos nesta seção `[4]`:
 
 | Material | Condutividade térmica (ordem de grandeza relativa) |
 |---|---|
-| Prata | 426 |
+| Prata | 428 |
 | Cobre | 398 |
-| Alumínio | 237 |
+| Alumínio | 247 |
 | Tungstênio | 178 |
 | Ferro | 80 |
-| Vidro | 0,72 |
-| Água | 0,61 |
-| Tijolo | 0,4 |
+| Vidro | 0,8 |
+| Água | 0,57 |
+| Tijolo | 0,66 |
 | Madeira | 0,11 |
 | Fibra de vidro | 0,04 |
 | Ar | 0,026 |
 
-O ar é um condutor térmico deficiente — a água é aproximadamente **24 vezes mais condutiva termicamente do que o ar**. É por essa razão que sistemas de refrigeração líquida conseguem remover calor de forma mais eficiente do que sistemas a ar, especialmente em processadores de alto consumo energético.
+O ar é um condutor térmico deficiente — a água é aproximadamente **22 vezes mais condutiva termicamente do que o ar** `[4]`. É por essa razão que sistemas de refrigeração líquida conseguem remover calor de forma mais eficiente do que sistemas a ar, especialmente em processadores de alto consumo energético.
 
 **Analogia.** A mesma lógica está presente na refrigeração de motores automotivos: o Fusca e seus derivados (como a Kombi e os buggies) utilizavam refrigeração a ar, o que explica seu som característico de motor; carros modernos, por gerarem mais calor e exigirem dissipação mais eficiente, utilizam refrigeração líquida com radiador.
 
@@ -249,13 +251,13 @@ As seções anteriores deste capítulo trataram a placa-mãe do ponto de vista f
 
 O **fator de forma** de uma placa-mãe é o seu padrão de dimensões físicas e posicionamento de furos de fixação — um combinado (no mesmo sentido de "combinado" usado no Capítulo 2 a propósito da célula de memória) entre fabricantes de placa-mãe e fabricantes de gabinete, que garante que qualquer placa de um determinado fator de forma se encaixe em qualquer gabinete compatível com esse mesmo padrão.
 
-| Fator de forma | Dimensões aproximadas | Slots de expansão | Uso típico |
+| Fator de forma | Dimensões aproximadas `[5]` | Slots de expansão (observação de mercado, não parte da especificação) | Uso típico |
 |---|---|---|---|
 | **ATX** | 305 × 244 mm | Mais slots (tipicamente 4 a 7) | Desktop de uso geral, estações de trabalho |
 | **microATX (mATX)** | 244 × 244 mm | Menos slots (tipicamente 2 a 4) | Desktop compacto, custo reduzido |
 | **Mini-ITX** | 170 × 170 mm | Geralmente 1 slot | Computadores muito compactos, *home theater PC*, projetos de nicho |
 
-Quanto menor o fator de forma, menor o gabinete que ele permite montar — mas menos espaço físico sobra para slots de expansão (Seção 4.10.4), conectores de alimentação e, com frequência, para soquetes adicionais de memória. A escolha do fator de forma é, portanto, um compromisso entre compacidade e capacidade de expansão futura, e deve ser decidida antes da compra do gabinete: um gabinete ATX aceita placas ATX, microATX e Mini-ITX (por retrocompatibilidade de posicionamento de furos), mas um gabinete Mini-ITX aceita **somente** placas Mini-ITX.
+O número de slots de expansão não é fixado pela especificação do fator de forma em si — depende do projeto de cada fabricante de placa-mãe; as faixas acima são uma observação de mercado, não uma regra normativa. Quanto menor o fator de forma, menor o gabinete que ele permite montar — mas menos espaço físico sobra para slots de expansão (Seção 4.10.4), conectores de alimentação e, com frequência, para soquetes adicionais de memória. A escolha do fator de forma é, portanto, um compromisso entre compacidade e capacidade de expansão futura, e deve ser decidida antes da compra do gabinete: um gabinete ATX aceita placas ATX, microATX e Mini-ITX (por retrocompatibilidade de posicionamento de furos), mas um gabinete Mini-ITX aceita **somente** placas Mini-ITX.
 
 [IMAGEM: três placas-mãe (ATX, microATX, Mini-ITX) fotografadas lado a lado na mesma escala, evidenciando a diferença de tamanho]
 
@@ -301,7 +303,7 @@ Como diversos dispositivos compartilham o mesmo conjunto de linhas, é necessár
 
 O **chipset** — já mencionado no livro de Manutenção de Computadores (Capítulo 2, §2.11) como o "conjunto de chips" que interliga os controladores da placa-mãe — foi, por muitos anos, fisicamente dividido em dois chips distintos, cada um responsável por uma metade da hierarquia de barramentos do computador.
 
-- **Ponte norte** (*northbridge*, também chamada *IO hub*): conectada diretamente ao processador por um barramento de altíssima velocidade (chamado **QPI** — *QuickPath Interconnect* — pela Intel, e **HyperTransport** pela AMD, historicamente), a ponte norte intermediava o acesso à memória RAM e à placa de vídeo — os dois componentes que mais exigem largura de banda e menor latência possível em relação ao processador.
+- **Ponte norte** (*northbridge*, também chamada *IO hub*): conectada diretamente ao processador por um barramento de altíssima velocidade (chamado **QPI** — *QuickPath Interconnect* — pela Intel, e **HyperTransport** pela AMD, historicamente) `[6]`, a ponte norte intermediava o acesso à memória RAM e à placa de vídeo — os dois componentes que mais exigem largura de banda e menor latência possível em relação ao processador.
 - **Ponte sul** (*southbridge*), hoje frequentemente chamada **PCH** (*Platform Controller Hub*, nomenclatura Intel) ou **FCH** (*Fusion Controller Hub*, nomenclatura AMD): conectada à ponte norte (nunca diretamente ao processador), reunia os controladores de dispositivos que toleram maior latência — portas USB, SATA (Seção 4.10.5), áudio, rede, o chip de BIOS/UEFI (Capítulo 3, §3.6) e os demais slots PCI/PCIe de expansão.
 
 **Analogia.** A relação entre ponte norte e ponte sul é comparável à hierarquia de uma empresa de logística: a ponte norte é o centro de distribuição regional, conectado por uma rodovia expressa diretamente à fábrica (o processador) e capaz de atender rapidamente os poucos clientes de maior volume (memória RAM, vídeo); a ponte sul é o centro de distribuição local, que recebe carga do centro regional e a redistribui para o grande número de pequenos destinos (USB, SATA, áudio, rede) — cada um exigindo menos velocidade individual, mas em maior quantidade.
@@ -310,7 +312,7 @@ O **chipset** — já mencionado no livro de Manutenção de Computadores (Capí
 
 A arquitetura de duas pontes começou a ser desmontada à medida que os processadores modernos passaram a incorporar, dentro do próprio encapsulamento da CPU, funções que antes pertenciam à ponte norte: o **controlador de memória** (Capítulo 2 trata a RAM em profundidade) e, em processadores mais recentes, um conjunto próprio de **pistas PCIe** (Seção 4.10.4, adiante) dedicadas à placa de vídeo e ao armazenamento NVMe (Seção 4.10.5).
 
-O resultado é que a "ponte norte" propriamente dita desapareceu como chip separado na maioria dos desktops modernos: o processador se conecta diretamente à RAM e à GPU, e o que resta da comunicação com o restante da placa-mãe passa por um único link de alta velocidade até a ponte sul — chamado **DMI** (*Direct Media Interface*) pela Intel e **UMI** (*Unified Media Interface*) pela AMD, sucessores diretos do antigo QPI/HyperTransport entre as duas pontes. Esse link concentra hoje o tráfego de tudo que ainda depende da ponte sul: USB, SATA, PCIe de menor prioridade, áudio, rede — e é, ele mesmo, um ponto de atenção em especificação de hardware, porque todo esse tráfego compartilha a largura de banda de um único link, ainda que cada dispositivo individual pareça ter sua própria conexão dedicada.
+O resultado é que a "ponte norte" propriamente dita desapareceu como chip separado na maioria dos desktops modernos: o processador se conecta diretamente à RAM e à GPU, e o que resta da comunicação com o restante da placa-mãe passa por um único link de alta velocidade até a ponte sul — chamado **DMI** (*Direct Media Interface*) pela Intel e **UMI** (*Unified Media Interface*) pela AMD `[7]`. Esse link concentra hoje o tráfego de tudo que ainda depende da ponte sul: USB, SATA, PCIe de menor prioridade, áudio, rede — e é, ele mesmo, um ponto de atenção em especificação de hardware, porque todo esse tráfego compartilha a largura de banda de um único link, ainda que cada dispositivo individual pareça ter sua própria conexão dedicada.
 
 **Nota prática.** Essa reorganização explica por que a especificação de um processador (Capítulo 5) hoje frequentemente informa "quantas pistas PCIe" ele oferece diretamente — um dado que, antes da migração do controlador para dentro da CPU, seria uma característica do chipset, não do processador.
 
@@ -318,7 +320,7 @@ O resultado é que a "ponte norte" propriamente dita desapareceu como chip separ
 
 ### 4.10.4 Slots de expansão: de ISA a PCI Express
 
-A tabela a seguir situa a evolução dos barramentos de expansão — as conexões da placa-mãe às quais placas adicionais (de vídeo, de som, de rede, entre outras) são fisicamente conectadas:
+A tabela a seguir situa a evolução dos barramentos de expansão — as conexões da placa-mãe às quais placas adicionais (de vídeo, de som, de rede, entre outras) são fisicamente conectadas `[8]`:
 
 | Padrão | Tipo de comunicação | Situação atual |
 |---|---|---|
@@ -333,7 +335,7 @@ Essa conexão é organizada em **pistas** (*lanes*), cada uma constituída por u
 
 **Compatibilidade física.** Um slot PCIe de maior tamanho físico (por exemplo, x16) aceita, por projeto, uma placa de tamanho físico menor (x1, x4, x8) encaixada nele — a placa menor simplesmente não utiliza todas as pistas disponíveis no slot. O inverso não é possível sem um slot aberto na extremidade (um recurso presente em algumas placas-mãe): uma placa fisicamente x16 não encaixa, por padrão, num slot x1.
 
-Cada geração do padrão PCIe (identificada por um número de versão — PCIe 3.0, 4.0, 5.0 e assim sucessivamente) dobra, em relação à geração anterior, a largura de banda disponível por pista, mantendo o mesmo princípio físico de conexão — um padrão de evolução comparável ao da família DDR de memória (Capítulo 2, §2.4).
+Cada geração do padrão PCIe (identificada por um número de versão — PCIe 3.0, 4.0, 5.0 e assim sucessivamente) dobra, em relação à geração anterior, a largura de banda disponível por pista `[9]`, mantendo o mesmo princípio físico de conexão — um padrão de evolução comparável ao da família DDR de memória (Capítulo 2, §2.4).
 
 [IMAGEM: foto de uma placa-mãe evidenciando slots PCIe de tamanhos diferentes (x16, x4, x1) lado a lado]
 
@@ -341,11 +343,11 @@ Cada geração do padrão PCIe (identificada por um número de versão — PCIe 
 
 A Seção 4.1.1 já introduziu, brevemente, as interfaces **SATA** e **NVMe** ao tratar da conexão física da memória secundária. Esta seção aprofunda essa distinção agora que o conceito de PCIe foi apresentado.
 
-**SATA** (*Serial ATA*) é o sucessor serial do antigo padrão **IDE** (*Integrated Drive Electronics*, também chamado **PATA**, *Parallel ATA*) — mais um caso, como discutido na Seção 4.10.1, da migração geral de interfaces paralelas para seriais. O SATA usa seu próprio controlador (parte da ponte sul, Seção 4.10.2) e seu próprio protocolo de comunicação, projetado nos anos 2000 tendo o HD mecânico (Capítulo 2, §2.10) como dispositivo de referência — um dispositivo cujo gargalo real de desempenho está na mecânica do prato girante e do braço atuador, não na interface elétrica em si.
+**SATA** (*Serial ATA*) é o sucessor serial do antigo padrão **IDE** (*Integrated Drive Electronics*, também chamado **PATA**, *Parallel ATA*) — mais um caso, como discutido na Seção 4.10.1, da migração geral de interfaces paralelas para seriais. O SATA usa seu próprio controlador (parte da ponte sul, Seção 4.10.2) e seu próprio protocolo de comunicação, projetado nos anos 2000 `[10]` tendo o HD mecânico (Capítulo 2, §2.10) como dispositivo de referência — um dispositivo cujo gargalo real de desempenho está na mecânica do prato girante e do braço atuador, não na interface elétrica em si.
 
 **NVMe** (*Non-Volatile Memory Express*) é um protocolo de comunicação desenvolvido especificamente para memória flash (Capítulo 2, §2.12), projetado para eliminar exatamente essa limitação histórica do SATA. Em vez de usar o controlador da ponte sul e um protocolo pensado para discos mecânicos, um dispositivo NVMe se conecta **diretamente às pistas PCIe** (Seção 4.10.3) — com frequência às pistas oferecidas diretamente pelo processador, e não pela ponte sul —, dispensando a camada de tradução SATA/AHCI e aproveitando a largura de banda muito maior do PCIe. Fisicamente, um dispositivo NVMe de consumo típico se conecta a um slot **M.2** na placa-mãe — um conector compacto que dispensa os cabos de dados e energia exigidos por um dispositivo SATA (Seção 4.1.1) — embora nem todo slot M.2 seja necessariamente NVMe: alguns slots M.2 mais antigos transportam o protocolo SATA sobre o mesmo conector físico, uma fonte comum de confusão na hora de especificar um SSD compatível.
 
-**Nota de desempenho.** A diferença de velocidade entre SATA e NVMe não é sutil: um SSD SATA está limitado à taxa de transferência máxima da interface SATA (da ordem de 600 MB/s), enquanto um SSD NVMe, por usar múltiplas pistas PCIe diretamente, alcança taxas de vários gigabytes por segundo — uma ordem de grandeza acima. Essa diferença só se torna relevante, na prática, para cargas de trabalho que de fato saturam a interface (cópia de grandes volumes de arquivo, carregamento de jogos com texturas pesadas); para o uso cotidiano de um computador, a diferença perceptível entre os dois costuma ser pequena.
+**Nota de desempenho.** A diferença de velocidade entre SATA e NVMe não é sutil: um SSD SATA está limitado à taxa de transferência máxima da interface SATA (da ordem de 600 MB/s) `[11]`, enquanto um SSD NVMe, por usar múltiplas pistas PCIe diretamente, alcança taxas de vários gigabytes por segundo — uma ordem de grandeza acima. Essa diferença só se torna relevante, na prática, para cargas de trabalho que de fato saturam a interface (cópia de grandes volumes de arquivo, carregamento de jogos com texturas pesadas); para o uso cotidiano de um computador, a diferença perceptível entre os dois costuma ser pequena.
 
 ---
 
@@ -376,7 +378,7 @@ A comunicação entre a CPU e dispositivos de entrada simples como teclado e mou
 
 ### 4.11.4 Modos de transferência de dados
 
-Um requisito comum a qualquer transferência de E/S é comunicar três elementos: um **endereço** (para onde vai, ou de onde vem, o dado), **comandos** (o que fazer com ele) e os **dados** propriamente ditos. Existem três estratégias para a CPU realizar essa comunicação:
+Um requisito comum a qualquer transferência de E/S é comunicar três elementos: um **endereço** (para onde vai, ou de onde vem, o dado), **comandos** (o que fazer com ele) e os **dados** propriamente ditos. Existem três estratégias para a CPU realizar essa comunicação `[12]`:
 
 - **Comunicação programada** — a própria CPU, executando uma rotina de software, é responsável por mover cada dado entre o periférico e a memória. Duas variantes existem: **espera ocupada** (a CPU fica presa num laço, checando repetidamente se o dispositivo está pronto, sem fazer mais nada nesse intervalo) e ***polling*** (a CPU verifica periodicamente, mas intercalando outras tarefas entre uma verificação e outra). Em ambas, a CPU desperdiça parte de sua capacidade de processamento apenas esperando ou verificando.
 - **Comunicação por interrupção** — em vez de a CPU perguntar repetidamente "já terminou?", o próprio hardware do dispositivo **avisa** a CPU (por meio de um sinal elétrico chamado interrupção) no exato instante em que há um dado pronto para transferência. A CPU fica livre para executar outras tarefas entre um aviso e outro, interrompendo o que está fazendo apenas quando o periférico efetivamente precisa de atenção.
@@ -386,7 +388,7 @@ Um requisito comum a qualquer transferência de E/S é comunicar três elementos
 
 ### 4.11.5 Estudo de caso: USB
 
-O **USB** (*Universal Serial Bus*, barramento serial universal) ilustra, num único padrão amplamente conhecido, como diferentes tipos de periférico exigem diferentes garantias de entrega de dados. A especificação USB define quatro tipos de transferência:
+O **USB** (*Universal Serial Bus*, barramento serial universal) ilustra, num único padrão amplamente conhecido, como diferentes tipos de periférico exigem diferentes garantias de entrega de dados. A especificação USB define quatro tipos de transferência `[13]`:
 
 | Tipo de transferência | Uso típico | Garantia |
 |---|---|---|
@@ -418,3 +420,21 @@ Assim como processador, memória e armazenamento têm critérios objetivos de es
 ## Síntese do capítulo
 
 Este capítulo tratou dos componentes físicos de um computador desktop, do procedimento de desmontagem e remontagem do gabinete, e retomou o POST — apresentado no Capítulo 3 do ponto de vista do software — sob a ótica dos quatro componentes de hardware vitais à sua execução: fonte, CPU, RAM e placa-mãe. Foram tratados também o papel da bateria CMOS na retenção de configurações, o funcionamento elétrico do botão liga/desliga e do painel frontal, os critérios de compatibilidade entre processador e placa-mãe (fabricante, soquete e geração), e os sistemas de refrigeração a ar e a líquido, incluindo a função física da pasta térmica. O capítulo também situou a placa-mãe como objeto físico — seu fator de forma e seus jumpers — e como via de comunicação: a hierarquia de barramentos que liga processador, memória, armazenamento e periféricos, da arquitetura clássica de ponte norte/sul à integração progressiva dessas funções dentro do próprio processador, e os protocolos SATA, PCIe e NVMe que materializam essa comunicação hoje, além dos princípios de entrada e saída que regem a comunicação com teclado, mouse e demais periféricos. Os critérios de especificação de CPU introduzidos aqui — número de núcleos, desempenho por núcleo, consumo energético — dependem diretamente do conceito de **arquitetura de processadores**, aprofundado no Capítulo 5.
+
+---
+
+## Referências
+
+1. TECHPOWERUP. "AMD Socket AM5 an LGA of 1,718 Pins with DDR5 and PCIe Gen 4." Disponível em: <https://www.techpowerup.com/282532/amd-socket-am5-an-lga-of-1-718-pins-with-ddr5-and-pcie-gen-4>.
+2. WIKIPEDIA. "LGA 1155." Disponível em: <https://en.wikipedia.org/wiki/LGA_1155>; documentação Intel ARK para os chipsets específicos.
+3. TECHPOWERUP. "AMD Socket AM5 an LGA of 1,718 Pins with DDR5 and PCIe Gen 4." Disponível em: <https://www.techpowerup.com/282532/amd-socket-am5-an-lga-of-1-718-pins-with-ddr5-and-pcie-gen-4>.
+4. PRÄSS, Alberto Ricardo. "Condutividade Térmica — Constantes Físicas." fisica.net. Disponível em: <https://www.fisica.net/constantes/condutividade-termica-(k).php>.
+5. WIKIPEDIA. "ATX." Disponível em: <https://en.wikipedia.org/wiki/ATX>; "MicroATX." Disponível em: <https://en.wikipedia.org/wiki/MicroATX>; "Mini-ITX." Disponível em: <https://en.wikipedia.org/wiki/Mini-ITX>.
+6. STALLINGS, William. *Arquitetura e Organização de Computadores*. 10. ed. São Paulo: Pearson Education do Brasil, 2018 (seção sobre QPI); MONTEIRO, Mario A. *Introdução à Organização de Computadores*. 5. ed. Rio de Janeiro: LTC (seção D.3.4.2, Tecnologia HyperTransport).
+7. WIKIPEDIA. "Direct Media Interface." Disponível em: <https://en.wikipedia.org/wiki/Direct_Media_Interface>; INTEL. "What Is the Direct Media Interface (DMI) of Intel® Processors?" Disponível em: <https://www.intel.com/content/www/us/en/support/articles/000094185/processors.html>; WIKIPEDIA. "Unified Media Interface." Disponível em: <https://en.wikipedia.org/wiki/Unified_Media_Interface>.
+8. PCI-SIG. Especificações oficiais PCI/PCI Express. Disponível em: <https://pcisig.com>.
+9. PCI-SIG. Especificações oficiais PCI Express (PCIe 3.0/4.0/5.0). Disponível em: <https://pcisig.com>.
+10. SEAGATE. "Serial ATA: High Speed Serialized AT Attachment, Revision 1.0, 29-August-2001." Disponível em: <https://www.seagate.com/support/disc/manuals/sata/sata_im.pdf>.
+11. SATA-IO. Especificação SATA. Disponível em: <https://www.sata-io.org>.
+12. STALLINGS, William. *Arquitetura e Organização de Computadores*. 10. ed. São Paulo: Pearson Education do Brasil, 2018 (Capítulo 7, E/S programada, por interrupção e DMA).
+13. USB IMPLEMENTERS FORUM. Especificação USB. Disponível em: <https://www.usb.org>; MONTEIRO, Mario A. *Introdução à Organização de Computadores*. 5. ed. Rio de Janeiro: LTC (seção D.3.4.1).

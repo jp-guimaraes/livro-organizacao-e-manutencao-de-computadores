@@ -36,7 +36,7 @@ A unidade mínima de alocação de espaço em disco para arquivos e diretórios 
 
 **Analogia.** O cluster pode ser entendido como uma gaveta: o sistema operacional não guarda dados em posições arbitrárias do disco, mas em unidades fixas — as gavetas —, cada uma com um tamanho definido no momento da formatação.
 
-Ao formatar uma unidade de armazenamento, o sistema operacional solicita, entre outras informações, o **tamanho da unidade de alocação** (o tamanho do cluster). Valores típicos oferecidos pelo Windows incluem 8.192 bytes, 16 KB, 32 KB e 64 KB, além de um tamanho padrão sugerido para o dispositivo.
+Ao formatar uma unidade de armazenamento, o sistema operacional solicita, entre outras informações, o **tamanho da unidade de alocação** (o tamanho do cluster). Valores típicos oferecidos pelo Windows incluem 8.192 bytes, 16 KB, 32 KB e 64 KB, além de um tamanho padrão sugerido para o dispositivo `[1]`.
 
 [IMAGEM: janela de formatação do Windows mostrando a escolha do sistema de arquivo (FAT32, NTFS, exFAT) e do tamanho da unidade de alocação]
 
@@ -129,7 +129,7 @@ Existem duas soluções de tabela de partição amplamente utilizadas: **MBR** (
 O **MBR** (*Master Boot Record*) grava a tabela de partições em um setor específico no início do disco, usando endereçamento de **32 bits**. Dessa limitação de endereçamento decorrem duas restrições centrais:
 
 - O tamanho máximo de uma partição é de **2 TB**.
-- É possível criar no máximo **quatro partições primárias**.
+- É possível criar no máximo **quatro partições primárias** `[2]`.
 
 Para superar o limite de quatro partições, uma das partições primárias pode ser convertida em **partição estendida**, dentro da qual é possível criar até **128 partições lógicas**. Uma consequência prática dessa regra é que múltiplas partições lógicas devem estar todas contidas dentro de uma única partição estendida — não é possível, por exemplo, dividir 64 partições lógicas entre duas partições primárias diferentes.
 
@@ -139,9 +139,9 @@ Para superar o limite de quatro partições, uma das partições primárias pode
 
 O **GPT** (*GUID Partition Table*) foi desenvolvido para superar as limitações do MBR, mantendo **retrocompatibilidade** com ele — isto é, softwares e firmwares mais antigos, mesmo sem reconhecer o GPT, ainda conseguem ler as informações essenciais gravadas no mesmo local histórico do disco.
 
-**Analogia.** A retrocompatibilidade do GPT em relação ao MBR é equivalente à de um console de videogame mais recente que ainda executa jogos de gerações anteriores — como o PlayStation 5, capaz de rodar tanto jogos feitos para ele quanto jogos de PlayStation 1, ou o Nintendo Switch 2, compatível com os cartuchos do Switch original. O console mais antigo, por outro lado, não consegue executar jogos feitos exclusivamente para o mais novo.
+**Analogia.** A retrocompatibilidade do GPT em relação ao MBR é equivalente à de um console de videogame mais recente que ainda executa jogos de gerações anteriores — como o PlayStation 5, capaz de rodar a maior parte dos jogos de PlayStation 4, ou o Nintendo Switch 2, compatível com os cartuchos do Switch original. O console mais antigo, por outro lado, não consegue executar jogos feitos exclusivamente para o mais novo.
 
-Cada disco identificado em GPT recebe um **GUID** (*Globally Unique Identifier*), um identificador único análogo a um endereço IP em uma rede. Usando endereçamento de **64 bits**, o GPT permite partições na ordem de zettabytes, até **128 partições** sem a necessidade do artifício de partições estendidas, e inclui um mecanismo de **redundância**: como historicamente ataques que reescreviam apenas o setor da tabela de partições eram suficientes para inutilizar o acesso a um disco inteiro (sem apagar os dados propriamente ditos, mas destruindo a referência para encontrá-los), o GPT mantém cópias redundantes dessa informação.
+Cada disco identificado em GPT recebe um **GUID** (*Globally Unique Identifier*), um identificador único análogo a um endereço IP em uma rede. Usando endereçamento de **64 bits**, o GPT permite partições na ordem de zettabytes `[3]`, até **128 partições** — o padrão adotado pelo Windows; a especificação GPT em si permite um número de partições configurável, tipicamente maior `[4]` — sem a necessidade do artifício de partições estendidas, e inclui um mecanismo de **redundância**: como historicamente ataques que reescreviam apenas o setor da tabela de partições eram suficientes para inutilizar o acesso a um disco inteiro (sem apagar os dados propriamente ditos, mas destruindo a referência para encontrá-los), o GPT mantém cópias redundantes dessa informação.
 
 | Característica | MBR | GPT |
 |---|---|---|
@@ -191,7 +191,7 @@ Para saber onde procurar o sistema operacional entre as possivelmente várias pa
 
 ### 3.6.4 Segurança e ética do acesso físico
 
-Um ponto central para a formação de um técnico de informática é a compreensão de que **o acesso físico a uma máquina muda todos os paradigmas de segurança**. Se é possível interromper o boot padrão e carregar, em vez do sistema operacional instalado, um programa alternativo a partir de um pendrive — por exemplo, um Live CD/USB (Seção 3.9) —, é possível se tornar administrador daquela máquina sem conhecer nenhuma senha, e a partir daí acessar, copiar ou apagar qualquer dado nela contido, independentemente das proteções de software configuradas pelo usuário original.
+Um ponto central para a formação de um técnico de informática é a compreensão de que **o acesso físico a uma máquina muda todos os paradigmas de segurança** — formulação que corresponde à "Lei nº 3" das clássicas "10 Immutable Laws of Security" da Microsoft `[5]`. Se é possível interromper o boot padrão e carregar, em vez do sistema operacional instalado, um programa alternativo a partir de um pendrive — por exemplo, um Live CD/USB (Seção 3.9) —, é possível se tornar administrador daquela máquina sem conhecer nenhuma senha, e a partir daí acessar, copiar ou apagar qualquer dado nela contido, independentemente das proteções de software configuradas pelo usuário original.
 
 Essa mesma técnica que permite, de forma legítima, recuperar o acesso a uma máquina cujo usuário esqueceu a senha, pode ser usada de forma ilegítima para violar dados de terceiros sem autorização. Por essa razão, deixar um pendrive ou dispositivo USB como primeira opção na ordem de inicialização é considerado uma **falha de segurança grave**: qualquer pessoa com acesso físico breve à máquina pode assumir controle administrativo total sobre ela. O uso ético dessas técnicas — e a orientação de nunca acessar dados sensíveis de um cliente sem que ele esteja presente e ciente do procedimento — é parte inseparável da formação técnica apresentada neste capítulo.
 
@@ -201,7 +201,7 @@ Essa mesma técnica que permite, de forma legítima, recuperar o acesso a uma m�
 
 Para instalar um sistema operacional, é necessário preparar previamente uma mídia de instalação — tipicamente um pendrive — contendo o instalador em um formato reconhecível pelo firmware do computador de destino. Esse processo exige, ele próprio, criar uma tabela de partições e um sistema de arquivo válidos no pendrive, copiando e organizando os arquivos de instalação de acordo com esse esquema.
 
-Uma ferramenta recomendada para essa tarefa é o **Rufus**, software gratuito, de código aberto e leve, com interface gráfica simples para essa finalidade. Ao gravar uma mídia de instalação com o Rufus, é preciso escolher dois parâmetros centrais:
+Uma ferramenta recomendada para essa tarefa é o **Rufus**, software gratuito, de código aberto e leve, com interface gráfica simples para essa finalidade `[6]`. Ao gravar uma mídia de instalação com o Rufus, é preciso escolher dois parâmetros centrais:
 
 - O **esquema de partição**: MBR ou GPT.
 - O **sistema de destino**: BIOS (*legacy*) ou UEFI.
@@ -279,7 +279,7 @@ Discos conectados via SATA são identificados com o prefixo `sd` seguido de uma 
 
 Durante a instalação, é necessário indicar em qual partição o sistema deseja **montar** (*mount*) a raiz `/` — isto é, associar aquela partição ao ponto de entrada de toda a estrutura de diretórios do sistema. É essa exigência — decidir "onde vai a barra" — que costuma ser o ponto de maior dificuldade para quem instala Linux pela primeira vez.
 
-Além da partição raiz, a instalação típica de uma distribuição Linux requer uma segunda partição, chamada **swap** (área de troca): um espaço reservado em disco para funcionar como extensão da memória RAM, retomando o conceito de memória virtual e a hierarquia de memória apresentados no Capítulo 2. Uma referência de dimensionamento usada em aula foi reservar entre 8 GB e 10 GB para a partição swap, destinando o restante do espaço disponível à partição raiz.
+Além da partição raiz, a instalação típica de uma distribuição Linux requer uma segunda partição, chamada **swap** (área de troca): um espaço reservado em disco para funcionar como extensão da memória RAM, retomando o conceito de memória virtual e a hierarquia de memória apresentados no Capítulo 2. O dimensionamento da partição swap é função da quantidade de RAM instalada na máquina — não um valor fixo independente dela `[7]`; para uma máquina com 8–16 GB de RAM, uma faixa comum de referência é reservar entre 8 GB e 10 GB para a partição swap, destinando o restante do espaço disponível à partição raiz.
 
 **Exemplo de particionamento típico para instalação do Ubuntu:** partição de swap de 8–10 GB e partição raiz (`/`) ocupando o espaço restante — por exemplo, em um espaço livre de 100 GB, aproximadamente 90 GB para `/` e 10 GB para swap.
 
@@ -293,7 +293,7 @@ Ao instalar uma distribuição Linux como o Ubuntu, é instalado também, por pa
 
 Essa lista de opções inclui não apenas diferentes sistemas operacionais, mas também diferentes versões do **kernel** do Linux, o núcleo do sistema, atualizado periodicamente. Como programas podem depender de uma versão específica do kernel para funcionar corretamente, a possibilidade de escolher, no momento do boot, qual versão carregar é uma funcionalidade prática relevante do GRUB.
 
-Para instalar Windows e Linux em dual boot no mesmo disco, a **ordem de instalação é determinante**: o Windows deve ser instalado **antes** do Linux. Isso ocorre porque o instalador do Windows sobrescreve o setor de inicialização do disco (a região do MBR descrita na Seção 3.5.1) sem preservar um gerenciador de boot alternativo ali presente. Se o GRUB for instalado primeiro (ao instalar o Linux) e o Windows for instalado depois, a instalação do Windows sobrescreve o GRUB, tornando o Linux inacessível na inicialização — embora os arquivos do sistema Linux continuem fisicamente intactos no disco, apenas inacessíveis por falta do menu de entrada. Recuperar o GRUB nessa situação é um procedimento de manutenção mais avançado.
+Para instalar Windows e Linux em dual boot no mesmo disco, a **ordem de instalação é determinante**: o Windows deve ser instalado **antes** do Linux. Isso ocorre porque o instalador do Windows sobrescreve o setor de inicialização do disco (a região do MBR descrita na Seção 3.5.1) sem preservar um gerenciador de boot alternativo ali presente `[8]`. Se o GRUB for instalado primeiro (ao instalar o Linux) e o Windows for instalado depois, a instalação do Windows sobrescreve o GRUB, tornando o Linux inacessível na inicialização — embora os arquivos do sistema Linux continuem fisicamente intactos no disco, apenas inacessíveis por falta do menu de entrada. Recuperar o GRUB nessa situação é um procedimento de manutenção mais avançado.
 
 **Sequência recomendada para dual boot:**
 
@@ -365,3 +365,16 @@ Esse mecanismo é uma aplicação, em hardware e em pequena escala, do mesmo pri
 ## Síntese do capítulo
 
 Este capítulo apresentou o sistema operacional como a camada de interface entre hardware, software e usuário, detalhando como essa camada organiza o armazenamento secundário — introduzido no Capítulo 2 em termos de blocos, páginas e setores — por meio de clusters, sistemas de arquivo e partições. Foram estudadas as duas soluções de tabela de partição em uso, MBR e GPT, o procedimento completo de inicialização do computador (POST, Setup/BIOS e boot) e o processo integral de instalação de um sistema operacional, da preparação da mídia à instalação de drivers, passando por backup, dual boot e diagnóstico via Live CD/USB. O capítulo fechou com a manutenção contínua dessa camada de software e firmware — atualização do sistema operacional, atualização e recuperação do firmware da placa-mãe, e a redundância de hardware que o BIOS duplo oferece contra esse risco. Esses procedimentos dependem diretamente dos componentes físicos tratados no Capítulo 4 — a placa-mãe, seus barramentos e os próprios dispositivos de armazenamento — e do firmware gravado nesses componentes, cuja relação com a arquitetura de processadores será aprofundada no Capítulo 5.
+
+---
+
+## Referências
+
+1. MICROSOFT. "NTFS overview." Disponível em: <https://learn.microsoft.com/en-us/windows-server/storage/file-server/ntfs-overview>.
+2. MICROSOFT. "Windows support for hard disks exceeding 2 TB." Disponível em: <https://learn.microsoft.com/en-us/troubleshoot/windows-server/backup-and-storage/support-for-hard-disks-exceeding-2-tb>; UEFI FORUM. "FAQ: Drive Partition Limits." Disponível em: <https://uefi.org/sites/default/files/resources/UEFI_Drive_Partition_Limits_Fact_Sheet.pdf>.
+3. UEFI FORUM. "FAQ: Drive Partition Limits." Disponível em: <https://uefi.org/sites/default/files/resources/UEFI_Drive_Partition_Limits_Fact_Sheet.pdf>.
+4. MICROSOFT. "Windows and GPT FAQ." Disponível em: <https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-and-gpt-faq>.
+5. MICROSOFT. "10 Immutable Laws of Security (Version 2.0)." Disponível em: <https://learn.microsoft.com/en-us/archive/blogs/rhalbheer/ten-immutable-laws-of-security-version-2-0>.
+6. RUFUS. Página oficial. Disponível em: <https://rufus.ie/>; repositório de código-fonte: <https://github.com/pbatard/rufus>.
+7. RED HAT. "Recommended system swap space." *Red Hat Enterprise Linux 8 Documentation*. Disponível em: <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/managing_storage_devices/getting-started-with-swap_managing-storage-devices>.
+8. UBUNTU COMMUNITY HELP WIKI. "WindowsDualBoot." Disponível em: <https://help.ubuntu.com/community/WindowsDualBoot>.
