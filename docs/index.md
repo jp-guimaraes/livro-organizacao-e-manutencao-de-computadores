@@ -1,8 +1,8 @@
 # Organização, Montagem e Manutenção de Computadores
 
-Este é um livro didático **gratuito e aberto**, em duas partes, cobrindo dois semestres sequenciais do curso técnico integrado de informática do IFRN — da definição de computador e da física da memória até o diagnóstico de fontes de alimentação e o suporte técnico ao usuário.
+Este é um **esboço** de um livro didático gratuito e aberto. Atualmente, ele está dividido em dois materiais para ser apoio para as disciplinas de 'Organização e Montagem de Computadores' e 'Manutenção de Computadores'. Essas disciplinas fazem parte do [Curso Técnico Integrado de Informática](https://portal.ifrn.edu.br/documents/21058/Informática_-_Projeto_Pedagógico_de_Curso.pdf). Esses cursos partem da definição de computador, estudo da sua organização para que ações de manutenção possam ser entendidas e realizadas. 
 
-O texto nasceu das transcrições das próprias aulas gravadas em sala e foi reorganizado em capítulos temáticos, guardando o tom de explicação passo a passo, as analogias e os exemplos reais discutidos com a turma. É pensado para funcionar tanto como leitura de apoio ao longo do curso quanto como referência de consulta depois — não pressupõe conhecimento prévio de hardware, apenas curiosidade para abrir a máquina e entender o porquê de cada parte.
+O texto nasceu de algumas transcrições das aulas gravadas em sala e foi reorganizado em capítulos temáticos. Ele foi pensado para funcionar tanto como leitura de apoio ao longo do curso quanto como referência de consulta depois.
 
 ## Livro 1 — Organização e Montagem de Computadores
 
@@ -14,7 +14,7 @@ Continuação direta do primeiro livro: eletricidade, fontes de alimentação, p
 
 ---
 
-Cada capítulo está marcado com avisos de **"Figura pendente"** onde uma imagem ainda precisa ser produzida — o texto já está completo, as figuras estão em produção.
+Cada capítulo está marcado com avisos de **"Figura pendente"** onde uma imagem ainda precisa ser produzida — o texto já está completo, as figuras estão em produção. Atualizações vão ser feitas aos poucos.
 
 ## Sobre o autor
 

@@ -50,7 +50,7 @@ A corrente elétrica pode ser **contínua** (CC ou, do inglês, DC) ou **alterna
 
 Na **corrente contínua**, os elétrons se deslocam sempre no mesmo sentido, produzida por uma fonte de tensão fixa ao longo do tempo — como uma pilha, cuja diferença de potencial entre os polos permanece constante em, por exemplo, 1,5 V. Representando essa tensão em um gráfico ao longo do tempo, obtém-se uma linha reta e constante.
 
-Na **corrente alternada**, a tensão da fonte varia periodicamente entre valores positivos e negativos, seguindo um comportamento **senoidal**: a tensão sobe até um valor máximo, desce até um valor mínimo (negativo) e repete esse ciclo indefinidamente. Como consequência, os elétrons não se deslocam sempre no mesmo sentido — eles oscilam, ora em uma direção, ora na direção oposta, tantas vezes por segundo quanto for a **frequência** da onda. A tomada residencial no Rio Grande do Norte fornece uma tensão alternada de 220 V (valor eficaz, ou RMS) a 60 Hz — ou seja, o ciclo de oscilação se repete 60 vezes por segundo.
+Na **corrente alternada**, a tensão da fonte varia periodicamente entre valores positivos e negativos, seguindo um comportamento **senoidal**: a tensão sobe até um valor máximo, desce até um valor mínimo (negativo) e repete esse ciclo indefinidamente. Como consequência, os elétrons não se deslocam sempre no mesmo sentido — eles oscilam, ora em uma direção, ora na direção oposta, tantas vezes por segundo quanto for a **frequência** da onda. A tomada residencial no Rio Grande do Norte fornece uma tensão alternada de 220 V (valor eficaz, ou RMS) a 60 Hz `[1]` — ou seja, o ciclo de oscilação se repete 60 vezes por segundo.
 
 **Exemplo.** O funcionamento de um chuveiro elétrico não depende do sentido em que os elétrons se movem: o simples ir e vir do elétron, induzido pela tensão alternada, já é suficiente para aquecer a resistência do chuveiro e, consequentemente, a água. O trabalho realizado (aquecimento) não exige que a corrente seja contínua.
 
@@ -86,6 +86,8 @@ A rede elétrica gera energia em uma determinada tensão e, antes de transportá
 ---
 
 ## 2.3 Proteção da instalação elétrica
+
+**Normas aplicáveis.** O conteúdo desta seção e da Seção 2.4 (disjuntores, dimensionamento de condutores, aterramento) segue as prescrições das normas técnicas brasileiras de instalações elétricas de baixa tensão e de segurança em instalações elétricas `[2]`.
 
 ### 2.3.1 Disjuntores
 
@@ -143,7 +145,7 @@ O choque elétrico é perigoso porque a corrente elétrica que atravessa o corpo
 
 **Atenção.** Antes de qualquer manuseio de fiação elétrica, energia deve ser desligada na fonte (disjuntor) e, sempre que possível, confirmada como desligada com um instrumento de medição. Nunca se deve presumir que um circuito está desenergizado apenas porque um interruptor foi acionado.
 
-O **chuveiro elétrico** — uma invenção brasileira — costuma causar estranhamento em visitantes de países onde o aquecimento de água é feito por gás ou por reservatórios térmicos (*boilers*), a ponto de gerar receio em relação ao seu uso. Esse receio é, tecnicamente, infundado: o chuveiro elétrico não estabelece contato elétrico com a água. A corrente elétrica atravessa apenas a resistência interna do aparelho, que se aquece por efeito Joule; a água, ao passar por essa resistência já aquecida, absorve o calor por condução térmica, sem que corrente elétrica normalmente flua através dela. Um choque em um chuveiro elétrico só ocorre diante de uma falha grave de isolamento ou de instalação — não é uma característica intrínseca do funcionamento do equipamento.
+O **chuveiro elétrico** — uma invenção brasileira `[3]` — costuma causar estranhamento em visitantes de países onde o aquecimento de água é feito por gás ou por reservatórios térmicos (*boilers*), a ponto de gerar receio em relação ao seu uso. Esse receio é, tecnicamente, infundado: o chuveiro elétrico não estabelece contato elétrico com a água. A corrente elétrica atravessa apenas a resistência interna do aparelho, que se aquece por efeito Joule; a água, ao passar por essa resistência já aquecida, absorve o calor por condução térmica, sem que corrente elétrica normalmente flua através dela. Um choque em um chuveiro elétrico só ocorre diante de uma falha grave de isolamento ou de instalação — não é uma característica intrínseca do funcionamento do equipamento.
 
 ---
 
@@ -215,7 +217,7 @@ A **fonte ATX** é o padrão universal de fonte de alimentação para computador
 
 **Atenção.** Em fontes com chave seletora de tensão, a posição da chave deve sempre ser conferida antes de conectar o equipamento à tomada. Ligar uma fonte selecionada para 115 V em uma tomada de 220 V resulta, tipicamente, em dano imediato e irreversível ao equipamento — o mesmo princípio descrito na Seção 2.1.1.
 
-A fonte ATX se conecta à placa-mãe por meio de um conector principal de **20 ou 24 pinos** (dependendo do modelo da placa-mãe), fornecendo simultaneamente diversas tensões contínuas distintas, identificadas por um padrão de cores nos fios:
+A fonte ATX se conecta à placa-mãe por meio de um conector principal de **20 ou 24 pinos** `[4]` (dependendo do modelo da placa-mãe), fornecendo simultaneamente diversas tensões contínuas distintas, identificadas por um padrão de cores nos fios `[5]`:
 
 | Cor do fio | Tensão / sinal | Função |
 |---|---|---|
@@ -229,7 +231,7 @@ A fonte ATX se conecta à placa-mãe por meio de um conector principal de **20 o
 
 Além dos fios listados, a fonte também disponibiliza tensões negativas (-12 V e -5 V) para funções específicas de compatibilidade histórica. Um segundo conector, tipicamente de 4 ou 8 pinos, fornece alimentação dedicada ao processador — algumas placas-mãe mais recentes exigem inclusive **dois** conectores de 8 pinos para essa finalidade, tornando necessário verificar a compatibilidade entre placa-mãe e fonte antes da montagem.
 
-O padrão ATX substituiu o padrão anterior, chamado **AT**, cuja principal limitação era a ausência de comunicação eletrônica entre a placa-mãe e a fonte para o desligamento: em computadores com fonte AT, o comando de desligar (pelo sistema operacional) apenas exibia uma mensagem informando que o computador já podia ser desligado com segurança, mas o desligamento físico ainda dependia de o usuário acionar uma chave mecânica. O padrão ATX introduziu o desligamento controlado por software, que se tornou padrão em todos os computadores modernos.
+O padrão ATX substituiu o padrão anterior, chamado **AT**, cuja principal limitação era a ausência de comunicação eletrônica entre a placa-mãe e a fonte para o desligamento: em computadores com fonte AT, o comando de desligar (pelo sistema operacional) apenas exibia uma mensagem informando que o computador já podia ser desligado com segurança, mas o desligamento físico ainda dependia de o usuário acionar uma chave mecânica. O padrão ATX introduziu o desligamento controlado por software, que se tornou padrão em todos os computadores modernos `[6]`.
 
 
 !!! warning "Figura pendente"
@@ -262,7 +264,7 @@ Esse procedimento exemplifica, no contexto elétrico, a metodologia geral de dia
 
 ### 2.8.3 VRM: uma segunda fonte na placa-mãe
 
-As tensões fornecidas pela fonte ATX (3,3 V, 5 V, 12 V) não correspondem, na maioria dos casos, às tensões efetivamente exigidas pelo processador e por outros componentes modernos, que frequentemente operam em tensões muito mais baixas e específicas. Por esse motivo, a própria placa-mãe contém uma "segunda fonte" interna: o **VRM** (*Voltage Regulator Module*), responsável por converter as tensões recebidas da fonte ATX nas tensões finais exigidas por cada componente. De forma equivalente, alguns processadores contam com um módulo de conversão próprio, às vezes chamado de PPM (*Processor Power Module*).
+As tensões fornecidas pela fonte ATX (3,3 V, 5 V, 12 V) não correspondem, na maioria dos casos, às tensões efetivamente exigidas pelo processador e por outros componentes modernos, que frequentemente operam em tensões muito mais baixas e específicas. Por esse motivo, a própria placa-mãe contém uma "segunda fonte" interna: o **VRM** (*Voltage Regulator Module*), responsável por converter as tensões recebidas da fonte ATX nas tensões finais exigidas por cada componente. De forma equivalente, alguns processadores contam com um módulo de conversão próprio, às vezes chamado de PPM (*Processor Power Module*) `[7]`.
 
 A razão histórica para manter essa conversão adicional na placa-mãe — e não na fonte — é a compatibilidade: o padrão de saída da fonte ATX permaneceu estável ao longo de gerações de processadores e memórias, permitindo que um usuário reaproveite a mesma fonte em upgrades de placa-mãe, processador ou memória, desde que as novas exigências específicas de tensão sejam resolvidas pela conversão adicional na própria placa-mãe.
 
@@ -274,17 +276,17 @@ A razão histórica para manter essa conversão adicional na placa-mãe — e n�
 
 Toda conversão de energia envolve perdas: parte da energia retirada da tomada é dissipada em forma de calor durante as sucessivas transformações (AC–AC, AC–DC, DC–DC) realizadas dentro da fonte. A **eficiência** de uma fonte é definida como a razão entre a potência efetivamente entregue aos componentes do computador e a potência total consumida na tomada.
 
-Órgãos de certificação independentes, como o **80 Plus** e o mais recente **ETA-Lambda** (este último avaliando também o ruído sonoro produzido pela fonte sob diferentes cargas), realizam ensaios de bancada e atribuem selos de eficiência às fontes comerciais. Esses ensaios avaliam a eficiência em três níveis de carga, expressos como percentual da potência nominal da fonte:
+Órgãos de certificação independentes, como o **80 Plus**, realizam ensaios de bancada e atribuem selos de eficiência às fontes comerciais. Mais recentemente, a Cybenetics Labs passou a manter dois programas de certificação distintos: **ETA** (eficiência energética) e **LAMBDA** (ruído acústico produzido pela fonte sob diferentes cargas) — são dois selos separados, avaliados independentemente; uma fonte pode ter um sem o outro `[8]`. Esses ensaios avaliam a eficiência em três níveis de carga, expressos como percentual da potência nominal da fonte:
 
 - **Carga leve** — cerca de 20% da potência nominal.
 - **Carga típica** — cerca de 50% da potência nominal.
 - **Carga máxima** — 100% da potência nominal.
 
-O selo 80 Plus é concedido em diferentes categorias (Standard, Bronze, Silver, Gold, Platinum, Titanium, em ordem crescente de exigência), cada uma exigindo um patamar mínimo de eficiência nas três cargas. Por exemplo, o selo **Standard** exige 80% de eficiência nas três cargas (80/80/80); o selo **Platinum** exige patamares mais altos, como 90% em carga leve, 92% em carga típica e 89% em carga máxima.
+O selo 80 Plus é concedido em diferentes categorias (Standard, Bronze, Silver, Gold, Platinum, Titanium, em ordem crescente de exigência), cada uma exigindo um patamar mínimo de eficiência nas três cargas. Por exemplo, o selo **Standard** exige 80% de eficiência nas três cargas (80/80/80); o selo **Platinum** exige patamares mais altos, como 90% em carga leve, 92% em carga típica e 89% em carga máxima `[9]`.
 
 **Exemplo.** Uma fonte é tipicamente projetada para atingir sua eficiência máxima justamente na região de carga típica (em torno de 50% da potência nominal) — motivo pelo qual o dimensionamento recomendado de uma fonte para um computador (Seção 2.10) busca deixar o consumo real do sistema próximo dessa faixa.
 
-Um fator adicional observado experimentalmente é que uma fonte tende a ser mais eficiente quando alimentada em 220 V do que em 110 V, para a mesma carga — consequência direta do mesmo princípio de efeito Joule discutido na Seção 2.2: em uma tensão de entrada mais alta, a corrente de entrada correspondente é menor, reduzindo as perdas internas.
+Um fator adicional observado experimentalmente é que uma fonte tende a ser mais eficiente quando alimentada em 220 V do que em 110 V, para a mesma carga `[10]` — consequência direta do mesmo princípio de efeito Joule discutido na Seção 2.2: em uma tensão de entrada mais alta, a corrente de entrada correspondente é menor, reduzindo as perdas internas.
 
 Selos de eficiência não devem ser confundidos com selos de potência: uma fonte de "650 W" descreve a potência que ela é capaz de fornecer, e sua eficiência (Standard, Bronze, Gold etc.) descreve a proporção dessa energia que é efetivamente aproveitada, e não perdida em calor, na conversão a partir da tomada.
 
@@ -296,7 +298,7 @@ $$\text{Fator de potência} = \frac{P_{\text{ativa}}}{S_{\text{aparente}}}$$
 
 **Analogia.** A relação entre potência ativa e potência aparente pode ser comparada ao enchimento de uma caixa d'água residencial. A água usada para encher a caixa d'água tem um custo (é fornecida pela concessionária), mas, enquanto está apenas armazenada na caixa, não está realizando nenhum trabalho útil (lavar, limpar, beber). Só quando a torneira é aberta e a água efetivamente flui é que o trabalho é realizado. Da mesma forma, capacitores e indutores dentro de um circuito de fonte precisam ser "carregados" (o que consome energia da rede), mas essa energia armazenada, por si só, não realiza trabalho computacional — apenas parte dela é convertida, de fato, em tensões contínuas úteis aos componentes do computador.
 
-Fontes com correção de fator de potência (**PFC**, *Power Factor Correction*) empregam circuitos adicionais — passivos (bancos de capacitores e indutores) ou ativos (circuitos eletrônicos dedicados) — para reduzir essa parcela reativa e aproximar a potência aparente da potência ativa. No Brasil, consumidores residenciais não são cobrados por energia reativa (essa cobrança se aplica a grandes consumidores industriais), de forma que a presença de PFC em uma fonte doméstica não reduz a conta de energia do usuário — mas é, ainda assim, um indicador de qualidade construtiva do circuito.
+Fontes com correção de fator de potência (**PFC**, *Power Factor Correction*) empregam circuitos adicionais — passivos (bancos de capacitores e indutores) ou ativos (circuitos eletrônicos dedicados) — para reduzir essa parcela reativa e aproximar a potência aparente da potência ativa. No Brasil, consumidores residenciais não são cobrados por energia reativa (essa cobrança se aplica a consumidores do Grupo A — média/alta tensão, o que inclui grandes consumidores industriais e comerciais, não apenas industriais) `[11]`, de forma que a presença de PFC em uma fonte doméstica não reduz a conta de energia do usuário — mas é, ainda assim, um indicador de qualidade construtiva do circuito.
 
 **Analogia.** A presença de PFC ativo em uma fonte é comparável à presença de airbag em um automóvel: não torna o carro mais rápido nem mais barato de operar, mas é um diferencial de qualidade e segurança de projeto, frequentemente destacado em anúncios comerciais.
 
@@ -332,7 +334,7 @@ Somando a potência máxima teórica de todos os trilhos individualmente ($150 +
 
 Ao dimensionar uma fonte para um computador desktop, os dois maiores consumidores de energia — e, portanto, os fatores decisivos no dimensionamento — são o **processador** e a **placa de vídeo**: uma GPU de alto desempenho pode consumir, sozinha, uma potência muito superior à soma de todos os demais componentes do sistema. Componentes adicionais (memórias, unidades de armazenamento, ventoinhas) contribuem com potências individuais menores, mas devem ser somados quando existem em grande quantidade — como em servidores com múltiplos discos.
 
-Fabricantes de fontes disponibilizam calculadoras de dimensionamento *on-line* que, a partir da lista de componentes do sistema (processador, GPU, memória, armazenamento, ventoinhas), estimam o consumo total e recomendam uma potência de fonte adequada. Essas calculadoras tipicamente recomendam uma fonte cuja potência nominal seja aproximadamente o **dobro** do consumo estimado do sistema — não porque o sistema vá efetivamente consumir aquele valor, mas para que o consumo real do sistema recaia na faixa de carga típica (em torno de 50% da potência nominal), onde a fonte opera com eficiência máxima (Seção 2.9.1).
+Fabricantes de fontes disponibilizam calculadoras de dimensionamento *on-line* que, a partir da lista de componentes do sistema (processador, GPU, memória, armazenamento, ventoinhas), estimam o consumo total e recomendam uma potência de fonte adequada. Essas calculadoras tipicamente recomendam uma margem confortável acima do consumo estimado do sistema — não porque o sistema vá efetivamente consumir aquele valor, mas para que o consumo real do sistema recaia na faixa de carga típica (em torno de 50% da potência nominal), onde a fonte opera com eficiência máxima (Seção 2.9.1).
 
 **Analogia.** A relação entre carga leve, típica e máxima de uma fonte pode ser comparada ao esforço de um atleta correndo em terrenos diferentes: correr em terreno plano corresponde a uma carga típica; correr ladeira abaixo, a uma carga leve; correr ladeira acima, a uma carga máxima — e o consumo de "oxigênio" (corrente) do atleta varia de acordo.
 
@@ -387,3 +389,19 @@ Pulseiras antiestáticas de aterramento, usadas para escoar cargas eletrostátic
 Este capítulo apresentou as grandezas elétricas fundamentais — tensão, corrente, resistência e potência — e sua aplicação direta ao diagnóstico de falhas na cadeia que vai da tomada até a placa-mãe: proteção por disjuntores, aterramento e segurança contra choque elétrico, conversão de energia por transformadores e circuitos retificadores, a distinção entre fontes lineares e chaveadas, a arquitetura e os sinais de controle da fonte ATX, e os critérios de eficiência, fator de potência e dimensionamento que orientam a escolha e o diagnóstico de uma fonte real. Do ponto de vista metodológico, o capítulo reforça e aplica em contexto elétrico o princípio de diagnóstico por isolamento de módulos apresentado no Capítulo 1 — testar cada elo da cadeia tomada–fonte–placa-mãe isoladamente para localizar a origem de uma falha.
 
 A energia entregue e regulada pela fonte, tratada aqui, é justamente o que torna possível o funcionamento do componente estudado no Capítulo 3: o processador. Os conceitos de tensão, corrente e dissipação de potência por efeito Joule retornarão, em outra escala, na discussão sobre consumo energético, dissipação térmica e desempenho de processadores — onde o mesmo compromisso entre potência entregue e eficiência de conversão, já estabelecido neste capítulo para a fonte, reaparece na análise de benchmark e desempenho da CPU.
+
+---
+
+## Referências
+
+1. NEOENERGIA COSERN. "Normas Técnicas — Padrão de Entrada de Energia." Disponível em: <https://www.neoenergia.com/web/rn/normas-tecnicas>.
+2. ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. *NBR 5410: Instalações elétricas de baixa tensão*. ABNT. (Edição a confirmar pelo autor.) BRASIL. Ministério do Trabalho e Emprego. *NR-10: Segurança em Instalações e Serviços em Eletricidade*. (Edição a confirmar pelo autor.)
+3. Engenharia 360. "O inventor brasileiro do chuveiro elétrico." Disponível em: <https://engenharia360.com/o-inventor-brasileiro-do-chuveiro-eletrico/>; WIKIPÉDIA. "Chuveiro elétrico." Disponível em: <https://pt.wikipedia.org/wiki/Chuveiro_el%C3%A9trico>.
+4. WIKIPEDIA. "ATX." Disponível em: <https://en.wikipedia.org/wiki/ATX>.
+5. INTEL CORPORATION. *ATX12V Power Supply Design Guide*. (Versão a confirmar pelo autor.) Como fonte secundária: eTechnophiles. "ATX Power Supply Connector Pinout (20 & 24 pins)." Disponível em: <https://www.etechnophiles.com/atx-power-supply-connector-pinout/>.
+6. WIKIPEDIA. "ATX." Disponível em: <https://en.wikipedia.org/wiki/ATX>; COMPUTER HOPE. "What Is ATX?" Disponível em: <https://www.computerhope.com/jargon/a/atx.htm>.
+7. WIKIPEDIA. "Voltage regulator module." Disponível em: <https://en.wikipedia.org/wiki/Voltage_regulator_module>.
+8. CYBENETICS LABS. "ETA — PSU Efficiency Certification." Disponível em: <https://www.cybenetics.com/index.php?option=eta>; "LAMBDA — PSU Noise Level Certification." Disponível em: <https://www.cybenetics.com/index.php?option=lambda-%28power-supplies%29>.
+9. WIKIPEDIA. "80 Plus." Disponível em: <https://en.wikipedia.org/wiki/80_Plus>.
+10. ANANDTECH. "The Seasonic Focus Plus Gold 750FX 750W PSU Review." Disponível em: <https://www.anandtech.com/show/14338/the-seasonic-focus-plus-gold-750fx-750w-psu-review/3>.
+11. AGÊNCIA NACIONAL DE ENERGIA ELÉTRICA (ANEEL). Resolução Normativa nº 414, de 9 de setembro de 2010. (Edição/atualizações a confirmar pelo autor.)

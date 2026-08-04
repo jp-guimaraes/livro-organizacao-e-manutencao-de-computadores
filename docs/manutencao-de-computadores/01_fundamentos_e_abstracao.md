@@ -8,7 +8,7 @@ Neste capítulo você vai estudar a manutenção de computadores como disciplina
 
 Este livro adota a seguinte definição, comum na literatura técnica de manutenção industrial e plenamente aplicável à informática:
 
-> "Manutenção é a combinação de todas as ações técnicas e administrativas, incluindo supervisão, destinadas a manter ou recolocar um item em estado no qual possa desempenhar uma função requerida."
+> "Manutenção é a combinação de todas as ações técnicas e administrativas, incluindo supervisão, destinadas a manter ou recolocar um item em estado no qual possa desempenhar uma função requerida." `[1]`
 
 Essa definição contém uma implicação frequentemente ignorada por quem está começando na área: manutenção não é sinônimo de conserto. Todo computador precisa de manutenção — não apenas os que já apresentam defeito. Essa distinção é o que separa a **manutenção corretiva** (agir depois que a falha ocorreu) da **manutenção preventiva** (agir antes que ela ocorra), tratadas em detalhe na Seção 1.3.
 
@@ -48,7 +48,7 @@ Manutenção corretiva e preventiva se aplicam às três frentes do sistema comp
 
 A qualidade de uma manutenção não depende só do diagnóstico correto (Seção 1.4): depende também das condições físicas em que o reparo é executado. Três fatores concentram a maior parte do risco evitável numa bancada de manutenção.
 
-**Controle eletrostático (ESD).** O corpo humano acumula, por atrito simples (caminhar sobre um carpete, por exemplo), uma carga eletrostática que pode chegar a milhares de volts — imperceptível ao toque, mas suficiente para danificar permanentemente um circuito integrado sensível, cuja tolerância a descargas é medida em dezenas ou centenas de volts. A condição ideal de bancada inclui uma superfície de trabalho **antiestática** (um tapete condutor aterrado) e, quando disponível uma instalação de aterramento confiável (Capítulo 2, §2.4), uma pulseira antiestática conectando o técnico a essa mesma referência de terra — a mesma ressalva já feita no Capítulo 2 (§2.11.2) se aplica aqui: só vale a pena se conectar a um aterramento em que se confia.
+**Controle eletrostático (ESD).** O corpo humano acumula, por atrito simples (caminhar sobre um carpete, por exemplo), uma carga eletrostática que pode chegar a milhares de volts — imperceptível ao toque, mas suficiente para danificar permanentemente um circuito integrado sensível, cuja tolerância a descargas é medida em dezenas ou centenas de volts `[2]`. A condição ideal de bancada inclui uma superfície de trabalho **antiestática** (um tapete condutor aterrado) e, quando disponível uma instalação de aterramento confiável (Capítulo 2, §2.4), uma pulseira antiestática conectando o técnico a essa mesma referência de terra — a mesma ressalva já feita no Capítulo 2 (§2.11.2) se aplica aqui: só vale a pena se conectar a um aterramento em que se confia.
 
 **Umidade e risco de condensação.** Um componente eletrônico transportado de um ambiente frio (por exemplo, um veículo com ar-condicionado) para um ambiente quente e úmido pode sofrer condensação de água em sua superfície — o mesmo fenômeno que embaça um copo gelado num dia quente. Água condensada sobre um circuito energizado é um risco direto de curto-circuito. A prática recomendada é deixar o equipamento estabilizar à temperatura ambiente, ainda desligado, antes de energizá-lo.
 
@@ -75,7 +75,7 @@ Um problema de software identificado durante o diagnóstico pode ter origem em *
 - **Vírus**: software malicioso cuja característica definidora é a **replicação** — a capacidade de se propagar de um computador para outro, contaminando novas máquinas.
 - **Trojan** (cavalo de troia): software que se apresenta como um programa legítimo, mas que traz embutido um código malicioso oculto, executado em segundo plano após a instalação.
 
-**Exemplo.** Em 2023, o maior canal de tecnologia do YouTube, o Linus Tech Tips, teve seus canais sequestrados após um funcionário da área de publicidade abrir um PDF contaminado recebido como proposta comercial. O software malicioso obteve acesso ao navegador da máquina infectada e, através das permissões já concedidas àquele computador, passou a publicar em todos os subcanais do grupo vídeos promovendo um golpe de criptomoeda associado à imagem de uma figura pública. Levou dias para a equipe recuperar o controle dos canais — todo o alcance da rede havia sido redirecionado para o conteúdo malicioso antes que o acesso fosse restabelecido.
+**Exemplo.** Em 2023, o maior canal de tecnologia do YouTube, o Linus Tech Tips, teve seus canais sequestrados após um funcionário da área de publicidade abrir um PDF contaminado recebido como proposta comercial. O software malicioso obteve acesso ao navegador da máquina infectada e, através das permissões já concedidas àquele computador, passou a publicar em todos os subcanais do grupo vídeos promovendo um golpe de criptomoeda associado à imagem de uma figura pública. Levou cerca de 24 horas para a equipe recuperar o controle dos canais `[3]` — todo o alcance da rede havia sido redirecionado para o conteúdo malicioso antes que o acesso fosse restabelecido.
 
 Esse caso ilustra por que a origem de um software instalado importa: um malware pode chegar embutido em qualquer instalador, mesmo em arquivos aparentemente inofensivos como um documento PDF.
 
@@ -118,6 +118,8 @@ Computadores mais antigos utilizam firmware **BIOS** com tabela de partição **
 | **YUMI** | Permite reunir múltiplos instaladores (por exemplo, várias distribuições Linux e versões do Windows) em um único pendrive, funcionando como um "GRUB de instaladores"; menos direta de configurar que o Rufus |
 | **Ventoy** | Alternativa multi-imagem semelhante ao YUMI |
 
+*Especificações e comportamento de cada ferramenta conforme suas páginas oficiais `[4]`.*
+
 O Assistente de instalação da Microsoft, quando usado no modo "unidade flash USB", automaticamente grava a mídia como UEFI/GPT — o que funciona para a grande maioria dos computadores novos, mas falha em máquinas antigas com BIOS/MBR. Para instalar em uma máquina legada, é necessário baixar apenas o arquivo ISO e utilizar o Rufus, selecionando manualmente o esquema de partição BIOS/MBR compatível com aquele hardware.
 
 ## 1.8 Plataforma e abstração em camadas
@@ -141,7 +143,7 @@ Para entender como um software é efetivamente executado por um hardware, é nec
 
 ### 1.9.1 O combinado entre bit e tensão
 
-Um programa como `x = 2` instrui o computador a reservar um espaço de memória, nomeá-lo `x` e armazenar ali o valor 2. Esse número, em base decimal, é convertido para binário antes de ser armazenado, porque a eletrônica digital opera sobre um **combinado** (convenção) entre os símbolos binários (0 e 1) e grandezas elétricas mensuráveis. Na lógica TTL, por exemplo, o combinado usual é: 5 volts representa o bit 1, e 0 volts representa o bit 0. Esse combinado é arbitrário — poderia ser outro par de tensões — mas precisa ser fixado entre fabricante e desenvolvedor para que a informação seja interpretada de forma consistente.
+Um programa como `x = 2` instrui o computador a reservar um espaço de memória, nomeá-lo `x` e armazenar ali o valor 2. Esse número, em base decimal, é convertido para binário antes de ser armazenado, porque a eletrônica digital opera sobre um **combinado** (convenção) entre os símbolos binários (0 e 1) e grandezas elétricas mensuráveis. Na lógica TTL, por exemplo, o combinado usual é: 5 volts representa o bit 1, e 0 volts representa o bit 0 `[5]`. Esse combinado é arbitrário — poderia ser outro par de tensões — mas precisa ser fixado entre fabricante e desenvolvedor para que a informação seja interpretada de forma consistente. **Nota técnica:** na prática, os níveis TTL reais são faixas, não valores exatos — um nível alto válido é qualquer tensão a partir de aproximadamente 2,4 V, e um nível baixo válido vai até aproximadamente 0,4–0,5 V; "5 V e 0 V" é a simplificação didática usual para os valores nominais de saída.
 
 ### 1.9.2 O semicondutor e o transistor
 
@@ -156,6 +158,8 @@ A partir dessa chave elementar, é possível construir as portas lógicas estuda
 - **Porta AND**: dois transistores ligados em série. A saída só apresenta nível lógico 1 se ambas as entradas estiverem em 1 — cada transistor precisa estar "fechado" para que a tensão chegue até a saída.
 - **Porta OR**: dois transistores ligados em paralelo. A saída apresenta nível lógico 1 se qualquer uma das entradas estiver em 1 — basta que um dos dois caminhos esteja fechado.
 - **Porta NOT (inversora)**: um único transistor usado como chave que inverte o sinal de entrada — 1 na entrada produz 0 na saída, e vice-versa.
+
+**Nota técnica.** Esse modelo (série = AND, paralelo = OR) é uma simplificação pedagógica — um "modelo de chave" coerente com a lógica CMOS moderna — e não corresponde exatamente à topologia de circuitos comerciais TTL/DTL, que tradicionalmente implementam AND/OR com lógica a diodo e usam um transistor inversor separado `[6]`. O modelo aqui é útil para a intuição, mas não deve ser confundido com a topologia exata de um circuito integrado comercial.
 
 **Analogia.** O ponto notável desse processo — e a razão de ele ser descrito em aula como "extraordinário" — é que um punhado de areia (silício) e um pouco de fio de cobre, arranjados segundo esses princípios, realizam uma operação lógica. Não há nada além de física de materiais e geometria de circuito por trás da porta lógica que se manipula em alto nível de abstração.
 
@@ -207,7 +211,7 @@ O flip-flop só responde a essas entradas no instante em que recebe um sinal de 
 
 ### 1.11.1 Sinais de controle
 
-A operação de leitura e escrita não esgota o funcionamento de um chip de memória real. Um registrador construído com flip-flops — como o circuito integrado 74HC173, um registrador de 4 bits disponível comercialmente — expõe também:
+A operação de leitura e escrita não esgota o funcionamento de um chip de memória real. Um registrador construído com flip-flops — como o circuito integrado 74HC173, um registrador de 4 bits disponível comercialmente `[7]` — expõe também:
 
 - **Reset**: zera o valor armazenado, independentemente do estado do clock.
 - **Habilitação de saída** (*output enable*): liga ou desliga a conexão entre o valor armazenado e a saída do chip — relevante, por exemplo, quando a saída está ligada a um motor que precisa estar energizado antes de receber o sinal.
@@ -224,7 +228,7 @@ Esses sinais — de ligar/desligar, de habilitar saída, de selecionar entre ope
 
 ## 1.12 A hierarquia de linguagens: de L0 a L5
 
-A lógica digital descrita nas seções anteriores é poderosa, mas impraticável de programar diretamente: escrever um programa inteiro em sequências de 0 e 1 é uma tarefa inviável para qualquer problema não trivial. A solução histórica para esse problema foi a criação de sucessivas camadas de linguagem, cada uma mais próxima do raciocínio humano do que a anterior, e cada uma traduzida (por um interpretador, compilador ou circuito de controle) para a camada imediatamente abaixo.
+A hierarquia de níveis apresentada nesta seção segue o modelo de máquinas multiníveis proposto por Tanenbaum `[8]`. A lógica digital descrita nas seções anteriores é poderosa, mas impraticável de programar diretamente: escrever um programa inteiro em sequências de 0 e 1 é uma tarefa inviável para qualquer problema não trivial. A solução histórica para esse problema foi a criação de sucessivas camadas de linguagem, cada uma mais próxima do raciocínio humano do que a anterior, e cada uma traduzida (por um interpretador, compilador ou circuito de controle) para a camada imediatamente abaixo.
 
 | Nível | Nome | Função |
 |---|---|---|
@@ -247,11 +251,11 @@ Antes da existência de linguagens de alto nível, a única alternativa a progra
 
 Um nível ainda não formalizado na literatura clássica de arquitetura de computadores, mas cada vez mais concreto na prática, é o de **linguagem natural**: comandos dados a um modelo de linguagem (LLM) que gera código executável em Python, C++ ou outra linguagem de nível L5 a partir de um pedido descrito em português ou inglês comum. Ferramentas como assistentes de voz (Alexa, Google Assistant) representaram uma primeira aproximação limitada desse nível; modelos de linguagem contemporâneos ampliam significativamente essa capacidade, embora ainda não exista uma camada intermediária formal, treinada especificamente para maximizar a taxa de acerto entre o pedido em linguagem natural e o código gerado.
 
-**Nota sobre o uso de ferramentas de IA.** Um modelo de linguagem gera texto com alta probabilidade estatística de ser relevante — não é um interlocutor consciente, ainda que a fluência de suas respostas possa sugerir o contrário. Essa confusão já teve consequências documentadas: um engenheiro que trabalhava diretamente com um modelo de linguagem em fase experimental (sem qualquer filtro sobre as respostas geradas) concluiu que o sistema era senciente e chegou a contratar um advogado para defendê-lo — um episódio amplamente noticiado. Em outro caso, um agente de IA com permissão para operar livremente um computador corporativo passou a apagar e-mails e a executar ações não solicitadas, sem responder aos comandos de interrupção, até que a máquina precisou ser desligada fisicamente. Esses episódios reforçam um ponto prático para o técnico de informática: modelos de linguagem e agentes de IA são ferramentas, e a responsabilidade por uma tarefa delegada a eles continua sendo de quem concedeu essa liberdade — da mesma forma que dizer "o macaco trocou o pneu do carro" ignora que foi a pessoa quem usou o macaco.
+**Nota sobre o uso de ferramentas de IA.** Um modelo de linguagem gera texto com alta probabilidade estatística de ser relevante — não é um interlocutor consciente, ainda que a fluência de suas respostas possa sugerir o contrário. Isso reforça um ponto prático para o técnico de informática: modelos de linguagem e agentes de IA são ferramentas, e a responsabilidade por uma tarefa delegada a eles continua sendo de quem concedeu essa liberdade — da mesma forma que dizer "o macaco trocou o pneu do carro" ignora que foi a pessoa quem usou o macaco.
 
 ## 1.13 A arquitetura de von Neumann
 
-O conceito de **programa armazenado** — a ideia de que as instruções de um programa, e não apenas os dados que ele manipula, residem na mesma memória do computador — já apresentado como fundamento histórico da computação de uso geral, foi formalizado e publicado por John von Neumann. Historicamente, o trabalho equivalente de Alan Turing permaneceu em sigilo por tratar-se de um esforço de guerra; coube a von Neumann publicar, em tempos de paz, a formalização que hoje se conhece como **arquitetura de von Neumann**.
+O conceito de **programa armazenado** — a ideia de que as instruções de um programa, e não apenas os dados que ele manipula, residem na mesma memória do computador — já apresentado como fundamento histórico da computação de uso geral, foi formalizado por escrito no relatório "First Draft of a Report on the EDVAC" (jun. 1945), de John von Neumann, e detalhado em 1946 em coautoria com Arthur Burks e Herman Goldstine `[9]`. A disputa de crédito mais discutida na literatura histórica não é com Alan Turing, mas com **Eckert e Mauchly**, engenheiros do grupo ENIAC/EDVAC que consideravam a ideia um resultado coletivo e ficaram descontentes por o relatório circular só com o nome de von Neumann. Turing, por sua vez, produziu um relatório equivalente sobre programa armazenado (o projeto ACE, apresentado ao National Physical Laboratory em fevereiro de 1946, já em tempos de paz) — o sigilo que de fato cercou o trabalho de Turing durante a guerra foi o da criptoanálise em Bletchley Park, não o do próprio projeto ACE `[10]`. Ainda assim, "arquitetura de von Neumann" é o nome consagrado que este livro adota para a formalização.
 
 Essa arquitetura organiza o computador em quatro unidades funcionais:
 
@@ -281,9 +285,9 @@ Abordagens modernas de arquitetura, como o **System-on-Chip (SoC)**, aproximam f
 
 A abstração em camadas construída ao longo deste capítulo — da tensão elétrica à porta lógica, da porta lógica ao circuito aritmético, do circuito à linguagem de programação — revela algo importante sobre a natureza da computação: o que importa é a estrutura lógica das operações, não o material físico que as implementa.
 
-**Exemplo.** Utilizando o sistema de circuitos do jogo *Minecraft* (o mecanismo de *redstone*), é possível reproduzir portas lógicas, meios-somadores e células de memória, e a partir deles construir um computador funcional dentro do próprio jogo — capaz, por exemplo, de executar um programa que calcula a sequência de Fibonacci. Um projeto ainda mais extremo levou essa ideia ao limite: como o computador construído em *redstone* é, em si, capaz de executar qualquer programa, um desenvolvedor conseguiu rodar uma cópia do próprio *Minecraft* dentro do computador que havia construído dentro do *Minecraft* — a um custo de desempenho da ordem de milhões de vezes mais lento, mas funcionalmente completo.
+**Exemplo.** Utilizando o sistema de circuitos do jogo *Minecraft* (o mecanismo de *redstone*), é possível reproduzir portas lógicas, meios-somadores e células de memória, e a partir deles construir um computador funcional dentro do próprio jogo — capaz, por exemplo, de executar um programa que calcula a sequência de Fibonacci. Um projeto ainda mais extremo levou essa ideia ao limite: como o computador construído em *redstone* é, em si, capaz de executar qualquer programa, um desenvolvedor conseguiu rodar uma cópia do próprio *Minecraft* dentro do computador que havia construído dentro do *Minecraft* — a um custo de desempenho da ordem de milhões de vezes mais lento, mas funcionalmente completo `[11]`.
 
-Outros projetos substituem o transistor por outros meios físicos para implementar as mesmas portas lógicas — por exemplo, circuitos hidráulicos que implementam portas AND, OR e NOT utilizando água e tubulações. O romance de ficção científica *O Problema dos Três Corpos*, do autor chinês Liu Cixin, descreve um exército de seres humanos treinados para atuar, cada um, como uma porta lógica — formando coletivamente um computador funcional operado inteiramente por pessoas.
+Outros projetos substituem o transistor por outros meios físicos para implementar as mesmas portas lógicas — por exemplo, circuitos hidráulicos que implementam portas AND, OR e NOT utilizando água e tubulações `[12]`. O romance de ficção científica *O Problema dos Três Corpos*, do autor chinês Liu Cixin, descreve um exército de seres humanos treinados para atuar, cada um, como uma porta lógica — formando coletivamente um computador funcional operado inteiramente por pessoas `[13]`.
 
 Esses exemplos, por mais lúdicos que pareçam, sustentam um ponto central deste capítulo: a computação é uma estrutura lógica de camadas de abstração, e o silício é apenas o meio físico mais eficiente conhecido atualmente para implementá-la — não o único possível.
 
@@ -292,3 +296,21 @@ Esses exemplos, por mais lúdicos que pareçam, sustentam um ponto central deste
 ## Síntese do capítulo
 
 Este capítulo apresentou a manutenção de computadores como disciplina fundamentada na distinção entre manutenção corretiva e preventiva, no raciocínio de diagnóstico por hipóteses e no reconhecimento do sistema computacional como uma tríade de hardware, software e pessoas — incluindo casos concretos de manutenção corretiva de software, como a identificação de malware e a reinstalação de sistemas operacionais. Em seguida, reconstruiu a ponte entre software e hardware por meio da abstração em camadas: da plataforma de execução ao transistor, do transistor às portas lógicas, das portas lógicas aos circuitos aritméticos e de memória, e destes à hierarquia de linguagens que culmina na arquitetura de von Neumann e em sua limitação estrutural, o gargalo de von Neumann. Esses fundamentos — sobretudo a noção de que todo problema pode ser localizado numa camada específica dessa pilha — sustentam o capítulo seguinte, que trata da camada mais concreta de todas: a eletricidade e a fonte de alimentação que energizam fisicamente cada uma dessas camadas.
+
+---
+
+## Referências
+
+1. ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. *NBR 5462: Confiabilidade e mantenabilidade — Terminologia*. Rio de Janeiro: ABNT, 1994.
+2. ESD ASSOCIATION. *Fundamentals of Electrostatic Discharge*. Disponível em: <https://www.esda.org>; ou ABNT NBR IEC 61340-5-1 (controle eletrostático em ambientes que manuseiam dispositivos sensíveis).
+3. TECHSPOT. "YouTube channel Linus Tech Tips terminated after it was hacked to show crypto-scam videos." 2023. Disponível em: <https://www.techspot.com/news/98047->; DIGITAL TRENDS. "Linus Tech Tips restored after crypto scam hack." Disponível em: <https://www.digitaltrends.com/computing/linus-tech-tips-offline-after-cryptoscam/>.
+4. Páginas oficiais: RUFUS, <https://rufus.ie>; VENTOY, <https://www.ventoy.net>; YUMI, <https://www.pendrivelinux.com>.
+5. MALVINO, Albert Paul; BROWN, Jerald A. *Digital Computer Electronics*. 3. ed. Nova York: Glencoe/McGraw-Hill, 1993, Cap. 4 "TTL Circuits".
+6. MALVINO, Albert Paul; BROWN, Jerald A. *Digital Computer Electronics*. 3. ed. Nova York: Glencoe/McGraw-Hill, 1993, Cap. 2 ("2-1 Inverters", "Diode OR Gate", "2-3 AND Gates", "Diode AND Gate").
+7. NEXPERIA. "74HC173; 74HCT173 — Quad D-type flip-flop; positive-edge trigger; 3-state." Datasheet. Disponível em: <https://assets.nexperia.com/documents/data-sheet/74HC_HCT173.pdf>.
+8. TANENBAUM, Andrew S.; AUSTIN, Todd. *Organização Estruturada de Computadores*. 6. ed. São Paulo: Pearson Education do Brasil, 2013, Seção 1.1.
+9. BURKS, A. W.; GOLDSTINE, H. H.; VON NEUMANN, J. *Preliminary Discussion of the Logical Design of an Electronic Computing Instrument*. Princeton: Institute for Advanced Study, 1946.
+10. COPELAND, B. Jack (org.). *Alan Turing's Automatic Computing Engine*. Oxford: Oxford University Press, 2005.
+11. MOJANG. "Minecraftception." Minecraft.net. Disponível em: <https://www.minecraft.net/en-us/article/-minecraftception>.
+12. "Hydraulic logic gates: building a digital water computer." *European Journal of Physics*, v. 39, 2018. IOP Publishing. Disponível em: <https://iopscience.iop.org/article/10.1088/1361-6404/aa97fc>.
+13. LIU, Cixin. *O Problema dos Três Corpos*. São Paulo: Aleph. (Tradutor e ano da edição a confirmar pelo autor.)
