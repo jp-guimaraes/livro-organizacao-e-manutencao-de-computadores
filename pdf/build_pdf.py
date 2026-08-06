@@ -52,6 +52,7 @@ def build(livro: str, out_name: str) -> None:
         f"--metadata-file={PDF_DIR / (livro + '.yaml')}",
         f"--template={PDF_DIR / 'template.tex'}",
         f"--lua-filter={PDF_DIR / 'filtro-imagem-pendente.lua'}",
+        f"--resource-path={src_dir}",
         "--top-level-division=chapter",
         "--pdf-engine=xelatex",
         "-o", str(out_path),

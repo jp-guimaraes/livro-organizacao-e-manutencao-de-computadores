@@ -28,6 +28,25 @@
 \usepackage{graphicx}
 \setkeys{Gin}{width=0.85\linewidth, keepaspectratio}
 
+% Pandoc (>=3.1.9) envolve toda imagem em \pandocbounded{...} para
+% escalá-la ao tamanho da página. O template.tex deste livro é customizado
+% e não inclui o bloco $if(graphics)$ do template padrão do pandoc que
+% normalmente define essa macro — sem isso o xelatex falha com
+% "Undefined control sequence" na primeira imagem real do livro.
+% Definição idêntica à do template padrão do pandoc (pandoc -D latex).
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% escala a imagem para caber na largura/altura do texto
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% usa a menor das duas escalas
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+\makeatother
+
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 % (scrbook/KOMA-Script já provê estilização de seção nativa; titlesec conflita

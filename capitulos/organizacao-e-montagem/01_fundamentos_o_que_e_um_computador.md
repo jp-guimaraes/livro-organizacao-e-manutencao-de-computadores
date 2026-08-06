@@ -128,7 +128,7 @@ Um terceiro realizou a engenharia reversa do BIOS da IBM e distribuiu uma versã
 
 Esse processo ilustra um efeito de mercado relevante para a área de tecnologia: plataformas com maior base de usuários tendem a atrair mais desenvolvimento de software, o que por sua vez amplia ainda mais sua base de usuários — um mecanismo análogo ao que hoje explica a predominância do desenvolvimento de aplicativos para a plataforma Android em relação a plataformas minoritárias.
 
-[IMAGEM: foto do IBM PC original de 1981]
+![IBM PC 5150 (1981), modelo original. Fonte: Wikimedia Commons `[9]`](imagens/ibm-pc-5150.jpg)
 
 ## 1.9 Componentes mínimos de um computador desktop
 
@@ -253,3 +253,4 @@ Este capítulo apresentou a definição técnica de computador, sua origem hist�
 6. POPULAR MECHANICS. "Brains That Click." mar. 1949.
 7. MAY, T. C.; WOODS, M. H. A new physical mechanism for soft errors in dynamic memories. In: *Proceedings of the 16th Annual Reliability Physics Symposium*. IEEE, 1978. p. 33–40. Publicado também como: MAY, T. C.; WOODS, M. H. Alpha-particle-induced soft errors in dynamic memories. *IEEE Transactions on Electron Devices*, v. 26, n. 1, p. 2–9, jan. 1979.
 8. JEDEC SOLID STATE TECHNOLOGY ASSOCIATION. *JESD89B: Measurement and Reporting of Alpha Particle and Terrestrial Cosmic Ray Induced Soft Errors in Semiconductor Devices*. Arlington, VA: JEDEC, 2021.
+9. Fotografia do IBM PC 5150. Autor: Reseletti. Wikimedia Commons, 2022. Licença CC BY-SA 3.0. Disponível em: https://commons.wikimedia.org/wiki/File:IBM_PC_5150.jpg.
