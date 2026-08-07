@@ -21,8 +21,6 @@ A tabela a seguir relaciona os principais submódulos de um desktop e sua essenc
 | Sistema de refrigeração (cooler) | Dissipa o calor gerado pelos componentes, em especial a CPU | Não (mas crítico à operação contínua) |
 | GPU | Processamento gráfico — pode estar integrada ao próprio chip da CPU ou ser um componente externo | Depende (não essencial se houver GPU integrada) |
 
-**Analogia.** O princípio de modularidade que rege essa tabela é o mesmo de um ônibus, cujos submódulos — motor, parte elétrica, pneus, suspensão, bancos — podem ser removidos e substituídos individualmente: a falha de um deles interrompe o funcionamento do todo, mas a substituição pelo módulo equivalente o restaura. O mesmo vale para um liquidificador doméstico: ele precisa de energia, do copo e da tampa para funcionar com segurança; a ausência da tampa não impede o funcionamento, mas é dispensável apenas nesse sentido restrito — o correto, ao perder um desses módulos, é substituí-lo, e não descartar o aparelho inteiro.
-
 **Exemplo — a fonte de alimentação.** A rede elétrica residencial fornece corrente alternada (no Brasil, tipicamente 127 V ou 220 V). Todos os componentes internos do computador, no entanto, operam em corrente contínua, em diversas tensões específicas. A fonte de alimentação é o submódulo responsável por essa conversão. Sem ela, nenhum outro componente recebe energia, e o computador simplesmente não liga.
 
 
@@ -92,8 +90,6 @@ Para que o POST seja executado com sucesso, quatro submódulos precisam estar op
 | CPU | As instruções do POST precisam ser processadas por um processador funcional. |
 | Memória RAM | Executar um programa exige carregar suas instruções na memória primária. |
 | Placa-mãe (incluindo o BIOS) | Promove a interconexão entre fonte, CPU e RAM, e é onde o próprio programa POST reside. |
-
-**Analogia.** O POST pode ser comparado a um exame de sangue: assim como um médico infere, a partir de indicadores como a contagem de glóbulos brancos, se há uma infecção em curso, o técnico infere, a partir do resultado do POST, se os componentes vitais do computador estão operacionais. É por isso que o ato de o computador exibir a tela inicial do POST é popularmente chamado de "**dar tela**" ou "*dar post*".
 
 ### 4.3.2 Componentes que não afetam o POST
 
@@ -169,8 +165,6 @@ Além da compatibilidade entre fabricantes, é preciso observar a compatibilidad
 - A **Intel**, historicamente, altera o soquete a cada uma ou duas gerações de processador. Em alguns casos, duas gerações consecutivas compartilham o mesmo soquete físico, mas ainda assim são incompatíveis entre si — a placa-mãe precisa ter sido projetada especificamente para aquela geração.
 - A **AMD** tende a manter um mesmo soquete (por exemplo, o soquete AM4, mantido de 2016 a 2022) por várias gerações consecutivas de processadores, por vezes exigindo apenas uma atualização de BIOS para suportar uma geração mais recente `[1]`.
 
-**Analogia.** A abordagem da Intel para soquetes pode ser comparada a um cenário hipotético em que cada geração de um smartphone tivesse seu próprio carregador, incompatível com o carregador da geração anterior.
-
 **Exemplo real.** O soquete LGA1155, usado em algumas placas-mãe Intel, suporta processadores de 2ª geração (nome de código Sandy Bridge) e de 3ª geração (Ivy Bridge) `[2]`. Identificar qual geração uma determinada placa-mãe suporta é informação disponível no manual do fabricante — não é conhecimento a ser memorizado, mas sim consultado no momento da especificação ou do reparo. **Atenção:** o soquete compartilhado não garante, por si só, compatibilidade total — o chipset **H61**, por exemplo, é LGA1155 mas não suporta Ivy Bridge mesmo com atualização de BIOS.
 
 ### 4.6.2 Diferenças físicas entre os soquetes Intel e AMD
@@ -214,8 +208,6 @@ O sistema de refrigeração a ar (*air cooler*) mais comum é composto por dois 
 - **Componente passivo** — o **dissipador**: uma peça metálica de alta condutividade térmica, fixada em contato direto com o processador, que aumenta a área de contato com o ar por meio de aletas.
 - **Componente ativo** — a **ventoinha**: um ventilador alimentado eletricamente (conectado à placa-mãe ou à fonte por um conector de três pinos) que força a circulação de ar através das aletas do dissipador.
 
-**Analogia.** O funcionamento do dissipador pode ser comparado ao ato de espalhar um alimento quente (como um brigadeiro) em um prato: ao aumentar a área de contato do alimento com o ar, a troca de calor é acelerada. O mesmo princípio — maior área de superfície, maior taxa de troca térmica — está por trás das aletas de um dissipador: a mesma massa de material metálico, com muito mais superfície exposta ao ar, dissipa calor de forma muito mais eficiente do que um bloco compacto.
-
 ### 4.7.2 Condutividade térmica dos materiais
 
 A eficiência de um sistema de refrigeração depende diretamente da condutividade térmica do meio utilizado para transferir o calor. A tabela a seguir apresenta valores relativos de condutividade térmica para os materiais discutidos nesta seção `[4]`:
@@ -235,8 +227,6 @@ A eficiência de um sistema de refrigeração depende diretamente da condutivida
 | Ar | 0,026 |
 
 O ar é um condutor térmico deficiente — a água é aproximadamente **22 vezes mais condutiva termicamente do que o ar** `[4]`. É por essa razão que sistemas de refrigeração líquida conseguem remover calor de forma mais eficiente do que sistemas a ar, especialmente em processadores de alto consumo energético.
-
-**Analogia.** A mesma lógica está presente na refrigeração de motores automotivos: o Fusca e seus derivados (como a Kombi e os buggies) utilizavam refrigeração a ar, o que explica seu som característico de motor; carros modernos, por gerarem mais calor e exigirem dissipação mais eficiente, utilizam refrigeração líquida com radiador.
 
 ### 4.7.3 Refrigeração líquida (water cooling)
 
@@ -348,8 +338,6 @@ O **chipset** — já mencionado no livro de Manutenção de Computadores (Capí
 - **Ponte norte** (*northbridge*, também chamada *IO hub*): conectada diretamente ao processador por um barramento de altíssima velocidade (chamado **QPI** — *QuickPath Interconnect* — pela Intel, e **HyperTransport** pela AMD, historicamente) `[6]`, a ponte norte intermediava o acesso à memória RAM e à placa de vídeo — os dois componentes que mais exigem largura de banda e menor latência possível em relação ao processador.
 - **Ponte sul** (*southbridge*), hoje frequentemente chamada **PCH** (*Platform Controller Hub*, nomenclatura Intel) ou **FCH** (*Fusion Controller Hub*, nomenclatura AMD): conectada à ponte norte (nunca diretamente ao processador), reunia os controladores de dispositivos que toleram maior latência — portas USB, SATA (Seção 4.10.5), áudio, rede, o chip de BIOS/UEFI (Capítulo 3, §3.6) e os demais slots PCI/PCIe de expansão.
 
-**Analogia.** A relação entre ponte norte e ponte sul é comparável à hierarquia de uma empresa de logística: a ponte norte é o centro de distribuição regional, conectado por uma rodovia expressa diretamente à fábrica (o processador) e capaz de atender rapidamente os poucos clientes de maior volume (memória RAM, vídeo); a ponte sul é o centro de distribuição local, que recebe carga do centro regional e a redistribui para o grande número de pequenos destinos (USB, SATA, áudio, rede) — cada um exigindo menos velocidade individual, mas em maior quantidade.
-
 ### 4.10.3 A migração para dentro do processador
 
 A arquitetura de duas pontes começou a ser desmontada à medida que os processadores modernos passaram a incorporar, dentro do próprio encapsulamento da CPU, funções que antes pertenciam à ponte norte: o **controlador de memória** (Capítulo 2 trata a RAM em profundidade) e, em processadores mais recentes, um conjunto próprio de **pistas PCIe** (Seção 4.10.4, adiante) dedicadas à placa de vídeo e ao armazenamento NVMe (Seção 4.10.5).
@@ -431,8 +419,6 @@ Um requisito comum a qualquer transferência de E/S é comunicar três elementos
 - **Comunicação programada** — a própria CPU, executando uma rotina de software, é responsável por mover cada dado entre o periférico e a memória. Duas variantes existem: **espera ocupada** (a CPU fica presa num laço, checando repetidamente se o dispositivo está pronto, sem fazer mais nada nesse intervalo) e ***polling*** (a CPU verifica periodicamente, mas intercalando outras tarefas entre uma verificação e outra). Em ambas, a CPU desperdiça parte de sua capacidade de processamento apenas esperando ou verificando.
 - **Comunicação por interrupção** — em vez de a CPU perguntar repetidamente "já terminou?", o próprio hardware do dispositivo **avisa** a CPU (por meio de um sinal elétrico chamado interrupção) no exato instante em que há um dado pronto para transferência. A CPU fica livre para executar outras tarefas entre um aviso e outro, interrompendo o que está fazendo apenas quando o periférico efetivamente precisa de atenção.
 - **DMA** (*Direct Memory Access*, acesso direto à memória) — para transferências de grande volume (como copiar um arquivo inteiro do SSD para a RAM), mesmo a comunicação por interrupção geraria overhead excessivo se a CPU precisasse mediar byte a byte. O DMA delega essa cópia a um controlador dedicado, que move os dados diretamente entre o dispositivo e a memória RAM sem ocupar o processador durante a transferência — a CPU apenas inicia a operação e é avisada, por uma única interrupção, quando ela termina por completo.
-
-**Analogia.** A diferença entre esses três modos é comparável a esperar uma encomenda em casa: a espera ocupada é ficar parado olhando pela janela sem fazer mais nada; o *polling* é ir até a janela a cada dez minutos, entre outras tarefas domésticas, para checar se a entrega chegou; a comunicação por interrupção é a campainha tocando exatamente quando o entregador chega, liberando a pessoa para fazer qualquer outra coisa no meio tempo; o DMA é contratar um porteiro para receber a encomenda inteira e só avisar quando ela já estiver guardada dentro de casa, sem exigir qualquer atenção da pessoa durante o processo de entrega em si.
 
 ### 4.11.5 Estudo de caso: USB
 

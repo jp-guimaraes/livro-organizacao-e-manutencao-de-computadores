@@ -37,8 +37,6 @@ Não existe uma periodicidade única para a manutenção preventiva — ela depe
 
 **Exemplo.** No ambiente de laboratório de um campus, os computadores costumam ser reinstalados uma vez por ano letivo, prática que reduz o índice de problemas ao longo do semestre; sob uso muito mais intenso, esse intervalo poderia cair para seis meses. Já a cópia de segurança (*backup*) de dados de uso profissional é uma ação de manutenção preventiva que deve ser executada diariamente: um computador sem rotina de backup que sofre uma falha grave perde integralmente os dados que não foram copiados.
 
-**Analogia.** A ausência de uma regra fixa de periodicidade é comparável à manutenção automotiva: a troca de óleo e de determinadas peças de um carro de uso severo precisa ser mais frequente do que a de um carro de uso ocasional. Em ambos os casos — carro e computador —, a periodicidade correta é definida pelas condições reais de trabalho, não por uma tabela genérica.
-
 Manutenção corretiva e preventiva se aplicam às três frentes do sistema computacional (Seção 1.2): existem ações preventivas relacionadas a hardware (limpeza, inspeção), a software (backup, atualização) e também a pessoas — treinamento e orientação do usuário para reduzir erros de operação recorrentes.
 
 ### 1.3.1 Condições reais e ideais de trabalho
@@ -67,8 +65,6 @@ Esse tipo de raciocínio — geração de hipóteses, priorização por custo de
 
 Um problema de software identificado durante o diagnóstico pode ter origem em **software malicioso** (*malware*) instalado no computador sem o conhecimento ou consentimento do usuário.
 
-**Analogia.** A relação entre vírus e malware é análoga à relação entre gripe e doença: toda gripe é uma doença, mas nem toda doença é uma gripe. Da mesma forma, todo vírus é um software malicioso, mas nem todo software malicioso é um vírus.
-
 - **Vírus**: software malicioso cuja característica definidora é a **replicação** — a capacidade de se propagar de um computador para outro, contaminando novas máquinas.
 - **Trojan** (cavalo de troia): software que se apresenta como um programa legítimo, mas que traz embutido um código malicioso oculto, executado em segundo plano após a instalação.
 
@@ -79,8 +75,6 @@ Esse caso ilustra por que a origem de um software instalado importa: um malware 
 ## 1.6 Reinstalação do sistema operacional como manutenção corretiva
 
 Diante de um problema de software cuja causa exata não foi identificada, uma prática comum — ainda que nem sempre a mais eficiente — é reinstalar o sistema operacional por completo, apagando o disco e recomeçando do zero.
-
-**Analogia.** Esse procedimento é comparado, na prática do curso, a "jogar uma bomba atômica em cima de uma mosca": resolve o problema, mas de forma desproporcional ao esforço realmente necessário. Um técnico experiente, que já reconhece o problema específico, tende a resolver a questão pontual (por exemplo, reconfigurar um ícone, restaurar uma barra de tarefas que desapareceu, desinstalar um programa específico) sem recorrer à reinstalação completa. Um técnico iniciante, sem esse repertório, tende a usar a reinstalação como solução padrão — o que resolve o problema, mas consome muito mais tempo do que seria necessário.
 
 Ainda assim, a reinstalação continua sendo uma ferramenta legítima de manutenção corretiva, sobretudo quando o tempo de diagnóstico pontual excederia o tempo do próprio procedimento de reinstalação. Duas implicações são obrigatórias sempre que esse caminho é adotado:
 
@@ -152,8 +146,6 @@ A partir dessa chave elementar, é possível construir as portas lógicas estuda
 
 **Nota técnica.** Esse modelo (série = AND, paralelo = OR) é uma simplificação pedagógica — um "modelo de chave" coerente com a lógica CMOS moderna — e não corresponde exatamente à topologia de circuitos comerciais TTL/DTL, que tradicionalmente implementam AND/OR com lógica a diodo e usam um transistor inversor separado `[6]`. O modelo aqui é útil para a intuição, mas não deve ser confundido com a topologia exata de um circuito integrado comercial.
 
-**Analogia.** O ponto notável desse processo — e a razão de ele ser descrito em aula como "extraordinário" — é que um punhado de areia (silício) e um pouco de fio de cobre, arranjados segundo esses princípios, realizam uma operação lógica. Não há nada além de física de materiais e geometria de circuito por trás da porta lógica que se manipula em alto nível de abstração.
-
 [IMAGEM: três circuitos lado a lado — porta AND (transistores em série), porta OR (transistores em paralelo) e porta NOT (transistor inversor), com tabela-verdade de cada uma]
 
 ## 1.10 Circuitos aritméticos: o meio-somador
@@ -170,8 +162,6 @@ A adição em binário segue a mesma lógica da adição em decimal, mas com ape
 | 1 | 1 | 0 | 1 |
 
 Observando essa tabela, nota-se que a coluna "Soma" corresponde exatamente à tabela-verdade da porta **OU exclusivo** (XOR), e a coluna "Vai-um" corresponde exatamente à tabela-verdade da porta **AND**.
-
-**Analogia.** A porta XOR é ilustrada pela missão "vá à padaria e traga coca-cola ou guaraná": trazer apenas um dos dois cumpre a missão; não trazer nenhum, ou trazer os dois, não cumpre. É a diferença entre "ou" inclusivo (porta OR comum) e "ou" exclusivo.
 
 O circuito que combina uma porta XOR (para o bit de soma) e uma porta AND (para o bit de vai-um), ambas recebendo as mesmas duas entradas A e B, é chamado **meio-somador** (*half adder*). Ele soma dois bits e produz dois resultados: o bit de soma e o bit de transporte para a próxima posição. Encadeando vários meios-somadores (com o acréscimo da entrada de vai-um recebido da posição anterior, o que dá origem ao **somador completo**, ou *full adder*), constrói-se um circuito capaz de somar números de qualquer quantidade de bits — o tamanho da palavra binária que um processador consegue somar de uma vez (32 bits, 64 bits) é justamente definido por quantos desses circuitos estão encadeados no hardware.
 
@@ -246,8 +236,6 @@ Essa arquitetura organiza o computador em quatro unidades funcionais:
 - **Unidade de processamento (CPU)** — subdividida em **unidade de controle** (coordena a sequência de operações) e **unidade lógica e aritmética — ULA** (executa as operações lógicas e aritméticas propriamente ditas).
 - **Unidade de memória** — armazena tanto os dados quanto o próprio programa em execução.
 
-**Analogia.** O processador ocupa, nessa arquitetura, o papel do cozinheiro que segue uma receita: recebe as entradas (leite condensado, ovos, leite), utiliza a memória como bancada de trabalho, processa segundo uma sequência de passos e produz a saída (o pudim pronto). A unidade de controle é o que garante que os passos da receita sejam seguidos na ordem correta.
-
 No computador desktop moderno, a via de dados que interliga processador, memória e dispositivos de entrada e saída — o **barramento** — é fisicamente provida pela placa-mãe.
 
 [IMAGEM: diagrama da arquitetura de von Neumann — CPU (unidade de controle + ULA), memória, entrada e saída interligados por um barramento central]
@@ -255,8 +243,6 @@ No computador desktop moderno, a via de dados que interliga processador, memóri
 ## 1.14 O gargalo de von Neumann
 
 A separação física entre processador e memória — necessária, já que nenhum dispositivo conhecido realiza simultaneamente as funções de processamento e de armazenamento — traz uma limitação estrutural conhecida como **gargalo de von Neumann**.
-
-**Analogia.** Um engarrafamento rodoviário ocorre quando várias faixas de tráfego convergem para uma via mais estreita — todo o fluxo de veículos, independentemente de sua origem, precisa passar pelo mesmo ponto de estrangulamento. De forma equivalente, toda instrução e todo dado que o processador precisa manipular precisam trafegar pelo barramento que o conecta à memória. Por mais rápido que o processador seja, e por mais rápida que a memória seja, a taxa de transferência entre os dois chips é limitada pela largura e pela velocidade dessa via de comunicação — e essa via é, estruturalmente, o ponto mais lento do sistema.
 
 Abordagens modernas de arquitetura, como o **System-on-Chip (SoC)**, aproximam fisicamente processador e memória dentro de um único encapsulamento, reduzindo a latência de comunicação entre eles. Essa aproximação mitiga o problema, mas não o elimina: processamento e memória continuam sendo entidades fisicamente distintas, e o gargalo de von Neumann permanece um problema em aberto na arquitetura de computadores.
 

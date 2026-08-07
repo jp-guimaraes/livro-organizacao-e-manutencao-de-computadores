@@ -10,8 +10,6 @@ Neste capítulo você vai estudar as grandezas elétricas fundamentais (tensão,
 
 Toda análise elétrica de um computador começa na tomada, e toda tomada é, fisicamente, uma **diferença de potencial elétrico** (DDP). O conceito de potencial elétrico pode ser compreendido por analogia com o potencial gravitacional.
 
-**Analogia.** Considere um lápis apoiado sobre uma mesa (ponto A) e outro lápis apoiado no chão (ponto B). O lápis em A possui maior energia potencial gravitacional do que o lápis em B, porque existe uma diferença de altura entre os dois pontos. Se uma segunda mesa for empilhada sobre a primeira e um terceiro lápis for apoiado sobre ela (ponto C), esse lápis possui energia potencial gravitacional ainda maior do que os pontos A e B. Existe, portanto, uma diferença de potencial gravitacional entre cada par de pontos — sendo a maior delas entre C e B. Um ponto não possui diferença de potencial em relação a si mesmo: a diferença de potencial só existe *entre* dois pontos de observação.
-
 O mesmo raciocínio se aplica à eletricidade: a diferença de potencial elétrico só existe entre dois pontos. É por essa razão que toda tomada elétrica possui, no mínimo, dois furos — um representando cada um dos dois pontos entre os quais existe a diferença de potencial. A grandeza que quantifica essa diferença de potencial é chamada de **tensão** ou **voltagem**, medida em **volts** (V).
 
 
@@ -70,8 +68,6 @@ $$P = R \times I^2$$
 
 Essa segunda forma é especialmente importante porque descreve a **potência dissipada por efeito Joule** — o calor gerado pela passagem de corrente através de um condutor com resistência. Quanto maior a corrente que passa por um condutor, maior é a potência perdida em forma de calor, e essa perda cresce com o **quadrado** da corrente.
 
-**Analogia.** A diferença entre um dispositivo pouco potente e um dispositivo muito potente pode ser ilustrada pela comparação entre um Fusca antigo e uma Ferrari: ambos podem estar andando à mesma velocidade em um dado instante, mas a Ferrari possui um motor capaz de atingir velocidades muito maiores. Potência não é velocidade — é a *capacidade* de realizar mais trabalho, ainda que essa capacidade não esteja sendo totalmente utilizada no momento.
-
 **Exemplo.** Um chuveiro elétrico ligado em 220 V, puxando uma corrente da ordem de 5 A, tem potência de $220 \times 5 = 1100$ W. Um carregador de celular, ligado na mesma tomada de 220 V mas puxando apenas cerca de 0,01 A, tem potência de $220 \times 0{,}01 = 2{,}2$ W. Ambos os dispositivos estão sujeitos à mesma tensão da tomada; o que os diferencia é a corrente que cada um demanda — e essa diferença de corrente é o que torna o chuveiro elétrico centenas de vezes mais potente que o carregador.
 
 ### Por que a energia é transportada em alta tensão
@@ -93,8 +89,6 @@ A rede elétrica gera energia em uma determinada tensão e, antes de transportá
 
 Um **disjuntor** é um dispositivo eletromecânico que interrompe automaticamente a passagem de corrente elétrica quando ela ultrapassa um determinado limite. Seu funcionamento se baseia no fato de que toda corrente elétrica alternada produz um campo magnético proporcional à sua intensidade: dentro do disjuntor existe um sensor sensível a esse campo magnético; quando a corrente excede o limite para o qual o disjuntor foi dimensionado (por exemplo, 10 A), o campo magnético resultante aciona um mecanismo de mola que desarma o disjuntor, desconectando mecanicamente o circuito — produzindo o característico estalo audível.
 
-**Analogia.** O disjuntor funciona como uma cancela de pedágio: os carros (a corrente) passam normalmente até que um volume de tráfego anormal é detectado, e a cancela se fecha, impedindo a passagem de mais carros.
-
 Uma instalação elétrica é organizada hierarquicamente: da rede pública, a energia chega a um **quadro geral**, de onde é distribuída para um ou mais **quadros de distribuição**, cada um atendendo a um setor específico da edificação (um andar, uma sala). Cada circuito de um quadro de distribuição — iluminação, tomadas, ar-condicionado — é protegido por seu próprio disjuntor, de forma que uma falha em um circuito não derrube os demais. Esse isolamento por circuito é análogo ao encapsulamento em programação orientada a objetos: cada objeto (aqui, cada sala ou circuito) mantém seus próprios atributos e falhas isoladas do restante do sistema.
 
 A instalação pode ser **monofásica** (uma única fase de 220 V mais um neutro de referência) ou **trifásica** (três fases de 220 V, cada uma referenciada ao mesmo neutro, usadas para distribuir cargas maiores entre três circuitos independentes).
@@ -108,8 +102,6 @@ A instalação pode ser **monofásica** (uma única fase de 220 V mais um neutro
 
 Cada condutor (fio) elétrico suporta uma corrente máxima, determinada pela sua **bitola** (área de seção transversal). Quanto maior a bitola do fio, maior a corrente que ele pode conduzir sem aquecer excessivamente.
 
-**Analogia.** Um fio é como uma pista de rodovia: uma pista larga comporta mais tráfego (corrente) simultâneo do que uma pista estreita.
-
 O disjuntor de um circuito deve ser dimensionado de acordo com a capacidade do fio que ele protege: se um fio suporta no máximo 10 A, o disjuntor daquele circuito deve desarmar antes que essa corrente seja ultrapassada. Uma causa comum de disjuntores desarmando repetidamente é a **sobrecarga**: ligar, em um mesmo circuito, equipamentos cuja soma de potências excede a capacidade projetada para aquele fio e aquele disjuntor — por exemplo, uma impressora de alto consumo e uma pistola de cola quente compartilhando a mesma tomada. Quando essa sobrecarga não é interrompida por um disjuntor subdimensionado (ou por um disjuntor trocado por um de corrente nominal mais alta sem trocar o fio correspondente), o próprio condutor pode superaquecer e provocar um curto-circuito ou incêndio.
 
 ---
@@ -119,8 +111,6 @@ O disjuntor de um circuito deve ser dimensionado de acordo com a capacidade do f
 ### 2.4.1 O planeta Terra como referência de potencial
 
 O terceiro pino presente na maioria das tomadas modernas corresponde ao **aterramento** (terra). O planeta Terra, por sua imensa massa e extensão, funciona como uma fonte praticamente infinita de cargas elétricas: ele pode absorver um excesso de cargas de qualquer ponto conectado a ele, ou fornecer cargas a um ponto que esteja com déficit, sempre tendendo ao equilíbrio elétrico.
-
-**Analogia.** O comportamento do aterramento é semelhante ao equilíbrio térmico entre um sorvete retirado do freezer e uma panela quente retirada do fogo, colocados lado a lado: o sorvete tende a esquentar e a panela tende a esfriar, ambos convergindo para a temperatura ambiente. Da mesma forma, um excesso (ou déficit) de cargas elétricas tende a se equilibrar através de um caminho condutor até a Terra.
 
 O **ar** é naturalmente isolante — seus átomos mantêm os elétrons presos com energia suficiente para impedir a condução em condições normais — o que explica por que é seguro aproximar a mão de um fio energizado sem tocá-lo diretamente. Quando, porém, a diferença de potencial entre dois pontos se torna extrema (como entre uma nuvem carregada e o solo), a rigidez elétrica do ar é rompida, e ele passa a conduzir: esse fenômeno é o **raio**. O trajeto irregular de um raio decorre do fato de que a descarga segue o caminho de menor resistência entre as moléculas de ar naquele instante. Estruturas pontiagudas, como para-raios, favorecem a descarga por um efeito conhecido como **poder das pontas**: a geometria fina concentra o campo elétrico, oferecendo um caminho de menor resistência para a corrente até o fio terra.
 
@@ -157,8 +147,6 @@ Seu princípio de funcionamento se baseia na **Lei de Faraday**: uma corrente el
 
 A relação entre a tensão de entrada e a tensão de saída é determinada pela razão entre o **número de espiras** (voltas do fio) em cada bobina: se o secundário possui mais espiras do que o primário, a tensão é elevada e a corrente correspondentemente reduzida (para conservar a potência); se possui menos espiras, a tensão é reduzida e a corrente aumentada.
 
-**Analogia.** O funcionamento por número de espiras é o mesmo princípio empregado no captador de uma guitarra elétrica: a bobina do captador, enrolada um determinado número de vezes, capta a vibração das cordas metálicas e converte essa vibração em um sinal elétrico cujo timbre depende justamente da quantidade de voltas do enrolamento.
-
 Como a energia não se perde nessa conversão (idealmente), o produto tensão × corrente se mantém aproximadamente constante entre primário e secundário: elevar a tensão implica reduzir a corrente na mesma proporção, e vice-versa. É exatamente essa propriedade que permite elevar a tensão da rede elétrica para transporte de longa distância (reduzindo a corrente e, com ela, as perdas por efeito Joule) e depois reduzi-la de volta a 220 V para uso residencial — passando antes por transformadores de subestação e, por fim, pelos transformadores de poste que abaixam a tensão para o nível final entregue às residências.
 
 Como o funcionamento do transformador depende de variação de campo magnético, ele **exige corrente alternada** para operar: não é possível usar um transformador diretamente sobre uma tensão contínua constante, pois esta não gera a variação de campo magnético necessária à indução.
@@ -180,8 +168,6 @@ O modelo mais simples de conversão é a **fonte linear**, construída por meio 
 2. **Retificador** (ponte de diodos) — inverte a parcela negativa da onda alternada para o lado positivo, já que um diodo permite a passagem de corrente em apenas um sentido. Um único diodo eliminaria completamente a metade negativa da onda; uma ponte de diodos "rebate" essa metade negativa para cima, produzindo uma onda inteiramente positiva, ainda que pulsante.
 3. **Filtro capacitivo** — um capacitor de grande capacitância, ligado em paralelo com a carga, suaviza as oscilações (o chamado *ripple*) da onda retificada, aproximando-a de uma tensão contínua estável.
 4. **Regulador de tensão** — ajusta e estabiliza a tensão final na saída.
-
-**Analogia.** O papel do capacitor de filtro é análogo ao de uma caixa d'água doméstica: enquanto a torneira permanece fechada, a caixa acumula água vinda da rede de distribuição; quando a torneira é aberta, a água armazenada é consumida antes de nova reposição. Da mesma forma, o capacitor acumula carga elétrica durante os picos da onda retificada e a libera durante os vales, suavizando a tensão entregue à carga.
 
 Fontes lineares são robustas e relativamente simples de projetar, mas apresentam uma desvantagem física significativa: para uma mesma potência, seus componentes (especialmente o transformador) são consideravelmente maiores e mais pesados do que os de uma fonte chaveada equivalente. Por essa razão, fontes lineares praticamente não são mais utilizadas em computadores modernos, restringindo-se a aplicações específicas, como equipamentos de áudio de alta fidelidade, em que a característica do circuito linear é tecnicamente desejável.
 
@@ -296,11 +282,7 @@ O **fator de potência** é uma segunda métrica de qualidade de uma fonte, dist
 
 $$\text{Fator de potência} = \frac{P_{\text{ativa}}}{S_{\text{aparente}}}$$
 
-**Analogia.** A relação entre potência ativa e potência aparente pode ser comparada ao enchimento de uma caixa d'água residencial. A água usada para encher a caixa d'água tem um custo (é fornecida pela concessionária), mas, enquanto está apenas armazenada na caixa, não está realizando nenhum trabalho útil (lavar, limpar, beber). Só quando a torneira é aberta e a água efetivamente flui é que o trabalho é realizado. Da mesma forma, capacitores e indutores dentro de um circuito de fonte precisam ser "carregados" (o que consome energia da rede), mas essa energia armazenada, por si só, não realiza trabalho computacional — apenas parte dela é convertida, de fato, em tensões contínuas úteis aos componentes do computador.
-
 Fontes com correção de fator de potência (**PFC**, *Power Factor Correction*) empregam circuitos adicionais — passivos (bancos de capacitores e indutores) ou ativos (circuitos eletrônicos dedicados) — para reduzir essa parcela reativa e aproximar a potência aparente da potência ativa. No Brasil, consumidores residenciais não são cobrados por energia reativa (essa cobrança se aplica a consumidores do Grupo A — média/alta tensão, o que inclui grandes consumidores industriais e comerciais, não apenas industriais) `[11]`, de forma que a presença de PFC em uma fonte doméstica não reduz a conta de energia do usuário — mas é, ainda assim, um indicador de qualidade construtiva do circuito.
-
-**Analogia.** A presença de PFC ativo em uma fonte é comparável à presença de airbag em um automóvel: não torna o carro mais rápido nem mais barato de operar, mas é um diferencial de qualidade e segurança de projeto, frequentemente destacado em anúncios comerciais.
 
 **Atenção.** O fator de potência e a eficiência de uma fonte são métricas independentes: uma fonte com PFC ativo não é, por esse motivo isolado, necessariamente mais eficiente — a eficiência é determinada pelo ensaio de conversão de energia (Seção 2.9.1), e não pelo fator de potência.
 
@@ -335,8 +317,6 @@ Somando a potência máxima teórica de todos os trilhos individualmente ($150 +
 Ao dimensionar uma fonte para um computador desktop, os dois maiores consumidores de energia — e, portanto, os fatores decisivos no dimensionamento — são o **processador** e a **placa de vídeo**: uma GPU de alto desempenho pode consumir, sozinha, uma potência muito superior à soma de todos os demais componentes do sistema. Componentes adicionais (memórias, unidades de armazenamento, ventoinhas) contribuem com potências individuais menores, mas devem ser somados quando existem em grande quantidade — como em servidores com múltiplos discos.
 
 Fabricantes de fontes disponibilizam calculadoras de dimensionamento *on-line* que, a partir da lista de componentes do sistema (processador, GPU, memória, armazenamento, ventoinhas), estimam o consumo total e recomendam uma potência de fonte adequada. Essas calculadoras tipicamente recomendam uma margem confortável acima do consumo estimado do sistema — não porque o sistema vá efetivamente consumir aquele valor, mas para que o consumo real do sistema recaia na faixa de carga típica (em torno de 50% da potência nominal), onde a fonte opera com eficiência máxima (Seção 2.9.1).
-
-**Analogia.** A relação entre carga leve, típica e máxima de uma fonte pode ser comparada ao esforço de um atleta correndo em terrenos diferentes: correr em terreno plano corresponde a uma carga típica; correr ladeira abaixo, a uma carga leve; correr ladeira acima, a uma carga máxima — e o consumo de "oxigênio" (corrente) do atleta varia de acordo.
 
 **Atenção.** Capacitores de grande capacitância no interior de uma fonte podem reter carga elétrica significativa por dias mesmo após o equipamento ser desconectado da tomada. Uma fonte nunca deve ser aberta sem os devidos cuidados de segurança, e o escopo deste curso não inclui a manutenção interna do circuito da fonte (troca de capacitores, indutores ou outros componentes) — apenas o diagnóstico que permite decidir pela substituição do módulo completo.
 

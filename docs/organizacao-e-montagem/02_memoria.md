@@ -21,21 +21,15 @@ Da década de 1950 até o início dos anos 1970, a tecnologia dominante de memó
 
 Uma vez que um valor é escrito num flip-flop, ele permanece estável indefinidamente enquanto houver energia — daí o nome "estática". Essa estabilidade é o que torna a **SRAM** (*Static RAM*) extremamente rápida.
 
-**Analogia.** A memória estática funciona como um objeto colocado sobre uma mesa: uma vez posicionado, ele permanece ali sem exigir nenhuma ação adicional para se manter no lugar.
-
 A contrapartida da SRAM é o custo: por unidade de armazenamento, uma célula estática é significativamente mais cara e menos densa do que a alternativa dinâmica apresentada a seguir. Por isso, hoje a SRAM não é mais usada como memória primária de um computador — sua aplicação atual se restringe às memórias **cache** dentro do processador (Seção 2.8).
 
 ## 2.3 Memória dinâmica (DRAM) e a operação de *refresh*
 
 A memória **dinâmica** (**DRAM**, *Dynamic RAM*) armazena cada bit em um capacitor — um componente que guarda carga elétrica, e não um valor lógico estável por natureza. Um capacitor perde carga ao longo do tempo, o que significa que a informação armazenada se degrada progressivamente.
 
-**Analogia.** Guardar um bit num capacitor é como guardar um "1 lógico" na forma de água dentro de um copo: se o copo for deixado exposto, a água evapora lentamente e, depois de algum tempo, o "combinado" original (copo cheio = 1) deixa de valer. Para que o dado se mantenha, é preciso completar o copo periodicamente.
-
 Esse "completar periodicamente" é a operação de ***refresh***: em intervalos regulares, o controlador de memória relê e regrava cada célula da DRAM para restaurar a carga elétrica antes que ela caia a ponto de tornar ambíguo se o bit é 0 ou 1. O termo é o mesmo usado para a atualização de uma página web (F5): uma releitura periódica que traz o conteúdo de volta ao estado esperado.
 
 A necessidade de *refresh* torna a DRAM mais lenta do que a SRAM. Em compensação, sua célula é mais simples (um único capacitor, em vez de um circuito completo de portas lógicas), o que permite maior **densidade de memória** — mais bits armazenados no mesmo espaço físico — e, consequentemente, um custo por bit muito menor.
-
-**Analogia.** A relação entre densidade de armazenamento e ocupação de espaço é comparável à densidade populacional: assim como o litoral brasileiro concentra mais pessoas por quilômetro quadrado do que o interior, uma tecnologia de memória mais densa concentra mais bits por milímetro quadrado de chip — reduzindo o custo de produção por unidade de dado armazenado.
 
 É essa relação custo–densidade–velocidade que explica por que a DRAM, apesar de mais lenta que a SRAM, tornou-se a tecnologia usada como memória RAM principal de praticamente todos os computadores modernos.
 
@@ -109,8 +103,6 @@ Como conceito, *cache* é a estratégia de trazer, antecipadamente, dados de uma
 
 **Exemplo.** Ao abrir um arquivo PDF, o sistema não lê apenas o byte solicitado no exato instante da requisição: como o disco tem acesso sequencial e o arquivo está fisicamente concentrado numa mesma região do disco (justamente por causa do princípio da localidade), o sistema aproveita que a cabeça de leitura já está posicionada ali e lê um bloco inteiro ao redor da posição pedida, guardando-o numa memória rápida — antecipando pedidos futuros em vez de repetir o processo de acesso sequencial, que é caro em tempo.
 
-**Analogia.** A operação de cache é equivalente a um ajudante de obra que, ao perceber que o pedreiro está prestes a precisar de martelo e pregos, já traz os dois de uma vez e os deixa próximos, em vez de esperar cada pedido individual e ir buscar um item de cada vez.
-
 Esse mesmo princípio é usado fora do hardware de um computador local: um serviço de streaming de vídeo, por exemplo, antecipa a demanda por um lançamento popular trazendo seus dados de um armazenamento mais lento para um armazenamento mais rápido antes mesmo de a maior parte dos usuários assistir.
 
 Quando o dado antecipado é efetivamente solicitado em seguida, ocorre um ***cache hit***; quando o dado solicitado não está na memória cache e precisa ser buscado na memória mais lenta, ocorre um ***cache miss***.
@@ -154,8 +146,6 @@ O **disco rígido** (HD, *hard disk*) é a memória secundária mais tradicional
 
 A escrita ocorre porque uma corrente elétrica variável na cabeça de leitura/escrita gera um campo eletromagnético, que magnetiza uma região microscópica do prato numa polaridade norte-sul ou sul-norte — cada orientação corresponde a um bit 0 ou 1.
 
-**Analogia.** O funcionamento é equivalente a uma fechadura eletromagnética de porta: enquanto há corrente, o eletroímã segura a porta fechada; ao cortar a energia, o campo desaparece e a porta libera. Da mesma forma, a cabeça do HD usa corrente elétrica para gerar (ou não) o campo magnético que orienta cada bit no prato.
-
 Uma vez magnetizada, a região do disco mantém sua orientação **sem necessidade contínua de energia** — daí a não volatilidade do HD. O dado só é perdido se um novo campo magnético externo suficientemente forte for aplicado sobre a região gravada, o que reescreve (ou corrompe) a informação ali contida. Essa é, inclusive, uma técnica legítima de destruição segura de dados.
 
 Como a cabeça de leitura/escrita precisa se posicionar fisicamente sobre a trilha correta e aguardar a rotação do prato até o setor desejado passar por baixo dela, o HD tem **acesso sequencial**: o tempo de acesso depende da posição física do dado no disco, ao contrário do acesso aleatório da memória RAM. Cada face de cada prato é organizada em **trilhas** (círculos concêntricos) subdivididas em **setores**; o endereço de um dado no disco é dado pela combinação face/trilha/setor.
@@ -183,15 +173,11 @@ O tamanho do cluster é uma escolha de engenharia com consequências em ambas as
 
 Associado a cada cluster alocado existe um conjunto de **metadados** — dados sobre o próprio dado: nome do arquivo, extensão, programa associado, e se aquele espaço está ou não disponível para uso. Os metadados ficam registrados no disco separadamente do conteúdo do arquivo propriamente dito, numa estrutura chamada **tabela de partição** (também aprofundada no Capítulo 3).
 
-**Analogia.** Quando um arquivo é "apagado", ele geralmente não é sobrescrito de imediato — apenas seus clusters são marcados como disponíveis nos metadados, de forma equivalente a um hotel liberando um quarto após o check-out: o quarto está disponível para o próximo hóspede, mas um objeto esquecido pelo hóspede anterior (como um carregador de celular) ainda está fisicamente lá até que alguém o remova ou o quarto seja reocupado. É justamente por isso que existem técnicas de recuperação de arquivos apagados: enquanto os clusters correspondentes não forem sobrescritos por um novo dado, a informação original ainda pode ser resgatada.
-
 **Nota técnica.** É comum haver confusão entre a capacidade anunciada de um dispositivo de armazenamento e a capacidade reconhecida pelo sistema operacional. Isso ocorre porque fabricantes costumam anunciar capacidade em múltiplos de 1.000 (o padrão do Sistema Internacional de Unidades — kilo, mega, giga como potências de dez), enquanto sistemas operacionais tradicionalmente calculam capacidade em múltiplos de 1.024 (potências de dois, já que o computador trabalha em base binária). Um dispositivo anunciado com "16 GB" aparece, portanto, com uma capacidade ligeiramente menor quando visualizado pelo sistema operacional.
 
 ## 2.12 Memória flash
 
 A **memória flash** é a tecnologia por trás do SSD (*Solid State Disk* — disco de estado sólido), de pendrives e da memória de armazenamento da grande maioria dos smartphones atuais. Sua célula de memória é construída com um tipo específico de transistor de efeito de campo chamado **MOSFET**, dotado de uma estrutura adicional chamada **porta flutuante** (*floating gate*).
-
-**Analogia.** A porta flutuante é isolada eletricamente por duas camadas finíssimas de óxido, formando uma espécie de sanduíche: assim como o recheio de um hambúrguer fica isolado entre dois pães, os elétrons armazenados na porta flutuante ficam retidos entre as duas camadas isolantes de óxido.
 
 A presença ou ausência de elétrons retidos na porta flutuante altera a tensão necessária para que corrente passe entre os dois terminais do transistor (chamados de dreno e fonte) — esse comportamento é o que permite implementar, em hardware, o equivalente a um teste "se-então" (*if*) que determina se a célula representa um bit 0 ou 1. Escrever um bit consiste em aplicar uma tensão que empurra elétrons para dentro ou para fora da porta flutuante, atravessando a fina camada de óxido isolante.
 

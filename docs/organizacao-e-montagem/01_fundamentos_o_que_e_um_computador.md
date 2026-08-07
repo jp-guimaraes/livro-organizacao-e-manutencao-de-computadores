@@ -65,8 +65,6 @@ De forma paralela e complementar ao trabalho de Turing, o conceito de **programa
 
 Antes dessa formalização, o algoritmo existia apenas como um procedimento mental ou registrado em papel, executado passo a passo por um operador humano. Com o programa armazenado, o computador passa a executar a sequência completa de instruções de forma autônoma, sem intervenção humana a cada etapa.
 
-**Analogia.** A diferença entre uma calculadora comum e um computador com programa armazenado pode ser ilustrada pela comparação entre uma calculadora de bolso e uma planilha eletrônica: na calculadora, cada operação deve ser inserida manualmente pelo usuário; na planilha, uma fórmula é armazenada uma única vez e reaplicada automaticamente sempre que os dados de entrada mudam.
-
 O conceito de programa armazenado é a base da **arquitetura de von Neumann**, tratada em profundidade no Capítulo 5.
 
 ## 1.5 O modelo entrada–processamento–saída
@@ -100,8 +98,6 @@ O computador é um dispositivo **modular**, constituído por submódulos substit
 1. Formular a hipótese de que um módulo específico está danificado.
 2. Substituir esse módulo por um equivalente sabidamente funcional.
 3. Observar se o sistema volta a operar corretamente.
-
-**Analogia.** Esse procedimento é equivalente a testar o pneu de um carro com defeito trocando-o pelo pneu de um carro em pleno funcionamento: se o carro com defeito continuar apresentando o mesmo problema, conclui-se que a peça testada não era a causa, e outro componente deve ser investigado.
 
 Esse princípio de modularidade é o fundamento metodológico da disciplina de Manutenção de Computadores (2026.1).
 
@@ -189,8 +185,6 @@ Da camada mais rápida (e mais cara) para a mais lenta (e mais barata):
 3. **Memória RAM** — capacidade da ordem de gigabytes.
 4. **Armazenamento secundário** — capacidade da ordem de terabytes.
 
-**Analogia.** O funcionamento dessa hierarquia pode ser comparado ao trabalho de um padeiro: o armazenamento secundário corresponde à despensa, onde os ingredientes ficam guardados por longos períodos; a memória RAM corresponde à mesa de trabalho, onde os ingredientes necessários no momento são reunidos; os registradores e a memória cache correspondem às próprias mãos do padeiro, mantendo o essencial em acesso imediato.
-
 ### 1.10.4 Aplicações práticas
 
 - O tempo de inicialização (*boot*) de um dispositivo corresponde à cópia de dados da memória secundária (lenta) para a memória RAM (rápida); por isso, destravar um dispositivo já ligado é mais rápido do que ligá-lo do zero.
@@ -228,8 +222,6 @@ A Seção 1.9 apresentou os quatro componentes mínimos de um desktop, e a Seç�
 - **APU** (*Accelerated Processing Unit*) — termo usado para designar um chip que combina, no mesmo encapsulamento, uma CPU e uma GPU integrada. Hoje praticamente todo processador de desktop e notebook tem vídeo integrado (Capítulo 4, §4.1), então "APU" deixou de ser uma categoria à parte e passou a descrever quase qualquer CPU moderna — o termo sobrevive principalmente como nome comercial de determinadas linhas de produto.
 - **DSP** (*Digital Signal Processor*) — processador especializado em processar sinais contínuos (áudio, imagem, rádio) por meio de operações matemáticas repetitivas (somas e multiplicações em sequência) sobre grandes volumes de amostras. Diferente da CPU, que precisa lidar com qualquer tipo de instrução, o DSP é otimizado apenas para esse tipo de cálculo — e por isso executa essas operações com muito mais eficiência energética. Está presente, por exemplo, no microfone e na câmera de um smartphone, processando o sinal bruto antes que ele chegue à CPU ou à NPU.
 - **SoC** (*System on a Chip*, sistema em um único chip) — não é um tipo de processador, mas uma **estratégia de integração**: reunir, num único encapsulamento, CPU, GPU, controlador de memória, modem de rede e demais controladores que, num desktop, estariam espalhados entre processador, chipset e placa-mãe (Capítulo 4, §4.10, trata do chipset e da interconexão desses componentes). Praticamente todo smartphone, tablet e Raspberry Pi é organizado em torno de um SoC.
-
-**Analogia.** A diferença entre esses processadores é comparável à de uma cozinha profissional: a CPU é o cozinheiro generalista, capaz de preparar qualquer prato do cardápio, ainda que sem a velocidade de um especialista; a GPU é o cozinheiro que só faz uma tarefa (por exemplo, grelhar) mas prepara centenas de porções simultaneamente; o DSP é o cozinheiro que só sabe temperar, mas o faz de forma extremamente rápida e consistente; a NPU é o cozinheiro treinado especificamente para reconhecer, por experiência acumulada, qual tempero combina com qual prato. O SoC, nessa analogia, não é mais um cozinheiro — é a decisão de montar a cozinha inteira dentro de um único módulo compacto, em vez de espalhar fogão, geladeira e bancada em cômodos separados.
 
 
 !!! warning "Figura pendente"

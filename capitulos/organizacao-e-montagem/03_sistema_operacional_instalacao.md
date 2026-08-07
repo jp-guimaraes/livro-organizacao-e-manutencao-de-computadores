@@ -8,8 +8,6 @@ Neste capítulo você vai estudar o papel do sistema operacional como camada de 
 
 Um sistema operacional (SO, do inglês *Operating System*, OS) é um software cuja função central é atuar como **interface** entre o hardware do computador e os demais softwares e usuários. O termo *interface* designa aquilo que se coloca entre duas faces, mediando a relação entre elas sem se confundir com nenhuma delas.
 
-**Analogia.** Uma calçada não é a rua nem é a casa: é o elemento que fica entre as duas, permitindo que se passe de um espaço para o outro. Da mesma forma, o sistema operacional não é o hardware nem é o aplicativo que o usuário está utilizando — ele é a camada que está entre os dois, viabilizando a comunicação.
-
 Em termos de camadas, o hardware ocupa a base do sistema; sobre ele executa o sistema operacional, cujo núcleo é chamado de **kernel**; e acima do sistema operacional executam os demais programas — desde o próprio ambiente gráfico (o menu iniciar, os ícones, as janelas) até os aplicativos que o usuário abre, como um navegador ou um editor de texto.
 
 [IMAGEM: diagrama em camadas — hardware na base, kernel do sistema operacional no meio, aplicativos e usuário no topo]
@@ -33,8 +31,6 @@ Antes da existência do sistema operacional, um programa era escrito diretamente
 O **sistema de arquivo** é o protocolo — o conjunto de combinados — pelo qual o sistema operacional organiza e localiza dados dentro de uma unidade de armazenamento secundário. Sistemas operacionais diferentes utilizam, em geral, sistemas de arquivo diferentes: o Windows usa hoje o **NTFS** (e usou historicamente o FAT); distribuições Linux usam tipicamente **EXT4**; Android, iOS e macOS têm, cada um, seus próprios sistemas de arquivo.
 
 A unidade mínima de alocação de espaço em disco para arquivos e diretórios é o **cluster**.
-
-**Analogia.** O cluster pode ser entendido como uma gaveta: o sistema operacional não guarda dados em posições arbitrárias do disco, mas em unidades fixas — as gavetas —, cada uma com um tamanho definido no momento da formatação.
 
 Ao formatar uma unidade de armazenamento, o sistema operacional solicita, entre outras informações, o **tamanho da unidade de alocação** (o tamanho do cluster). Valores típicos oferecidos pelo Windows incluem 8.192 bytes, 16 KB, 32 KB e 64 KB, além de um tamanho padrão sugerido para o dispositivo `[1]`.
 
@@ -89,10 +85,6 @@ A **lixeira** do sistema operacional é uma lista de arquivos cuja referência e
 
 Uma **partição** é uma divisão lógica de um disco físico — não uma divisão física real.
 
-**Analogia.** A fronteira entre Brasil e Paraguai não corresponde a nenhum traço físico no terreno; é uma convenção entre duas nações. Da mesma forma, um único disco pode ser "dividido" em duas ou mais partições sem que exista qualquer separação física real — apenas um combinado, registrado em metadados, de que até determinado ponto o espaço pertence a uma partição e, a partir dali, a outra.
-
-**Analogia.** Um único armário pode ter suas gavetas divididas por convenção entre dois usuários — "estas gavetas são suas, estas são minhas" — sem que o armário seja fisicamente serrado ao meio. O mesmo raciocínio se aplica a um disco dividido em partições.
-
 Todo disco precisa ter **ao menos uma partição** para que o sistema operacional possa atribuir a ele um sistema de arquivo e utilizá-lo — mesmo que essa única partição ocupe a totalidade do espaço físico disponível.
 
 ### 3.4.1 Sistemas de arquivo por partição e o conceito de dual boot
@@ -118,11 +110,7 @@ Quando um computador com múltiplos sistemas operacionais instalados é ligado e
 
 As informações sobre quantas partições um disco possui, onde cada uma começa e termina, e qual sistema de arquivo está atrelado a cada uma constituem, elas próprias, um conjunto de metadados que precisa ser gravado em algum lugar do disco. A estrutura responsável por essa organização é chamada de **tabela de partições**.
 
-**Analogia.** A tabela de partições funciona como a capa e o sumário de um livro: reúne, num espaço fixo no início do disco, a informação de "para qual capítulo (partição) ir e onde ele começa".
-
 Existem duas soluções de tabela de partição amplamente utilizadas: **MBR** (mais antiga) e **GPT** (mais recente).
-
-**Analogia.** A relação entre MBR e GPT é comparável à relação entre um aparelho de ar-condicionado de janela, antigo e volumoso, e um aparelho split moderno: ambos cumprem a mesma função básica, mas o mais recente resolve limitações técnicas do mais antigo.
 
 ### 3.5.1 Master Boot Record (MBR)
 
@@ -138,8 +126,6 @@ Para superar o limite de quatro partições, uma das partições primárias pode
 ### 3.5.2 GUID Partition Table (GPT)
 
 O **GPT** (*GUID Partition Table*) foi desenvolvido para superar as limitações do MBR, mantendo **retrocompatibilidade** com ele — isto é, softwares e firmwares mais antigos, mesmo sem reconhecer o GPT, ainda conseguem ler as informações essenciais gravadas no mesmo local histórico do disco.
-
-**Analogia.** A retrocompatibilidade do GPT em relação ao MBR é equivalente à de um console de videogame mais recente que ainda executa jogos de gerações anteriores — como o PlayStation 5, capaz de rodar a maior parte dos jogos de PlayStation 4, ou o Nintendo Switch 2, compatível com os cartuchos do Switch original. O console mais antigo, por outro lado, não consegue executar jogos feitos exclusivamente para o mais novo.
 
 Cada disco identificado em GPT recebe um **GUID** (*Globally Unique Identifier*), um identificador único análogo a um endereço IP em uma rede. Usando endereçamento de **64 bits**, o GPT permite partições na ordem de zettabytes `[3]`, até **128 partições** — o padrão adotado pelo Windows; a especificação GPT em si permite um número de partições configurável, tipicamente maior `[4]` — sem a necessidade do artifício de partições estendidas, e inclui um mecanismo de **redundância**: como historicamente ataques que reescreviam apenas o setor da tabela de partições eram suficientes para inutilizar o acesso a um disco inteiro (sem apagar os dados propriamente ditos, mas destruindo a referência para encontrá-los), o GPT mantém cópias redundantes dessa informação.
 
@@ -165,8 +151,6 @@ O **BIOS** (*Basic Input/Output System*), introduzido no Capítulo 1 a propósit
 
 O **POST** (*Power On Self Test*, autoteste de inicialização) é o primeiro programa executado quando o computador é ligado. Sua função é varrer os componentes de hardware — processador, memória, teclado, entre outros — em busca de falhas, antes de liberar o controle da CPU para qualquer outro software.
 
-**Analogia.** O POST equivale à triagem de um pronto-socorro: um exame rápido que determina se o paciente (o hardware) está em condições minimamente operacionais antes de qualquer procedimento seguinte.
-
 Se algum componente essencial falhar no teste, o POST comunica o erro por meio de sinais sonoros (bips), já que, sem memória funcional, ele não tem como exibir uma mensagem na tela — mostrar algo na tela já é, em si, uma operação de software que depende de memória disponível. A quantidade e o padrão de bips indicam, conforme o manual da placa-mãe, qual componente falhou (por exemplo, ausência ou defeito de memória RAM).
 
 Do ponto de vista do diagnóstico técnico, um POST bem-sucedido indica que processador, memória e placa-mãe estão minimamente funcionais — o que não exclui problemas de hardware que só se manifestem sob carga (como superaquecimento durante o uso), nem problemas de software, que só podem ocorrer depois que o POST é concluído com sucesso.
@@ -174,8 +158,6 @@ Do ponto de vista do diagnóstico técnico, um POST bem-sucedido indica que proc
 ### 3.6.2 Setup
 
 O **Setup** é o programa que permite alterar as configurações de hardware do computador — frequência do processador e da memória (overclock), habilitação ou desabilitação de funcionalidades, data e hora do sistema, e a **ordem de inicialização** (*boot order*), entre outras.
-
-**Analogia.** Se o computador fosse comparado a um jogo, o Setup seria o menu de configurações desse jogo.
 
 Essas configurações — incluindo a informação de qual dispositivo de armazenamento contém o sistema operacional a ser carregado — precisam ser preservadas mesmo com o computador desligado. Por isso, ficam gravadas em uma pequena memória flash não volátil na própria placa-mãe, dedicada a esse fim.
 

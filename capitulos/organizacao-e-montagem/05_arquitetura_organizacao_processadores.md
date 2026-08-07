@@ -12,8 +12,6 @@ Os termos *arquitetura de computadores* e *organização de computadores* são, 
 
 **Organização** é a implementação em hardware de uma dada arquitetura: as escolhas de projeto que determinam quantos núcleos um processador tem, qual a quantidade de memória cache, qual a frequência de operação, quanto de memória RAM ou de armazenamento um computador possui. Duas máquinas podem compartilhar a mesma arquitetura — o mesmo conjunto de instruções — e, ainda assim, ter organizações completamente diferentes.
 
-**Analogia.** A relação entre arquitetura e organização é equivalente à relação entre a especificação de um motor e o carro que o utiliza: quando se diz que um carro é "1.0" ou "2.0 turbo", essa característica não pertence ao carro em si, mas ao motor que ele carrega. Da mesma forma, quando se diz que um computador "tem arquitetura x86", essa característica não é do computador, mas do processador nele instalado — o computador apenas herda essa classificação por consequência.
-
 **Exemplo.** Um processador Intel Core i3, um Core i5 e um Core i7 de uma mesma geração compartilham a mesma arquitetura x86/x64: executam exatamente o mesmo conjunto de instruções e, portanto, os mesmos programas. O que os diferencia — quantidade de núcleos, tamanho de cache, frequência de clock, consumo energético — são decisões de organização. O mesmo raciocínio se aplica a um smartphone vendido em versões 4G e 5G, ou a um mesmo modelo de notebook oferecido com capacidades diferentes de SSD: a arquitetura do processador permanece idêntica; o que muda é a organização do hardware ao redor dele.
 
 Essa distinção também explica por que o nome da disciplina que dá origem a este livro é *organização e montagem de computadores*: ao longo dos capítulos anteriores, o que foi estudado — processador, memória principal, memória secundária, placa-mãe e demais componentes — são, tecnicamente falando, decisões de organização, e não de arquitetura. Arquitetura é assunto do programador de baixo nível e do fabricante do processador; organização é assunto de quem monta, especifica e mantém computadores.
@@ -40,8 +38,6 @@ Em 1981, a IBM lançou o IBM PC utilizando o processador Intel 8088, derivado do
 
 Esse comportamento decorre de uma exigência implícita do mercado de software: um fabricante que investiu no desenvolvimento de um programa para um determinado processador espera que esse programa continue funcionando — de preferência com desempenho melhor — nos processadores lançados posteriormente. A esse requisito dá-se o nome de **retrocompatibilidade**: a capacidade de um sistema mais novo executar, sem modificação, programas feitos para um sistema mais antigo da mesma família.
 
-**Analogia.** O mesmo princípio rege o mercado de videogames: um PlayStation 5 executa jogos de PlayStation 4, e um Nintendo Switch 2 executa jogos do Switch original — mas nenhum dos dois executa, nativamente, um cartucho de Super Nintendo, por pertencer a uma família de hardware totalmente diferente. Retrocompatibilidade existe dentro de uma mesma linhagem de arquitetura, não entre arquiteturas distintas.
-
 A tabela a seguir situa os principais marcos da evolução da família x86:
 
 | Processador | Observação |
@@ -67,8 +63,6 @@ Ao conjunto de processadores que evoluem dessa forma — acumulando instruções
 
 A quantidade de bits que um processador utiliza para endereçar a memória determina diretamente a quantidade máxima de memória RAM que esse processador é capaz de acessar.
 
-**Analogia.** Esse princípio pode ser ilustrado pela numeração de apartamentos em um prédio. Se o sistema de numeração usar apenas um dígito decimal, existem 10 endereços possíveis (0 a 9). Com dois dígitos, existem 100 endereços possíveis (0 a 99). Quanto mais dígitos disponíveis, mais endereços podem ser diferenciados — e, uma vez esgotada a quantidade de dígitos, não é possível criar um novo endereço, mesmo que fisicamente haja espaço para mais um apartamento. O mesmo ocorre com bits: cada bit adicional dobra a quantidade de endereços de memória que o processador consegue distinguir.
-
 Um processador de arquitetura de 32 bits consegue endereçar, no máximo, cerca de 4 GB de memória RAM. Essa é uma limitação estrutural da arquitetura, não da quantidade de memória fisicamente instalada na placa-mãe.
 
 **Exemplo.** É possível instalar 8 GB de memória RAM em um computador equipado com um sistema operacional de 32 bits; entretanto, esse sistema só conseguirá endereçar e utilizar até 4 GB — o restante permanece inacessível, por ausência de endereços suficientes para representá-lo. Esse foi historicamente um problema real de suporte técnico: computadores com memória fisicamente instalada, mas parcialmente inutilizável, por limitação da arquitetura do sistema operacional instalado, não do processador.
@@ -91,8 +85,6 @@ A principal família comercial de processadores RISC de propósito geral é a **
 
 Uma segunda família RISC, voltada não para computação de propósito geral, mas para **microcontroladores** embarcados, é a **AVR**, presente em chips como o ATmega328 (usado nas placas Arduino Uno) e nos microcontroladores PIC.
 
-**Analogia.** O conjunto de instruções de um processador pode ser comparado à língua falada por um profissional: um engenheiro fluente apenas em alemão, por mais competente que seja, não conseguirá interpretar um manual técnico escrito em árabe — não por incapacidade técnica, mas porque não conhece aquele "idioma". Da mesma forma, um sistema operacional desenvolvido para a arquitetura x86/x64, como o Windows, não é executado em um processador ARM ou AVR: as instruções que o compõem simplesmente não existem naquele processador. A esse ambiente de compatibilidade entre software e arquitetura dá-se o nome de **plataforma**.
-
 Diferentemente da relação entre x86 e x64 (em que uma arquitetura está contida na outra), ARM e AVR não compartilham conjuntos de instruções entre si: são duas famílias RISC distintas, sem relação de subconjunto uma com a outra, cada uma otimizada para um tipo de aplicação diferente.
 
 **Exemplo.** Um semáforo de trânsito exige um hardware de controle que permaneça ligado ininterruptamente, com baixíssimo consumo energético e alta confiabilidade, mas sem necessidade de grande poder de processamento — um cenário típico de aplicação para microcontroladores AVR. Um notebook usado para tarefas de escritório e navegação em rede, por outro lado, demanda maior poder computacional e tipicamente adota arquiteturas x86/x64 ou ARM, conforme o caso de uso.
@@ -113,8 +105,6 @@ A tabela a seguir resume as principais diferenças entre os paradigmas CISC e RI
 | Aplicações típicas | Desktops, notebooks, servidores tradicionais | Smartphones, computação móvel, automação embarcada |
 
 Arquitetura (o paradigma de projeto) e implementação específica não devem ser confundidas: nem todo processador CISC pertence à família x86/x64, e nem todo processador RISC pertence à família ARM. A relação correta é de classe e subclasse.
-
-**Analogia.** O mesmo raciocínio lógico que afirma "toda vaca é um mamífero, mas nem todo mamífero é uma vaca" aplica-se aqui: todo processador x64 é CISC, mas nem todo processador CISC é x64; todo processador ARM é RISC, mas nem todo processador RISC é ARM (o AVR, por exemplo, também é RISC, mas não é ARM).
 
 CISC e RISC são, portanto, **paradigmas** — formas distintas de resolver o mesmo problema geral (processar instruções), da mesma maneira que bicicleta, carro e ônibus são meios de transporte que resolvem o mesmo problema (deslocamento) seguindo lógicas de projeto totalmente diferentes, cada uma adequada a um conjunto de circunstâncias.
 

@@ -52,8 +52,6 @@ Historicamente, observou-se que os processadores lançados pela Intel dobravam a
 
 Como o transistor é a unidade fundamental de construção de portas lógicas, circuitos aritméticos, circuitos de controle e circuitos de memória, um processador com o dobro de transistores tende a oferecer maior poder computacional. O gráfico histórico de contagem de transistores por chip, de 1970 a meados da década de 2010, mostra crescimento de milhares para dezenas de bilhões de transistores por chip.
 
-**Analogia.** Se um saco comporta dez bolas de um determinado tamanho e a meta passa a ser encaixar vinte bolas no mesmo saco, a única solução é diminuir o tamanho das bolas. Da mesma forma, para dobrar a contagem de transistores mantendo o tamanho físico do chip aproximadamente constante, a indústria precisou miniaturizar continuamente os transistores — processo que trouxe a fabricação de semicondutores à escala dos **nanômetros** (1 nm = 10⁻⁹ m, um bilionésimo de metro; a título de comparação, uma folha de papel comum tem cerca de 100.000 nm de espessura, ou 0,1 mm) `[3]`.
-
 | Fabricante/arquitetura | Litografia aproximada |
 |---|---|
 | Intel, 12ª geração | 10 nm |
@@ -101,8 +99,6 @@ Um **core** (núcleo) é uma unidade de processamento física — hardware. Um p
 **Nota sobre controle de qualidade.** Nem todo processador de uma mesma linha de produção nasce igual: após a fabricação, cada chip passa por uma bancada de testes. Esse processo, chamado *binning*, é real e bem documentado na indústria `[8]`: às vezes, um chip com todos os núcleos aprovados no controle de qualidade é vendido como a linha superior (por exemplo, um "i7"), enquanto um chip do mesmo *die*, com núcleos defeituosos desabilitados, é vendido como um produto de linha inferior ("i5" ou "i3"). Essa não é, porém, a explicação universal da diferenciação entre linhas: em boa parte dos casos — especialmente em gerações mais recentes — i5 e i3 são fabricados a partir de *dies* fisicamente menores e diferentes do i7, não do mesmo chip com núcleos desabilitados.
 
 Uma **thread**, por sua vez, é uma unidade lógica — uma simulação em software da existência de mais processadores do que os fisicamente presentes. A tecnologia responsável por essa simulação é chamada de **hyper-threading** (nomenclatura da Intel) ou **SMT**, *simultaneous multi-threading* (nomenclatura da AMD). Um núcleo físico com hyper-threading de grau 2 é enxergado pelo sistema operacional como dois processadores lógicos.
-
-**Analogia.** Um único atendente de balcão que tanto cobra quanto embala a compra do cliente está, na prática, desempenhando duas tarefas — mas continua sendo uma única pessoa fazendo alternadamente uma coisa e outra, aproveitando os intervalos ociosos de uma tarefa para avançar a outra. É exatamente esse aproveitamento de tempo ocioso do hardware, viabilizado pela técnica de pipeline (Seção 3.6), que permite a um núcleo físico simular o comportamento de dois núcleos lógicos.
 
 **Exemplo.** Um anúncio real de processador Intel Core i5-12400F (12ª geração) especifica 6 núcleos físicos (*cores*) com hyper-threading, totalizando 12 threads `[9]` — ou seja, o sistema operacional identifica 12 processadores lógicos disponíveis, embora fisicamente existam apenas 6.
 
@@ -178,8 +174,6 @@ Ao especificar um computador para uma finalidade concreta — por exemplo, atend
 
 A solução adotada pela indústria é o **benchmark** — literalmente, "bancada de testes". Todo processador ou placa de vídeo submetido ao mesmo teste padronizado recebe uma nota (*score*) comparável.
 
-**Analogia.** Um dinamômetro automotivo submete motores diferentes ao mesmo teste padronizado, produzindo uma medida comparável (cavalos de potência, torque). Da mesma forma, o Enem submete candidatos de escolas e contextos diferentes à mesma prova, nas mesmas condições de tempo e sem consulta, produzindo uma nota comparável entre eles. O benchmark de hardware cumpre exatamente esse papel para CPUs e GPUs.
-
 **As duas notas de CPU.** Ferramentas de benchmark para processador (a mais usada em sala é o PassMark, cujo software CPU-Z é abordado na Seção 3.10) produzem duas notas distintas:
 
 - **Single-thread rating** — desempenho de um único núcleo trabalhando sozinho.
@@ -211,8 +205,6 @@ Uma forma particularmente útil de visualizar essas comparações é o gráfico 
 Duas ferramentas de software, de uso corrente entre técnicos, permitem levantar as características de um processador e monitorar seu comportamento sob carga sem a necessidade de desmontar o computador.
 
 **CPU-Z** lê e apresenta, a partir do sistema operacional em execução, informações detalhadas de hardware: nome comercial e codinome do processador, litografia, potência máxima, família de instruções, faixa de clock em operação, tamanho das caches L1/L2/L3, contagem de núcleos e threads, fabricante e versão de BIOS da placa-mãe, configuração de canais de memória (single ou dual channel) e as GPUs disponíveis no sistema. Uma aba específica, chamada *bench*, aplica o teste de benchmark descrito na Seção 3.9 diretamente no computador em uso.
-
-**Analogia.** Processadores híbridos modernos combinam núcleos de desempenho (*performance cores*, ou P-cores) e núcleos econômicos (*efficient cores*, ou E-cores) — uma arquitetura adotada pela Intel, entre outros, em resposta à eficiência energética típica de processadores RISC. A diferença entre os dois tipos de núcleo é comparável à diferença entre um carro 1.0 (mais econômico, menos potente) e um carro 2.0 (mais potente, mais consumo): o sistema operacional aloca tarefas leves (como notificações e aplicativos em segundo plano) aos núcleos econômicos, reservando os núcleos de desempenho para tarefas que realmente demandam potência, como jogos.
 
 **HWMonitor** é um painel de sensores em tempo real — o equivalente a um monitor cardíaco preso a um atleta correndo em uma esteira. Ele reporta, para cada componente monitorado, os valores atual, mínimo e máximo registrados de temperatura, potência (watts) e outras grandezas.
 
