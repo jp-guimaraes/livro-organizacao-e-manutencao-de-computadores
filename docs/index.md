@@ -19,3 +19,9 @@ Cada capítulo está marcado com avisos de **"Figura pendente"** onde uma imagem
 ## Sobre o autor
 
 Escrito por **João Paulo Ferreira Guimarães**, professor do Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN). Mais sobre ensino, pesquisa e extensão em [jp-guimaraes.github.io](https://jp-guimaraes.github.io) — sugestões, correções e erratas são bem-vindas por [e-mail](mailto:joao.guimaraes@ifrn.edu.br).
+
+## Licença
+
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR"><img alt="Licença Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+
+Esta obra está licenciada com uma licença [Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR). Você pode compartilhar e adaptar o material, desde que dê o crédito apropriado, não use para fins comerciais e distribua eventuais obras derivadas sob a mesma licença.

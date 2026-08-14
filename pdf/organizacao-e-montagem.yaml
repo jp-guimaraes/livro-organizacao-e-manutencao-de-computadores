@@ -2,4 +2,23 @@ title: "Organização e Montagem de Computadores"
 subtitle: "Livro 1 — versão 0.1"
 author: "João Paulo Ferreira Guimarães"
 version: "0.1"
+ano: "2026"
 toc: true
+instituicao: "Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN)"
+# Capa: descomente e ajuste o nome do arquivo assim que a imagem estiver
+# em pdf/imagens/organizacao-e-montagem/. `sangria: true` = imagem ocupa
+# a página inteira; `sangria: false` = imagem centralizada com margens,
+# título/subtítulo/autor abaixo dela (ver as duas variantes em
+# preambulo-livro.tex, capasangria/capamargem).
+capa:
+  imagem: "imagens/organizacao-e-montagem/imagem_capa.jpg"
+  sangria: true
+# Ficha catalográfica (verso da folha de rosto) e quarta capa: sem estes
+# dois campos, o PDF mostra uma caixa "pendente" no lugar, para não
+# esquecer de preencher antes da versão final.
+licenca: >-
+  Esta obra está licenciada com uma licença
+  [Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR).
+  É permitido compartilhar e adaptar o material, desde que citada a autoria, sem fins
+  comerciais, e distribuindo eventuais obras derivadas sob a mesma licença.
+# quarta-capa: "Texto de apresentação/sinopse do livro para a última página."

@@ -76,3 +76,97 @@
   colback=blue!4, colframe=blue!40!black,
   breakable
 }
+
+\usepackage{etoolbox} % \ifblank, usado nas variantes de capa abaixo
+
+% ============================================================
+% CAPA — duas variantes, alternadas pelo metadado `capa.sangria`
+% (true/false) no YAML de cada livro (pdf/<livro>.yaml), para
+% comparar as duas antes de decidir. Sem o metadado `capa.imagem`,
+% o template.tex cai de volta no \maketitle padrão do scrbook.
+% ============================================================
+
+% Sangria total: a imagem preenche a página inteira, sem margens.
+% Recorte "cover" (como object-fit: cover em CSS): a imagem é ampliada
+% mantendo a proporção original até cobrir largura E altura da página,
+% centralizada; o excedente (a imagem quase sempre não tem exatamente a
+% proporção do papel A4, ~0,7071 largura/altura) fica fora da caixa da
+% página e é cortado — sem esticar/distorcer. Usa um overlay do tikz
+% (desenha em coordenadas absolutas da página, fora do fluxo normal do
+% texto) porque só assim dá para centralizar e deixar o excesso "vazar"
+% para fora da página.
+% Título/subtítulo/autor ficam sobrepostos à foto (não dá pra usar a fonte
+% de texto corrido do livro — some sobre a imagem). Só a família DejaVu Sans
+% (já carregada como \sfdefault) é garantida tanto aqui quanto no runner do
+% GitHub Actions (workflow instala só o pacote `fonts-dejavu`) — o efeito
+% "profissional" vem do peso bold + versalete + rastreamento de letras
+% (\textls, do microtype) sobre uma faixa semitransparente, não de uma
+% fonte decorativa nova.
+\definecolor{capaaccent}{HTML}{C9971F} % dourado, ecoando as trilhas de cobre/ouro das fotos de capa
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\makeatletter
+\newsavebox\capa@box
+\newcommand{\capasangria}[4]{% #1=imagem #2=título #3=subtítulo #4=autor
+  \clearpage
+  \thispagestyle{empty}
+  \sbox\capa@box{\includegraphics{#1}}%
+  \Gscale@div\capa@sx{\paperwidth}{\wd\capa@box}%
+  \Gscale@div\capa@sy{\paperheight}{\ht\capa@box}%
+  \ifdim\capa@sx pt>\capa@sy pt\let\capa@s\capa@sx\else\let\capa@s\capa@sy\fi% usa a MAIOR escala (cobre a página, ao contrário do \pandocbounded que usa a menor)
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=center, inner sep=0pt] at (current page.center) {\scalebox{\capa@s}{\usebox{\capa@box}}};
+    % faixa semitransparente na base — garante contraste do texto branco
+    % independentemente do que estiver naquele trecho da foto.
+    \fill[black, opacity=0.60] (current page.south west) rectangle ($(current page.south east)+(0,9.5cm)$);
+    \node[anchor=south, inner sep=0pt] at ($(current page.south)+(0,3.2cm)$) {%
+      \begin{minipage}{\dimexpr\paperwidth-3.6cm\relax}
+        \centering\color{white}%
+        {\sffamily\bfseries\fontsize{28}{33}\selectfont\textls[50]{\MakeUppercase{#2}}}\\[0.4cm]
+        {\color{capaaccent}\rule{2.6cm}{0.6pt}}\\[0.4cm]
+        \ifblank{#3}{}{{\sffamily\fontsize{13}{17}\selectfont\textls[30]{#3}}\\[0.55cm]}%
+        {\sffamily\fontsize{11}{14}\selectfont\textls[130]{\MakeUppercase{#4}}}
+      \end{minipage}%
+    };
+  \end{tikzpicture}
+  \clearpage
+}
+\makeatother
+
+% Centralizada dentro da mancha de texto padrão (mesma largura das
+% figuras internas), com título/subtítulo/autor abaixo da imagem.
+\newcommand{\capamargem}[4]{% #1=imagem #2=título #3=subtítulo #4=autor
+  \clearpage
+  \thispagestyle{empty}
+  \begin{center}
+    \includegraphics[width=\linewidth, keepaspectratio]{#1}\\[2cm]
+    {\Huge\bfseries #2}\\[0.5cm]
+    \ifblank{#3}{}{{\Large #3}\\[0.5cm]}%
+    {\large #4}
+  \end{center}
+  \clearpage
+}
+
+% Ficha catalográfica — verso da folha de rosto: dados de autoria,
+% edição e direitos. Conteúdo montado no template.tex a partir dos
+% metadados do YAML (author, ano, instituicao, licenca).
+\newenvironment{fichacatalografica}{%
+  \clearpage
+  \thispagestyle{empty}
+  \vspace*{\fill}
+  \begin{small}
+}{%
+  \end{small}
+  \vspace*{\fill}
+  \clearpage
+}
+
+% Caixa de destaque genérica para conteúdo editorial ainda pendente
+% (licença, texto de contracapa etc.) — mesmo espírito da caixa
+% "Figura pendente" acima, para que nada saia faltando em silêncio.
+\newtcolorbox{conteudopendente}[1]{
+  colback=yellow!8, colframe=yellow!60!black,
+  title=#1, fonttitle=\bfseries,
+  breakable
+}

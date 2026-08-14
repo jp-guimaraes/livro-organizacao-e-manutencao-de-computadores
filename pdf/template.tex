@@ -23,7 +23,32 @@ $endif$
 \begin{document}
 
 \frontmatter
+
+$if(capa.imagem)$
+$if(capa.sangria)$
+\capasangria{$capa.imagem$}{$title$}{$subtitle$}{$for(author)$$author$$sep$ \and $endfor$}
+$else$
+\capamargem{$capa.imagem$}{$title$}{$subtitle$}{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$else$
 \maketitle
+$endif$
+
+\begin{fichacatalografica}
+$if(title)$\textbf{$title$}$if(subtitle)$ --- $subtitle$$endif$\par$endif$
+$if(author)$$for(author)$$author$$sep$; $endfor$\par$endif$
+$if(instituicao)$$instituicao$\par$endif$
+$if(ano)$$ano$\par$endif$
+\medskip
+
+$if(licenca)$
+$licenca$
+$else$
+\begin{conteudopendente}{Licença pendente}
+Definir e inserir aqui o texto de licenciamento/direitos desta edição (metadado \texttt{licenca} no YAML).
+\end{conteudopendente}
+$endif$
+\end{fichacatalografica}
 
 $if(toc)$
 \tableofcontents
@@ -32,5 +57,19 @@ $endif$
 \mainmatter
 
 $body$
+
+\clearpage
+\thispagestyle{empty}
+$if(quarta-capa)$
+\vspace*{\fill}
+\begin{center}
+$quarta-capa$
+\end{center}
+\vspace*{\fill}
+$else$
+\begin{conteudopendente}{Texto de contracapa pendente}
+Definir o texto de apresentação/sinopse do livro (metadado \texttt{quarta-capa} no YAML) para a quarta capa.
+\end{conteudopendente}
+$endif$
 
 \end{document}

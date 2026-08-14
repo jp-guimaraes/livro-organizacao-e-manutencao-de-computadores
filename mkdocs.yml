@@ -4,7 +4,9 @@ site_description: >-
   Organização e Montagem de Computadores, e Manutenção de Computadores.
 site_url: https://jp-guimaraes.github.io/livro-organizacao-e-manutencao-de-computadores/
 site_author: João Paulo Ferreira Guimarães
-copyright: Versão 0.1 — João Paulo Ferreira Guimarães
+copyright: >-
+  Versão 0.1 — João Paulo Ferreira Guimarães — Licenciado sob
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="license noopener">CC BY-NC-SA 4.0</a>
 
 theme:
   name: material
