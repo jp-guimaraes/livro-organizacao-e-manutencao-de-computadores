@@ -99,9 +99,14 @@
 % de texto corrido do livro — some sobre a imagem). Só a família DejaVu Sans
 % (já carregada como \sfdefault) é garantida tanto aqui quanto no runner do
 % GitHub Actions (workflow instala só o pacote `fonts-dejavu`) — o efeito
-% "profissional" vem do peso bold + versalete + rastreamento de letras
-% (\textls, do microtype) sobre uma faixa semitransparente, não de uma
-% fonte decorativa nova.
+% "profissional" vem do peso bold + versalete + rastreamento de letras sobre
+% uma faixa semitransparente, não de uma fonte decorativa nova. O
+% rastreamento usa \addfontfeature{LetterSpace=...} do fontspec (recurso
+% nativo do motor XeTeX) em vez do \textls do microtype — o TeX Live que o
+% Ubuntu empacota via apt (usado no GitHub Actions) é antigo o bastante para
+% não suportar letterspacing do microtype sob XeTeX ("Letterspacing
+% currently doesn't work with xetex"), mesmo compilando sem erro localmente
+% com um TeX Live mais novo.
 \definecolor{capaaccent}{HTML}{C9971F} % dourado, ecoando as trilhas de cobre/ouro das fotos de capa
 
 \usepackage{tikz}
@@ -123,10 +128,10 @@
     \node[anchor=south, inner sep=0pt] at ($(current page.south)+(0,3.2cm)$) {%
       \begin{minipage}{\dimexpr\paperwidth-3.6cm\relax}
         \centering\color{white}%
-        {\sffamily\bfseries\fontsize{28}{33}\selectfont\textls[50]{\MakeUppercase{#2}}}\\[0.4cm]
+        {\sffamily\bfseries\fontsize{28}{33}\selectfont\addfontfeature{LetterSpace=4}\MakeUppercase{#2}}\\[0.4cm]
         {\color{capaaccent}\rule{2.6cm}{0.6pt}}\\[0.4cm]
-        \ifblank{#3}{}{{\sffamily\fontsize{13}{17}\selectfont\textls[30]{#3}}\\[0.55cm]}%
-        {\sffamily\fontsize{11}{14}\selectfont\textls[130]{\MakeUppercase{#4}}}
+        \ifblank{#3}{}{{\sffamily\fontsize{13}{17}\selectfont\addfontfeature{LetterSpace=2}#3}\\[0.55cm]}%
+        {\sffamily\fontsize{11}{14}\selectfont\addfontfeature{LetterSpace=12}\MakeUppercase{#4}}
       \end{minipage}%
     };
   \end{tikzpicture}
