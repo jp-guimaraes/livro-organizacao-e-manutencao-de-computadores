@@ -1,13 +1,12 @@
-title: "Organização e Montagem de Computadores"
-subtitle: "Livro 1 — versão 0.1"
+title: "Organização e Manutenção de Computadores"
+subtitle: "Versão 0.1"
 author: "João Paulo Ferreira Guimarães"
 version: "0.1"
 ano: "2026"
 toc: true
-instituicao: "Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN)"
-# Capa: descomente e ajuste o nome do arquivo assim que a imagem estiver
-# em pdf/imagens/organizacao-e-montagem/. `sangria: true` = imagem ocupa
-# a página inteira; `sangria: false` = imagem centralizada com margens,
+# Capa: reaproveitada de uma versão anterior até que uma capa definitiva
+# seja produzida. `sangria: true` = imagem ocupa a página
+# inteira; `sangria: false` = imagem centralizada com margens,
 # título/subtítulo/autor abaixo dela (ver as duas variantes em
 # preambulo-livro.tex, capasangria/capamargem).
 capa:

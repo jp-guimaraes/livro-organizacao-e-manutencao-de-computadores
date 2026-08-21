@@ -46,14 +46,13 @@ jobs:
             texlive-lang-european texlive-lang-portuguese \
             fonts-dejavu pandoc
 
-      - name: Build dos PDFs (pandoc + xelatex)
+      - name: Build do PDF (pandoc + xelatex)
         run: python3 pdf/build_pdf.py
 
-      - name: Colocar os PDFs em docs/downloads/ (mkdocs copia como arquivo estático)
+      - name: Colocar o PDF em docs/downloads/ (mkdocs copia como arquivo estático)
         run: |
           mkdir -p docs/downloads
-          cp organizacao-e-montagem-livro.pdf docs/downloads/
-          cp manutencao-de-computadores-livro.pdf docs/downloads/
+          cp livro-organizacao-e-manutencao-de-computadores.pdf docs/downloads/
 
       - name: Build do site (mkdocs)
         run: mkdocs build --strict

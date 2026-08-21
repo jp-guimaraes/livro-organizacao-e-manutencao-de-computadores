@@ -1,16 +1,10 @@
-# Organização, Montagem e Manutenção de Computadores
+# Organização e Manutenção de Computadores
 
-Este é um **esboço** de um livro didático gratuito e aberto. Atualmente, ele está dividido em dois materiais para ser apoio para as disciplinas de 'Organização e Montagem de Computadores' e 'Manutenção de Computadores'. Essas disciplinas fazem parte do [Curso Técnico Integrado de Informática](https://portal.ifrn.edu.br/documents/21058/Informática_-_Projeto_Pedagógico_de_Curso.pdf). Esses cursos partem da definição de computador, estudo da sua organização para que ações de manutenção possam ser entendidas e realizadas. 
+Este é um **esboço** de um livro didático gratuito e aberto, apoio para as disciplinas de 'Organização e Montagem de Computadores' e 'Manutenção de Computadores'. Essas disciplinas fazem parte do [Curso Técnico Integrado de Informática](https://portal.ifrn.edu.br/documents/21058/Informática_-_Projeto_Pedagógico_de_Curso.pdf). Esses cursos partem da definição de computador, estudo da sua organização para que ações de manutenção possam ser entendidas e realizadas.
 
-O texto nasceu de algumas transcrições das aulas gravadas em sala e foi reorganizado em capítulos temáticos. Ele foi pensado para funcionar tanto como leitura de apoio ao longo do curso quanto como referência de consulta depois.
+O texto nasceu de algumas transcrições das aulas gravadas em sala e foi reorganizado em um único livro de 14 capítulos (mais um apêndice de fundamentos de eletricidade), sequenciados de modo que a arquitetura e o funcionamento interno do processador venham logo no início — servindo de base para os capítulos seguintes de memória, sistema operacional, hardware físico e eletricidade — e a manutenção propriamente dita feche o livro, antes do suporte técnico. Ele foi pensado para funcionar tanto como leitura de apoio ao longo do curso quanto como referência de consulta depois.
 
-## Livro 1 — Organização e Montagem de Computadores
-
-Fundamentos de arquitetura, memória, sistemas operacionais e hardware físico. [Comece por aqui →](organizacao-e-montagem/index.md) · [Baixar PDF](downloads/organizacao-e-montagem-livro.pdf)
-
-## Livro 2 — Manutenção de Computadores
-
-Continuação direta do primeiro livro: eletricidade, fontes de alimentação, processadores e suporte técnico. [Comece por aqui →](manutencao-de-computadores/index.md) · [Baixar PDF](downloads/manutencao-de-computadores-livro.pdf)
+[Comece por aqui →](livro/index.md) · [Baixar PDF](downloads/livro-organizacao-e-manutencao-de-computadores.pdf)
 
 ---
 

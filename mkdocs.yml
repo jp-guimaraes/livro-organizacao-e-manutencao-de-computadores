@@ -1,7 +1,8 @@
-site_name: Organização, Montagem e Manutenção de Computadores
+site_name: Organização e Manutenção de Computadores
 site_description: >-
-  Livro didático em duas partes para o curso técnico de informática do IFRN —
-  Organização e Montagem de Computadores, e Manutenção de Computadores.
+  Livro didático único, em 14 capítulos e um apêndice, para o curso técnico de informática
+  do IFRN — de "o que é um computador" ao suporte técnico e gestão de
+  serviços.
 site_url: https://jp-guimaraes.github.io/livro-organizacao-e-manutencao-de-computadores/
 site_author: João Paulo Ferreira Guimarães
 copyright: >-
@@ -25,10 +26,10 @@ theme:
         icon: material/weather-sunny
         name: Modo claro
   features:
-    - navigation.tabs
     - navigation.sections
     - navigation.top
     - navigation.indexes
+    - navigation.expand
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -46,16 +47,19 @@ markdown_extensions:
 
 nav:
   - Início: index.md
-  - Livro 1 — Organização e Montagem:
-      - Apresentação: organizacao-e-montagem/index.md
-      - "1. Fundamentos: o que é um computador": organizacao-e-montagem/01_fundamentos_o_que_e_um_computador.md
-      - "2. Memória": organizacao-e-montagem/02_memoria.md
-      - "3. Sistema Operacional, Sistemas de Arquivo e Instalação": organizacao-e-montagem/03_sistema_operacional_instalacao.md
-      - "4. Hardware Físico e Montagem": organizacao-e-montagem/04_hardware_fisico_montagem.md
-      - "5. Arquitetura e Organização de Processadores": organizacao-e-montagem/05_arquitetura_organizacao_processadores.md
-  - Livro 2 — Manutenção de Computadores:
-      - Apresentação: manutencao-de-computadores/index.md
-      - "1. Fundamentos e Abstração": manutencao-de-computadores/01_fundamentos_e_abstracao.md
-      - "2. Eletricidade e Fonte de Alimentação": manutencao-de-computadores/02_eletricidade_fonte.md
-      - "3. Processador, Benchmark e Dimensionamento": manutencao-de-computadores/03_processador_benchmark_dimensionamento.md
-      - "4. Suporte e Gestão de Serviços": manutencao-de-computadores/04_suporte_gestao_servicos.md
+  - Apresentação: livro/index.md
+  - "1. Fundamentos: o que é um computador": livro/01_fundamentos_o_que_e_um_computador.md
+  - "2. Do Transistor à Arquitetura de von Neumann": livro/02_do_transistor_a_arquitetura_von_neumann.md
+  - "3. Arquitetura e Organização de Processadores": livro/03_arquitetura_organizacao_processadores.md
+  - "4. Processador: Organização Interna e Evolução": livro/04_processador_benchmark_dimensionamento.md
+  - "5. Memória": livro/05_memoria.md
+  - "6. Sistema Operacional e Sistemas de Arquivo": livro/06_sistema_operacional_sistemas_de_arquivo.md
+  - "7. Instalação e Manutenção de Sistemas Operacionais": livro/07_instalacao_e_manutencao_de_sistemas_operacionais.md
+  - "8. Montagem Física: Componentes, CPU e Refrigeração": livro/08_montagem_fisica_componentes_cpu_refrigeracao.md
+  - "9. POST, CMOS e Setup": livro/09_post_cmos_e_setup.md
+  - "10. Barramentos, Entrada e Saída e Periféricos": livro/10_barramentos_entrada_saida_perifericos.md
+  - "11. Fonte de Alimentação: ATX e Dimensionamento": livro/11_fonte_de_alimentacao_atx_e_dimensionamento.md
+  - "12. Manutenção de Computadores: Definição e Método": livro/12_manutencao_definicao_metodo.md
+  - "13. Ferramentas de Benchmark e Dimensionamento de Computadores": livro/13_ferramentas_de_benchmark_e_dimensionamento.md
+  - "14. Suporte e Gestão de Serviços": livro/14_suporte_gestao_servicos.md
+  - "Apêndice A. Fundamentos de Eletricidade": livro/apendice_a_fundamentos_de_eletricidade.md

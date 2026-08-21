@@ -20,10 +20,7 @@ Essa definição contém três elementos essenciais:
 
 **Aplicação da definição.** Uma calculadora de padaria realiza operações de soma, subtração, multiplicação e divisão, mas não pode receber um programa genérico — não é possível, por exemplo, instalar nela um aplicativo de mensagens. Por essa razão, ela se enquadra na definição ampla de computação, mas não na definição de computador digital de uso geral. Essa distinção entre "dispositivo que computa" e "computador de uso geral" é usada ao longo de todo o capítulo.
 
-
-!!! warning "Figura pendente"
-    linha do tempo dos dispositivos de cálculo — ábaco, ossos de Napier, régua de cálculo, calculadora mecânica Curta
-
+[IMAGEM: linha do tempo dos dispositivos de cálculo — ábaco, ossos de Napier, régua de cálculo, calculadora mecânica Curta]
 
 ## 1.2 Evolução histórica: dos instrumentos mecânicos ao transistor
 
@@ -41,10 +38,7 @@ A tabela a seguir situa os principais marcos na evolução dos instrumentos de c
 
 O **transistor** é o componente que viabilizou a computação moderna. Fisicamente, é constituído por um arranjo de material semicondutor dopado (uma junção N-P-N ou P-N-P), que funciona como uma chave eletrônica capaz de ligar e desligar em altíssima velocidade, ocupar espaço microscópico e ser fabricado em larga escala a baixo custo. A substituição progressiva de válvulas por transistores, ao longo da segunda metade do século XX, é o que permitiu a redução de tamanho e custo que tornou o computador pessoal viável.
 
-
-!!! warning "Figura pendente"
-    foto comparativa — ábaco / régua de cálculo / calculadora Curta / transistor em corte esquemático
-
+[IMAGEM: foto comparativa — ábaco / régua de cálculo / calculadora Curta / transistor em corte esquemático]
 
 ## 1.3 Alan Turing e o conceito de máquina de propósito geral
 
@@ -54,10 +48,7 @@ A contribuição central de Turing para a computação não foi construir uma m�
 
 Essa distinção — entre uma máquina que executa uma operação fixa e uma máquina que recebe o próprio algoritmo como entrada — é o critério que separa uma calculadora de um computador de uso geral, conforme apresentado na Seção 1.1.
 
-
-!!! warning "Figura pendente"
-    ilustração/foto da máquina Bombe de Turing
-
+[IMAGEM: ilustração/foto da máquina Bombe de Turing]
 
 ## 1.4 John von Neumann e o programa armazenado
 
@@ -65,7 +56,7 @@ De forma paralela e complementar ao trabalho de Turing, o conceito de **programa
 
 Antes dessa formalização, o algoritmo existia apenas como um procedimento mental ou registrado em papel, executado passo a passo por um operador humano. Com o programa armazenado, o computador passa a executar a sequência completa de instruções de forma autônoma, sem intervenção humana a cada etapa.
 
-O conceito de programa armazenado é a base da **arquitetura de von Neumann**, tratada em profundidade no Capítulo 5.
+O conceito de programa armazenado é a base da **arquitetura de von Neumann**, tratada em profundidade no Capítulo 3.
 
 ## 1.5 O modelo entrada–processamento–saída
 
@@ -75,21 +66,20 @@ Todo computador, para operar, requer três elementos: **entrada** de dados, **pr
 
 Uma distinção relevante deve ser observada: ao realizar esse cálculo numa calculadora convencional, é o usuário humano quem executa o algoritmo, decidindo a sequência de operações. Num computador de uso geral, o próprio algoritmo é tratado como um dado de entrada e é a máquina que o executa de forma autônoma — reforçando a definição apresentada na Seção 1.1.
 
-
-!!! warning "Figura pendente"
-    diagrama entrada → processamento → saída, com o exemplo da média
-
+[IMAGEM: diagrama entrada → processamento → saída, com o exemplo da média]
 
 ## 1.6 O sistema computacional: hardware, software e pessoas
 
 Um sistema computacional não é composto apenas por hardware e software; inclui também as **pessoas** responsáveis por sua operação. Essa tríade está implícita na definição de Tanenbaum, que qualifica o computador como uma máquina que resolve problemas *para as pessoas*.
 
-Em contextos de suporte técnico, é comum que um problema relatado como falha de hardware ou software seja, na verdade, decorrente de erro de operação — por exemplo, um cabo de alimentação desconectado. A identificação correta da origem do problema (hardware, software ou operação humana) é o primeiro passo de qualquer diagnóstico técnico.
+Em contextos de suporte técnico, é comum que um problema relatado como falha de hardware ou software seja, na verdade, decorrente de erro de operação — por exemplo, um cabo de alimentação desconectado. A identificação correta da origem do problema (hardware, software ou operação humana) é o primeiro passo de qualquer diagnóstico técnico — retomado como filtro central de toda manutenção no Capítulo 12 (§12.2).
 
 ### 1.6.1 Manutenção corretiva e preventiva
 
 - **Manutenção corretiva**: intervenção realizada após a ocorrência de uma falha (por exemplo, substituir a pilha de um controle remoto somente depois que ele para de responder).
 - **Manutenção preventiva**: intervenção realizada antes da ocorrência da falha, com base no ciclo de vida esperado do componente (por exemplo, substituir a pilha antes do fim de sua vida útil média).
+
+Essa distinção é aprofundada, com condições reais de bancada e exemplos de periodicidade, no Capítulo 12 (§12.3).
 
 ### 1.6.2 Modularidade
 
@@ -101,10 +91,7 @@ O computador é um dispositivo **modular**, constituído por submódulos substit
 
 Esse princípio de modularidade é o fundamento metodológico da disciplina de Manutenção de Computadores (2026.1).
 
-
-!!! warning "Figura pendente"
-    esquema "sistema computacional = hardware + software + pessoas"
-
+[IMAGEM: esquema "sistema computacional = hardware + software + pessoas"]
 
 ## 1.7 Da computação corporativa ao computador pessoal
 
@@ -121,16 +108,13 @@ A tabela a seguir reúne declarações históricas frequentemente citadas para i
 
 ### 1.7.1 Os primeiros computadores pessoais
 
-- **Altair 8800** (1975): programado por meio de chaves binárias (posição alta = 1, posição baixa = 0), sem monitor, com saída representada por luzes indicadoras.
+- **Altair 8800** (1975): programado por meio de chaves binárias (posição alta = 1, posição baixa = 0), sem monitor, com saída representada por luzes indicadoras. Utilizava o processador **Intel 8080**, herdeiro da linhagem iniciada pelo **Intel 4004** (1971) — o primeiro microprocessador comercial, originalmente projetado para a calculadora Busicom — e continuada pelo **Intel 8008** (1972). Essa mesma linhagem leva, poucos anos depois, ao Intel 8086/8088 usado no IBM PC (Seção 1.8).
 - **Apple I** (1976): placa de circuito artesanal, sem gabinete próprio, dependente de um televisor externo como monitor.
 - **Apple II**, **Commodore** e **TRS-80** (1977): computadores já equipados com teclado integrado e gabinete, marcando o início da popularização comercial da computação pessoal.
 
 **Nota terminológica.** O termo *bug*, usado para designar um defeito de software, tem origem num inseto encontrado literalmente causando um curto-circuito em um relé de um computador mainframe antigo.
 
-
-!!! warning "Figura pendente"
-    Altair 8800, Apple I e Apple II lado a lado, mesma escala
-
+[IMAGEM: Altair 8800, Apple I e Apple II lado a lado, mesma escala]
 
 ## 1.8 O IBM PC e a padronização da arquitetura pessoal
 
@@ -142,13 +126,13 @@ Um terceiro realizou a engenharia reversa do BIOS da IBM e distribuiu uma versã
 
 Esse processo ilustra um efeito de mercado relevante para a área de tecnologia: plataformas com maior base de usuários tendem a atrair mais desenvolvimento de software, o que por sua vez amplia ainda mais sua base de usuários — um mecanismo análogo ao que hoje explica a predominância do desenvolvimento de aplicativos para a plataforma Android em relação a plataformas minoritárias.
 
-![IBM PC 5150 (1981), modelo original. Fonte: Wikimedia Commons `[9]`](imagens/ibm-pc-5150.jpg)
+![IBM PC 5150 (1981), modelo original. Fonte: Wikimedia Commons `[7]`](imagens/ibm-pc-5150.jpg)
 
 ## 1.9 Componentes mínimos de um computador desktop
 
 São necessários quatro componentes para que um computador do tipo desktop seja capaz de ligar e operar minimamente:
 
-1. **Fonte de alimentação** — fornece energia ao sistema (tratada em detalhe no Capítulo 4 e na disciplina de Manutenção de Computadores).
+1. **Fonte de alimentação** — fornece energia ao sistema (tratada em detalhe no Capítulo 8 e no Capítulo 11).
 2. **Processador (CPU)** — unidade responsável pelo processamento.
 3. **Memória principal (RAM)** — tratada na Seção 1.10.
 4. **Placa-mãe** — promove a interconexão entre os demais componentes e a ligação com dispositivos de entrada e saída.
@@ -157,10 +141,7 @@ Componentes como placa de rede, impressora ou webcam não são necessários para
 
 **Procedimento de manuseio.** Componentes eletrônicos devem ser manuseados pelas bordas, evitando o contato direto com os pontos de contato elétrico, e com atenção à descarga eletrostática acumulada pelo corpo humano.
 
-
-!!! warning "Figura pendente"
-    foto de placa-mãe com CPU, pente de RAM e conector de fonte identificados por setas
-
+[IMAGEM: foto de placa-mãe com CPU, pente de RAM e conector de fonte identificados por setas]
 
 ## 1.10 Introdução à hierarquia de memória
 
@@ -199,14 +180,8 @@ Um computador moderno tipicamente integra mais de um tipo de processador — a S
 - **GPU** (*Graphical Processing Unit*) — processador dedicado a tarefas gráficas, com memória de alta velocidade própria (VRAM).
 - **NPU** (*Neural Processing Unit*) — processador dedicado a cargas de trabalho de inteligência artificial, cada vez mais comum em dispositivos móveis e notebooks.
 
-
-!!! warning "Figura pendente"
-    pirâmide da hierarquia de memória com registradores, cache, RAM e armazenamento secundário
-
-
-!!! warning "Figura pendente"
-    anúncio comentado de um processador e de uma placa de vídeo, com cache/núcleos/memória destacados
-
+[IMAGEM: pirâmide da hierarquia de memória com registradores, cache, RAM e armazenamento secundário]
+[IMAGEM: anúncio comentado de um processador e de uma placa de vídeo, com cache/núcleos/memória destacados]
 
 ---
 
@@ -219,14 +194,11 @@ A Seção 1.9 apresentou os quatro componentes mínimos de um desktop, e a Seç�
 - **CPU** (*Central Processing Unit*) — processamento de propósito geral; já apresentado na Seção 1.10.5.
 - **GPU** (*Graphics Processing Unit*) — processador dedicado a tarefas gráficas, com memória de alta velocidade própria (VRAM); já apresentado na Seção 1.10.5.
 - **NPU** (*Neural Processing Unit*) — processador dedicado a cargas de trabalho de inteligência artificial, cada vez mais comum em dispositivos móveis e notebooks; já apresentado na Seção 1.10.5.
-- **APU** (*Accelerated Processing Unit*) — termo usado para designar um chip que combina, no mesmo encapsulamento, uma CPU e uma GPU integrada. Hoje praticamente todo processador de desktop e notebook tem vídeo integrado (Capítulo 4, §4.1), então "APU" deixou de ser uma categoria à parte e passou a descrever quase qualquer CPU moderna — o termo sobrevive principalmente como nome comercial de determinadas linhas de produto.
+- **APU** (*Accelerated Processing Unit*) — termo usado para designar um chip que combina, no mesmo encapsulamento, uma CPU e uma GPU integrada. Hoje praticamente todo processador de desktop e notebook tem vídeo integrado (Capítulo 8, §8.7.2), então "APU" deixou de ser uma categoria à parte e passou a descrever quase qualquer CPU moderna — o termo sobrevive principalmente como nome comercial de determinadas linhas de produto.
 - **DSP** (*Digital Signal Processor*) — processador especializado em processar sinais contínuos (áudio, imagem, rádio) por meio de operações matemáticas repetitivas (somas e multiplicações em sequência) sobre grandes volumes de amostras. Diferente da CPU, que precisa lidar com qualquer tipo de instrução, o DSP é otimizado apenas para esse tipo de cálculo — e por isso executa essas operações com muito mais eficiência energética. Está presente, por exemplo, no microfone e na câmera de um smartphone, processando o sinal bruto antes que ele chegue à CPU ou à NPU.
-- **SoC** (*System on a Chip*, sistema em um único chip) — não é um tipo de processador, mas uma **estratégia de integração**: reunir, num único encapsulamento, CPU, GPU, controlador de memória, modem de rede e demais controladores que, num desktop, estariam espalhados entre processador, chipset e placa-mãe (Capítulo 4, §4.10, trata do chipset e da interconexão desses componentes). Praticamente todo smartphone, tablet e Raspberry Pi é organizado em torno de um SoC.
+- **SoC** (*System on a Chip*, sistema em um único chip) — não é um tipo de processador, mas uma **estratégia de integração**: reunir, num único encapsulamento, CPU, GPU, controlador de memória, modem de rede e demais controladores que, num desktop, estariam espalhados entre processador, chipset e placa-mãe (Capítulo 10, §10.1.2, trata do chipset e da interconexão desses componentes). Praticamente todo smartphone, tablet e Raspberry Pi é organizado em torno de um SoC.
 
-
-!!! warning "Figura pendente"
-    diagrama de um SoC de smartphone mostrando CPU, GPU, NPU, DSP e modem integrados no mesmo chip, ao lado de um diagrama de desktop com CPU, GPU discreta e chipset como blocos separados
-
+[IMAGEM: diagrama de um SoC de smartphone mostrando CPU, GPU, NPU, DSP e modem integrados no mesmo chip, ao lado de um diagrama de desktop com CPU, GPU discreta e chipset como blocos separados]
 
 ### 1.11.2 Hardware para diferentes perfis de uso
 
@@ -234,37 +206,25 @@ O mesmo conjunto de conceitos — CPU, memória, armazenamento, interconexão �
 
 | Característica | Desktop | Notebook | Dispositivo móvel | Servidor |
 |---|---|---|---|---|
-| Processador | CPU substituível, soquete próprio (Capítulo 4, §4.6) | CPU frequentemente soldada à placa | SoC (CPU+GPU+modem integrados) | Um ou mais soquetes de CPU na mesma placa-mãe |
-| Memória RAM | Módulos substituíveis, geralmente Dual Channel (Capítulo 2, §2.7) | Módulos substituíveis ou soldados, conforme o modelo | Soldada/empacotada junto ao SoC | Módulos ECC (ver adiante), muitos slots, capacidade na casa de centenas de GB a TB |
-| Alimentação | Fonte ATX interna (Capítulo 4, §4.1) | Bateria + fonte externa | Bateria interna | Uma ou mais fontes redundantes |
+| Processador | CPU substituível, soquete próprio (Capítulo 8, §8.4) | CPU frequentemente soldada à placa | SoC (CPU+GPU+modem integrados) | Um ou mais soquetes de CPU na mesma placa-mãe |
+| Memória RAM | Módulos substituíveis, geralmente Dual Channel (Capítulo 5, §5.7) | Módulos substituíveis ou soldados, conforme o modelo | Soldada/empacotada junto ao SoC | Módulos ECC (Capítulo 5, §5.15), muitos slots, capacidade na casa de centenas de GB a TB |
+| Alimentação | Fonte ATX interna (Capítulo 11, §11.2) | Bateria + fonte externa | Bateria interna | Uma ou mais fontes redundantes |
 | Prioridade de projeto | Custo-benefício e desempenho bruto | Portabilidade e autonomia de bateria | Autonomia de bateria acima de tudo | Disponibilidade contínua (*uptime*) e capacidade de processar muitas requisições simultâneas |
 | Forma física | Gabinete de mesa (torre, *desk*) | Chassi único e fino | Chassi único, sem abertura para manutenção | Chassi em formato *rack*, dimensionado em unidades **U** (1U, 2U, 4U) para empilhamento em um armário de rede |
 
-**Servidores: redundância como princípio de projeto.** Um servidor difere de um desktop não por processar "mais rápido" — muitas vezes o processador de um servidor tem clock por núcleo *menor* que o de um desktop, priorizando número de núcleos e eficiência energética sob operação contínua —, mas por ser projetado para **nunca parar**. Essa exigência se traduz em componentes redundantes: duas ou mais fontes de alimentação (se uma falha, a outra assume sem interrupção), discos organizados em arranjos com redundância de dados (de forma que a falha de um disco não cause perda de dados, tema aprofundado na disciplina de Manutenção de Computadores), e placas-mãe capazes de hospedar mais de um processador físico simultaneamente.
-
-**Bit flip: causa física.** Um ***bit flip*** (também chamado ***soft error*** ou *single-event upset*, SEU) é a inversão espontânea do valor armazenado numa célula de memória — um 0 que passa a 1, ou vice-versa —, sem que a célula tenha sofrido qualquer dano físico permanente: se regravada com o valor correto, ela volta a funcionar normalmente. A literatura técnica — a partir de um estudo seminal da Intel, em 1978, que primeiro identificou o fenômeno em DRAM `[7]` — aponta **duas** causas físicas bem estabelecidas, ambas formas de radiação ionizante, hoje normatizadas por um padrão da indústria de testes de memória `[8]`:
-
-1. **Raios cósmicos secundários.** Partículas de altíssima energia vindas do espaço colidem com a atmosfera terrestre e produzem um chuveiro de partículas secundárias — na superfície da Terra, majoritariamente **nêutrons**. Um nêutron não tem carga elétrica e não perturba um circuito diretamente, mas, ao colidir com o núcleo de um átomo de silício do chip, pode gerar partículas carregadas secundárias, que então depositam carga suficiente para inverter o estado de um capacitor de DRAM (Capítulo 2, §2.3) ou de um flip-flop de SRAM (Capítulo 2, §2.2).
-2. **Partículas alfa de contaminantes radioativos no encapsulamento.** Os próprios materiais usados para embalar e soldar o chip (a "casca" plástica ou cerâmica do processador ou do módulo de memória) contêm, em quantidade mínima, traços de elementos radioativos residuais dos processos de mineração e refino usados para produzi-los. Esses traços emitem, de forma constante e previsível, partículas alfa — e, por estarem fisicamente muito próximos da própria célula de memória, essas partículas depositam carga da mesma forma que um nêutron secundário.
-
-**Bit flip não é o mesmo fenômeno que a vulnerabilidade do HD a campos magnéticos (Capítulo 2, §2.10 e §2.14).** Um HD armazena dados por meio da orientação magnética de uma região do prato — por isso um ímã suficientemente forte de fato ameaça um HD, ao reescrever essa orientação. Uma célula de RAM, em contraste, armazena dado como **carga elétrica** (DRAM) ou como **estado lógico de um circuito** (SRAM) — não existe, na literatura sobre soft errors, um mecanismo estabelecido de bit flip por campo magnético externo; um ímã comum, mesmo forte, não tem como induzir diretamente a carga necessária para inverter um bit de RAM da forma como raios cósmicos e partículas alfa fazem. As duas ameaças — magnética para o HD, radiação ionizante para a RAM — têm mecanismos físicos distintos e não devem ser confundidas.
-
-**Memória ECC.** Servidores costumam usar módulos de memória **ECC** (*Error-Correcting Code*), um tipo de RAM capaz de detectar e corrigir automaticamente um erro de bit flip de um único bit por palavra de memória, usando bits extras de paridade/verificação gravados junto com o dado. Quanto menor a litografia do chip de memória (o livro de Manutenção de Computadores trata da litografia em profundidade) e quanto maior a quantidade total de memória instalada, maior a probabilidade estatística de que um bit flip ocorra em algum lugar do sistema. Num desktop doméstico, um bit flip ocasional é, na pior hipótese, uma tela azul isolada; num servidor operando 24 horas por dia com centenas de gigabytes de RAM, o mesmo tipo de erro, acumulado ao longo de meses, pode corromper silenciosamente um banco de dados inteiro — daí o uso de ECC ser padrão nesse perfil de máquina, e praticamente inexistente em desktops e notebooks comuns.
+**Servidores: redundância como princípio de projeto.** Um servidor difere de um desktop não por processar "mais rápido" — muitas vezes o processador de um servidor tem clock por núcleo *menor* que o de um desktop, priorizando número de núcleos e eficiência energética sob operação contínua —, mas por ser projetado para **nunca parar**. Essa exigência se traduz em componentes redundantes: duas ou mais fontes de alimentação (se uma falha, a outra assume sem interrupção), discos organizados em arranjos com redundância de dados (de forma que a falha de um disco não cause perda de dados, tema aprofundado na disciplina de Manutenção de Computadores), placas-mãe capazes de hospedar mais de um processador físico simultaneamente, e memória **ECC** — tratada em detalhe, junto com o fenômeno físico que ela existe para corrigir (o *bit flip*), no Capítulo 5, §5.15.
 
 **Notebooks: compromisso entre modularidade e portabilidade.** O princípio de modularidade apresentado na Seção 1.6.2 — trocar um módulo suspeito para diagnosticar uma falha — se aplica com menos liberdade a um notebook do que a um desktop. Para reduzir espessura, peso e consumo de energia, fabricantes de notebook soldam diretamente à placa componentes que, num desktop, seriam módulos substituíveis: a memória RAM e, cada vez mais, também o processador. Um técnico ainda consegue substituir bateria, SSD (quando não soldado) e tela na maioria dos modelos, mas a possibilidade de "testar trocando o módulo" (Seção 1.6.2) fica mais restrita — e, quando o componente soldado falha, a reparação deixa de ser uma troca simples e passa a exigir retrabalho de solda em nível de placa, ou a substituição da placa-mãe inteira.
 
 **Dispositivos móveis: o extremo da integração.** Um smartphone leva a lógica do notebook ao limite: por trás de um SoC único não há sequer um soquete de processador — CPU, GPU, NPU, modem e, com frequência, a própria memória, estão fisicamente empilhados no mesmo encapsulamento (uma técnica chamada *package-on-package*). Não existe, na prática, "abrir o aparelho e trocar a CPU" nesse perfil de máquina — a modularidade da Seção 1.6.2 se desloca inteiramente para fora do hardware, para o nível de aplicativos e serviços.
 
-
-!!! warning "Figura pendente"
-    fotos comparativas lado a lado — placa-mãe de desktop com CPU socketed e RAM em slots, placa de notebook com RAM soldada, e um SoC de smartphone isolado
-
+[IMAGEM: fotos comparativas lado a lado — placa-mãe de desktop com CPU socketed e RAM em slots, placa de notebook com RAM soldada, e um SoC de smartphone isolado]
 
 ---
 
 ## Síntese do capítulo
 
-Este capítulo apresentou a definição técnica de computador, sua origem histórica e evolução até o computador pessoal moderno, o princípio de modularidade que fundamenta a manutenção de computadores, uma primeira introdução à hierarquia de memória, e como esses mesmos componentes se recombinam em diferentes perfis de máquina — do desktop ao servidor. Esses conceitos serão retomados e aprofundados nos capítulos seguintes: memória (Capítulo 2), sistema operacional e instalação (Capítulo 3), hardware físico e montagem (Capítulo 4) e arquitetura de processadores (Capítulo 5).
+Este capítulo apresentou a definição técnica de computador, sua origem histórica e evolução até o computador pessoal moderno, o princípio de modularidade que fundamenta a manutenção de computadores, uma primeira introdução à hierarquia de memória, e como esses mesmos componentes se recombinam em diferentes perfis de máquina — do desktop ao servidor. Esses conceitos serão retomados e aprofundados nos capítulos seguintes: memória (Capítulo 5), sistema operacional (Capítulo 6), instalação (Capítulo 7), hardware físico e montagem (Capítulo 8) e arquitetura de processadores (Capítulo 3).
 
 ---
 
@@ -276,6 +236,4 @@ Este capítulo apresentou a definição técnica de computador, sua origem hist�
 4. BURKS, A. W.; GOLDSTINE, H. H.; VON NEUMANN, J. *Preliminary Discussion of the Logical Design of an Electronic Computing Instrument*. Princeton: Institute for Advanced Study, 1946.
 5. Sobre o contexto da declaração de Ken Olsen (1977, World Future Society): QUOTE INVESTIGATOR. "There Is No Reason for Any Individual to Have a Computer in Their Home"; TECHRADAR, reportagens sobre a origem e o contexto da citação.
 6. POPULAR MECHANICS. "Brains That Click." mar. 1949.
-7. MAY, T. C.; WOODS, M. H. A new physical mechanism for soft errors in dynamic memories. In: *Proceedings of the 16th Annual Reliability Physics Symposium*. IEEE, 1978. p. 33–40. Publicado também como: MAY, T. C.; WOODS, M. H. Alpha-particle-induced soft errors in dynamic memories. *IEEE Transactions on Electron Devices*, v. 26, n. 1, p. 2–9, jan. 1979.
-8. JEDEC SOLID STATE TECHNOLOGY ASSOCIATION. *JESD89B: Measurement and Reporting of Alpha Particle and Terrestrial Cosmic Ray Induced Soft Errors in Semiconductor Devices*. Arlington, VA: JEDEC, 2021.
-9. Fotografia do IBM PC 5150. Autor: Reseletti. Wikimedia Commons, 2022. Licença CC BY-SA 3.0. Disponível em: https://commons.wikimedia.org/wiki/File:IBM_PC_5150.jpg.
+7. Fotografia do IBM PC 5150. Autor: Reseletti. Wikimedia Commons, 2022. Licença CC BY-SA 3.0. Disponível em: https://commons.wikimedia.org/wiki/File:IBM_PC_5150.jpg.
