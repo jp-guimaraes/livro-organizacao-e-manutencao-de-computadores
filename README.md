@@ -1,9 +1,6 @@
 # Organização, Montagem e Manutenção de Computadores
 
-Livro didático em duas partes para o curso técnico de informática do IFRN:
-
-- **Livro 1 — Organização e Montagem de Computadores** (5 capítulos)
-- **Livro 2 — Manutenção de Computadores** (4 capítulos, continuação direta do curso anterior)
+Esboço de apostila de Organização, Montagem e Manutenção de computadores.
 
 Site publicado via GitHub Pages (build automático a cada push em `main`, ver `.github/workflows/publish.yml`). PDFs de cada livro ficam disponíveis para download a partir do site.
 
