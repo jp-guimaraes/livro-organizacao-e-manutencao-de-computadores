@@ -20,10 +20,9 @@ Essa definição contém três elementos essenciais:
 
 **Aplicação da definição.** Uma calculadora de padaria realiza operações de soma, subtração, multiplicação e divisão, mas não pode receber um programa genérico — não é possível, por exemplo, instalar nela um aplicativo de mensagens. Por essa razão, ela se enquadra na definição ampla de computação, mas não na definição de computador digital de uso geral. Essa distinção entre "dispositivo que computa" e "computador de uso geral" é usada ao longo de todo o capítulo.
 
+![Linha do tempo comparada entre dispositivos de cálculo e estágios de desenvolvimento humano, em dois eixos paralelos. Eixo "dispositivos de cálculo": mãos (contagem unária) → pedrinhas e fichas → ábaco → ossos de Napier → régua de cálculo → calculadora Curta → calculadora científica → laptop. Eixo "desenvolvimento humano", pareado ponto a ponto com o eixo acima: caçador-coletor → agricultor → mercador → navegador → cientista → engenheiro → astronauta → era da rede global. As datas vão de aproximadamente 35.000 a.C. (mãos/caçador-coletor) a 2010 (laptop/rede global); o espaçamento entre marcos consecutivos encolhe de milênios, no início da linha, para décadas, no final — representando visualmente a aceleração do ritmo de inovação.](imagens/linha-do-tempo-historia-do-calculo.png)
 
-!!! warning "Figura pendente"
-    linha do tempo dos dispositivos de cálculo — ábaco, ossos de Napier, régua de cálculo, calculadora mecânica Curta
-
+Repare como o espaçamento entre marcos consecutivos encolhe ao longo da linha do tempo acima: são muitos mil anos entre o uso das mãos para contar e as primeiras pedrinhas/fichas de contagem, mas apenas décadas entre a calculadora científica e o laptop conectado à rede global. Esse padrão de crescimento exponencial é o que ajuda a narrar como os grandes modelos de linguagem baseados em redes neurais estão a contribuir para a resolução de problemas matemáticos em aberto nos dias atuais. É também o pano de fundo de todo o restante deste livro: cada capítulo seguinte cobre uma fatia cada vez mais estreita — e cada vez mais recente — dessa mesma linha do tempo.
 
 ## 1.2 Evolução histórica: dos instrumentos mecânicos ao transistor
 
@@ -144,7 +143,7 @@ Um terceiro realizou a engenharia reversa do BIOS da IBM e distribuiu uma versã
 
 Esse processo ilustra um efeito de mercado relevante para a área de tecnologia: plataformas com maior base de usuários tendem a atrair mais desenvolvimento de software, o que por sua vez amplia ainda mais sua base de usuários — um mecanismo análogo ao que hoje explica a predominância do desenvolvimento de aplicativos para a plataforma Android em relação a plataformas minoritárias.
 
-![IBM PC 5150 (1981), modelo original. Fonte: Wikimedia Commons `[7]`](imagens/ibm-pc-5150.jpg)
+![Fotografia do IBM PC 5150 (1981), modelo original: gabinete horizontal bege com duas unidades de disquete 5,25", teclado destacado na frente e monitor monocromático verde-sobre-preto apoiado sobre o gabinete, exibindo uma tela de texto de diagnóstico do sistema. Fonte: Wikimedia Commons `[7]`](imagens/ibm-pc-5150.jpg)
 
 ## 1.9 Componentes mínimos de um computador desktop
 
@@ -183,9 +182,11 @@ A memória secundária (armazenamento) é **não volátil** — mantém seus dad
 Da camada mais rápida (e mais cara) para a mais lenta (e mais barata):
 
 1. **Registradores** — internos ao processador, capacidade da ordem de kilobytes.
-2. **Memória cache (L1, L2, L3)** — associada ao processador; a cache L3 é tipicamente compartilhada entre múltiplos núcleos.
+2. **Memória cache (L1, L2, L3)** — associada ao processador, capacidade da ordem de megabytes; a cache L3 é tipicamente compartilhada entre múltiplos núcleos.
 3. **Memória RAM** — capacidade da ordem de gigabytes.
 4. **Armazenamento secundário** — capacidade da ordem de terabytes.
+
+Essas unidades formam uma progressão: 8 bits formam um **byte**; 1024 bytes ($2^{10}$) formam um **kilobyte**; e cada unidade seguinte (megabyte, gigabyte, terabyte...) é 1024× a anterior — não 1000× como nas demais unidades do dia a dia (quilograma, quilômetro), porque a contagem nasce de potências de base 2, não de base 10. É essa progressão que explica por que a pirâmide se estreita: quanto mais alto o nível de memória, menor a capacidade típica disponível hoje — terabytes no armazenamento secundário, gigabytes na RAM, megabytes no cache, bytes no registrador.
 
 ### 1.10.4 Aplicações práticas
 

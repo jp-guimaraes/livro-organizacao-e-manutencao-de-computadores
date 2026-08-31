@@ -10,6 +10,10 @@ Um princípio orienta toda a discussão deste capítulo: **as características d
 
 Uma célula de memória é, em essência, um combinado: um dispositivo físico ao qual se atribui o significado "0" ou "1". Esse combinado pode ser implementado de formas radicalmente diferentes — um circuito com transistores, um capacitor carregado, uma região magnetizada, um ponto que reflete ou não reflete luz —, e é exatamente essa diferença de implementação que separa memória primária de memória secundária, e que separa, dentro da própria memória secundária, um HD de um SSD ou de uma mídia ótica.
 
+Para transformar uma célula isolada num chip de memória, basta replicá-la em grade — cada célula recebe um endereço próprio (uma organização linha/coluna, como uma planilha invertida: primeiro a linha, depois a coluna) — e conectar todas as células aos mesmos barramentos de endereço e de dado. É esse compartilhamento físico de barramento que explica por que a RAM tem acesso *aleatório*: o endereço e o dado chegam, por tensão elétrica, simultaneamente a todas as células ao mesmo tempo; apenas a célula cujo endereço foi ativado responde, gravando ou lendo o dado — não há deslocamento físico até a posição, ao contrário do que ocorre no HD (Seção 5.10). Por isso o tempo de acesso é o mesmo, não importa qual endereço seja escolhido.
+
+**Nota prática.** Sempre que um chip de hardware exibir uma estrutura visivelmente repetitiva de blocos idênticos — como os retângulos pretos de um pente de RAM —, é sinal de que aquele componente é memória: cada bloco é a réplica de uma mesma célula básica, repetida até atingir a capacidade total do chip.
+
 
 !!! warning "Figura pendente"
     esquema comparativo das quatro células de memória estudadas no capítulo — flip-flop, capacitor, domínio magnético, floating gate
@@ -55,6 +59,8 @@ A tensão de operação cai a cada geração porque, segundo a relação P = U·
 
 **Nota prática.** Um computador cliente de servidor que roda sobre memória DDR3 é, em geral, mais barato de manter trocando apenas o módulo de memória (da ordem de R$ 100) do que substituindo toda a máquina por uma DDR4 (da ordem de R$ 10.000 a R$ 20.000) — uma decisão de manutenção baseada em custo-benefício, e não apenas em desempenho bruto.
 
+**Atualização de mercado (2026).** A partir da expansão de cargas de trabalho de IA e da demanda de servidores por memória em larga escala, o preço de módulos DDR5 subiu a ponto de o ganho de desempenho sobre DDR4 deixar de compensar a diferença de custo — por isso, mesmo em computadores novos, DDR4 seguiu sendo, no mercado brasileiro de 2026, o "sweet spot" de custo-benefício, e o ciclo de vida comercial do DDR4 se estendeu mais do que o normalmente esperado para uma geração de memória.
+
 Cada geração tecnológica também define um **limite de capacidade por módulo**: no segmento de desktop/consumidor, um slot de memória DDR4 comporta tipicamente um módulo de até 32 GB (módulos de capacidade maior existem, mas apenas na forma de módulos registrados — RDIMM/LRDIMM — voltados a servidores, com engenharia e custo diferentes) `[3]`. Numa placa-mãe de desktop com quatro slots, a capacidade total possível de memória primária é, portanto, de até 128 GB — mas apenas dentro da mesma geração tecnológica: não é possível combinar um módulo DDR4 com um DDR5 na mesma máquina, tanto por incompatibilidade elétrica quanto física (Seção 5.6).
 
 
@@ -69,6 +75,15 @@ Sobrecarregar a frequência de trabalho de um componente acima de sua especifica
 A frequência de trabalho de uma memória RAM não é uma propriedade isolada: ela precisa estar compatibilizada com a placa-mãe e com o processador. Se a memória suporta uma frequência mais alta do que a placa-mãe ou o processador conseguem sustentar, o sistema realiza um underclock automático de todo o conjunto para garantir estabilidade — em vez de operar na velocidade máxima anunciada da memória, o conjunto passa a operar na velocidade máxima que o elo mais fraco da cadeia suporta.
 
 **Nota prática.** Um computador instável, travando com frequência, pode ter como causa uma memória configurada para trabalhar acima da frequência que a combinação placa-mãe/processador suporta de forma confiável. Reduzir manualmente essa frequência (um underclock deliberado) costuma resolver o travamento ao custo de uma perda de desempenho geralmente irrelevante na prática.
+
+**Nota prática (diagnóstico de módulo defeituoso).** Quando um computador não passa no POST (Capítulo 9, §9.1.1) e a memória RAM é uma das hipóteses em aberto, o diagnóstico começa pelo mais físico e barato antes de qualquer ferramenta de software — exatamente o princípio de priorizar a hipótese mais barata de verificar, discutido no Capítulo 12 (§12.4):
+
+1. **Reencaixar o módulo.** Um encaixe parcial, sem os contatos dourados totalmente assentados no slot, já é suficiente para impedir o POST — e é a causa mais comum e mais barata de verificar.
+2. **Limpar os contatos dourados** com uma borracha branca comum, num único sentido, removendo oxidação ou poeira que prejudique o contato elétrico entre o módulo e o slot.
+3. **Testar módulo a módulo**, numa placa-mãe com mais de um módulo instalado: isolar cada módulo em slots diferentes para descobrir se o defeito acompanha o módulo ou fica associado a um slot específico da placa-mãe.
+4. **Testar em outra placa-mãe compatível** (mesma geração DDR), quando disponível: se o POST volta a funcionar, confirma-se que o defeito é do módulo, não da placa-mãe original.
+
+Cada passo elimina uma hipótese antes de avançar para a próxima, do mais simples (reencaixar) para o mais trabalhoso (testar em outra máquina) — a mesma lógica de isolamento por hipóteses do Capítulo 12 aplicada especificamente à memória RAM.
 
 ## 5.6 Compatibilidade física entre gerações: o chanfro
 
@@ -94,6 +109,8 @@ Uma mesma geração de memória tem um limite de velocidade determinado pela tec
 Para o Dual Channel funcionar de forma ideal, o cenário recomendado é usar módulos **idênticos** — mesmo fabricante, mesma frequência de trabalho, mesma tensão de operação — e instalá-los nos slots corretos indicados no manual da placa-mãe. Quando não há dois módulos idênticos disponíveis, é possível usar o **Flex Mode**: módulos de capacidades ou frequências diferentes trabalham parcialmente em Dual Channel, mas a frequência de trabalho do conjunto fica limitada pelo módulo mais lento e a capacidade em Dual Channel, pelo módulo menor.
 
 **Nota prática (quiz de mercado).** Existe diferença entre usar um único módulo de 8 GB ou dois módulos de 4 GB somando os mesmos 8 GB? Sim: se a placa-mãe suportar Dual Channel, dois módulos entregam desempenho sensivelmente melhor do que um único módulo da mesma capacidade total. Curiosamente, o mercado às vezes cobra mais caro por um kit de dois módulos idênticos (por exemplo, 2×16 GB) do que por um único módulo de capacidade equivalente (1×32 GB) — o que não invalida a vantagem técnica do Dual Channel, apenas reflete dinâmica de preços e demanda.
+
+**Nota real (arquiteturas modernas).** Dual Channel não é a única estratégia da indústria para superar limites de desempenho de memória — apenas a mais comum em placas-mãe convencionais. Um exemplo recente e notável é a **memória unificada** (*Unified Memory*), adotada pela Apple a partir da linha de processadores M (M1, M2, M3...): em vez de módulos de RAM soldados numa posição distante do processador e conectados por um barramento tradicional, os chips de memória são posicionados fisicamente ao lado do próprio processador dentro do mesmo encapsulamento (*package*) e compartilhados entre CPU, GPU e demais núcleos especializados do chip — em vez de a GPU ter sua própria memória dedicada e separada da RAM do sistema, como é comum em arquiteturas com placa de vídeo discreta. Essa proximidade física reduz a latência de acesso e elimina a cópia de dados entre memórias separadas de CPU e GPU, à custa de menor flexibilidade: a memória deixa de ser um módulo substituível pelo usuário, ficando soldada e com capacidade definida já na compra do equipamento `[11]`.
 
 ## 5.8 Cache e o princípio da localidade
 
@@ -274,3 +291,4 @@ Este capítulo aprofundou a hierarquia de memória introduzida no Capítulo 1, m
 8. TANENBAUM, Andrew S.; AUSTIN, Todd. *Organização Estruturada de Computadores*. 6. ed. São Paulo: Pearson Education do Brasil, 2013, seção 2.3.11 "Blu-ray"; COMPUTER HISTORY MUSEUM. "2000: Prototype blue laser disc stores HD video." Disponível em: <https://www.computerhistory.org/storageengine/prototype-blue-laser-disc-stores-hd-video/>.
 9. MAY, T. C.; WOODS, M. H. A new physical mechanism for soft errors in dynamic memories. In: *Proceedings of the 16th Annual Reliability Physics Symposium*. IEEE, 1978. p. 33–40. Publicado também como: MAY, T. C.; WOODS, M. H. Alpha-particle-induced soft errors in dynamic memories. *IEEE Transactions on Electron Devices*, v. 26, n. 1, p. 2–9, jan. 1979.
 10. JEDEC SOLID STATE TECHNOLOGY ASSOCIATION. *JESD89B: Measurement and Reporting of Alpha Particle and Terrestrial Cosmic Ray Induced Soft Errors in Semiconductor Devices*. Arlington, VA: JEDEC, 2021.
+11. APPLE. "Apple unveils M1, the first in a groundbreaking family of chips for Mac." *Apple Newsroom*, 2020. Disponível em: <https://www.apple.com/newsroom/2020/11/apple-unveils-m1-the-first-in-a-groundbreaking-family-of-chips-for-mac/>.
