@@ -1,5 +1,30 @@
 \input{preambulo-livro.tex}
 
+% Rodapé de autoria e licença — discreto (cinza claro, corpo pequeno),
+% presente em toda página de conteúdo (mesmo fora do contexto da ficha
+% catalográfica, que só aparece uma vez no início do livro): o objetivo é
+% que uma página avulsa, se recortada/copiada isoladamente, ainda
+% identifique a obra e os termos de uso.
+%
+% Lado esquerdo alterna por paridade de página entre o nome do livro,
+% linkado à versão online em mkdocs (deixa claro que a página faz parte
+% de uma obra maior, e ainda dá um caminho de volta à fonte), e o nome do
+% autor; lado direito traz a licença, fixo em toda página — esse é o
+% sinal que precisa sobreviver sozinho a qualquer recorte isolado.
+%
+% Nota: usamos \ifodd\value{page} em vez dos sufixos E/O do fancyhdr
+% (como o cabeçalho acima faz) porque a classe está como "oneside" — o
+% fancyhdr ignora o lado par (E) nesse modo e sempre usa o ímpar (O),
+% então LE/RO não alternariam de fato aqui.
+%
+% Nas páginas pares, "Material em atualização" e o título ficam em duas
+% linhas (\shortstack — fancyhdr não aceita \\ direto, o conteúdo de cada
+% célula é tipografado como se fosse uma única "palavra") em vez de uma
+% linha só com "|": mantém o número de página centralizado (padrão do
+% preambulo-livro.tex, sem precisar mudar) sem colidir com o texto.
+\fancyfoot[L]{\scriptsize\color{gray!55}\ifodd\value{page}{}$if(author)$\copyright~$for(author)$$author$$sep$; $endfor$$endif$\else{}\shortstack[l]{Material em atualização\\$if(url)$\href{$url$}{$title$}$else$$title$$endif$}\fi}
+\fancyfoot[R]{\scriptsize\color{gray!55}CC BY-NC-SA 4.0}
+
 $if(title)$
 \title{$title$}
 $endif$

@@ -4,6 +4,9 @@ author: "João Paulo Ferreira Guimarães"
 version: "0.1"
 ano: "2026"
 toc: true
+# Mesma URL do `site_url` em mkdocs.yml — usada no rodapé (template.tex)
+# para linkar o nome do livro à versão online (mkdocs) nas páginas pares.
+url: "https://jp-guimaraes.github.io/livro-organizacao-e-manutencao-de-computadores/"
 # Capa: reaproveitada de uma versão anterior até que uma capa definitiva
 # seja produzida. `sangria: true` = imagem ocupa a página
 # inteira; `sangria: false` = imagem centralizada com margens,
