@@ -1,8 +1,10 @@
-# Organização, Montagem e Manutenção de Computadores
+# Organização e Manutenção de Computadores
 
-Esboço de apostila de Organização, Montagem e Manutenção de computadores.
+Esboço de apostila de Organização e Manutenção de computadores.
 
 Site publicado via GitHub Pages (build automático a cada push em `main`, ver `.github/workflows/publish.yml`). PDFs de cada livro ficam disponíveis para download a partir do site.
+
+Você pode clicar [aqui](https://jp-guimaraes.github.io/livro-organizacao-e-manutencao-de-computadores/) para acessar o conteúdo;
 
 ## Estrutura
 
