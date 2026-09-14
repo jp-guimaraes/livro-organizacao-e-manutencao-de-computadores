@@ -230,6 +230,8 @@ Assim como o HD, a mídia ótica tem **acesso sequencial**: a leitura começa po
 
 A evolução de CD para DVD e para Blu-ray consistiu em reduzir o tamanho físico de cada célula de memória, permitindo mais dados no mesmo espaço — o que exige um laser de comprimento de onda menor (medido em nanômetros) e mais preciso tanto para gravar quanto para ler. O nome *Blu-ray* vem justamente do fato de seu laser operar no espectro azul, de comprimento de onda mais curto que o laser do DVD (vermelho, ~650 nm) e do CD (infravermelho próximo, ~780 nm — tecnicamente fora da faixa visível, ainda que próximo do vermelho) `[8]`.
 
+Em termos de capacidade, um CD armazena algo em torno de 700–800 MB; um DVD de camada única, cerca de 4,7 GB; e um Blu-ray, 25 GB numa única camada — chegando a 50 GB com dupla camada `[13]`.
+
 Por não estar protegida por uma carcaça lacrada como o HD, a superfície de uma mídia ótica é vulnerável a arranhões, que interferem diretamente na reflexão do laser e corrompem a leitura — o "CD riscado" clássico. Técnicas informais de reparo (como aplicar verniz ou pasta de polimento para remover uma fina camada superficial e expor uma superfície de reflexão menos danificada) funcionam apenas de forma limitada, já que removem também parte da camada onde o próprio dado está gravado.
 
 Por fim, distingue-se o **CD-ROM** (gravado uma única vez na fábrica, sem possibilidade de regravação), o **CD-R** (gravável uma única vez pelo usuário) e o **CD-RW** (regravável), com a mesma lógica de gravação valendo para DVD e Blu-ray.
@@ -288,4 +290,5 @@ Este capítulo aprofundou a hierarquia de memória introduzida no Capítulo 1, m
 10. JEDEC SOLID STATE TECHNOLOGY ASSOCIATION. *JESD89B: Measurement and Reporting of Alpha Particle and Terrestrial Cosmic Ray Induced Soft Errors in Semiconductor Devices*. Arlington, VA: JEDEC, 2021.
 11. APPLE. "Apple unveils M1, the first in a groundbreaking family of chips for Mac." *Apple Newsroom*, 2020. Disponível em: <https://www.apple.com/newsroom/2020/11/apple-unveils-m1-the-first-in-a-groundbreaking-family-of-chips-for-mac/>.
 12. TOM'S HARDWARE. "What Is CAS Latency in RAM? CL Timings Explained." Disponível em: <https://www.tomshardware.com/reviews/cas-latency-ram-cl-timings-glossary-definition,6011.html>.
-13. SOURCEDADDY. "Windows ReadyBoost." *Windows 7 Tutorial*. Disponível em: <https://sourcedaddy.com/windows-7/windows-readyboost.html>; MICROSOFT. "ReadyBoost changes in Windows 7." *Microsoft Learn (archive)*. Disponível em: <https://learn.microsoft.com/en-us/archive/blogs/7/readyboost-changes-in-windows-7>.
+13. Blu-ray Disc Association (BDA). Especificação padrão de capacidade: 25 GB (camada única) e 50 GB (dupla camada); CD-DA (700–800 MB) e DVD-5 (~4,7 GB) conforme especificações originais dos formatos.
+14. SOURCEDADDY. "Windows ReadyBoost." *Windows 7 Tutorial*. Disponível em: <https://sourcedaddy.com/windows-7/windows-readyboost.html>; MICROSOFT. "ReadyBoost changes in Windows 7." *Microsoft Learn (archive)*. Disponível em: <https://learn.microsoft.com/en-us/archive/blogs/7/readyboost-changes-in-windows-7>.
