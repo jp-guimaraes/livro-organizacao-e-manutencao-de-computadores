@@ -96,6 +96,8 @@ O **gargalo** de um sistema computacional é o componente que, em um dado moment
 
 **Exemplo.** Em um cenário de download de arquivos em uma rede universitária extremamente rápida, o gargalo real não estava na velocidade da internet, nem na memória RAM, nem no processador, mas na velocidade de escrita do disco rígido (HD) mecânico, incapaz de gravar os dados recebidos na mesma velocidade em que chegavam pela rede. Substituir esse HD por um SSD, de escrita muito mais rápida, não elimina o conceito de gargalo — apenas desloca o ponto de estrangulamento para outro componente do sistema, tipicamente a rede ou o servidor remoto.
 
+**Exemplo.** Um SSD SATA e um SSD NVMe podem usar exatamente a mesma célula de memória flash e ainda assim ter desempenho muito diferente no mesmo computador: no primeiro, a interface SATA (limitada a cerca de 600 MB/s, Capítulo 10, §10.1.5) é o gargalo; o NVMe, ao se conectar às pistas PCI Express, remove esse limite e desloca o gargalo para outro ponto do sistema. Um componente muito rápido só entrega desempenho se a via que o liga ao resto do sistema acompanhar.
+
 **Método de dimensionamento.** A metodologia apresentada ao longo deste capítulo pode ser resumida em cinco passos:
 
 1. Definir a **aplicação** do computador (jogo, estação de trabalho, servidor, uso de escritório etc.), pois é ela que determina quais notas de benchmark (single-thread, multi-thread, GPU) são relevantes.
