@@ -35,9 +35,9 @@ Existem hoje dezenas de sistemas operacionais reais em uso — diferentes versõ
 
 O **sistema de arquivo** é o protocolo — o conjunto de combinados — pelo qual o sistema operacional organiza e localiza dados dentro de uma unidade de armazenamento secundário. Sistemas operacionais diferentes utilizam, em geral, sistemas de arquivo diferentes: o Windows usa hoje o **NTFS** (e usou historicamente o FAT); distribuições Linux usam tipicamente **EXT4**; Android, iOS e macOS têm, cada um, seus próprios sistemas de arquivo.
 
-A unidade mínima de alocação de espaço em disco para arquivos e diretórios é o **cluster**.
+A unidade mínima de alocação de espaço em disco para arquivos e diretórios é o **cluster**: um grupo de setores consecutivos (o setor é a menor unidade que o próprio disco lê ou grava — Capítulo 5) que o sistema de arquivo trata como uma unidade só. Dentro de uma mesma partição, todos os clusters têm o mesmo tamanho.
 
-Ao formatar uma unidade de armazenamento, o sistema operacional solicita, entre outras informações, o **tamanho da unidade de alocação** (o tamanho do cluster). Valores típicos oferecidos pelo Windows incluem 8.192 bytes, 16 KB, 32 KB e 64 KB, além de um tamanho padrão sugerido para o dispositivo `[1]`.
+Ao formatar uma unidade de armazenamento, o sistema operacional solicita, entre outras informações, o **tamanho da unidade de alocação** (o tamanho do cluster). No NTFS, o Windows oferece desde 512 bytes até 2 MB (os tamanhos acima de 64 KB passaram a ser aceitos a partir do Windows 10, versão 1709), além de um tamanho padrão sugerido para o dispositivo — 4 KB para a maioria dos volumes `[1]`.
 
 [IMAGEM: janela de formatação do Windows mostrando a escolha do sistema de arquivo (FAT32, NTFS, exFAT) e do tamanho da unidade de alocação]
 
@@ -46,6 +46,8 @@ Ao formatar uma unidade de armazenamento, o sistema operacional solicita, entre 
 Como cada arquivo ocupa um número inteiro de clusters, raramente o tamanho lógico de um arquivo coincide exatamente com o espaço físico que ele ocupa em disco. Essa diferença é chamada de **file slack**.
 
 **Exemplo.** Nas propriedades de um arquivo de áudio real usado em demonstração, o tamanho do arquivo (tamanho lógico) era de 27.550.336 bytes (26,2 MB), enquanto o tamanho em disco (espaço físico ocupado) era de 27.553.792 bytes — uma diferença decorrente de o arquivo não preencher por completo o último cluster que lhe foi atribuído.
+
+**Exemplo com clusters diferentes.** Um arquivo de texto de 5.322 bytes, gravado numa partição NTFS com cluster padrão de 4 KB, ocupa 8 KB em disco — dois clusters. Acrescentar mais 20 bytes não altera esse valor: o segundo cluster ainda tinha folga. Com a mesma partição reformatada com cluster de 2 MB, um arquivo de apenas 1.243 bytes passa a ocupar 2 MB em disco — o cluster inteiro.
 
 ### 6.2.2 Fragmentação
 
@@ -61,6 +63,8 @@ A escolha do tamanho do cluster no momento da formatação gera compromissos ent
 Como um computador moderno lida simultaneamente com arquivos pequenos e grandes, a situação real está sempre mais próxima dos cenários 2 e 3, exigindo um meio-termo na escolha do tamanho do cluster. O cenário 3 — cluster grande com arquivo pequeno — é considerado o mais prejudicial, por gerar o maior desperdício proporcional de espaço em disco.
 
 A **fragmentação** ocorre porque, à medida que arquivos são apagados e recriados de tamanhos distintos, os espaços livres deixados por exclusões (buracos) nem sempre comportam o próximo arquivo a ser gravado por inteiro, obrigando o sistema operacional a dividir um mesmo arquivo em blocos não contíguos no disco. A ferramenta de **desfragmentação** existe justamente para reorganizar esses blocos e reduzir esse efeito.
+
+O custo da fragmentação vem, sobretudo, do movimento mecânico da cabeça de leitura do HD, que precisa saltar entre regiões do disco para ler um mesmo arquivo. Em unidades de estado sólido (SSD), sem partes móveis, esse impacto é desprezível — por isso o Windows não desfragmenta SSDs da forma tradicional: a ferramenta "Otimizar unidades" apenas informa ao SSD quais blocos estão livres (comando TRIM). Desfragmentar um SSD consumiria ciclos de escrita, que são limitados (Capítulo 5).
 
 ---
 
@@ -78,7 +82,13 @@ Cada dado gravado em disco é acompanhado de **metadados**: informações sobre 
 
 Essa é a razão pela qual formatar ou apagar um arquivo não desgasta uma memória flash (como um pendrive ou SSD) na mesma proporção que reescrever cada bit: a operação normalmente descarta apenas a tabela de referências, preservando o conteúdo bruto até que aquele espaço seja reutilizado.
 
-A **lixeira** do sistema operacional é uma lista de arquivos cuja referência está marcada como "pode ser removida no futuro", mas ainda não foi de fato eliminada — uma camada extra de segurança contra exclusões acidentais. Enquanto o dado permanecer fisicamente gravado, softwares de recuperação de dados podem restaurá-lo, mesmo após a formatação: eles percorrem o disco bit a bit em busca de cabeçalhos característicos de cada tipo de arquivo (por exemplo, os bytes iniciais que identificam um `.docx`) e, pelo princípio da localidade, reconstroem o conteúdo entre o início e o fim identificados.
+A **lixeira** do sistema operacional é uma lista de arquivos cuja referência está marcada como "pode ser removida no futuro", mas ainda não foi de fato eliminada — uma camada extra de segurança contra exclusões acidentais. Enquanto o dado permanecer fisicamente gravado, softwares de recuperação de dados podem restaurá-lo, mesmo após a formatação: eles percorrem o disco bit a bit em busca de cabeçalhos característicos de cada tipo de arquivo (por exemplo, os bytes iniciais que identificam um `.docx`) — os cabeçalhos e rodapés que funcionam como a **assinatura** de cada tipo de arquivo — e, supondo que o conteúdo foi gravado de forma contígua, reconstroem o que estiver entre o início e o fim identificados. Essa técnica é chamada de *file carving*; um exemplo de ferramenta que a implementa é o Foremost.
+
+Nos sistemas de arquivo comuns, um cluster pertence a um único arquivo. Mas, quando um arquivo novo ocupa um cluster antes usado e não o preenche por completo, a sobra — o file slack (§6.2.1) — ainda pode conter restos do arquivo anterior. Em computação forense, esse resíduo é chamado de *slack space*.
+
+A recuperação após uma formatação vale para a **formatação rápida**, que apenas recria as estruturas do sistema de arquivo. No Windows (desde o Vista), a **formatação completa** também grava zeros em todo o volume.
+
+**Apagamento seguro.** Quando o objetivo é impedir a recuperação — por exemplo, antes de vender ou descartar um disco —, o caminho é destruir os padrões que as ferramentas de recuperação procuram, sobrescrevendo toda a unidade. Métodos antigos recomendavam várias passadas; para HDs modernos, uma passada completa é suficiente `[6]`. Em SSDs, sobrescrever pelo sistema operacional não garante o apagamento: o controlador distribui as gravações entre as células (*wear leveling*) e mantém uma área reserva invisível ao sistema. Nesse caso, recomenda-se o comando de apagamento do próprio dispositivo (Secure Erase/Sanitize), ou manter a unidade criptografada e descartar a chave. Criptografia e apagamento seguro não se excluem — podem ser combinados.
 
 **Aplicação prática.** Se um computador estiver infectado por um malware capturando dados do usuário, formatar o disco elimina o malware — mas também elimina, junto com ele, todos os demais dados do usuário, incluindo aqueles que se desejaria preservar. É, na expressão usada em aula, "matar uma mosca com uma bazuca": resolve o problema, mas com um custo desproporcional se não houver backup prévio (Capítulo 7, §7.2.1).
 
@@ -91,6 +101,8 @@ A **lixeira** do sistema operacional é uma lista de arquivos cuja referência e
 Uma **partição** é uma divisão lógica de um disco físico — não uma divisão física real.
 
 Todo disco precisa ter **ao menos uma partição** para que o sistema operacional possa atribuir a ele um sistema de arquivo e utilizá-lo — mesmo que essa única partição ocupe a totalidade do espaço físico disponível.
+
+Cada partição é formada por múltiplos clusters. O Windows atribui uma **letra de unidade** a cada partição que reconhece (`C:`, `D:`...) e passa a tratá-las como se fossem discos diferentes — o que permite, por exemplo, definir permissões ou cotas por unidade. Fisicamente, porém, continua existindo um único disco: não é possível remover só uma partição e levá-la para outro computador — para isso, é preciso copiar os dados para outro dispositivo.
 
 ### 6.4.1 Sistemas de arquivo por partição e o conceito de dual boot
 
@@ -197,3 +209,4 @@ Este capítulo apresentou o sistema operacional como a camada de interface entre
 3. UEFI FORUM. "FAQ: Drive Partition Limits." Disponível em: <https://uefi.org/sites/default/files/resources/UEFI_Drive_Partition_Limits_Fact_Sheet.pdf>.
 4. MICROSOFT. "Windows and GPT FAQ." Disponível em: <https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-and-gpt-faq>.
 5. MICROSOFT. "10 Immutable Laws of Security (Version 2.0)." Disponível em: <https://learn.microsoft.com/en-us/archive/blogs/rhalbheer/ten-immutable-laws-of-security-version-2-0>.
+6. NIST. "SP 800-88 Rev. 1: Guidelines for Media Sanitization." Disponível em: <https://csrc.nist.gov/pubs/sp/800/88/r1/final>.
