@@ -143,18 +143,28 @@ Para executar mais de um sistema operacional ao mesmo tempo, recorre-se à **vir
 
 As informações sobre quantas partições um disco possui, onde cada uma começa e termina, e qual sistema de arquivo está atrelado a cada uma constituem, elas próprias, um conjunto de metadados que precisa ser gravado em algum lugar do disco. A estrutura responsável por essa organização é chamada de **tabela de partições**.
 
+Essa informação é gravada no início do próprio disco — e não na placa-mãe, na memória RAM ou no sistema operacional — para que a divisão acompanhe o disco quando ele for ligado a outro computador ou a outro sistema operacional, e para que não se perca numa falta de energia.
+
+![Diagrama de um único disco, representado como um retângulo dividido em três partições lógicas, A, B e C, cada uma associada a um sistema de arquivo próprio (SA I, SA II e SA III); uma faixa hachurada no início do disco representa a tabela de partições, e uma chave sobre o retângulo indica que todo o conjunto é uma única peça de hardware.](imagens/disco-particoes-tabela.png)
+
+Na figura, o disco é uma única unidade física, mas está dividido logicamente em três partições, cada uma com seu próprio sistema de arquivo. A região no início do disco é a tabela de partições, que registra onde começa e onde termina cada uma das três partições.
+
 Existem duas soluções de tabela de partição amplamente utilizadas: **MBR** (mais antiga) e **GPT** (mais recente).
 
 ### 6.5.1 Master Boot Record (MBR)
 
-O **MBR** (*Master Boot Record*) grava a tabela de partições em um setor específico no início do disco, usando endereçamento de **32 bits**. Dessa limitação de endereçamento decorrem duas restrições centrais:
+O **MBR** (*Master Boot Record*) grava a tabela de partições em um setor específico no início do disco, usando endereçamento de **32 bits**. Dessa estrutura decorrem duas restrições centrais:
 
-- O tamanho máximo de uma partição é de **2 TB**.
-- É possível criar no máximo **quatro partições primárias** `[2]`.
+- Por causa do endereçamento de 32 bits, o tamanho máximo de uma partição é de **2 TB** `[2]`.
+- Como a tabela ocupa um espaço fixo no primeiro setor do disco, com lugar para exatamente **quatro entradas** de 16 bytes, é possível criar no máximo **quatro partições primárias** `[7]`.
 
-Para superar o limite de quatro partições, uma das partições primárias pode ser convertida em **partição estendida**, dentro da qual é possível criar até **128 partições lógicas**. Uma consequência prática dessa regra é que múltiplas partições lógicas devem estar todas contidas dentro de uma única partição estendida — não é possível, por exemplo, dividir 64 partições lógicas entre duas partições primárias diferentes.
+Esse formato surgiu em 1983, com o PC DOS 2.0, para o disco rígido de 10 MB do IBM PC XT — quando quatro partições eram mais que suficientes. Com o crescimento dos discos, não era possível aumentar a tabela sem quebrar a compatibilidade com os sistemas que já liam aquelas quatro entradas; a solução foi usar uma delas como contêiner: a **partição estendida**, dentro da qual se criam **partições lógicas**, encadeadas, cada uma descrita por um pequeno registro próprio (EBR, *Extended Boot Record*) `[8]`. O formato não fixa um número máximo de partições lógicas — o limite é o espaço disponível na partição estendida `[7]`. Uma consequência prática dessa regra é que um disco MBR pode ter **uma única partição estendida**: todas as partições lógicas precisam estar dentro dela.
 
 **Exemplo.** Um disco já dividido em quatro partições primárias atingiu o limite da tabela MBR. Para criar uma quinta divisão, uma das quatro partições primárias precisa ser apagada e recriada como partição estendida; somente dentro dela é possível abrir novas partições lógicas adicionais.
+
+![Diagrama vertical do layout de um disco MBR. No topo, o primeiro setor do disco (512 bytes): código de boot mestre (446 bytes), quatro entradas da tabela de partições (16 bytes cada) e a assinatura 55AA (2 bytes). Abaixo, três partições primárias, cada uma formada por um setor de inicialização seguido de dados, apontadas pelas entradas 1 a 3. A entrada 4 aponta para a partição estendida, onde cada partição lógica é precedida por um registro EBR, com sua própria tabela e assinatura, que aponta para o EBR seguinte. Redesenhado a partir de diagrama de knowitlikepro.com.](imagens/mbr-layout.png)
+
+O primeiro setor do disco reúne três elementos: o código de boot mestre, as quatro entradas da tabela e uma assinatura de fim de setor (55AA). Cada entrada aponta para o início de uma partição, e cada partição começa com seu próprio setor de inicialização, seguido dos dados. Quando uma das entradas aponta para uma partição estendida, as partições lógicas dentro dela formam uma cadeia: cada uma é precedida por um EBR que descreve aquela partição e aponta para a próxima.
 
 ### 6.5.2 GUID Partition Table (GPT)
 
@@ -168,11 +178,10 @@ Cada disco identificado em GPT recebe um **GUID** (*Globally Unique Identifier*)
 | Endereçamento | 32 bits | 64 bits |
 | Tamanho máximo de partição | 2 TB | Na casa de zettabytes |
 | Partições primárias | Até 4 | Até 128 (sem partição estendida) |
-| Partições lógicas | Até 128, dentro de uma partição estendida | Não se aplica |
+| Partições lógicas | Sem limite fixo, dentro de uma única partição estendida | Não se aplica |
 | Redundância da tabela | Não | Sim |
 | Firmware associado historicamente | BIOS | UEFI |
 
-[IMAGEM: diagrama do layout de um disco em MBR — código de inicialização, tabela de partições e partições de dados]
 
 ---
 
@@ -197,6 +206,8 @@ Essas configurações — incluindo a informação de qual dispositivo de armaze
 ### 6.6.3 Boot: carregamento do sistema operacional
 
 Concluído o POST com sucesso, o próximo passo padrão é o **boot** (inicialização) do sistema operacional: a cópia do sistema operacional da memória secundária, onde está instalado, para a memória primária (RAM), de onde ele passa a ser executado — retomando o conceito de hierarquia de memória apresentado no Capítulo 1 (Seção 1.10) e aprofundado no Capítulo 5.
+
+Essa cópia não é feita diretamente pelo firmware. Concluído o POST, o firmware lê o início do disco escolhido para a inicialização e executa o **código de boot** gravado ali — num disco MBR, o código de boot mestre descrito na Seção 6.5.1. É esse pequeno programa que consulta a tabela de partições, localiza a partição de onde o sistema deve ser carregado e passa adiante a tarefa de carregá-lo. Por isso, uma tabela de partições corrompida ou mal configurada pode impedir a inicialização de um computador cujo hardware e sistema operacional estão perfeitamente íntegros.
 
 Para saber onde procurar o sistema operacional entre as possivelmente várias partições e discos existentes, o computador consulta a variável de ordem de inicialização gravada na memória da placa-mãe (Seção 6.6.2). É possível interromper esse fluxo padrão e forçar a inicialização a partir de outro dispositivo — como um pendrive — de duas formas: alterando permanentemente a ordem de boot dentro do Setup, ou acionando, na tela do POST, um atalho de teclado que abre o chamado **boot menu**, uma lista de dispositivos disponíveis para inicialização imediata (nas máquinas descritas em aula, a tecla de atalho variava entre **F9**, **F11**/**F12** ou a sequência **10 → F12**, dependendo do fabricante).
 
@@ -226,3 +237,5 @@ Este capítulo apresentou o sistema operacional como a camada de interface entre
 4. MICROSOFT. "Windows and GPT FAQ." Disponível em: <https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-and-gpt-faq>.
 5. MICROSOFT. "10 Immutable Laws of Security (Version 2.0)." Disponível em: <https://learn.microsoft.com/en-us/archive/blogs/rhalbheer/ten-immutable-laws-of-security-version-2-0>.
 6. NIST. "SP 800-88 Rev. 1: Guidelines for Media Sanitization." Disponível em: <https://csrc.nist.gov/pubs/sp/800/88/r1/final>.
+7. MICROSOFT. "Basic disks and volumes." Disponível em: <https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc783440(v=ws.10)>.
+8. WIKIPEDIA. "Master boot record"; "Extended boot record." Disponível em: <https://en.wikipedia.org/wiki/Master_boot_record>; <https://en.wikipedia.org/wiki/Extended_boot_record>.

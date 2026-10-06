@@ -194,6 +194,8 @@ Um problema de software identificado durante o diagnóstico pode ter origem em *
 
 Esse caso ilustra por que a origem de um software instalado importa: um malware pode chegar embutido em qualquer instalador, mesmo em arquivos aparentemente inofensivos como um documento PDF.
 
+Uma categoria especialmente persistente é a dos ***bootkits***, que se instalam na região de inicialização do disco para executar antes do próprio sistema operacional. O caso mais conhecido é o TDL-4, que em 2011 infectava a MBR e, apenas no primeiro trimestre daquele ano, atingiu mais de 4,5 milhões de computadores `[6]`. Variantes posteriores criavam uma partição oculta no fim do disco e a marcavam como ativa na tabela de partições, de modo que o código de inicialização original carregasse o malware antes do Windows `[7]`. Para o técnico, a consequência é direta: formatar apenas a partição do sistema não alcança o código de boot nem uma partição escondida em outra região do disco — nesses casos, é preciso reescrever o código de inicialização ou recriar a tabela de partições.
+
 ## 7.9 Reinstalação do sistema operacional como manutenção corretiva
 
 Diante de um problema de software cuja causa exata não foi identificada, uma prática comum — ainda que nem sempre a mais eficiente — é reinstalar o sistema operacional por completo, apagando o disco e recomeçando do zero.
@@ -220,3 +222,5 @@ Este capítulo apresentou o processo integral de instalação de um sistema oper
 3. UBUNTU COMMUNITY HELP WIKI. "WindowsDualBoot." Disponível em: <https://help.ubuntu.com/community/WindowsDualBoot>.
 4. TECHSPOT. "YouTube channel Linus Tech Tips terminated after it was hacked to show crypto-scam videos." 2023. Disponível em: <https://www.techspot.com/news/98047->; DIGITAL TRENDS. "Linus Tech Tips restored after crypto scam hack." Disponível em: <https://www.digitaltrends.com/computing/linus-tech-tips-offline-after-cryptoscam/>.
 5. Páginas oficiais: RUFUS, <https://rufus.ie>; VENTOY, <https://www.ventoy.net>; YUMI, <https://www.pendrivelinux.com>.
+6. KASPERSKY (Securelist). "TDL4 – Top Bot." 27 jun. 2011. Disponível em: <https://securelist.com/tdl4-top-bot/36152/>.
+7. CONSTANTIN, Lucian. "Notorious TDL4 rootkit retooled to better withstand antivirus programs." *InfoWorld*, 21 out. 2011. Disponível em: <https://www.infoworld.com/article/2308753/notorious-tdl4-rootkit-retooled-to-better-withstand-antivirus-programs.html>.
