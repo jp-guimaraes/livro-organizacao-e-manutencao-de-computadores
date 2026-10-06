@@ -35,6 +35,10 @@ Existem hoje dezenas de sistemas operacionais reais em uso — diferentes versõ
 
 O **sistema de arquivo** é o protocolo — o conjunto de combinados — pelo qual o sistema operacional organiza e localiza dados dentro de uma unidade de armazenamento secundário. Sistemas operacionais diferentes utilizam, em geral, sistemas de arquivo diferentes: o Windows usa hoje o **NTFS** (e usou historicamente o FAT); distribuições Linux usam tipicamente **EXT4**; Android, iOS e macOS têm, cada um, seus próprios sistemas de arquivo.
 
+Um programa não acessa o disco diretamente: quando um editor de texto salva um arquivo (em Python, por exemplo, com `open(...)`), ele faz **chamadas de sistema**, pedindo ao sistema operacional que crie e grave o arquivo — por isso o mesmo programa é executado de formas diferentes no Windows, no Linux ou no macOS. O sistema de arquivo, por sua vez, guarda bytes sem interpretá-los: quem decide que a letra `a` vira o byte `0x61` (`0110 0001`) é o programa, seguindo uma tabela de codificação como a ASCII ou a UTF-8; o sistema de arquivo registra onde esses bytes estão e quais metadados os acompanham.
+
+Para que uma mídia removível funcione em sistemas operacionais diferentes, ela precisa usar um sistema de arquivo que todos reconheçam — caso do **FAT32**, antigo e simples, ainda comum em pendrives e câmeras, e do seu sucessor **exFAT**, padrão de fábrica de pendrives e cartões acima de 32 GB. O FAT32 tem um limite prático importante: não aceita arquivos maiores que 4 GB.
+
 A unidade mínima de alocação de espaço em disco para arquivos e diretórios é o **cluster**: um grupo de setores consecutivos (o setor é a menor unidade que o próprio disco lê ou grava — Capítulo 5) que o sistema de arquivo trata como uma unidade só. Dentro de uma mesma partição, todos os clusters têm o mesmo tamanho.
 
 Ao formatar uma unidade de armazenamento, o sistema operacional solicita, entre outras informações, o **tamanho da unidade de alocação** (o tamanho do cluster). No NTFS, o Windows oferece desde 512 bytes até 2 MB (os tamanhos acima de 64 KB passaram a ser aceitos a partir do Windows 10, versão 1709), além de um tamanho padrão sugerido para o dispositivo — 4 KB para a maioria dos volumes `[1]`.
@@ -76,7 +80,7 @@ Um efeito colateral direto da formatação é a perda de todos os arquivos e dir
 
 ### 6.3.1 O que a formatação realmente faz: metadados, exclusão e recuperação de dados
 
-Cada dado gravado em disco é acompanhado de **metadados**: informações sobre o próprio dado, como o nome do arquivo, o momento de criação, de modificação e de último acesso, atributos de somente leitura ou oculto, e assinatura digital, entre outros. Um mecanismo semelhante a uma tabela de referências indica onde cada arquivo começa e onde termina dentro do disco.
+Cada dado gravado em disco é acompanhado de **metadados** — dados sobre o próprio dado. Convém distinguir dois tipos: os **metadados do sistema de arquivo** (nome, tamanho, datas de criação, modificação e último acesso, dono, permissões, atributos de somente leitura ou oculto), registrados pelo sistema de arquivo fora do conteúdo do arquivo; e os **metadados internos ao arquivo** (o autor de uma planilha, o título de um PDF, o álbum de uma música nas *tags* ID3, os dados da câmera de uma foto em EXIF), gravados pelo programa que criou o arquivo como parte do seu conteúdo — e que, por isso, viajam com ele para qualquer computador. Um mecanismo semelhante a uma tabela de referências indica onde cada arquivo começa e onde termina dentro do disco.
 
 **Exemplo.** Suponha uma sequência de células de memória em que o valor 1001 foi gravado, seguido do valor 101. Sem uma marcação adicional, não é possível saber onde termina um número e começa o outro. A solução é registrar, para cada dado, uma referência com a posição inicial e o comprimento (por exemplo: "o dado A começa aqui e tem comprimento 4"). Apagar um arquivo consiste, nesse esquema, simplesmente em remover essa referência — não em reescrever os bits do dado propriamente dito.
 
@@ -100,7 +104,7 @@ A recuperação após uma formatação vale para a **formatação rápida**, que
 
 Uma **partição** é uma divisão lógica de um disco físico — não uma divisão física real.
 
-Todo disco precisa ter **ao menos uma partição** para que o sistema operacional possa atribuir a ele um sistema de arquivo e utilizá-lo — mesmo que essa única partição ocupe a totalidade do espaço físico disponível.
+Todo disco precisa ter **ao menos uma partição** para que o sistema operacional possa atribuir a ele um sistema de arquivo e utilizá-lo — mesmo que essa única partição ocupe a totalidade do espaço físico disponível. O espaço que não pertence a nenhuma partição é chamado de **espaço não alocado** e não pode ser usado para guardar arquivos. A partição é, portanto, o **alvo** da formatação. Para os programas, é indiferente gravar numa partição ou num disco inteiro: uma partição de 50 GB é tratada exatamente como seria um segundo disco ou um pendrive de 50 GB.
 
 Cada partição é formada por múltiplos clusters. O Windows atribui uma **letra de unidade** a cada partição que reconhece (`C:`, `D:`...) e passa a tratá-las como se fossem discos diferentes — o que permite, por exemplo, definir permissões ou cotas por unidade. Fisicamente, porém, continua existindo um único disco: não é possível remover só uma partição e levá-la para outro computador — para isso, é preciso copiar os dados para outro dispositivo.
 
@@ -120,6 +124,18 @@ Quando um computador com múltiplos sistemas operacionais instalados é ligado e
 | Pendrives / mídias removíveis | FAT32 ou exFAT |
 
 [IMAGEM: captura do gerenciador de disco do Windows mostrando um disco físico dividido em múltiplas partições]
+
+### 6.4.2 Um sistema operacional por vez — e a virtualização
+
+No dual boot, os sistemas operacionais **não** rodam ao mesmo tempo: cada um, quando inicializado, assume o controle total do hardware (processador, memória, USB, disco), e não é possível que dois sistemas comandem o mesmo hardware simultaneamente. Para trocar de sistema, é preciso reiniciar o computador.
+
+Para executar mais de um sistema operacional ao mesmo tempo, recorre-se à **virtualização** — em que um sistema continua sendo o dominante do hardware:
+
+- **Máquina virtual (VM):** um sistema operacional completo roda como um programa aplicativo sobre outro, com o apoio de recursos de virtualização do próprio processador.
+- **Emulador:** imita por software um hardware *diferente* (por exemplo, um console antigo), com custo de desempenho bem maior que o de uma VM.
+- **WSL (*Windows Subsystem for Linux*):** no Windows, executa um núcleo Linux numa máquina virtual leve e integrada ao sistema, com desempenho próximo ao nativo.
+- **Contêineres (ex.: Docker):** não trazem um sistema operacional próprio — compartilham o núcleo do hospedeiro e isolam apenas a aplicação, suas bibliotecas e sua infraestrutura, o que os torna muito mais leves que uma VM.
+- **Hipervisores dedicados (ex.: Proxmox):** dividem o hardware inteiro — núcleos, memória, armazenamento, até periféricos e placas de rede — entre várias máquinas virtuais que rodam simultaneamente.
 
 ---
 
