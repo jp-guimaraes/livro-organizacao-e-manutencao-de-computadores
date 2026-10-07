@@ -42,7 +42,9 @@ Além dos fios listados, a fonte também disponibiliza tensões negativas (-12 V
 
 O padrão ATX substituiu o padrão anterior, chamado **AT**, cuja principal limitação era a ausência de comunicação eletrônica entre a placa-mãe e a fonte para o desligamento: em computadores com fonte AT, o comando de desligar (pelo sistema operacional) apenas exibia uma mensagem informando que o computador já podia ser desligado com segurança, mas o desligamento físico ainda dependia de o usuário acionar uma chave mecânica. O padrão ATX introduziu o desligamento controlado por software, que se tornou padrão em todos os computadores modernos `[3]`.
 
-[IMAGEM: conector ATX de 24 pinos com o código de cores dos fios sobreposto]
+![Conector ATX de 24 pinos (padrão ATX12V 2.x) com a cor e a tensão de cada pino.](imagens/atx-24-pinos.png){#fig:atx-24-pinos alt="Os 24 pinos do conector principal da fonte ATX em duas fileiras de 12, cada pino pintado com a cor do seu fio e identificado pelo número e pela tensão. Fileira de cima, pinos 1 a 12: +3,3 V (laranja), +3,3 V, COM (preto), +5 V (vermelho), COM, +5 V, COM, Power OK (cinza), +5 VSB (roxo), +12 V (amarelo), +12 V, +3,3 V. Fileira de baixo, pinos 13 a 24: +3,3 V, −12 V (azul), COM, PS_ON (verde), COM, COM, COM, pino 20 sem uso (branco; era −5 V no ATX antigo), +5 V, +5 V, +5 V, COM. No topo, uma legenda de cores; embaixo, uma seta tracejada liga o pino 16 (verde) ao 15 (preto), indicando o teste da fonte isolada."}
+
+A @fig:atx-24-pinos mostra onde fica cada fio da tabela acima no conector de 24 pinos. Os pinos pretos (COM) se espalham pelas duas fileiras; o verde (PS_ON, pino 16) tem pretos dos dois lados, o que facilita o teste da fonte isolada descrito na próxima seção. O pino 20 não é usado no padrão atual: no ATX antigo, ele trazia os −5 V.
 
 ### 11.2.2 Sinais de controle: PS_ON e Power OK
 
@@ -63,7 +65,9 @@ Esse procedimento exemplifica, no contexto elétrico, a metodologia geral de dia
 
 **Atenção.** A fonte ligar durante esse teste — girando a ventoinha e produzindo as tensões nominais — indica apenas que ela consegue entregar tensão. Não garante que ela consegue entregar a **potência** total sob carga real: uma fonte deteriorada pode fornecer tensões corretas em vazio e ainda assim falhar ao alimentar componentes de alto consumo, como uma placa de vídeo. O teste do jumper é uma condição necessária, mas não suficiente, para validar uma fonte.
 
-[IMAGEM: fluxo botão → pinos do painel frontal → sinal PS_ON → fonte → sinal Power OK → placa-mãe, com indicação dos pontos de teste para diagnóstico]
+![Sequência de energização ATX e os dois pontos de teste do diagnóstico.](imagens/ps-on-power-ok.png){#fig:ps-on-power-ok alt="Fluxograma: o botão de liga do painel frontal (roxo) se liga, pelos pinos POWER SW, à placa-mãe (azul), cujo circuito de standby é alimentado pela fonte por uma seta tracejada roxa, +5 VSB, sempre ligado. Da placa-mãe, uma seta verde, PS_ON ligado ao COM, vai até a fonte ATX (laranja). Da fonte, uma seta desce para “tensões sobem e se estabilizam” e segue, como Power OK (cinza), até a caixa “placa-mãe libera a energização e inicia o POST”. Dois círculos vermelhos marcam os testes: o teste 1, curto manual nos pinos do botão, e o teste 2, fonte isolada com o verde ligado a um preto."}
+
+A @fig:ps-on-power-ok resume a sequência e onde entra cada teste do diagnóstico: o teste 1 dispensa o botão, ligando a placa-mãe diretamente pelos seus pinos; o teste 2 dispensa a placa-mãe, ligando a fonte sozinha pelo pino verde. Repare que a placa-mãe nunca fica totalmente desligada: o +5 V de *standby* (fio roxo) a mantém pronta para receber o comando do botão.
 
 ### 11.2.3 VRM: uma segunda fonte na placa-mãe
 

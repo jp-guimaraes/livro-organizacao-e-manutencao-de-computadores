@@ -40,7 +40,9 @@ A partir dessa chave elementar, é possível construir as portas lógicas estuda
 
 **Nota técnica.** Esse modelo (série = AND, paralelo = OR) é uma simplificação pedagógica — um "modelo de chave" coerente com a lógica CMOS moderna — e não corresponde exatamente à topologia de circuitos comerciais TTL/DTL, que tradicionalmente implementam AND/OR com lógica a diodo e usam um transistor inversor separado `[2]`. O modelo aqui é útil para a intuição, mas não deve ser confundido com a topologia exata de um circuito integrado comercial.
 
-[IMAGEM: três circuitos lado a lado — porta AND (transistores em série), porta OR (transistores em paralelo) e porta NOT (transistor inversor), com tabela-verdade de cada uma]
+![Portas AND, OR e NOT no modelo de chave, com a tabela-verdade de cada uma.](imagens/portas-logicas-transistores.png){#fig:portas-logicas-transistores alt="Três circuitos lado a lado, cada um com a sua tabela-verdade embaixo. Porta AND: dois transistores ligados em série entre a alimentação +V e a saída S, com as entradas A (azul) e B (verde) nas bases e um resistor da saída até o terra; S só é 1 quando A e B são 1. Porta OR: dois transistores ligados em paralelo entre +V e a saída S; S é 1 quando A ou B é 1. Porta NOT: um resistor de +V até a saída S e um transistor da saída até o terra, com a entrada A na base; S é o inverso de A. Rodapé: modelo de chave — com 1 na base, o transistor conduz; com 0, não conduz."}
+
+Na @fig:portas-logicas-transistores, a saída S de cada porta é lida no ponto marcado em vermelho. Na AND, a tensão só chega a S se os dois transistores conduzirem ao mesmo tempo; na OR, basta um dos dois caminhos; na NOT, quando o transistor conduz ele liga a saída ao terra, e S vai a 0 — por isso a saída é sempre o inverso da entrada.
 
 ## 2.3 Circuitos aritméticos: o meio-somador
 
@@ -59,7 +61,9 @@ Observando essa tabela, nota-se que a coluna "Soma" corresponde exatamente à ta
 
 O circuito que combina uma porta XOR (para o bit de soma) e uma porta AND (para o bit de vai-um), ambas recebendo as mesmas duas entradas A e B, é chamado **meio-somador** (*half adder*). Ele soma dois bits e produz dois resultados: o bit de soma e o bit de transporte para a próxima posição. Encadeando vários meios-somadores (com o acréscimo da entrada de vai-um recebido da posição anterior, o que dá origem ao **somador completo**, ou *full adder*), constrói-se um circuito capaz de somar números de qualquer quantidade de bits — o tamanho da palavra binária que um processador consegue somar de uma vez (32 bits, 64 bits) é justamente definido por quantos desses circuitos estão encadeados no hardware.
 
-[IMAGEM: circuito do meio-somador — porta XOR e porta AND recebendo as entradas A e B, produzindo Soma e Carry]
+![Meio-somador: uma porta XOR gera o bit de soma e uma porta AND gera o vai-um.](imagens/meio-somador.png){#fig:meio-somador alt="Diagrama de um meio-somador dentro de um quadro tracejado. As entradas A (azul) e B (verde) se dividem e chegam às duas portas: em cima, uma porta XOR, cuja saída é Soma (vermelho); embaixo, uma porta AND, cuja saída é Vai-um (carry)."}
+
+Na @fig:meio-somador, as duas portas recebem as mesmas entradas A e B ao mesmo tempo: a XOR produz o bit de soma, e a AND, o vai-um — exatamente as duas colunas da tabela da adição binária acima.
 
 ## 2.4 Memória: o flip-flop e os sinais de controle
 

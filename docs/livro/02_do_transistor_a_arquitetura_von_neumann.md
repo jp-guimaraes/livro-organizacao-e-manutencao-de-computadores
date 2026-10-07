@@ -43,10 +43,12 @@ A partir dessa chave elementar, é possível construir as portas lógicas estuda
 
 **Nota técnica.** Esse modelo (série = AND, paralelo = OR) é uma simplificação pedagógica — um "modelo de chave" coerente com a lógica CMOS moderna — e não corresponde exatamente à topologia de circuitos comerciais TTL/DTL, que tradicionalmente implementam AND/OR com lógica a diodo e usam um transistor inversor separado `[2]`. O modelo aqui é útil para a intuição, mas não deve ser confundido com a topologia exata de um circuito integrado comercial.
 
+<figure id="fig-portas-logicas-transistores" markdown="1">
+<img src="imagens/portas-logicas-transistores.png" alt="Três circuitos lado a lado, cada um com a sua tabela-verdade embaixo. Porta AND: dois transistores ligados em série entre a alimentação +V e a saída S, com as entradas A (azul) e B (verde) nas bases e um resistor da saída até o terra; S só é 1 quando A e B são 1. Porta OR: dois transistores ligados em paralelo entre +V e a saída S; S é 1 quando A ou B é 1. Porta NOT: um resistor de +V até a saída S e um transistor da saída até o terra, com a entrada A na base; S é o inverso de A. Rodapé: modelo de chave — com 1 na base, o transistor conduz; com 0, não conduz.">
+<figcaption markdown="span"><strong>Figura 2.2</strong> — Portas AND, OR e NOT no modelo de chave, com a tabela-verdade de cada uma.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    três circuitos lado a lado — porta AND (transistores em série), porta OR (transistores em paralelo) e porta NOT (transistor inversor), com tabela-verdade de cada uma
-
+Na [Figura 2.2](#fig-portas-logicas-transistores), a saída S de cada porta é lida no ponto marcado em vermelho. Na AND, a tensão só chega a S se os dois transistores conduzirem ao mesmo tempo; na OR, basta um dos dois caminhos; na NOT, quando o transistor conduz ele liga a saída ao terra, e S vai a 0 — por isso a saída é sempre o inverso da entrada.
 
 ## 2.3 Circuitos aritméticos: o meio-somador
 
@@ -65,10 +67,12 @@ Observando essa tabela, nota-se que a coluna "Soma" corresponde exatamente à ta
 
 O circuito que combina uma porta XOR (para o bit de soma) e uma porta AND (para o bit de vai-um), ambas recebendo as mesmas duas entradas A e B, é chamado **meio-somador** (*half adder*). Ele soma dois bits e produz dois resultados: o bit de soma e o bit de transporte para a próxima posição. Encadeando vários meios-somadores (com o acréscimo da entrada de vai-um recebido da posição anterior, o que dá origem ao **somador completo**, ou *full adder*), constrói-se um circuito capaz de somar números de qualquer quantidade de bits — o tamanho da palavra binária que um processador consegue somar de uma vez (32 bits, 64 bits) é justamente definido por quantos desses circuitos estão encadeados no hardware.
 
+<figure id="fig-meio-somador" markdown="1">
+<img src="imagens/meio-somador.png" alt="Diagrama de um meio-somador dentro de um quadro tracejado. As entradas A (azul) e B (verde) se dividem e chegam às duas portas: em cima, uma porta XOR, cuja saída é Soma (vermelho); embaixo, uma porta AND, cuja saída é Vai-um (carry).">
+<figcaption markdown="span"><strong>Figura 2.3</strong> — Meio-somador: uma porta XOR gera o bit de soma e uma porta AND gera o vai-um.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    circuito do meio-somador — porta XOR e porta AND recebendo as entradas A e B, produzindo Soma e Carry
-
+Na [Figura 2.3](#fig-meio-somador), as duas portas recebem as mesmas entradas A e B ao mesmo tempo: a XOR produz o bit de soma, e a AND, o vai-um — exatamente as duas colunas da tabela da adição binária acima.
 
 ## 2.4 Memória: o flip-flop e os sinais de controle
 
@@ -146,10 +150,10 @@ No computador desktop moderno, a via de dados que interliga processador, memóri
 
 <figure id="fig-von-neumann" markdown="1">
 <img src="imagens/von-neumann.png" alt="Diagrama da arquitetura de von Neumann: uma faixa horizontal cinza, o barramento, ao centro. Acima dela, à esquerda, o processador (CPU), com a unidade de controle e a ULA, e, à direita, a memória, que guarda o programa (instruções) e os dados — ambos com setas de ida e volta até o barramento. Abaixo, à esquerda, a unidade de entrada (teclado, mouse, câmera), com seta para o barramento; à direita, a unidade de saída (monitor, alto-falante), com seta vinda do barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).">
-<figcaption markdown="span"><strong>Figura 2.2</strong> — Arquitetura de von Neumann: processador, memória, entrada e saída ligados pelo barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).</figcaption>
+<figcaption markdown="span"><strong>Figura 2.4</strong> — Arquitetura de von Neumann: processador, memória, entrada e saída ligados pelo barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).</figcaption>
 </figure>
 
-Na [Figura 2.2](#fig-von-neumann), as quatro unidades não se ligam diretamente umas às outras: toda a comunicação passa pelo barramento. Processador e memória trocam dados nos dois sentidos; a entrada só envia dados para o barramento, e a saída só os recebe dele.
+Na [Figura 2.4](#fig-von-neumann), as quatro unidades não se ligam diretamente umas às outras: toda a comunicação passa pelo barramento. Processador e memória trocam dados nos dois sentidos; a entrada só envia dados para o barramento, e a saída só os recebe dele.
 
 ## 2.7 O gargalo de von Neumann
 

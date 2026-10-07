@@ -34,7 +34,9 @@ onde V é a tensão (volts), R é a **resistência elétrica** (ohms, Ω) e I é
 
 Essa relação também explica por que um **curto-circuito** é perigoso. Um curto-circuito ocorre quando um caminho de resistência próxima de zero é criado entre dois pontos de potenciais diferentes — por exemplo, um pequeno objeto condutor (um clipe de papel, um grampo metálico) tocando acidentalmente os dois pinos de uma tomada. Como a corrente é inversamente proporcional à resistência, uma resistência próxima de zero produz uma corrente extremamente alta — teoricamente, o máximo que a fonte for capaz de fornecer. Esse pico de corrente é o que provoca aquecimento excessivo dos condutores, podendo causar incêndio se não houver um dispositivo de proteção interrompendo o circuito (ver Seção A.3.1).
 
-[IMAGEM: circuito simples fonte–resistor–LED com seta indicando corrente e legenda "V = R × I"]
+![Circuito com fonte, resistor e LED em série e a primeira Lei de Ohm.](imagens/circuito-led-ohm.png){#fig:circuito-led-ohm alt="Circuito retangular com uma fonte de tensão V à esquerda, um resistor R no lado de cima e um LED no lado direito, todos em série. Setas vermelhas indicam a corrente I no sentido convencional, saindo do polo positivo da fonte, passando pelo resistor e pelo LED e voltando à fonte. À direita, em destaque, a fórmula V = R × I e a frase: mais tensão, mesma resistência, implica mais corrente e LED mais forte."}
+
+Na @fig:circuito-led-ohm, a mesma corrente I atravessa a fonte, o resistor e o LED, porque estão em série. Aumentando V e mantendo R, a corrente aumenta na mesma proporção — e o LED brilha mais.
 
 ### A.1.4 Corrente contínua e corrente alternada
 
