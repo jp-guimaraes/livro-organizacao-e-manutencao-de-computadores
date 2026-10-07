@@ -1,0 +1,7 @@
+/* Figuras do livro (geradas por scripts/sync_chapters.py como <figure> + <figcaption>).
+   O livro é lido na tela: coluna de conteúdo mais larga e figuras ocupando toda a
+   largura, limitadas a 85% da altura da janela (para as altas, como o layout da MBR). */
+.md-grid { max-width: 1400px; }
+.md-typeset figure { width: 100%; margin: 1.6em auto; }
+.md-typeset figure img { width: 100%; max-height: 85vh; object-fit: contain; }
+.md-typeset figcaption { max-width: none; font-size: .8rem; }

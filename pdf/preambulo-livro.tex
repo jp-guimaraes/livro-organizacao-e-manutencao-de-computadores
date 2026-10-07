@@ -14,7 +14,8 @@
 \usepackage{amssymb}
 \usepackage{microtype}
 \usepackage{geometry}
-\geometry{left=2.8cm, right=2.2cm, top=2.8cm, bottom=2.8cm}
+% Livro lido na tela (site/PDF), não impresso: margens menores, figuras maiores.
+\geometry{left=2cm, right=2cm, top=2.2cm, bottom=2.2cm}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -26,6 +27,9 @@
 \tcbuselibrary{skins, breakable}
 
 \usepackage{graphicx}
+% As figuras recebem largura e altura máximas do filtro Lua; keepaspectratio
+% faz valer a menor das duas sem distorcer a imagem.
+\setkeys{Gin}{keepaspectratio}
 \setkeys{Gin}{width=0.85\linewidth, keepaspectratio}
 
 % Pandoc (>=3.1.9) envolve toda imagem em \pandocbounded{...} para

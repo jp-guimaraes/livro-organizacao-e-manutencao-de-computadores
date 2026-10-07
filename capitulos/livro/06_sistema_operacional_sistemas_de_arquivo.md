@@ -8,9 +8,9 @@ Neste capítulo você vai estudar o papel do sistema operacional como camada de 
 
 Um sistema operacional (SO, do inglês *Operating System*, OS) é um software cuja função central é atuar como **interface** entre o hardware do computador e os demais softwares e usuários. O termo *interface* designa aquilo que se coloca entre duas faces, mediando a relação entre elas sem se confundir com nenhuma delas.
 
-Em termos de camadas, o hardware ocupa a base do sistema; sobre ele executa o sistema operacional, cujo núcleo é chamado de **kernel**; e acima do sistema operacional executam os demais programas — desde o próprio ambiente gráfico (o menu iniciar, os ícones, as janelas) até os aplicativos que o usuário abre, como um navegador ou um editor de texto.
+Em termos de camadas, o hardware ocupa a base do sistema; sobre ele executa o sistema operacional, cujo núcleo é chamado de **kernel**; e acima do sistema operacional executam os demais programas — desde o próprio ambiente gráfico (o menu iniciar, os ícones, as janelas) até os aplicativos que o usuário abre, como um navegador ou um editor de texto. A @fig:camadas-sistema-operacional representa essas camadas.
 
-![Diagrama em camadas: na base, o hardware (laranja; processador, memória, disco, periféricos…); acima dele, o sistema operacional (azul), identificado pelo seu núcleo, o kernel; no topo, lado a lado, o usuário (roxo) e os programas aplicativos (verde; navegador, editor de texto, ambiente gráfico…). Uma chave ao lado do sistema operacional diz: interface entre o hardware e o usuário e os programas aplicativos. Redesenhado a partir de diagrama da Alura.](imagens/camadas-sistema-operacional.png)
+![O sistema operacional como interface entre o hardware e o usuário e os programas aplicativos. Redesenhado a partir de diagrama da Alura.](imagens/camadas-sistema-operacional.png){#fig:camadas-sistema-operacional alt="Diagrama em camadas: na base, o hardware (laranja; processador, memória, disco, periféricos…); acima dele, o sistema operacional (azul), identificado pelo seu núcleo, o kernel; no topo, lado a lado, o usuário (roxo) e os programas aplicativos (verde; navegador, editor de texto, ambiente gráfico…). Uma chave ao lado do sistema operacional diz: interface entre o hardware e o usuário e os programas aplicativos."}
 
 ### 6.1.1 Abstração e plataforma
 
@@ -145,9 +145,9 @@ As informações sobre quantas partições um disco possui, onde cada uma começ
 
 Essa informação é gravada no início do próprio disco — e não na placa-mãe, na memória RAM ou no sistema operacional — para que a divisão acompanhe o disco quando ele for ligado a outro computador ou a outro sistema operacional, e para que não se perca numa falta de energia.
 
-![Diagrama de um único disco, representado como um retângulo dividido em três partições lógicas, A, B e C, cada uma associada a um sistema de arquivo próprio (SA I, SA II e SA III); uma faixa hachurada no início do disco representa a tabela de partições, e uma chave sobre o retângulo indica que todo o conjunto é uma única peça de hardware.](imagens/disco-particoes-tabela.png)
+![Um disco dividido em três partições, cada uma com seu sistema de arquivo, e a tabela de partições no início.](imagens/disco-particoes-tabela.png){#fig:disco-particoes-tabela alt="Diagrama de um único disco, representado como um retângulo dividido em três partições lógicas, A, B e C, cada uma associada a um sistema de arquivo próprio (SA I, SA II e SA III); uma faixa hachurada no início do disco representa a tabela de partições, e uma chave sobre o retângulo indica que todo o conjunto é uma única peça de hardware."}
 
-Na figura, o disco é uma única unidade física, mas está dividido logicamente em três partições, cada uma com seu próprio sistema de arquivo. A região no início do disco é a tabela de partições, que registra onde começa e onde termina cada uma das três partições.
+Na @fig:disco-particoes-tabela, o disco é uma única unidade física, mas está dividido logicamente em três partições, cada uma com seu próprio sistema de arquivo. A região no início do disco é a tabela de partições, que registra onde começa e onde termina cada uma das três partições.
 
 Existem duas soluções de tabela de partição amplamente utilizadas: **MBR** (mais antiga) e **GPT** (mais recente).
 
@@ -162,9 +162,9 @@ Esse formato surgiu em 1983, com o PC DOS 2.0, para o disco rígido de 10 MB do 
 
 **Exemplo.** Um disco já dividido em quatro partições primárias atingiu o limite da tabela MBR. Para criar uma quinta divisão, uma das quatro partições primárias precisa ser apagada e recriada como partição estendida; somente dentro dela é possível abrir novas partições lógicas adicionais.
 
-![Diagrama vertical do layout de um disco MBR. No topo, o primeiro setor do disco (512 bytes): código de boot mestre (446 bytes), quatro entradas da tabela de partições (16 bytes cada) e a assinatura 55AA (2 bytes). Abaixo, três partições primárias, cada uma formada por um setor de inicialização seguido de dados, apontadas pelas entradas 1 a 3. A entrada 4 aponta para a partição estendida, onde cada partição lógica é precedida por um registro EBR, com sua própria tabela e assinatura, que aponta para o EBR seguinte. Redesenhado a partir de diagrama de knowitlikepro.com.](imagens/mbr-layout.png)
+![Layout de um disco MBR: o primeiro setor, as partições primárias e a cadeia de partições lógicas. Redesenhado a partir de diagrama de knowitlikepro.com.](imagens/mbr-layout.png){#fig:mbr-layout alt="Diagrama vertical do layout de um disco MBR. No topo, o primeiro setor do disco (512 bytes): código de boot mestre (446 bytes), quatro entradas da tabela de partições (16 bytes cada), cada uma na cor da partição para onde aponta, e a assinatura 55AA (2 bytes); código de boot e assinatura em cinza. Abaixo, três partições primárias, cada uma formada por um setor de inicialização seguido de dados, apontadas pelas entradas 1 a 3. A entrada 4 aponta para a partição estendida, onde cada partição lógica é precedida por um registro EBR, com sua própria tabela e assinatura, que aponta para o EBR seguinte."}
 
-O primeiro setor do disco reúne três elementos: o código de boot mestre, as quatro entradas da tabela e uma assinatura de fim de setor (55AA). Cada entrada aponta para o início de uma partição, e cada partição começa com seu próprio setor de inicialização, seguido dos dados. Quando uma das entradas aponta para uma partição estendida, as partições lógicas dentro dela formam uma cadeia: cada uma é precedida por um EBR que descreve aquela partição e aponta para a próxima.
+Na @fig:mbr-layout, o primeiro setor do disco reúne três elementos: o código de boot mestre, as quatro entradas da tabela e uma assinatura de fim de setor (55AA). Cada entrada aponta para o início de uma partição, e cada partição começa com seu próprio setor de inicialização, seguido dos dados. Quando uma das entradas aponta para uma partição estendida, as partições lógicas dentro dela formam uma cadeia: cada uma é precedida por um EBR que descreve aquela partição e aponta para a próxima.
 
 ### 6.5.2 GUID Partition Table (GPT)
 

@@ -35,6 +35,9 @@ theme:
     - content.code.copy
     - toc.follow
 
+extra_css:
+  - stylesheets/figuras.css
+
 markdown_extensions:
   - admonition
   - pymdownx.details

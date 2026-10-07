@@ -10,11 +10,14 @@ Todo software é desenvolvido para ser executado em um determinado local — o q
 
 **Exemplo.** Um bloqueador de anúncios desenvolvido para o navegador Firefox tem como plataforma o próprio Firefox: o software não funciona no Chrome nem no Safari. Por sua vez, o Firefox tem como plataforma diversos sistemas operacionais (Windows, macOS, Linux, Android, iOS). E cada um desses sistemas operacionais tem como plataforma hardwares fisicamente distintos — um processador Snapdragon num smartphone Android, um chip Apple M1 num MacBook, um processador Intel ou AMD num desktop Windows.
 
-Essa organização em camadas — software sobre navegador, navegador sobre sistema operacional, sistema operacional sobre hardware — é chamada **abstração em camadas**. Ela é o motivo pelo qual um desenvolvedor de software para navegador não precisa se preocupar com qual câmera, qual placa de rede ou qual processador está instalado no dispositivo do usuário final: cada camada delega à camada abaixo dela a responsabilidade por lidar com a complexidade que está fora do seu escopo.
+Essa organização em camadas — software sobre navegador, navegador sobre sistema operacional, sistema operacional sobre hardware — é chamada **abstração em camadas** ([Figura 2.1](#fig-pilha-plataformas)). Ela é o motivo pelo qual um desenvolvedor de software para navegador não precisa se preocupar com qual câmera, qual placa de rede ou qual processador está instalado no dispositivo do usuário final: cada camada delega à camada abaixo dela a responsabilidade por lidar com a complexidade que está fora do seu escopo.
 
 A estratégia de camadas não é exclusiva da relação hardware-software: a mesma lógica organiza, por exemplo, os protocolos de rede em camadas (física, enlace, transporte, aplicação). Este capítulo adota uma abordagem **top-down** (do software visível ao usuário até o hardware que o executa) para, nas seções seguintes, reconstruir a mesma pilha de forma **bottom-up** (do transistor até a linguagem de programação).
 
-![Pilha de quatro camadas ligadas por setas "roda sobre" que apontam para baixo: Software aplicativo (verde; ex.: bloqueador de anúncios, gerenciador de senhas…), Navegador (verde-água; ex.: Firefox, Chrome, Safari…), Sistema operacional (azul; Windows, macOS, Linux, Android, iOS…) e Hardware (laranja; processador — Snapdragon, Apple M1, Intel… — e memória, disco, câmera, placa de rede…).](imagens/pilha-plataformas.png)
+<figure id="fig-pilha-plataformas" markdown="1">
+<img src="imagens/pilha-plataformas.png" alt="Pilha de quatro camadas ligadas por setas “roda sobre” que apontam para baixo: Software aplicativo (verde; ex.: bloqueador de anúncios, gerenciador de senhas…), Navegador (verde-água; ex.: Firefox, Chrome, Safari…), Sistema operacional (azul; Windows, macOS, Linux, Android, iOS…) e Hardware (laranja; processador — Snapdragon, Apple M1, Intel… — e memória, disco, câmera, placa de rede…).">
+<figcaption markdown="span"><strong>Figura 2.1</strong> — Abstração em camadas: cada software roda sobre a camada de baixo, que é a sua plataforma.</figcaption>
+</figure>
 
 ## 2.2 Do transistor às portas lógicas
 
@@ -141,9 +144,12 @@ Essa arquitetura organiza o computador em quatro unidades funcionais:
 
 No computador desktop moderno, a via de dados que interliga processador, memória e dispositivos de entrada e saída — o **barramento** — é fisicamente provida pela placa-mãe.
 
-![Diagrama da arquitetura de von Neumann: uma faixa horizontal cinza, o barramento, ao centro. Acima dela, à esquerda, o processador (CPU), com a unidade de controle e a ULA, e, à direita, a memória, que guarda o programa (instruções) e os dados — ambos com setas de ida e volta até o barramento. Abaixo, à esquerda, a unidade de entrada (teclado, mouse, câmera), com seta para o barramento; à direita, a unidade de saída (monitor, alto-falante), com seta vinda do barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).](imagens/von-neumann.png)
+<figure id="fig-von-neumann" markdown="1">
+<img src="imagens/von-neumann.png" alt="Diagrama da arquitetura de von Neumann: uma faixa horizontal cinza, o barramento, ao centro. Acima dela, à esquerda, o processador (CPU), com a unidade de controle e a ULA, e, à direita, a memória, que guarda o programa (instruções) e os dados — ambos com setas de ida e volta até o barramento. Abaixo, à esquerda, a unidade de entrada (teclado, mouse, câmera), com seta para o barramento; à direita, a unidade de saída (monitor, alto-falante), com seta vinda do barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).">
+<figcaption markdown="span"><strong>Figura 2.2</strong> — Arquitetura de von Neumann: processador, memória, entrada e saída ligados pelo barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).</figcaption>
+</figure>
 
-As quatro unidades não se ligam diretamente umas às outras: toda a comunicação passa pelo barramento. Processador e memória trocam dados nos dois sentidos; a entrada só envia dados para o barramento, e a saída só os recebe dele.
+Na [Figura 2.2](#fig-von-neumann), as quatro unidades não se ligam diretamente umas às outras: toda a comunicação passa pelo barramento. Processador e memória trocam dados nos dois sentidos; a entrada só envia dados para o barramento, e a saída só os recebe dele.
 
 ## 2.7 O gargalo de von Neumann
 

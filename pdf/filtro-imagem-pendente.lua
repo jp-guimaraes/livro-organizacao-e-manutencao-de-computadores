@@ -44,3 +44,29 @@ function Para(el)
   end
   return el
 end
+
+-- Referência a figura no texto: "@fig:id" (que o pandoc lê como citação)
+-- vira "Figura~\\ref{fig:id}". O \\label{fig:id} é emitido pelo próprio pandoc
+-- para ![legenda](img){#fig:id alt="..."}; o LaTeX numera por capítulo (5.3).
+-- O site faz a mesma conversão em scripts/sync_chapters.py.
+function Cite(el)
+  if #el.citations == 1 then
+    local id = el.citations[1].id
+    if id:match("^fig:") then
+      return { pandoc.Str("Figura"), pandoc.RawInline("latex", "~\\ref{" .. id .. "}") }
+    end
+  end
+  return nil
+end
+
+-- Figuras numeradas ocupam a largura do texto, limitadas a 75% da altura da
+-- página (para as altas, como o layout da MBR); keepaspectratio no preâmbulo.
+function Figure(fig)
+  return pandoc.walk_block(fig, {
+    Image = function(img)
+      img.attributes.width = "100%"
+      img.attributes.height = "75%"
+      return img
+    end
+  })
+end

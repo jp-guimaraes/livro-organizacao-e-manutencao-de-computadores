@@ -20,9 +20,12 @@ Essa definição contém três elementos essenciais:
 
 **Aplicação da definição.** Uma calculadora de padaria realiza operações de soma, subtração, multiplicação e divisão, mas não pode receber um programa genérico — não é possível, por exemplo, instalar nela um aplicativo de mensagens. Por essa razão, ela se enquadra na definição ampla de computação, mas não na definição de computador digital de uso geral. Essa distinção entre "dispositivo que computa" e "computador de uso geral" é usada ao longo de todo o capítulo.
 
-![Linha do tempo comparada entre dispositivos de cálculo e estágios de desenvolvimento humano, em dois eixos paralelos. Eixo "dispositivos de cálculo": mãos (contagem unária) → pedrinhas e fichas → ábaco → ossos de Napier → régua de cálculo → calculadora Curta → calculadora científica → laptop. Eixo "desenvolvimento humano", pareado ponto a ponto com o eixo acima: caçador-coletor → agricultor → mercador → navegador → cientista → engenheiro → astronauta → era da rede global. As datas vão de aproximadamente 35.000 a.C. (mãos/caçador-coletor) a 2010 (laptop/rede global); o espaçamento entre marcos consecutivos encolhe de milênios, no início da linha, para décadas, no final — representando visualmente a aceleração do ritmo de inovação.](imagens/linha-do-tempo-historia-do-calculo.png)
+<figure id="fig-linha-do-tempo" markdown="1">
+<img src="imagens/linha-do-tempo-historia-do-calculo.png" alt="Linha do tempo comparada entre dispositivos de cálculo e estágios de desenvolvimento humano, em dois eixos paralelos. Eixo “dispositivos de cálculo”: mãos (contagem unária) → pedrinhas e fichas → ábaco → ossos de Napier → régua de cálculo → calculadora Curta → calculadora científica → laptop. Eixo “desenvolvimento humano”, pareado ponto a ponto com o eixo acima: caçador-coletor → agricultor → mercador → navegador → cientista → engenheiro → astronauta → era da rede global. As datas vão de aproximadamente 35.000 a.C. (mãos/caçador-coletor) a 2010 (laptop/rede global); o espaçamento entre marcos consecutivos encolhe de milênios, no início da linha, para décadas, no final — representando visualmente a aceleração do ritmo de inovação.">
+<figcaption markdown="span"><strong>Figura 1.1</strong> — Linha do tempo dos instrumentos de cálculo, pareada com os estágios do desenvolvimento humano.</figcaption>
+</figure>
 
-Repare como o espaçamento entre marcos consecutivos encolhe ao longo da linha do tempo acima: são muitos mil anos entre o uso das mãos para contar e as primeiras pedrinhas/fichas de contagem, mas apenas décadas entre a calculadora científica e o laptop conectado à rede global. Esse padrão de crescimento exponencial é o que ajuda a narrar como os grandes modelos de linguagem baseados em redes neurais estão a contribuir para a resolução de problemas matemáticos em aberto nos dias atuais. É também o pano de fundo de todo o restante deste livro: cada capítulo seguinte cobre uma fatia cada vez mais estreita — e cada vez mais recente — dessa mesma linha do tempo.
+Repare como o espaçamento entre marcos consecutivos encolhe ao longo da linha do tempo da [Figura 1.1](#fig-linha-do-tempo): são muitos mil anos entre o uso das mãos para contar e as primeiras pedrinhas/fichas de contagem, mas apenas décadas entre a calculadora científica e o laptop conectado à rede global. Esse padrão de crescimento exponencial é o que ajuda a narrar como os grandes modelos de linguagem baseados em redes neurais estão a contribuir para a resolução de problemas matemáticos em aberto nos dias atuais. É também o pano de fundo de todo o restante deste livro: cada capítulo seguinte cobre uma fatia cada vez mais estreita — e cada vez mais recente — dessa mesma linha do tempo.
 
 ## 1.2 Evolução histórica: dos instrumentos mecânicos ao transistor
 
@@ -70,11 +73,14 @@ O conceito de programa armazenado é a base da **arquitetura de von Neumann**, t
 
 Todo computador, para operar, requer três elementos: **entrada** de dados, **processamento** sobre esses dados e **saída** do resultado.
 
-**Exemplo.** No cálculo da média entre duas notas (N1 e N2), a entrada consiste nos valores de N1 e N2; o processamento consiste na soma dos dois valores seguida da divisão por dois; a saída é o valor da média resultante.
+**Exemplo.** No cálculo da média entre duas notas (N1 e N2), a entrada consiste nos valores de N1 e N2; o processamento consiste na soma dos dois valores seguida da divisão por dois; a saída é o valor da média resultante. A [Figura 1.2](#fig-entrada-processamento-saida) mostra esse exemplo com N1 = 7 e N2 = 9.
 
 Uma distinção relevante deve ser observada: ao realizar esse cálculo numa calculadora convencional, é o usuário humano quem executa o algoritmo, decidindo a sequência de operações. Num computador de uso geral, o próprio algoritmo é tratado como um dado de entrada e é a máquina que o executa de forma autônoma — reforçando a definição apresentada na Seção 1.1.
 
-![Diagrama com três caixas ligadas por setas, da esquerda para a direita: Entrada (azul), com N1 = 7 e N2 = 9; Processamento (laranja), com a soma 7 + 9 = 16 seguida da divisão por 2; e Saída (verde), com média = 8.](imagens/entrada-processamento-saida.png)
+<figure id="fig-entrada-processamento-saida" markdown="1">
+<img src="imagens/entrada-processamento-saida.png" alt="Diagrama com três caixas ligadas por setas, da esquerda para a direita: Entrada (azul), com N1 = 7 e N2 = 9; Processamento (laranja), com a soma 7 + 9 = 16 seguida da divisão por 2; e Saída (verde), com média = 8.">
+<figcaption markdown="span"><strong>Figura 1.2</strong> — O modelo entrada–processamento–saída aplicado ao cálculo da média de duas notas.</figcaption>
+</figure>
 
 ## 1.6 O sistema computacional: hardware, software e pessoas
 
@@ -138,9 +144,12 @@ A IBM adotou um modelo de **hardware aberto**, publicando as especificações co
 
 Um terceiro realizou a engenharia reversa do BIOS da IBM e distribuiu uma versão funcionalmente equivalente e livre de restrições de licenciamento, o que reduziu significativamente o custo de produção de computadores compatíveis com o padrão IBM PC. A combinação entre hardware aberto e BIOS livre resultou na entrada de novos fabricantes no mercado — entre eles Compaq, Dell e HP —, consolidando o padrão IBM PC como referência da indústria.
 
-Esse processo ilustra um efeito de mercado relevante para a área de tecnologia: plataformas com maior base de usuários tendem a atrair mais desenvolvimento de software, o que por sua vez amplia ainda mais sua base de usuários — um mecanismo análogo ao que hoje explica a predominância do desenvolvimento de aplicativos para a plataforma Android em relação a plataformas minoritárias.
+Esse processo ilustra um efeito de mercado relevante para a área de tecnologia: plataformas com maior base de usuários tendem a atrair mais desenvolvimento de software, o que por sua vez amplia ainda mais sua base de usuários — um mecanismo análogo ao que hoje explica a predominância do desenvolvimento de aplicativos para a plataforma Android em relação a plataformas minoritárias. A [Figura 1.3](#fig-ibm-pc-5150) mostra o modelo original, de 1981.
 
-![Fotografia do IBM PC 5150 (1981), modelo original: gabinete horizontal bege com duas unidades de disquete 5,25", teclado destacado na frente e monitor monocromático verde-sobre-preto apoiado sobre o gabinete, exibindo uma tela de texto de diagnóstico do sistema. Fonte: Wikimedia Commons `[7]`](imagens/ibm-pc-5150.jpg)
+<figure id="fig-ibm-pc-5150" markdown="1">
+<img src="imagens/ibm-pc-5150.jpg" alt="Fotografia do IBM PC 5150 (1981), modelo original: gabinete horizontal bege com duas unidades de disquete de 5,25 polegadas, teclado destacado na frente e monitor monocromático verde-sobre-preto apoiado sobre o gabinete, exibindo uma tela de texto de diagnóstico do sistema.">
+<figcaption markdown="span"><strong>Figura 1.3</strong> — IBM PC 5150 (1981), o modelo original. Foto: Reseletti, Wikimedia Commons, CC BY-SA 3.0 `[7]`.</figcaption>
+</figure>
 
 ## 1.9 Componentes mínimos de um computador desktop
 
@@ -185,9 +194,12 @@ Da camada mais rápida (e mais cara) para a mais lenta (e mais barata):
 
 Essas unidades formam uma progressão: 8 bits formam um **byte**; 1024 bytes ($2^{10}$) formam um **kilobyte**; e cada unidade seguinte (megabyte, gigabyte, terabyte...) é 1024× a anterior — não 1000× como nas demais unidades do dia a dia (quilograma, quilômetro), porque a contagem nasce de potências de base 2, não de base 10. É essa progressão que explica por que a pirâmide se estreita: quanto mais alto o nível de memória, menor a capacidade típica disponível hoje — terabytes no armazenamento secundário, gigabytes na RAM, megabytes no cache, bytes no registrador.
 
-![Pirâmide dividida em quatro faixas horizontais. Do topo para a base: registradores (vermelho), cache L1, L2 e L3 (degradê de laranja para amarelo), memória RAM (azul-claro) e armazenamento secundário (azul). À direita, a capacidade típica de cada nível: kilobytes, megabytes, gigabytes e terabytes. À esquerda, uma barra com o mesmo degradê de cores vai de "mais rápida, mais cara", no topo, a "mais lenta, mais barata, maior capacidade", na base.](imagens/piramide-memoria.png)
+<figure id="fig-piramide-memoria" markdown="1">
+<img src="imagens/piramide-memoria.png" alt="Pirâmide dividida em quatro faixas horizontais. Do topo para a base: registradores (vermelho), cache L1, L2 e L3 (degradê de laranja para amarelo), memória RAM (azul-claro) e armazenamento secundário (azul). À direita, a capacidade típica de cada nível: kilobytes, megabytes, gigabytes e terabytes. À esquerda, uma barra com o mesmo degradê de cores vai de “mais rápida, mais cara”, no topo, a “mais lenta, mais barata, maior capacidade”, na base.">
+<figcaption markdown="span"><strong>Figura 1.4</strong> — Pirâmide da hierarquia de memória: velocidade, custo e capacidade típica de cada nível.</figcaption>
+</figure>
 
-Na figura, a largura de cada faixa representa a capacidade típica daquele nível, e a cor representa a velocidade: do vermelho (registradores, os mais rápidos) ao azul (armazenamento secundário, o mais lento). A mesma escala de cores é usada no Capítulo 5 para os níveis de cache dentro do processador.
+Na [Figura 1.4](#fig-piramide-memoria), a largura de cada faixa representa a capacidade típica daquele nível, e a cor representa a velocidade: do vermelho (registradores, os mais rápidos) ao azul (armazenamento secundário, o mais lento). A mesma escala de cores é usada na [Figura 5.3](05_memoria.md#fig-cache-hierarquia), no Capítulo 5, para os níveis de cache dentro do processador.
 
 ### 1.10.4 Aplicações práticas
 
