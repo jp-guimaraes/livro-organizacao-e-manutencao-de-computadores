@@ -14,10 +14,12 @@ O princípio do PWM é simples: uma onda de tensão fixa (por exemplo, 10 V de a
 
 A vantagem central do chaveamento sobre outras formas de redução de tensão (como um simples divisor resistivo) é a **eficiência**: um divisor de tensão dissipa parte da energia em forma de calor através dos resistores, enquanto o chaveamento — ligando e desligando o circuito, em vez de dissipar energia continuamente — perde muito menos energia nessa conversão. É por isso que as fontes de computador atuais são chamadas de **fontes chaveadas**: internamente, elas empregam circuitos de chaveamento em alta frequência (controlados por PWM) para produzir as diversas tensões contínuas exigidas pelos componentes, de forma muito mais compacta e eficiente do que uma fonte linear equivalente (Apêndice A, §A.6).
 
+<figure id="fig-pwm-duty-cycle" markdown="1">
+<img src="imagens/pwm-duty-cycle.png" alt="Três ondas quadradas de 10 V de amplitude, uma abaixo da outra, com o mesmo período. Na primeira (azul), o sinal fica ligado 10% do período, e uma linha tracejada vermelha marca a tensão média de 1 V. Na segunda (laranja), fica ligado 50% do período, com média de 5 V. Na terceira (vermelha), fica ligado 90% do período, com média de 9 V.">
+<figcaption markdown="span"><strong>Figura 11.1</strong> — PWM: a mesma onda de 10 V com *duty cycle* de 10%, 50% e 90% e a tensão média que a carga “enxerga” em cada caso.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    forma de onda PWM com diferentes duty cycles (10%, 50%, 90%) e a tensão média efetiva resultante em cada caso
-
+Na [Figura 11.1](#fig-pwm-duty-cycle), a amplitude da onda é sempre 10 V; o que muda é a fração de cada período em que ela fica ligada. A linha tracejada é a tensão média que a carga percebe: 10% de 10 V dá 1 V, 50% dá 5 V e 90% dá 9 V — o mesmo raciocínio do exemplo de 23% acima.
 
 ---
 
@@ -47,10 +49,10 @@ O padrão ATX substituiu o padrão anterior, chamado **AT**, cuja principal limi
 
 <figure id="fig-atx-24-pinos" markdown="1">
 <img src="imagens/atx-24-pinos.png" alt="Os 24 pinos do conector principal da fonte ATX em duas fileiras de 12, cada pino pintado com a cor do seu fio e identificado pelo número e pela tensão. Fileira de cima, pinos 1 a 12: +3,3 V (laranja), +3,3 V, COM (preto), +5 V (vermelho), COM, +5 V, COM, Power OK (cinza), +5 VSB (roxo), +12 V (amarelo), +12 V, +3,3 V. Fileira de baixo, pinos 13 a 24: +3,3 V, −12 V (azul), COM, PS_ON (verde), COM, COM, COM, pino 20 sem uso (branco; era −5 V no ATX antigo), +5 V, +5 V, +5 V, COM. No topo, uma legenda de cores; embaixo, uma seta tracejada liga o pino 16 (verde) ao 15 (preto), indicando o teste da fonte isolada.">
-<figcaption markdown="span"><strong>Figura 11.1</strong> — Conector ATX de 24 pinos (padrão ATX12V 2.x) com a cor e a tensão de cada pino.</figcaption>
+<figcaption markdown="span"><strong>Figura 11.2</strong> — Conector ATX de 24 pinos (padrão ATX12V 2.x) com a cor e a tensão de cada pino.</figcaption>
 </figure>
 
-A [Figura 11.1](#fig-atx-24-pinos) mostra onde fica cada fio da tabela acima no conector de 24 pinos. Os pinos pretos (COM) se espalham pelas duas fileiras; o verde (PS_ON, pino 16) tem pretos dos dois lados, o que facilita o teste da fonte isolada descrito na próxima seção. O pino 20 não é usado no padrão atual: no ATX antigo, ele trazia os −5 V.
+A [Figura 11.2](#fig-atx-24-pinos) mostra onde fica cada fio da tabela acima no conector de 24 pinos. Os pinos pretos (COM) se espalham pelas duas fileiras; o verde (PS_ON, pino 16) tem pretos dos dois lados, o que facilita o teste da fonte isolada descrito na próxima seção. O pino 20 não é usado no padrão atual: no ATX antigo, ele trazia os −5 V.
 
 ### 11.2.2 Sinais de controle: PS_ON e Power OK
 
@@ -73,10 +75,10 @@ Esse procedimento exemplifica, no contexto elétrico, a metodologia geral de dia
 
 <figure id="fig-ps-on-power-ok" markdown="1">
 <img src="imagens/ps-on-power-ok.png" alt="Fluxograma: o botão de liga do painel frontal (roxo) se liga, pelos pinos POWER SW, à placa-mãe (azul), cujo circuito de standby é alimentado pela fonte por uma seta tracejada roxa, +5 VSB, sempre ligado. Da placa-mãe, uma seta verde, PS_ON ligado ao COM, vai até a fonte ATX (laranja). Da fonte, uma seta desce para “tensões sobem e se estabilizam” e segue, como Power OK (cinza), até a caixa “placa-mãe libera a energização e inicia o POST”. Dois círculos vermelhos marcam os testes: o teste 1, curto manual nos pinos do botão, e o teste 2, fonte isolada com o verde ligado a um preto.">
-<figcaption markdown="span"><strong>Figura 11.2</strong> — Sequência de energização ATX e os dois pontos de teste do diagnóstico.</figcaption>
+<figcaption markdown="span"><strong>Figura 11.3</strong> — Sequência de energização ATX e os dois pontos de teste do diagnóstico.</figcaption>
 </figure>
 
-A [Figura 11.2](#fig-ps-on-power-ok) resume a sequência e onde entra cada teste do diagnóstico: o teste 1 dispensa o botão, ligando a placa-mãe diretamente pelos seus pinos; o teste 2 dispensa a placa-mãe, ligando a fonte sozinha pelo pino verde. Repare que a placa-mãe nunca fica totalmente desligada: o +5 V de *standby* (fio roxo) a mantém pronta para receber o comando do botão.
+A [Figura 11.3](#fig-ps-on-power-ok) resume a sequência e onde entra cada teste do diagnóstico: o teste 1 dispensa o botão, ligando a placa-mãe diretamente pelos seus pinos; o teste 2 dispensa a placa-mãe, ligando a fonte sozinha pelo pino verde. Repare que a placa-mãe nunca fica totalmente desligada: o +5 V de *standby* (fio roxo) a mantém pronta para receber o comando do botão.
 
 ### 11.2.3 VRM: uma segunda fonte na placa-mãe
 
@@ -179,6 +181,15 @@ O conector de **painel frontal** (*front panel* ou *system panel header*) da pla
 
 Uma distinção importante deve ser observada nesses conectores: **botões** (power e reset) não possuem polaridade — o fio pode ser conectado em qualquer uma das duas orientações possíveis, sem alterar o funcionamento. **LEDs**, por serem diodos emissores de luz, possuem polaridade definida (um terminal positivo e um negativo): conectados na orientação invertida, simplesmente não acendem, sem dano ao componente.
 
+**Nota técnica.** A Intel define um arranjo de referência de 10 posições (2 × 5) para esse conector, seguido por muitas placas: LED do disco nos pinos 1 (+) e 3 (−), LED de energia nos pinos 2 (+) e 4 (−), botão de *reset* nos pinos 5 e 7, botão de energia nos pinos 6 e 8, e a posição 10 sem pino, servindo de chave para impedir o encaixe invertido `[9]`. A documentação da ASUS para o seu conector F_PANEL ("10-1 pin") repete essa mesma disposição dos pinos 1 a 8 `[10]`. O pino 9 é o que mais varia: nas placas da Intel, ele fornece alimentação ao painel `[9]`; na ASUS, aparece como não conectado (NC) `[10]` — e os cabos de um gabinete comum não o utilizam. A mesma documentação da ASUS mostra ainda conectores maiores, de 20 posições, que reúnem no mesmo bloco os pinos do alto-falante `[10]`. A disposição de referência é, portanto, um ponto de partida, nunca um substituto do manual ou da serigrafia da placa.
+
+<figure id="fig-painel-frontal-pinos" markdown="1">
+<img src="imagens/painel-frontal-pinos.png" alt="Conector de 10 posições em duas fileiras, com os pares contornados por cor. Fileira de cima: pinos 2 (+) e 4 (−), LED de energia, com polaridade (verde); pinos 6 e 8, botão de liga, sem polaridade (laranja); posição 10 sem pino (chave). Fileira de baixo: pinos 1 (+) e 3 (−), LED do HD, com polaridade (amarelo); pinos 5 e 7, reset, sem polaridade (cinza); pino 9, não usado. Uma nota ao lado avisa que a ordem pode variar e que o pino 9 é saída de +5 V nas placas Intel e sem conexão em muitas outras.">
+<figcaption markdown="span"><strong>Figura 11.4</strong> — Conector do painel frontal no arranjo de referência de 10 posições: pares de LEDs com polaridade e pares de botões sem polaridade.</figcaption>
+</figure>
+
+Na [Figura 11.4](#fig-painel-frontal-pinos), os contornos agrupam os pinos que recebem cada cabo do gabinete: nos dois pares de LED, o sinal + precisa coincidir com o fio positivo; nos dois pares de botão, a orientação é indiferente.
+
 ### 11.5.2 Aterramento do gabinete
 
 O chassi metálico do gabinete deve manter continuidade elétrica com o condutor de aterramento da instalação — tanto através do cabo de alimentação da fonte quanto da fixação mecânica da própria fonte e da placa-mãe ao gabinete. Essa continuidade permite que eventuais excessos de carga acumulados no chassi (Apêndice A, §A.4.1) sejam escoados de forma segura para a terra, em vez de se acumularem e serem sentidos pelo usuário ao tocar o gabinete.
@@ -186,10 +197,6 @@ O chassi metálico do gabinete deve manter continuidade elétrica com o condutor
 **Atenção.** A verificação de continuidade entre o terra da tomada e o chassi do gabinete deve sempre ser feita com um multímetro, nunca por contato direto. Uma instalação elétrica com fase e terra invertidos por erro de instalação pode energizar todo o chassi de um computador aterrado incorretamente — situação já registrada em ambientes reais, inclusive institucionais, e potencialmente fatal.
 
 Pulseiras antiestáticas de aterramento, usadas para escoar cargas eletrostáticas do próprio corpo do técnico durante o manuseio de componentes sensíveis, dependem da confiabilidade da instalação elétrica ao qual são conectadas: um técnico deve avaliar, caso a caso, se confia o suficiente na instalação disponível antes de se conectar diretamente a ela por meio de uma pulseira — preferindo, em caso de dúvida, outras formas de controle eletrostático que não impliquem conexão direta a uma instalação de aterramento não verificada.
-
-
-!!! warning "Figura pendente"
-    diagrama do painel frontal de uma placa-mãe com os pinos de power switch, reset, HDD LED e power LED identificados, indicando polaridade dos LEDs
 
 
 ---
@@ -212,3 +219,5 @@ A energia entregue e regulada pela fonte, tratada aqui, é justamente o que torn
 6. WIKIPEDIA. "80 Plus." Disponível em: <https://en.wikipedia.org/wiki/80_Plus>.
 7. ANANDTECH. "The Seasonic Focus Plus Gold 750FX 750W PSU Review." Disponível em: <https://www.anandtech.com/show/14338/the-seasonic-focus-plus-gold-750fx-750w-psu-review/3>.
 8. AGÊNCIA NACIONAL DE ENERGIA ELÉTRICA (ANEEL). Resolução Normativa nº 414, de 9 de setembro de 2010. (Edição/atualizações a confirmar pelo autor.)
+9. INTEL. "Front Panel Header Pinout for Intel® Workstation Board WX58BP." Disponível em: <https://www.intel.com/content/www/us/en/support/articles/000008045/server-products/server-boards.html>.
+10. ASUSTeK COMPUTER INC. *Motherboard Pin Definition* (E11133, rev. v2), dez. 2015 — itens "System panel connector (10-1 pin F_PANEL)", "(20-8 pin PANEL)" e "(20-5 pin PANEL)". Disponível em: <https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/PRIME_A320M-A/E11133_MB_Pin_Definition_v2_print_vendor_only.pdf>.

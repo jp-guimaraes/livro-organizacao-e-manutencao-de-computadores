@@ -153,10 +153,12 @@ Como a energia não se perde nessa conversão (idealmente), o produto tensão ×
 
 Como o funcionamento do transformador depende de variação de campo magnético, ele **exige corrente alternada** para operar: não é possível usar um transformador diretamente sobre uma tensão contínua constante, pois esta não gera a variação de campo magnético necessária à indução.
 
+<figure id="fig-transformador" markdown="1">
+<img src="imagens/transformador.png" alt="Núcleo ferromagnético retangular, cinza, com duas bobinas. À esquerda, o primário (vermelho), com muitas espiras, ligado a uma fonte de tensão alternada de 220 V. À direita, o secundário (azul), com poucas espiras, entregando 10 V em corrente alternada. Setas tracejadas no núcleo indicam o campo magnético variável. Abaixo, em destaque: V2/V1 = N2/N1 e V1 × I1 ≈ V2 × I2.">
+<figcaption markdown="span"><strong>Figura A.2</strong> — Transformador: o primário, com muitas espiras, recebe 220 V; o secundário, com poucas, entrega 10 V.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    diagrama de um transformador com bobina primária e secundária em torno de um núcleo ferromagnético, indicando número de espiras e tensões de entrada/saída
-
+Na [Figura A.2](#fig-transformador), a corrente alternada no primário cria no núcleo um campo magnético variável, que induz tensão no secundário. Como o secundário tem menos espiras, a tensão cai na mesma proporção (de 220 V para 10 V), e a corrente sobe, mantendo o produto tensão × corrente.
 
 ---
 
@@ -173,10 +175,12 @@ O modelo mais simples de conversão é a **fonte linear**, construída por meio 
 
 Fontes lineares são robustas e relativamente simples de projetar, mas apresentam uma desvantagem física significativa: para uma mesma potência, seus componentes (especialmente o transformador) são consideravelmente maiores e mais pesados do que os de uma fonte chaveada equivalente. Por essa razão, fontes lineares praticamente não são mais utilizadas em computadores modernos, restringindo-se a aplicações específicas, como equipamentos de áudio de alta fidelidade, em que a característica do circuito linear é tecnicamente desejável.
 
+<figure id="fig-fonte-linear-blocos" markdown="1">
+<img src="imagens/fonte-linear-blocos.png" alt="Quatro blocos em sequência: transformador, retificador (ponte de diodos), filtro capacitivo e regulador de tensão, da entrada de 220 V CA à saída em corrente contínua estável. Abaixo, a forma de onda em cada ponto: senoide grande (220 V CA), senoide menor (10 V CA), onda retificada com todos os semiciclos positivos (pulsante), onda quase plana com pequena oscilação em dente de serra (ripple) e, por fim, uma linha reta (contínua estável).">
+<figcaption markdown="span"><strong>Figura A.3</strong> — Fonte linear em quatro estágios, com a forma de onda em cada ponto.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    diagrama de blocos de uma fonte linear — transformador → ponte de diodos → filtro capacitivo → regulador — com a forma de onda em cada estágio
-
+A [Figura A.3](#fig-fonte-linear-blocos) acompanha a tensão ao longo da fonte: o transformador só reduz a amplitude; o retificador torna a onda toda positiva, mas ainda pulsante; o filtro capacitivo preenche os vales, deixando só uma pequena oscilação (*ripple*); e o regulador entrega uma tensão contínua estável.
 
 ---
 

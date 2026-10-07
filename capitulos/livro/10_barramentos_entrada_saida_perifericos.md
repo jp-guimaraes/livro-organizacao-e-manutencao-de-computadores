@@ -18,7 +18,9 @@ Como diversos dispositivos compartilham o mesmo conjunto de linhas, é necessár
 
 **Nota conceitual.** Essa forma de comunicação, na qual várias linhas transportam bits simultaneamente em paralelo, é chamada de **comunicação paralela** e se opõe à **comunicação serial**, na qual os bits trafegam um após o outro por uma única linha (ou par de linhas), a uma frequência muito mais alta. Contra a intuição inicial, um link serial moderno normalmente transporta mais dados por segundo do que um barramento paralelo equivalente — a alta frequência de operação de uma única linha bem projetada compensa, e supera, a vantagem teórica de transmitir vários bits "ao mesmo tempo" em paralelo, que sofre mais com interferência entre linhas adjacentes (*crosstalk*) à medida que a frequência sobe. É por essa razão que a evolução dos barramentos de expansão, tratada na Seção 10.1.4, caminhou do paralelo (ISA, PCI) para o serial (PCI Express) — e a mesma lógica explica a evolução do armazenamento de IDE (paralelo) para SATA (serial), na Seção 10.1.5.
 
-[IMAGEM: comparação esquemática entre um barramento paralelo (várias linhas lado a lado) e uma conexão serial (uma linha, alta frequência)]
+![Comunicação paralela (oito linhas, oito bits ao mesmo tempo) e serial (um par de linhas, um bit após o outro).](imagens/paralelo-serial.png){#fig:paralelo-serial alt="Dois esquemas lado a lado, cada um com dois dispositivos, A e B. À esquerda, Paralela: oito linhas vermelhas ligam A a B, cada uma levando um bit do byte 10110010 ao mesmo tempo, em frequência mais baixa. À direita, Serial: um par de linhas azuis liga A a B, e os mesmos oito bits seguem em fila, um após o outro, em frequência muito mais alta."}
+
+Na @fig:paralelo-serial, o mesmo byte vai de A para B das duas formas: em paralelo, os oito bits viajam juntos, um por linha; em serial, viajam em fila por um único par de linhas — compensando o número de linhas com uma frequência de operação muito maior.
 
 ### 10.1.2 Ponte norte e ponte sul: a arquitetura clássica do chipset
 
