@@ -90,6 +90,13 @@ Cada dado gravado em disco é acompanhado de **metadados** — dados sobre o pr�
 
 **Exemplo.** Suponha uma sequência de células de memória em que o valor 1001 foi gravado, seguido do valor 101. Sem uma marcação adicional, não é possível saber onde termina um número e começa o outro. A solução é registrar, para cada dado, uma referência com a posição inicial e o comprimento (por exemplo: "o dado A começa aqui e tem comprimento 4"). Apagar um arquivo consiste, nesse esquema, simplesmente em remover essa referência — não em reescrever os bits do dado propriamente dito.
 
+<figure id="fig-tabela-referencias-exclusao" markdown="1">
+<img src="imagens/tabela-referencias-exclusao.png" alt="À esquerda, antes: uma tabela de referências com o arquivo A (início 0, comprimento 4) e o arquivo B (início 4, comprimento 3), e uma fileira de 12 células do disco com os bits 1001 de A (azul), 101 de B (verde) e zeros. À direita, depois de excluir B: a linha de B na tabela está riscada, e as células 4 a 6 aparecem tracejadas, ainda com os bits 101, sob a legenda: espaço marcado como livre — os bits de B continuam lá, recuperáveis até serem sobrescritos.">
+<figcaption markdown="span"><strong>Figura 6.2</strong> — Excluir um arquivo apaga a sua referência na tabela, não os seus bits no disco.</figcaption>
+</figure>
+
+Na [Figura 6.2](#fig-tabela-referencias-exclusao), depois da exclusão de B a tabela deixa de apontar para as células 4 a 6, que passam a contar como espaço livre — mas os bits 101 continuam gravados ali até que outro arquivo ocupe esse espaço.
+
 Essa é a razão pela qual formatar ou apagar um arquivo não desgasta uma memória flash (como um pendrive ou SSD) na mesma proporção que reescrever cada bit: a operação normalmente descarta apenas a tabela de referências, preservando o conteúdo bruto até que aquele espaço seja reutilizado.
 
 A **lixeira** do sistema operacional é uma lista de arquivos cuja referência está marcada como "pode ser removida no futuro", mas ainda não foi de fato eliminada — uma camada extra de segurança contra exclusões acidentais. Enquanto o dado permanecer fisicamente gravado, softwares de recuperação de dados podem restaurá-lo, mesmo após a formatação: eles percorrem o disco bit a bit em busca de cabeçalhos característicos de cada tipo de arquivo (por exemplo, os bytes iniciais que identificam um `.docx`) — os cabeçalhos e rodapés que funcionam como a **assinatura** de cada tipo de arquivo — e, supondo que o conteúdo foi gravado de forma contígua, reconstroem o que estiver entre o início e o fim identificados. Essa técnica é chamada de *file carving*; um exemplo de ferramenta que a implementa é o Foremost.
@@ -101,10 +108,6 @@ A recuperação após uma formatação vale para a **formatação rápida**, que
 **Apagamento seguro.** Quando o objetivo é impedir a recuperação — por exemplo, antes de vender ou descartar um disco —, o caminho é destruir os padrões que as ferramentas de recuperação procuram, sobrescrevendo toda a unidade. Métodos antigos recomendavam várias passadas; para HDs modernos, uma passada completa é suficiente `[6]`. Em SSDs, sobrescrever pelo sistema operacional não garante o apagamento: o controlador distribui as gravações entre as células (*wear leveling*) e mantém uma área reserva invisível ao sistema. Nesse caso, recomenda-se o comando de apagamento do próprio dispositivo (Secure Erase/Sanitize), ou manter a unidade criptografada e descartar a chave. Criptografia e apagamento seguro não se excluem — podem ser combinados.
 
 **Aplicação prática.** Se um computador estiver infectado por um malware capturando dados do usuário, formatar o disco elimina o malware — mas também elimina, junto com ele, todos os demais dados do usuário, incluindo aqueles que se desejaria preservar. É, na expressão usada em aula, "matar uma mosca com uma bazuca": resolve o problema, mas com um custo desproporcional se não houver backup prévio (Capítulo 7, §7.2.1).
-
-
-!!! warning "Figura pendente"
-    esquema comparando a tabela de referências antes e depois da exclusão de um arquivo
 
 
 ---
@@ -159,10 +162,10 @@ Essa informação é gravada no início do próprio disco — e não na placa-m�
 
 <figure id="fig-disco-particoes-tabela" markdown="1">
 <img src="imagens/disco-particoes-tabela.png" alt="Diagrama de um único disco, representado como um retângulo dividido em três partições lógicas, A, B e C, cada uma associada a um sistema de arquivo próprio (SA I, SA II e SA III); uma faixa hachurada no início do disco representa a tabela de partições, e uma chave sobre o retângulo indica que todo o conjunto é uma única peça de hardware.">
-<figcaption markdown="span"><strong>Figura 6.2</strong> — Um disco dividido em três partições, cada uma com seu sistema de arquivo, e a tabela de partições no início.</figcaption>
+<figcaption markdown="span"><strong>Figura 6.3</strong> — Um disco dividido em três partições, cada uma com seu sistema de arquivo, e a tabela de partições no início.</figcaption>
 </figure>
 
-Na [Figura 6.2](#fig-disco-particoes-tabela), o disco é uma única unidade física, mas está dividido logicamente em três partições, cada uma com seu próprio sistema de arquivo. A região no início do disco é a tabela de partições, que registra onde começa e onde termina cada uma das três partições.
+Na [Figura 6.3](#fig-disco-particoes-tabela), o disco é uma única unidade física, mas está dividido logicamente em três partições, cada uma com seu próprio sistema de arquivo. A região no início do disco é a tabela de partições, que registra onde começa e onde termina cada uma das três partições.
 
 Existem duas soluções de tabela de partição amplamente utilizadas: **MBR** (mais antiga) e **GPT** (mais recente).
 
@@ -179,10 +182,10 @@ Esse formato surgiu em 1983, com o PC DOS 2.0, para o disco rígido de 10 MB do 
 
 <figure id="fig-mbr-layout" markdown="1">
 <img src="imagens/mbr-layout.png" alt="Diagrama vertical do layout de um disco MBR. No topo, o primeiro setor do disco (512 bytes): código de boot mestre (446 bytes), quatro entradas da tabela de partições (16 bytes cada), cada uma na cor da partição para onde aponta, e a assinatura 55AA (2 bytes); código de boot e assinatura em cinza. Abaixo, três partições primárias, cada uma formada por um setor de inicialização seguido de dados, apontadas pelas entradas 1 a 3. A entrada 4 aponta para a partição estendida, onde cada partição lógica é precedida por um registro EBR, com sua própria tabela e assinatura, que aponta para o EBR seguinte.">
-<figcaption markdown="span"><strong>Figura 6.3</strong> — Layout de um disco MBR: o primeiro setor, as partições primárias e a cadeia de partições lógicas. Redesenhado a partir de diagrama de knowitlikepro.com.</figcaption>
+<figcaption markdown="span"><strong>Figura 6.4</strong> — Layout de um disco MBR: o primeiro setor, as partições primárias e a cadeia de partições lógicas. Redesenhado a partir de diagrama de knowitlikepro.com.</figcaption>
 </figure>
 
-Na [Figura 6.3](#fig-mbr-layout), o primeiro setor do disco reúne três elementos: o código de boot mestre, as quatro entradas da tabela e uma assinatura de fim de setor (55AA). Cada entrada aponta para o início de uma partição, e cada partição começa com seu próprio setor de inicialização, seguido dos dados. Quando uma das entradas aponta para uma partição estendida, as partições lógicas dentro dela formam uma cadeia: cada uma é precedida por um EBR que descreve aquela partição e aponta para a próxima.
+Na [Figura 6.4](#fig-mbr-layout), o primeiro setor do disco reúne três elementos: o código de boot mestre, as quatro entradas da tabela e uma assinatura de fim de setor (55AA). Cada entrada aponta para o início de uma partição, e cada partição começa com seu próprio setor de inicialização, seguido dos dados. Quando uma das entradas aponta para uma partição estendida, as partições lógicas dentro dela formam uma cadeia: cada uma é precedida por um EBR que descreve aquela partição e aponta para a próxima.
 
 ### 6.5.2 GUID Partition Table (GPT)
 

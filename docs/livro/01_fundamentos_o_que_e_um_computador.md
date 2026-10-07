@@ -88,6 +88,13 @@ Um sistema computacional não é composto apenas por hardware e software; inclui
 
 Em contextos de suporte técnico, é comum que um problema relatado como falha de hardware ou software seja, na verdade, decorrente de erro de operação — por exemplo, um cabo de alimentação desconectado. A identificação correta da origem do problema (hardware, software ou operação humana) é o primeiro passo de qualquer diagnóstico técnico — retomado como filtro central de toda manutenção no Capítulo 12 (§12.2).
 
+<figure id="fig-sistema-computacional" markdown="1">
+<img src="imagens/sistema-computacional.png" alt="Três círculos que se sobrepõem: Hardware (laranja; processador, memória, cabos, mouse…), Software (verde; sistema operacional, aplicativos…) e Pessoas (roxo; quem opera, usa e mantém o sistema). Na região em que os três se cruzam está escrito “sistema computacional”. Ao lado, a pergunta inicial do diagnóstico: a origem do defeito está no hardware, no software ou na operação (pessoas)?">
+<figcaption markdown="span"><strong>Figura 1.3</strong> — O sistema computacional como a interseção de hardware, software e pessoas.</figcaption>
+</figure>
+
+A [Figura 1.3](#fig-sistema-computacional) resume essa tríade: o sistema computacional só existe onde hardware, software e pessoas se encontram, e por isso um defeito pode ter origem em qualquer um dos três.
+
 ### 1.6.1 Manutenção corretiva e preventiva
 
 - **Manutenção corretiva**: intervenção realizada após a ocorrência de uma falha (por exemplo, substituir a pilha de um controle remoto somente depois que ele para de responder).
@@ -104,10 +111,6 @@ O computador é um dispositivo **modular**, constituído por submódulos substit
 3. Observar se o sistema volta a operar corretamente.
 
 Esse princípio de modularidade é o fundamento metodológico da disciplina de Manutenção de Computadores (2026.1).
-
-
-!!! warning "Figura pendente"
-    esquema "sistema computacional = hardware + software + pessoas"
 
 
 ## 1.7 Da computação corporativa ao computador pessoal
@@ -144,11 +147,11 @@ A IBM adotou um modelo de **hardware aberto**, publicando as especificações co
 
 Um terceiro realizou a engenharia reversa do BIOS da IBM e distribuiu uma versão funcionalmente equivalente e livre de restrições de licenciamento, o que reduziu significativamente o custo de produção de computadores compatíveis com o padrão IBM PC. A combinação entre hardware aberto e BIOS livre resultou na entrada de novos fabricantes no mercado — entre eles Compaq, Dell e HP —, consolidando o padrão IBM PC como referência da indústria.
 
-Esse processo ilustra um efeito de mercado relevante para a área de tecnologia: plataformas com maior base de usuários tendem a atrair mais desenvolvimento de software, o que por sua vez amplia ainda mais sua base de usuários — um mecanismo análogo ao que hoje explica a predominância do desenvolvimento de aplicativos para a plataforma Android em relação a plataformas minoritárias. A [Figura 1.3](#fig-ibm-pc-5150) mostra o modelo original, de 1981.
+Esse processo ilustra um efeito de mercado relevante para a área de tecnologia: plataformas com maior base de usuários tendem a atrair mais desenvolvimento de software, o que por sua vez amplia ainda mais sua base de usuários — um mecanismo análogo ao que hoje explica a predominância do desenvolvimento de aplicativos para a plataforma Android em relação a plataformas minoritárias. A [Figura 1.4](#fig-ibm-pc-5150) mostra o modelo original, de 1981.
 
 <figure id="fig-ibm-pc-5150" markdown="1">
 <img src="imagens/ibm-pc-5150.jpg" alt="Fotografia do IBM PC 5150 (1981), modelo original: gabinete horizontal bege com duas unidades de disquete de 5,25 polegadas, teclado destacado na frente e monitor monocromático verde-sobre-preto apoiado sobre o gabinete, exibindo uma tela de texto de diagnóstico do sistema.">
-<figcaption markdown="span"><strong>Figura 1.3</strong> — IBM PC 5150 (1981), o modelo original. Foto: Reseletti, Wikimedia Commons, CC BY-SA 3.0 `[7]`.</figcaption>
+<figcaption markdown="span"><strong>Figura 1.4</strong> — IBM PC 5150 (1981), o modelo original. Foto: Reseletti, Wikimedia Commons, CC BY-SA 3.0 `[7]`.</figcaption>
 </figure>
 
 ## 1.9 Componentes mínimos de um computador desktop
@@ -196,10 +199,10 @@ Essas unidades formam uma progressão: 8 bits formam um **byte**; 1024 bytes ($2
 
 <figure id="fig-piramide-memoria" markdown="1">
 <img src="imagens/piramide-memoria.png" alt="Pirâmide dividida em quatro faixas horizontais. Do topo para a base: registradores (vermelho), cache L1, L2 e L3 (degradê de laranja para amarelo), memória RAM (azul-claro) e armazenamento secundário (azul). À direita, a capacidade típica de cada nível: kilobytes, megabytes, gigabytes e terabytes. À esquerda, uma barra com o mesmo degradê de cores vai de “mais rápida, mais cara”, no topo, a “mais lenta, mais barata, maior capacidade”, na base.">
-<figcaption markdown="span"><strong>Figura 1.4</strong> — Pirâmide da hierarquia de memória: velocidade, custo e capacidade típica de cada nível.</figcaption>
+<figcaption markdown="span"><strong>Figura 1.5</strong> — Pirâmide da hierarquia de memória: velocidade, custo e capacidade típica de cada nível.</figcaption>
 </figure>
 
-Na [Figura 1.4](#fig-piramide-memoria), a largura de cada faixa representa a capacidade típica daquele nível, e a cor representa a velocidade: do vermelho (registradores, os mais rápidos) ao azul (armazenamento secundário, o mais lento). A mesma escala de cores é usada na [Figura 5.3](05_memoria.md#fig-cache-hierarquia), no Capítulo 5, para os níveis de cache dentro do processador.
+Na [Figura 1.5](#fig-piramide-memoria), a largura de cada faixa representa a capacidade típica daquele nível, e a cor representa a velocidade: do vermelho (registradores, os mais rápidos) ao azul (armazenamento secundário, o mais lento). A mesma escala de cores é usada na [Figura 5.3](05_memoria.md#fig-cache-hierarquia), no Capítulo 5, para os níveis de cache dentro do processador.
 
 ### 1.10.4 Aplicações práticas
 

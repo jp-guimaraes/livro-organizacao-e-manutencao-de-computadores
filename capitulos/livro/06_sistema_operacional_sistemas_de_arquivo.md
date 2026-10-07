@@ -84,6 +84,10 @@ Cada dado gravado em disco é acompanhado de **metadados** — dados sobre o pr�
 
 **Exemplo.** Suponha uma sequência de células de memória em que o valor 1001 foi gravado, seguido do valor 101. Sem uma marcação adicional, não é possível saber onde termina um número e começa o outro. A solução é registrar, para cada dado, uma referência com a posição inicial e o comprimento (por exemplo: "o dado A começa aqui e tem comprimento 4"). Apagar um arquivo consiste, nesse esquema, simplesmente em remover essa referência — não em reescrever os bits do dado propriamente dito.
 
+![Excluir um arquivo apaga a sua referência na tabela, não os seus bits no disco.](imagens/tabela-referencias-exclusao.png){#fig:tabela-referencias-exclusao alt="À esquerda, antes: uma tabela de referências com o arquivo A (início 0, comprimento 4) e o arquivo B (início 4, comprimento 3), e uma fileira de 12 células do disco com os bits 1001 de A (azul), 101 de B (verde) e zeros. À direita, depois de excluir B: a linha de B na tabela está riscada, e as células 4 a 6 aparecem tracejadas, ainda com os bits 101, sob a legenda: espaço marcado como livre — os bits de B continuam lá, recuperáveis até serem sobrescritos."}
+
+Na @fig:tabela-referencias-exclusao, depois da exclusão de B a tabela deixa de apontar para as células 4 a 6, que passam a contar como espaço livre — mas os bits 101 continuam gravados ali até que outro arquivo ocupe esse espaço.
+
 Essa é a razão pela qual formatar ou apagar um arquivo não desgasta uma memória flash (como um pendrive ou SSD) na mesma proporção que reescrever cada bit: a operação normalmente descarta apenas a tabela de referências, preservando o conteúdo bruto até que aquele espaço seja reutilizado.
 
 A **lixeira** do sistema operacional é uma lista de arquivos cuja referência está marcada como "pode ser removida no futuro", mas ainda não foi de fato eliminada — uma camada extra de segurança contra exclusões acidentais. Enquanto o dado permanecer fisicamente gravado, softwares de recuperação de dados podem restaurá-lo, mesmo após a formatação: eles percorrem o disco bit a bit em busca de cabeçalhos característicos de cada tipo de arquivo (por exemplo, os bytes iniciais que identificam um `.docx`) — os cabeçalhos e rodapés que funcionam como a **assinatura** de cada tipo de arquivo — e, supondo que o conteúdo foi gravado de forma contígua, reconstroem o que estiver entre o início e o fim identificados. Essa técnica é chamada de *file carving*; um exemplo de ferramenta que a implementa é o Foremost.
@@ -96,7 +100,6 @@ A recuperação após uma formatação vale para a **formatação rápida**, que
 
 **Aplicação prática.** Se um computador estiver infectado por um malware capturando dados do usuário, formatar o disco elimina o malware — mas também elimina, junto com ele, todos os demais dados do usuário, incluindo aqueles que se desejaria preservar. É, na expressão usada em aula, "matar uma mosca com uma bazuca": resolve o problema, mas com um custo desproporcional se não houver backup prévio (Capítulo 7, §7.2.1).
 
-[IMAGEM: esquema comparando a tabela de referências antes e depois da exclusão de um arquivo]
 
 ---
 

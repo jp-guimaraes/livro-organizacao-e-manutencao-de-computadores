@@ -170,7 +170,7 @@ Como **hardware**, a *cache da CPU* é a memória física, construída em tecnol
 <figcaption markdown="span"><strong>Figura 5.3</strong> — Hierarquia de cache num processador de quatro núcleos e o caminho de um *cache miss* até a RAM.</figcaption>
 </figure>
 
-Na [Figura 5.3](#fig-cache-hierarquia), quanto mais perto do núcleo, menor e mais rápida a memória. Cada núcleo tem suas próprias L1 e L2; a L3 é uma só para todos. Um pedido de dado só desce para o nível seguinte quando não é encontrado no atual (*cache miss*), e só chega à RAM se faltar em todos os níveis de cache. As cores seguem a mesma escala de velocidade da pirâmide de memória do Capítulo 1 ([Figura 1.4](01_fundamentos_o_que_e_um_computador.md#fig-piramide-memoria)).
+Na [Figura 5.3](#fig-cache-hierarquia), quanto mais perto do núcleo, menor e mais rápida a memória. Cada núcleo tem suas próprias L1 e L2; a L3 é uma só para todos. Um pedido de dado só desce para o nível seguinte quando não é encontrado no atual (*cache miss*), e só chega à RAM se faltar em todos os níveis de cache. As cores seguem a mesma escala de velocidade da pirâmide de memória do Capítulo 1 ([Figura 1.5](01_fundamentos_o_que_e_um_computador.md#fig-piramide-memoria)).
 
 ## 5.9 Memória virtual (*swap*)
 
@@ -300,10 +300,12 @@ A segurança real de um dado não vem de escolher a "melhor" mídia, mas de cria
 
 **Exemplo.** Um estudante de pós-graduação mantinha backups de sua dissertação de mestrado no laptop, num HD externo e num pendrive — mas todos os três dispositivos estavam guardados dentro da mesma mochila, que foi roubada. Apesar de ter três cópias redundantes em três mídias diferentes, a ausência de separação geográfica entre elas fez com que todas fossem perdidas simultaneamente, obrigando-o a refazer o trabalho do zero. O princípio de backup exige não apenas diversidade de mídia, mas também diversidade de localização.
 
+<figure id="fig-backup-redundancia" markdown="1">
+<img src="imagens/backup-redundancia.png" alt="Dois esquemas lado a lado. À esquerda, em vermelho, “três cópias, um só lugar”: laptop, HD externo e pendrive dentro de uma mochila, riscada com um X, e a legenda: um único roubo, incêndio ou enchente leva todas as cópias de uma vez. À direita, em verde, “mídias diferentes, lugares diferentes”: laptop e HD externo em casa, pendrive ou disco ótico em outro endereço e uma cópia num servidor remoto, na nuvem; legenda: cada tecnologia falha por um motivo diferente, e nenhum desastre local alcança todas as cópias ao mesmo tempo.">
+<figcaption markdown="span"><strong>Figura 5.6</strong> — Backup: três cópias num só lugar (a mochila) contra mídias diferentes em lugares diferentes.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    esquema de backup redundante em três mídias e duas localizações físicas diferentes
-
+A [Figura 5.6](#fig-backup-redundancia) contrapõe o caso da mochila a um arranjo seguro: as cópias continuam sendo três, mas agora em tecnologias diferentes e em lugares diferentes.
 
 **Redundância e longevidade no extremo: o Arctic Code Vault.** Em fevereiro de 2020, o GitHub capturou um *snapshot* de todos os repositórios públicos ativos da plataforma (cerca de 21 TB) e o depositou no Arctic World Archive, um cofre numa mina de carvão desativada em Svalbard (Noruega), perto do banco global de sementes. Os dados foram gravados em filme de haleto de prata sobre poliéster, em imagens semelhantes a QR codes — nem flash nem magnética, por nenhuma delas garantir preservação por séculos —, e a fabricante do filme (Piql) declara durabilidade superior a mil anos `[16]`. É um "backup do backup do backup": não busca disponibilidade (ler o acervo exige escanear e decodificar o filme), e sim resistência a perdas de longo prazo. Mesmo esse projeto tem prazo, o que ilustra que nenhuma mídia dura para sempre.
 

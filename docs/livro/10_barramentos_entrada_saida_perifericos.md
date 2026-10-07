@@ -29,20 +29,32 @@ Na [Figura 10.1](#fig-paralelo-serial), o mesmo byte vai de A para B das duas fo
 
 O **chipset** — já mencionado no Capítulo 11 (§11.5) como o "conjunto de chips" que interliga os controladores da placa-mãe — foi, por muitos anos, fisicamente dividido em dois chips distintos, cada um responsável por uma metade da hierarquia de barramentos do computador.
 
-- **Ponte norte** (*northbridge*, também chamada *IO hub*): conectada diretamente ao processador por um barramento de altíssima velocidade (chamado **QPI** — *QuickPath Interconnect* — pela Intel, e **HyperTransport** pela AMD, historicamente) `[1]`, a ponte norte intermediava o acesso à memória RAM e à placa de vídeo — os dois componentes que mais exigem largura de banda e menor latência possível em relação ao processador.
+- **Ponte norte** (*northbridge*; nas placas Intel, **MCH** — *Memory Controller Hub*): ligada ao processador pelo **FSB** (*Front Side Bus*), o barramento principal do processador, a ponte norte continha o controlador de memória e intermediava o acesso à memória RAM e à placa de vídeo — os dois componentes que mais exigem largura de banda e menor latência possível em relação ao processador `[9]`.
 - **Ponte sul** (*southbridge*), hoje frequentemente chamada **PCH** (*Platform Controller Hub*, nomenclatura Intel) ou **FCH** (*Fusion Controller Hub*, nomenclatura AMD): conectada à ponte norte (nunca diretamente ao processador), reunia os controladores de dispositivos que toleram maior latência — portas USB, SATA (Seção 10.1.5), áudio, rede, o chip de BIOS/UEFI (Capítulo 6, §6.6) e os demais slots PCI/PCIe de expansão.
+
+<figure id="fig-ponte-norte-sul-classica" markdown="1">
+<img src="imagens/ponte-norte-sul-classica.png" alt="Diagrama de blocos. O processador (vermelho), no alto, liga-se pelo FSB (Front Side Bus) à ponte norte, que contém o controlador de memória. À ponte norte ligam-se a RAM, à esquerda, a placa de vídeo, à direita (por AGP ou PCIe), e, embaixo, a ponte sul, que reúne USB, SATA, áudio, rede, BIOS e PCI. Uma nota diz que a ponte sul nunca fala direto com o processador: tudo passa pela ponte norte.">
+<figcaption markdown="span"><strong>Figura 10.2</strong> — Arquitetura clássica de duas pontes: o processador se liga à ponte norte pelo FSB.</figcaption>
+</figure>
+
+A [Figura 10.2](#fig-ponte-norte-sul-classica) mostra essa organização: tudo o que o processador troca com a RAM, com a placa de vídeo ou com qualquer outro dispositivo passa primeiro pela ponte norte.
 
 ### 10.1.3 A migração para dentro do processador
 
 A arquitetura de duas pontes começou a ser desmontada à medida que os processadores modernos passaram a incorporar, dentro do próprio encapsulamento da CPU, funções que antes pertenciam à ponte norte: o **controlador de memória** (Capítulo 5 trata a RAM em profundidade) e, em processadores mais recentes, um conjunto próprio de **pistas PCIe** (Seção 10.1.4, adiante) dedicadas à placa de vídeo e ao armazenamento NVMe (Seção 10.1.5).
 
+Com o controlador de memória dentro da CPU — na AMD, a partir dos processadores K8 (Athlon 64); na Intel, a partir da arquitetura Nehalem (Core i7) —, o FSB perdeu sua função e deu lugar a ligações ponto a ponto entre o processador e o restante do sistema: o **HyperTransport**, na AMD, e o **QPI** (*QuickPath Interconnect*), na Intel `[1]`, `[9]`.
+
 O resultado é que a "ponte norte" propriamente dita desapareceu como chip separado na maioria dos desktops modernos: o processador se conecta diretamente à RAM e à GPU, e o que resta da comunicação com o restante da placa-mãe passa por um único link de alta velocidade até a ponte sul — chamado **DMI** (*Direct Media Interface*) pela Intel e **UMI** (*Unified Media Interface*) pela AMD `[2]`. Esse link concentra hoje o tráfego de tudo que ainda depende da ponte sul: USB, SATA, PCIe de menor prioridade, áudio, rede — e é, ele mesmo, um ponto de atenção em especificação de hardware, porque todo esse tráfego compartilha a largura de banda de um único link, ainda que cada dispositivo individual pareça ter sua própria conexão dedicada.
 
+<figure id="fig-arquitetura-atual-processador" markdown="1">
+<img src="imagens/arquitetura-atual-processador.png" alt="Diagrama de blocos. O processador, ao centro, contém o controlador de memória e as pistas PCIe; liga-se diretamente à RAM, à esquerda, e à placa de vídeo e ao SSD NVMe, à direita. Embaixo, um único link, DMI (Intel) ou UMI (AMD), leva ao chipset (a antiga ponte sul), com USB, SATA, áudio, rede e PCIe extra. Uma nota diz que não há mais ponte norte: as funções dela estão dentro do processador.">
+<figcaption markdown="span"><strong>Figura 10.3</strong> — Arquitetura atual: controlador de memória e pistas PCIe dentro do processador, ligado ao chipset por DMI/UMI.</figcaption>
+</figure>
+
+Na [Figura 10.3](#fig-arquitetura-atual-processador), a RAM, a placa de vídeo e o SSD NVMe ligam-se diretamente ao processador, e todo o resto chega a ele pelo único link DMI/UMI que vem do chipset.
+
 **Nota prática.** Essa reorganização explica por que a especificação de um processador (Capítulo 4) hoje frequentemente informa "quantas pistas PCIe" ele oferece diretamente — um dado que, antes da migração do controlador para dentro da CPU, seria uma característica do chipset, não do processador.
-
-
-!!! warning "Figura pendente"
-    dois diagramas lado a lado — arquitetura clássica (CPU → ponte norte → ponte sul) e arquitetura atual (CPU com controlador de memória e PCIe integrados, ligada à ponte sul por DMI/UMI)
 
 
 ### 10.1.4 Slots de expansão: de ISA a PCI Express
@@ -164,3 +176,4 @@ Este capítulo situou a placa-mãe como via de comunicação: a hierarquia de ba
 6. SATA-IO. Especificação SATA. Disponível em: <https://www.sata-io.org>.
 7. STALLINGS, William. *Arquitetura e Organização de Computadores*. 10. ed. São Paulo: Pearson Education do Brasil, 2018 (Capítulo 7, E/S programada, por interrupção e DMA).
 8. USB IMPLEMENTERS FORUM. Especificação USB. Disponível em: <https://www.usb.org>; MONTEIRO, Mario A. *Introdução à Organização de Computadores*. 5. ed. Rio de Janeiro: LTC (seção D.3.4.1).
+9. WIKIPEDIA. "Front-side bus"; "Northbridge (computing)." Disponível em: <https://en.wikipedia.org/wiki/Front-side_bus>; <https://en.wikipedia.org/wiki/Northbridge_(computing)>.

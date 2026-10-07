@@ -97,7 +97,9 @@ O ciclo básico de funcionamento de uma CPU consiste em três etapas repetidas c
 
 É essa mesma lógica de aproveitamento de estágios ociosos do circuito de busca–decodificação–execução que permite ao hyper-threading (Seção 4.5) fazer um único núcleo físico atender a duas instruções em estágios diferentes do pipeline ao mesmo tempo, simulando dois processadores lógicos. O termo *pipeline* não é exclusivo da arquitetura de computadores — é usado de forma equivalente em engenharia de produção industrial para descrever qualquer processo organizado em estágios reaproveitáveis e encadeados.
 
-[IMAGEM: diagrama de linha do tempo mostrando quatro estágios de pipeline sobrepostos ao longo de sete unidades de tempo]
+![Pipeline na analogia da lavanderia: quatro cestos passam por lavar, secar, dobrar e guardar em 7 horas, em vez de 16.](imagens/pipeline-lavanderia.png){#fig:pipeline-lavanderia alt="Grade com as horas de 1 a 7 nas colunas e os cestos de 1 a 4 nas linhas. Cada cesto passa por quatro etapas coloridas — lavar (azul), secar (laranja), dobrar (verde) e guardar (roxo) —, e cada cesto começa uma hora depois do anterior, em escada. Uma linha tracejada vermelha na 4ª hora marca o momento em que as quatro estações trabalham ao mesmo tempo. Embaixo: com pipeline, 7 horas para os 4 cestos; sem pipeline, 4 × 4 = 16 horas."}
+
+Na @fig:pipeline-lavanderia, cada cesto continua levando 4 horas, mas, a partir da 4ª hora, as quatro estações trabalham ao mesmo tempo, cada uma num cesto diferente. É assim que o pipeline do processador sobrepõe busca, decodificação e execução de instruções diferentes: nenhuma instrução fica mais rápida, mas o conjunto termina muito antes.
 
 ## 4.7 Soquete, geração e compatibilidade de mercado
 

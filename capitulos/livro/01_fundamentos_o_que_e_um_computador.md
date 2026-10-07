@@ -76,6 +76,10 @@ Um sistema computacional não é composto apenas por hardware e software; inclui
 
 Em contextos de suporte técnico, é comum que um problema relatado como falha de hardware ou software seja, na verdade, decorrente de erro de operação — por exemplo, um cabo de alimentação desconectado. A identificação correta da origem do problema (hardware, software ou operação humana) é o primeiro passo de qualquer diagnóstico técnico — retomado como filtro central de toda manutenção no Capítulo 12 (§12.2).
 
+![O sistema computacional como a interseção de hardware, software e pessoas.](imagens/sistema-computacional.png){#fig:sistema-computacional alt="Três círculos que se sobrepõem: Hardware (laranja; processador, memória, cabos, mouse…), Software (verde; sistema operacional, aplicativos…) e Pessoas (roxo; quem opera, usa e mantém o sistema). Na região em que os três se cruzam está escrito “sistema computacional”. Ao lado, a pergunta inicial do diagnóstico: a origem do defeito está no hardware, no software ou na operação (pessoas)?"}
+
+A @fig:sistema-computacional resume essa tríade: o sistema computacional só existe onde hardware, software e pessoas se encontram, e por isso um defeito pode ter origem em qualquer um dos três.
+
 ### 1.6.1 Manutenção corretiva e preventiva
 
 - **Manutenção corretiva**: intervenção realizada após a ocorrência de uma falha (por exemplo, substituir a pilha de um controle remoto somente depois que ele para de responder).
@@ -93,7 +97,6 @@ O computador é um dispositivo **modular**, constituído por submódulos substit
 
 Esse princípio de modularidade é o fundamento metodológico da disciplina de Manutenção de Computadores (2026.1).
 
-[IMAGEM: esquema "sistema computacional = hardware + software + pessoas"]
 
 ## 1.7 Da computação corporativa ao computador pessoal
 
