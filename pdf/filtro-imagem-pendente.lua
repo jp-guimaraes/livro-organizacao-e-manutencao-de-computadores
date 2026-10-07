@@ -3,9 +3,26 @@
 -- LaTeX (scrbook) já numera \chapter/\section/\subsection automaticamente —
 -- sem isso o PDF mostra número duplicado ("1 Capítulo 1 —...", "1.1 1.1...").
 -- O site (mkdocs) não sofre disso, pois não numera cabeçalhos sozinho.
+local apendice_iniciado = false
+
 function Header(el)
   local text = pandoc.utils.stringify(el)
   local novo = text
+
+  -- "Apêndice A — Título": entra em modo apêndice (\appendix) uma única vez,
+  -- para o LaTeX numerar o capítulo como "A" (seções A.1, figuras A.1) —
+  -- a mesma numeração que o site (scripts/sync_chapters.py) usa.
+  if el.level == 1 then
+    local resto_ap = text:match("^Apêndice%s+%u%s*—%s*(.+)$")
+    if resto_ap then
+      el.content = { pandoc.Str(resto_ap) }
+      if not apendice_iniciado then
+        apendice_iniciado = true
+        return { pandoc.RawBlock("latex", "\\appendix"), el }
+      end
+      return el
+    end
+  end
 
   if el.level == 1 then
     -- Classes de caracteres Lua operam byte a byte: "í" e "—" são multibyte
