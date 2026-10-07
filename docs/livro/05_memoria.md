@@ -14,10 +14,9 @@ Para transformar uma célula isolada num chip de memória, basta replicá-la em 
 
 **Nota prática.** Sempre que um chip de hardware exibir uma estrutura visivelmente repetitiva de blocos idênticos — como os retângulos pretos de um pente de RAM —, é sinal de que aquele componente é memória: cada bloco é a réplica de uma mesma célula básica, repetida até atingir a capacidade total do chip.
 
+![Quatro painéis em grade 2 × 2. Na linha de cima, memória primária (volátil): SRAM (cache), com dois inversores ligados em laço, um com saída 1 e outro com saída 0 — o flip-flop mantém o bit enquanto houver energia; e DRAM (RAM), com o símbolo de um transistor ligado à linha e à coluna e a um capacitor carregado (sinais + numa placa, elétrons na outra) — a carga vaza e por isso precisa de refresh. Na linha de baixo, memória secundária (não volátil): HD, com uma fileira de regiões magnetizadas em roxo escuro (seta para a direita, bit 1) e roxo claro (seta para a esquerda, bit 0) sob uma cabeça de leitura; e flash (SSD, pendrive), com o corte de um transistor de porta flutuante com elétrons presos entre camadas isolantes.](imagens/quatro-celulas.png)
 
-!!! warning "Figura pendente"
-    esquema comparativo das quatro células de memória estudadas no capítulo — flip-flop, capacitor, domínio magnético, floating gate
-
+Cada painel mostra o mecanismo físico que guarda um bit: no flip-flop, o próprio circuito mantém o valor enquanto está energizado; na DRAM, a carga de um capacitor, que vaza com o tempo; no HD, o sentido da magnetização de uma pequena região do prato; na flash, elétrons presos numa porta isolada. As duas primeiras perdem o dado sem energia (memória volátil); as duas últimas não.
 
 ## 5.2 Memória estática (SRAM)
 
@@ -105,10 +104,9 @@ O objetivo é puramente preventivo: como módulos de gerações diferentes têm 
 
 Existe ainda uma diferença de tamanho físico entre memórias de notebook e de desktop — as memórias de notebook são fisicamente menores, para otimizar espaço —, o que significa que um desktop pode, em certos casos, usar memória de notebook, mas o inverso nunca é possível.
 
+![Esquema de dois módulos de memória de desktop, um sobre o outro, com placa verde, chips pretos e contatos dourados na borda inferior. Em cima, DDR3: 240 pinos, espaçamento de 1,0 mm, chanfro à esquerda do centro. Embaixo, DDR4: 288 pinos, espaçamento de 0,85 mm, chanfro mais perto do centro. Linhas tracejadas vermelhas marcam a posição de cada chanfro, e uma seta na base indica que os dois módulos têm o mesmo comprimento: 133,35 mm. Posições do chanfro aproximadas, redesenhadas a partir de figura usada nos slides da disciplina.](imagens/ddr3-ddr4-chanfro.png)
 
-!!! warning "Figura pendente"
-    fotografia de dois módulos DDR de gerações diferentes lado a lado, com o chanfro em posições distintas destacado
-
+Os dois módulos têm o mesmo comprimento, mas o chanfro da DDR4 fica em outra posição ao longo da fileira de contatos. Como o slot de cada geração tem a saliência no lugar do seu chanfro, um módulo DDR3 não entra num slot DDR4, e vice-versa.
 
 ## 5.7 Dual Channel e Flex Mode
 
@@ -161,10 +159,9 @@ Como **hardware**, a *cache da CPU* é a memória física, construída em tecnol
 | Cache (L1/L2/L3) | CPU | Antecipa dados prováveis com base no princípio da localidade | Reduzir tempo de espera por dados já previstos |
 | Dual Channel | Memória RAM | Divide e recompõe (*striping*) um dado entre módulos simultâneos | Aumentar a taxa de leitura/escrita da RAM |
 
+![Diagrama de um processador com quatro núcleos. Cada núcleo (vermelho) tem logo abaixo a sua cache L1, de instrução e dado (laranja), e a sua cache L2 (laranja-claro); as quatro L2 apontam para uma única cache L3 compartilhada (amarela). Fora do processador, abaixo, fica a memória RAM (azul-claro), ligada à L3 por uma seta rotulada "cache miss na L3". À esquerda, o caminho de uma requisição: pede o dado, procura na L1, miss: procura na L2, miss: procura na L3, miss: busca na RAM. No topo, uma barra em degradê do vermelho ao azul indica a escala de "mais rápida, menor" a "mais lenta, maior".](imagens/cache-hierarquia.png)
 
-!!! warning "Figura pendente"
-    diagrama da hierarquia L1/L2/L3 dentro de um processador multi-núcleo, com fluxo de cache miss subindo até a RAM
-
+Quanto mais perto do núcleo, menor e mais rápida a memória. Cada núcleo tem suas próprias L1 e L2; a L3 é uma só para todos. Um pedido de dado só desce para o nível seguinte quando não é encontrado no atual (*cache miss*), e só chega à RAM se faltar em todos os níveis de cache. As cores seguem a mesma escala de velocidade da pirâmide de memória do Capítulo 1.
 
 ## 5.9 Memória virtual (*swap*)
 
@@ -207,10 +204,9 @@ Por depender de peças móveis — motor, prato girando, braço atuador —, o H
 !!! warning "Figura pendente"
     HD aberto com prato, braço atuador e cabeça de leitura/escrita identificados
 
+![À esquerda, vista de cima de um prato de HD (azul-claro) com vários círculos concêntricos. Uma trilha está destacada em laranja; um setor, um pequeno trecho dessa trilha, está em vermelho; um cluster, um grupo de setores consecutivos, está em verde. Um braço atuador roxo, com eixo fora do prato, leva a cabeça de leitura e escrita até a trilha. À direita, uma vista lateral menor: o prato atravessado pelo eixo do motor, com uma face superior e uma face inferior, e um braço com duas cabeças, uma acima e outra abaixo do prato. Redesenhado a partir de diagrama de medium.com/@andrewjmarkham1.](imagens/disco-trilha-setor.png)
 
-!!! warning "Figura pendente"
-    esquema de endereçamento face/trilha/setor de um disco magnético
-
+O endereço de um dado no HD combina essas partes: em qual face do prato ele está, em qual trilha (o círculo concêntrico) e em qual setor (o trecho da trilha). Como as duas faces de cada prato são gravadas, o braço atuador leva uma cabeça para cada face, e todas se movem juntas.
 
 ## 5.11 Unidade de alocação: clusters e metadados
 
@@ -247,10 +243,9 @@ Do ponto de vista de organização interna, múltiplas células de memória flas
 
 A memória flash é historicamente descendente da família de memórias **ROM** (*Read Only Memory*): a ROM original era gravada uma única vez na fábrica; a **PROM** (*Programmable ROM*) podia ser gravada uma vez fora da fábrica; a **EPROM** (*Erasable PROM*) podia ser apagada por exposição à luz ultravioleta e regravada; e a **EEPROM** (*Electrically Erasable PROM*) podia ser apagada eletricamente, sem necessidade de luz ultravioleta — sendo essa a ancestral direta da memória flash moderna `[7]`. É também por descender dessa linhagem que a memória flash substituiu a ROM em aplicações como o firmware da placa-mãe (BIOS/UEFI, estudado no Capítulo 6), que hoje pode ser atualizado justamente porque está gravado numa memória flash regravável.
 
+![Dois cortes lado a lado do mesmo transistor de porta flutuante. Em ambos: substrato de silício tipo P (rosa) com duas regiões N+ (azul), a fonte e o dreno; sobre o canal, de baixo para cima, o óxido de túnel (fino, creme, com pontos escuros que indicam desgaste), a porta flutuante (roxa), um óxido isolante e a porta de controle (verde-azulada). No corte da esquerda, a célula programada: a porta flutuante tem elétrons presos (círculos amarelos), setas mostram os elétrons entrando pelo óxido de túnel na gravação, e lê-se 0. No da direita, a célula apagada: a porta flutuante está sem elétrons, setas mostram os elétrons saindo no apagamento, e lê-se 1. Uma legenda associa cada cor a uma camada. Redesenhado a partir de diagrama usado nos slides da disciplina.](imagens/mosfet-porta-flutuante.png)
 
-!!! warning "Figura pendente"
-    corte esquemático de um MOSFET de porta flutuante, com as camadas de óxido isolante destacadas
-
+A gravação e o apagamento fazem elétrons atravessarem o óxido de túnel, a camada fina entre o substrato e a porta flutuante. Com elétrons presos, a célula está programada e é lida como 0; sem eles, está apagada e é lida como 1 — a convenção usada pelos fabricantes de memória flash NAND. Cada travessia danifica um pouco esse óxido (os pontos na figura), e é esse desgaste que limita o número de escritas de uma memória flash.
 
 !!! warning "Figura pendente"
     HD aberto ao lado de um SSD aberto, evidenciando ausência de partes móveis no SSD

@@ -68,7 +68,7 @@ Todo computador, para operar, requer três elementos: **entrada** de dados, **pr
 
 Uma distinção relevante deve ser observada: ao realizar esse cálculo numa calculadora convencional, é o usuário humano quem executa o algoritmo, decidindo a sequência de operações. Num computador de uso geral, o próprio algoritmo é tratado como um dado de entrada e é a máquina que o executa de forma autônoma — reforçando a definição apresentada na Seção 1.1.
 
-[IMAGEM: diagrama entrada → processamento → saída, com o exemplo da média]
+![Diagrama com três caixas ligadas por setas, da esquerda para a direita: Entrada (azul), com N1 = 7 e N2 = 9; Processamento (laranja), com a soma 7 + 9 = 16 seguida da divisão por 2; e Saída (verde), com média = 8.](imagens/entrada-processamento-saida.png)
 
 ## 1.6 O sistema computacional: hardware, software e pessoas
 
@@ -170,6 +170,10 @@ Da camada mais rápida (e mais cara) para a mais lenta (e mais barata):
 
 Essas unidades formam uma progressão: 8 bits formam um **byte**; 1024 bytes ($2^{10}$) formam um **kilobyte**; e cada unidade seguinte (megabyte, gigabyte, terabyte...) é 1024× a anterior — não 1000× como nas demais unidades do dia a dia (quilograma, quilômetro), porque a contagem nasce de potências de base 2, não de base 10. É essa progressão que explica por que a pirâmide se estreita: quanto mais alto o nível de memória, menor a capacidade típica disponível hoje — terabytes no armazenamento secundário, gigabytes na RAM, megabytes no cache, bytes no registrador.
 
+![Pirâmide dividida em quatro faixas horizontais. Do topo para a base: registradores (vermelho), cache L1, L2 e L3 (degradê de laranja para amarelo), memória RAM (azul-claro) e armazenamento secundário (azul). À direita, a capacidade típica de cada nível: kilobytes, megabytes, gigabytes e terabytes. À esquerda, uma barra com o mesmo degradê de cores vai de "mais rápida, mais cara", no topo, a "mais lenta, mais barata, maior capacidade", na base.](imagens/piramide-memoria.png)
+
+Na figura, a largura de cada faixa representa a capacidade típica daquele nível, e a cor representa a velocidade: do vermelho (registradores, os mais rápidos) ao azul (armazenamento secundário, o mais lento). A mesma escala de cores é usada no Capítulo 5 para os níveis de cache dentro do processador.
+
 ### 1.10.4 Aplicações práticas
 
 - O tempo de inicialização (*boot*) de um dispositivo corresponde à cópia de dados da memória secundária (lenta) para a memória RAM (rápida); por isso, destravar um dispositivo já ligado é mais rápido do que ligá-lo do zero.
@@ -184,7 +188,6 @@ Um computador moderno tipicamente integra mais de um tipo de processador — a S
 - **GPU** (*Graphical Processing Unit*) — processador dedicado a tarefas gráficas, com memória de alta velocidade própria (VRAM).
 - **NPU** (*Neural Processing Unit*) — processador dedicado a cargas de trabalho de inteligência artificial, cada vez mais comum em dispositivos móveis e notebooks.
 
-[IMAGEM: pirâmide da hierarquia de memória com registradores, cache, RAM e armazenamento secundário]
 [IMAGEM: anúncio comentado de um processador e de uma placa de vídeo, com cache/núcleos/memória destacados]
 
 ---

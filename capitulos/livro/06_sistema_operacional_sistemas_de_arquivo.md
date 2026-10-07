@@ -10,7 +10,7 @@ Um sistema operacional (SO, do inglês *Operating System*, OS) é um software cu
 
 Em termos de camadas, o hardware ocupa a base do sistema; sobre ele executa o sistema operacional, cujo núcleo é chamado de **kernel**; e acima do sistema operacional executam os demais programas — desde o próprio ambiente gráfico (o menu iniciar, os ícones, as janelas) até os aplicativos que o usuário abre, como um navegador ou um editor de texto.
 
-[IMAGEM: diagrama em camadas — hardware na base, kernel do sistema operacional no meio, aplicativos e usuário no topo]
+![Diagrama em camadas: na base, o hardware (laranja; processador, memória, disco, periféricos…); acima dele, o sistema operacional (azul), identificado pelo seu núcleo, o kernel; no topo, lado a lado, o usuário (roxo) e os programas aplicativos (verde; navegador, editor de texto, ambiente gráfico…). Uma chave ao lado do sistema operacional diz: interface entre o hardware e o usuário e os programas aplicativos. Redesenhado a partir de diagrama da Alura.](imagens/camadas-sistema-operacional.png)
 
 ### 6.1.1 Abstração e plataforma
 

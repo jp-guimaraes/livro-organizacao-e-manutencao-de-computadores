@@ -14,10 +14,7 @@ Essa organização em camadas — software sobre navegador, navegador sobre sist
 
 A estratégia de camadas não é exclusiva da relação hardware-software: a mesma lógica organiza, por exemplo, os protocolos de rede em camadas (física, enlace, transporte, aplicação). Este capítulo adota uma abordagem **top-down** (do software visível ao usuário até o hardware que o executa) para, nas seções seguintes, reconstruir a mesma pilha de forma **bottom-up** (do transistor até a linguagem de programação).
 
-
-!!! warning "Figura pendente"
-    pilha de camadas — software aplicativo → navegador → sistema operacional → hardware, com setas de dependência apontando para baixo
-
+![Pilha de quatro camadas ligadas por setas "roda sobre" que apontam para baixo: Software aplicativo (verde; ex.: bloqueador de anúncios, gerenciador de senhas…), Navegador (verde-água; ex.: Firefox, Chrome, Safari…), Sistema operacional (azul; Windows, macOS, Linux, Android, iOS…) e Hardware (laranja; processador — Snapdragon, Apple M1, Intel… — e memória, disco, câmera, placa de rede…).](imagens/pilha-plataformas.png)
 
 ## 2.2 Do transistor às portas lógicas
 
@@ -144,10 +141,9 @@ Essa arquitetura organiza o computador em quatro unidades funcionais:
 
 No computador desktop moderno, a via de dados que interliga processador, memória e dispositivos de entrada e saída — o **barramento** — é fisicamente provida pela placa-mãe.
 
+![Diagrama da arquitetura de von Neumann: uma faixa horizontal cinza, o barramento, ao centro. Acima dela, à esquerda, o processador (CPU), com a unidade de controle e a ULA, e, à direita, a memória, que guarda o programa (instruções) e os dados — ambos com setas de ida e volta até o barramento. Abaixo, à esquerda, a unidade de entrada (teclado, mouse, câmera), com seta para o barramento; à direita, a unidade de saída (monitor, alto-falante), com seta vinda do barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).](imagens/von-neumann.png)
 
-!!! warning "Figura pendente"
-    diagrama da arquitetura de von Neumann — CPU (unidade de controle + ULA), memória, entrada e saída interligados por um barramento central
-
+As quatro unidades não se ligam diretamente umas às outras: toda a comunicação passa pelo barramento. Processador e memória trocam dados nos dois sentidos; a entrada só envia dados para o barramento, e a saída só os recebe dele.
 
 ## 2.7 O gargalo de von Neumann
 

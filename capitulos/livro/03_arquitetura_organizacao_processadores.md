@@ -30,7 +30,7 @@ Essa consequência raramente é percebida por quem está começando a estudar co
 
 Essa característica é o que torna a arquitetura de von Neumann ao mesmo tempo poderosa e genérica: como instruções são armazenadas e tratadas como qualquer outro dado na memória, o mesmo hardware pode executar qualquer programa que respeite o seu conjunto de instruções (a arquitetura, na definição da Seção 3.1) — sem que o hardware precise ser fisicamente alterado a cada novo problema. Esse é o mesmo critério que, no Capítulo 1, distinguiu a máquina de Turing de propósito geral de uma calculadora de operação fixa.
 
-[IMAGEM: diagrama simplificado da arquitetura de von Neumann — processador, memória (instruções e dados), barramento, entrada/saída]
+![Diagrama da arquitetura de von Neumann: processador (unidade de controle e ULA) e memória — que guarda, no mesmo lugar, as instruções do programa e os dados — ligados a um barramento central, ao qual também se ligam a entrada e a saída. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).](imagens/von-neumann.png)
 
 ## 3.3 CISC: retrocompatibilidade e a família x86/x64
 
