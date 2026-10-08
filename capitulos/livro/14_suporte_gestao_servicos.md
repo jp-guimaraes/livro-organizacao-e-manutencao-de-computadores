@@ -14,7 +14,9 @@ Esse ponto único é a **central de serviços**, também chamada de *service des
 
 No âmbito do IFRN, a central de serviços é operada pelo sistema **SUAP** (Sistema Unificado de Administração Pública) `[1]`, tratado em detalhe na Seção 14.6.
 
-[IMAGEM: fluxograma — usuário identifica problema → local ou infraestrutura? → abertura de chamado na central de serviços → triagem]
+![Do problema à triagem: problemas de infraestrutura vão para a central de serviços, ponto único de contato.](imagens/chamado-fluxo.png){#fig:chamado-fluxo alt="Fluxograma: usuário identifica um problema; decisão “local ou de infraestrutura?”. Se local, verificar a própria máquina (cabos, configuração). Se de infraestrutura, abrir chamado na central de serviços (no IFRN, SUAP), que segue para a triagem — registra, categoriza e prioriza por impacto × urgência — e encaminha ao nível de suporte adequado. Nota: ponto único de contato; o usuário não procura um técnico específico."}
+
+A @fig:chamado-fluxo resume o caminho de uma demanda, que as seções seguintes detalham: a central de serviços recebe o chamado, a triagem o categoriza (Seção 14.2), define a prioridade (Seção 14.3) e o nível de suporte (Seção 14.4).
 
 ## 14.2 Categorização das demandas: evento, incidente e solicitação
 
@@ -68,7 +70,9 @@ A combinação desses dois fatores define a prioridade de atendimento, seguindo 
 
 Quando não existe um sistema formal de chamados — como ocorre em equipes pequenas de suporte —, a definição de prioridade cabe ao critério do supervisor responsável, que aplica a política da organização mesmo sem registrá-la formalmente em um sistema. Um técnico que ingressa em uma empresa recebe, na fase de treinamento, a orientação sobre qual política de priorização deve seguir.
 
-[IMAGEM: matriz impacto x urgência com quadrantes de prioridade destacados]
+![Matriz de prioridade: impacto × urgência, com os exemplos do texto.](imagens/matriz-impacto-urgencia.png){#fig:matriz-impacto-urgencia alt="Matriz 2 × 2 com impacto no eixo vertical e urgência no horizontal. Impacto baixo e urgência baixa: prioridade baixa (verde), ex.: trocar teclados antigos, sujos, mas funcionais. Impacto baixo e urgência alta: prioridade moderada (amarelo). Impacto alto e urgência baixa: prioridade alta (laranja), ex.: trocar cadeiras que causam problema de postura para toda uma equipe. Impacto alto e urgência alta: prioridade crítica (vermelho), ex.: internet caiu; servidor da secretaria parou no dia da matrícula."}
+
+Na @fig:matriz-impacto-urgencia, a prioridade cresce na diagonal, do canto verde ao vermelho: só quando impacto e urgência são altos ao mesmo tempo a demanda passa à frente de todo o trabalho em andamento.
 
 ## 14.4 Níveis de suporte e o custo do atendimento
 
@@ -87,7 +91,9 @@ A escalada de um nível para outro não é gratuita: cada nível tem um custo ma
 
 **Exemplo real de escalonamento.** A operadora de internet que enfrentou uma queda prolongada e generalizada em sua qualidade de serviço (o mesmo caso citado na Seção 14.1) precisou recorrer ao Nível 3 — especialistas e fabricantes de equipamento de infraestrutura `[2]` — porque o problema não se resolveu em um dia, nem em uma semana, evidenciando uma falha estrutural que os níveis anteriores de suporte não tinham capacidade de resolver sozinhos.
 
-[IMAGEM: diagrama de escalonamento nível 0 → nível 1 → nível 2 → nível 3, com custo crescente indicado]
+![Níveis de suporte 0 a 3: cada escalonamento aumenta o custo do atendimento.](imagens/niveis-suporte.png){#fig:niveis-suporte alt="Quatro barras em escada, crescendo da esquerda para a direita, com setas “escala” entre elas: nível 0 (verde), autoatendimento com tutoriais, guias e chatbots; nível 1 (amarelo), triagem e suporte básico por telefone, WhatsApp e acesso remoto; nível 2 (laranja), suporte técnico local, com visita física; nível 3 (vermelho), especialistas ou fabricante do equipamento. Um eixo vertical vermelho indica o custo do atendimento. Título: resolver no nível mais baixo em que a solução for viável."}
+
+A @fig:niveis-suporte traduz a tabela em custo: cada degrau da escada é mais caro que o anterior, por isso o objetivo é resolver no degrau mais baixo possível.
 
 ## 14.5 Acesso remoto: ferramentas e uso ético
 

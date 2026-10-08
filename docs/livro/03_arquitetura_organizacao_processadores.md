@@ -60,10 +60,12 @@ Cada geração dessa família mantém, como subconjunto, o conjunto de instruç�
 
 Ao conjunto de processadores que evoluem dessa forma — acumulando instruções ao longo do tempo, sem nunca descartar as anteriores — dá-se o nome de arquitetura **CISC** (*Complex Instruction Set Computer*, computador com conjunto de instruções complexo). O ponto forte dessa filosofia é justamente a retrocompatibilidade. Quanto ao consumo energético, um estudo de referência que mediu processadores ARM e x86 reais concluiu que as diferenças de consumo observadas na prática vêm principalmente de escolhas de microarquitetura e do ponto de projeto desempenho/eficiência (processadores ARM historicamente otimizados para baixo consumo; x86 para alto desempenho) — não do fato de o conjunto de instruções ser CISC ou RISC em si `[6]`. O que de fato é uma consequência direta do paradigma CISC é o acúmulo constante de complexidade no hardware ao longo de décadas de evolução — o que exige mais lógica de decodificação e microcódigo, ainda que o efeito disso sobre o consumo energético seja mais modesto do que costuma ser popularmente descrito.
 
+<figure id="fig-x86-conjuntos-concentricos" markdown="1">
+<img src="imagens/x86-conjuntos-concentricos.png" alt="Seis círculos concêntricos, do centro para fora: 8086, 80286, 80386, 80486, Pentium e Core, com cores do azul (centro) ao vermelho (borda). Uma seta aponta para o 8086, com a nota: cada geração acrescenta instruções e mantém todas as anteriores — um programa feito para o 8086 ainda roda num Core.">
+<figcaption markdown="span"><strong>Figura 3.1</strong> — Gerações x86 como conjuntos concêntricos: cada uma contém as instruções de todas as anteriores.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    diagrama de Venn com círculos concêntricos representando 8086 ⊂ 286 ⊂ 386 ⊂ 486 ⊂ Pentium ⊂ Core
-
+Na [Figura 3.1](#fig-x86-conjuntos-concentricos), cada círculo contém todos os de dentro: as instruções de uma geração são um subconjunto das instruções da geração seguinte.
 
 ## 3.4 Endereçamento e a barreira dos 32 bits
 
