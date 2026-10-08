@@ -38,10 +38,12 @@ Quando a falha ocorre antes que qualquer saída de vídeo seja possível — por
 
 A ausência de POST indica, necessariamente, uma falha em um dos quatro componentes vitais listados na Seção 9.1.1 — nunca em memória secundária, periféricos ou rede. O procedimento de diagnóstico sistemático (aprofundado no Capítulo 12) parte sempre do ponto mais externo do sistema — a tomada elétrica — e avança progressivamente em direção aos componentes internos.
 
+<figure id="fig-post-boot-fluxo" markdown="1">
+<img src="imagens/post-boot-fluxo.png" alt="Fluxo em quatro blocos, da esquerda para a direita: energização (fonte, PS_ON, Power OK), numa região marcada como só hardware; firmware faz o POST (fonte, CPU, RAM, placa-mãe), dentro de uma faixa hachurada chamada interface hardware/software, com a nota de que o firmware, gravado na placa-mãe, é o primeiro software a rodar e testa o hardware; código de boot do dispositivo (pela ordem do Setup) e sistema operacional (ou o instalador, se o boot for pelo pendrive), numa região de software. Do POST sai uma seta para baixo, falhou: bipes, sem vídeo ainda, com a nota de que sem POST o defeito está num dos quatro componentes vitais, nunca no disco, nos periféricos ou na rede.">
+<figcaption markdown="span"><strong>Figura 9.1</strong> — Da energização ao sistema operacional: o firmware, que executa o POST, é a interface entre hardware e software.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    fluxo energização → POST → carregamento do sistema operacional (ou instalador), com a fronteira hardware/software destacada
-
+A [Figura 9.1](#fig-post-boot-fluxo) situa o POST na sequência da inicialização: ele não é nem só hardware nem software do sistema, mas a interface entre os dois — por isso uma falha nele aponta para os componentes vitais, e não para o disco ou para o sistema operacional.
 
 ## 9.2 A bateria CMOS e a retenção de configurações
 

@@ -184,10 +184,12 @@ Em um sistema de refrigeração líquida, um fluido (água destilada ou um líqu
 
 **Observação de segurança.** O líquido refrigerante não entra em contato direto com o processador: ele circula por uma base metálica que, por sua vez, está em contato com a CPU. Essa separação é intencional, já que muitos líquidos conduzem eletricidade, o que tornaria o contato direto com os circuitos do processador um risco de curto-circuito.
 
+<figure id="fig-refrigeracao-ar-agua" markdown="1">
+<img src="imagens/refrigeracao-ar-agua.png" alt="À esquerda, refrigeração a ar: sobre o processador, a base de um dissipador com muitas aletas e, em cima, uma ventoinha que puxa ar frio; o ar quente sai pelas laterais. À direita, refrigeração líquida: sobre o processador, um bloco de base metálica; o líquido quente sai do bloco por um tubo vermelho até um radiador com ventoinha, de onde o calor sai pelo ar; o líquido frio volta por um tubo azul até a bomba e daí ao bloco. Rodapé: a água conduz calor cerca de 22 vezes melhor que o ar.">
+<figcaption markdown="span"><strong>Figura 8.1</strong> — Refrigeração a ar (dissipador e ventoinha) e líquida (bloco, bomba e radiador em circuito fechado).</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    esquema de um sistema de refrigeração a ar (dissipador + ventoinha) lado a lado com um sistema de water cooling (bloco, tubos, radiador, bomba)
-
+Na [Figura 8.1](#fig-refrigeracao-ar-agua), os dois sistemas acabam entregando o calor ao ar; a diferença é o caminho. No sistema a ar, o calor sobe direto pelas aletas; no líquido, ele é levado pelo fluido até um radiador, onde há muito mais área em contato com o ar.
 
 ## 8.6 Pasta térmica: função física e procedimento de troca
 

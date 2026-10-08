@@ -50,6 +50,10 @@ A partir da SDRAM, o mercado consolidou a tecnologia **DDR** (*Double Data Rate*
 | DDR4 | ~3,2 Gb/s | 1,2 V | Tecnologia dominante no mercado atual |
 | DDR5 | ~4,8–6,4 Gb/s | 1,1 V | Maior capacidade por módulo; ainda mais cara por menor adoção |
 
+![Gerações DDR: a taxa de transferência sobe e a tensão de operação cai a cada geração.](imagens/ddr-linha-do-tempo.png){#fig:ddr-linha-do-tempo alt="Linha do tempo com as cinco gerações: DDR (2000; 200–400 MT/s; 2,5 V), DDR2 (2003; 400–1066 MT/s; 1,8 V), DDR3 (2007; 800–2133 MT/s; 1,5 V), DDR4 (2014; 1600–3200 MT/s; 1,2 V) e DDR5 (2020; 4800–6400 MT/s; 1,1 V). Abaixo, uma barra por geração com altura proporcional à tensão, diminuindo de 2,5 V para 1,1 V. As cores vão do azul (DDR, mais lenta) ao vermelho (DDR5, mais rápida)."}
+
+A @fig:ddr-linha-do-tempo estende a tabela às cinco gerações, com as faixas de taxa de transferência previstas no padrão de cada uma (em milhões de transferências por segundo, MT/s) e a tensão nominal: a taxa sobe e a tensão cai a cada geração.
+
 *Valores de taxa de transferência e tensão conforme especificação JEDEC `[2]`.*
 
 **CAS Latency (CL).** Além da frequência de trabalho, memórias RAM anunciam também um conjunto de números chamado *timings*, o mais citado sendo o **CL** (*CAS Latency*, de *Column Address Strobe Latency*): o número de ciclos de clock que a memória leva entre receber o endereço de uma coluna de dados e efetivamente disponibilizar esse dado. Como o CL é medido em ciclos — não em tempo absoluto —, comparar o CL de memórias com frequências de trabalho diferentes não é direto: o mesmo CL pode representar tempos reais bem distintos dependendo da frequência. Na prática, diferenças de CL costumam ser imperceptíveis em uso cotidiano, ficam um pouco mais visíveis em jogos, e só se tornam significativas (até ~15% de ganho) em aplicações profissionais que manipulam grandes volumes de dados `[12]`.
@@ -64,7 +68,6 @@ A tensão de operação cai a cada geração porque, segundo a relação P = U·
 
 Cada geração tecnológica também define um **limite de capacidade por módulo**: no segmento de desktop/consumidor, um slot de memória DDR4 comporta tipicamente um módulo de até 32 GB (módulos de capacidade maior existem, mas apenas na forma de módulos registrados — RDIMM/LRDIMM — voltados a servidores, com engenharia e custo diferentes) `[3]`. Numa placa-mãe de desktop com quatro slots, a capacidade total possível de memória primária é, portanto, de até 128 GB — mas apenas dentro da mesma geração tecnológica: não é possível combinar um módulo DDR4 com um DDR5 na mesma máquina, tanto por incompatibilidade elétrica quanto física (Seção 5.6).
 
-[IMAGEM: linha do tempo DDR, DDR2, DDR3, DDR4, DDR5 com taxa de transferência e tensão]
 
 ## 5.4.1 VRAM: a mesma tecnologia aplicada à GPU
 

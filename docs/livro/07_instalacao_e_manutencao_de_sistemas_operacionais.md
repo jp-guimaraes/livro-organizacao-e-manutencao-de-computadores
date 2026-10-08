@@ -226,10 +226,12 @@ Ainda assim, a reinstalação continua sendo uma ferramenta legítima de manuten
 1. **Perda de dados**: a reinstalação apaga o disco. É dever do técnico alertar o usuário e obter confirmação de que uma cópia de segurança (backup) dos dados relevantes foi realizada antes de iniciar o procedimento.
 2. **A reinstalação só resolve problemas de software**: se o sintoma reaparecer após uma reinstalação bem-sucedida, a hipótese de defeito de hardware sobe de prioridade.
 
+<figure id="fig-diagnostico-fluxograma" markdown="1">
+<img src="imagens/diagnostico-fluxograma.png" alt="Fluxograma: sintoma relatado; hipótese — origem no hardware, no software ou no usuário; testar primeiro a hipótese mais barata (tempo e custo de teste); decisão “causa identificada?”. Se sim, correção pontual. Se não, decisão “diagnóstico pontual demoraria mais que reinstalar?”: se não, volta para a próxima hipótese; se sim, reinstalação do SO, com backup antes. Depois da reinstalação, decisão “sintoma voltou?”: se sim, a hipótese de hardware sobe de prioridade; se não, resolvido.">
+<figcaption markdown="span"><strong>Figura 7.1</strong> — Fluxograma de decisão: da hipótese mais barata à reinstalação, e de volta ao hardware se o sintoma persistir.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    fluxograma de decisão — sintoma relatado → hipótese hardware/software/usuário → teste da hipótese mais barata → correção pontual ou reinstalação
-
+A [Figura 7.1](#fig-diagnostico-fluxograma) organiza essas regras: a reinstalação entra quando o diagnóstico pontual não compensa, sempre precedida de backup — e, se o sintoma voltar, a suspeita passa ao hardware.
 
 ---
 

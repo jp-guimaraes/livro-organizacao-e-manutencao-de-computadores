@@ -53,6 +53,13 @@ A partir da SDRAM, o mercado consolidou a tecnologia **DDR** (*Double Data Rate*
 | DDR4 | ~3,2 Gb/s | 1,2 V | Tecnologia dominante no mercado atual |
 | DDR5 | ~4,8–6,4 Gb/s | 1,1 V | Maior capacidade por módulo; ainda mais cara por menor adoção |
 
+<figure id="fig-ddr-linha-do-tempo" markdown="1">
+<img src="imagens/ddr-linha-do-tempo.png" alt="Linha do tempo com as cinco gerações: DDR (2000; 200–400 MT/s; 2,5 V), DDR2 (2003; 400–1066 MT/s; 1,8 V), DDR3 (2007; 800–2133 MT/s; 1,5 V), DDR4 (2014; 1600–3200 MT/s; 1,2 V) e DDR5 (2020; 4800–6400 MT/s; 1,1 V). Abaixo, uma barra por geração com altura proporcional à tensão, diminuindo de 2,5 V para 1,1 V. As cores vão do azul (DDR, mais lenta) ao vermelho (DDR5, mais rápida).">
+<figcaption markdown="span"><strong>Figura 5.2</strong> — Gerações DDR: a taxa de transferência sobe e a tensão de operação cai a cada geração.</figcaption>
+</figure>
+
+A [Figura 5.2](#fig-ddr-linha-do-tempo) estende a tabela às cinco gerações, com as faixas de taxa de transferência previstas no padrão de cada uma (em milhões de transferências por segundo, MT/s) e a tensão nominal: a taxa sobe e a tensão cai a cada geração.
+
 *Valores de taxa de transferência e tensão conforme especificação JEDEC `[2]`.*
 
 **CAS Latency (CL).** Além da frequência de trabalho, memórias RAM anunciam também um conjunto de números chamado *timings*, o mais citado sendo o **CL** (*CAS Latency*, de *Column Address Strobe Latency*): o número de ciclos de clock que a memória leva entre receber o endereço de uma coluna de dados e efetivamente disponibilizar esse dado. Como o CL é medido em ciclos — não em tempo absoluto —, comparar o CL de memórias com frequências de trabalho diferentes não é direto: o mesmo CL pode representar tempos reais bem distintos dependendo da frequência. Na prática, diferenças de CL costumam ser imperceptíveis em uso cotidiano, ficam um pouco mais visíveis em jogos, e só se tornam significativas (até ~15% de ganho) em aplicações profissionais que manipulam grandes volumes de dados `[12]`.
@@ -66,10 +73,6 @@ A tensão de operação cai a cada geração porque, segundo a relação P = U·
 **Atualização de mercado (2026).** A partir da expansão de cargas de trabalho de IA e da demanda de servidores por memória em larga escala, o preço de módulos DDR5 subiu a ponto de o ganho de desempenho sobre DDR4 deixar de compensar a diferença de custo — por isso, mesmo em computadores novos, DDR4 seguiu sendo, no mercado brasileiro de 2026, o "sweet spot" de custo-benefício, e o ciclo de vida comercial do DDR4 se estendeu mais do que o normalmente esperado para uma geração de memória.
 
 Cada geração tecnológica também define um **limite de capacidade por módulo**: no segmento de desktop/consumidor, um slot de memória DDR4 comporta tipicamente um módulo de até 32 GB (módulos de capacidade maior existem, mas apenas na forma de módulos registrados — RDIMM/LRDIMM — voltados a servidores, com engenharia e custo diferentes) `[3]`. Numa placa-mãe de desktop com quatro slots, a capacidade total possível de memória primária é, portanto, de até 128 GB — mas apenas dentro da mesma geração tecnológica: não é possível combinar um módulo DDR4 com um DDR5 na mesma máquina, tanto por incompatibilidade elétrica quanto física (Seção 5.6).
-
-
-!!! warning "Figura pendente"
-    linha do tempo DDR, DDR2, DDR3, DDR4, DDR5 com taxa de transferência e tensão
 
 
 ## 5.4.1 VRAM: a mesma tecnologia aplicada à GPU
@@ -109,10 +112,10 @@ Existe ainda uma diferença de tamanho físico entre memórias de notebook e de 
 
 <figure id="fig-ddr3-ddr4-chanfro" markdown="1">
 <img src="imagens/ddr3-ddr4-chanfro.png" alt="Esquema de dois módulos de memória de desktop, um sobre o outro, com placa verde, chips pretos e contatos dourados na borda inferior. Em cima, DDR3: 240 pinos, espaçamento de 1,0 mm, chanfro à esquerda do centro. Embaixo, DDR4: 288 pinos, espaçamento de 0,85 mm, chanfro mais perto do centro. Linhas tracejadas vermelhas marcam a posição de cada chanfro, e uma seta na base indica que os dois módulos têm o mesmo comprimento: 133,35 mm. Posições do chanfro aproximadas, redesenhadas a partir de figura usada nos slides da disciplina.">
-<figcaption markdown="span"><strong>Figura 5.2</strong> — Módulos DDR3 e DDR4: o mesmo comprimento, com o chanfro em posições diferentes. Redesenhado a partir de figura usada nos slides da disciplina.</figcaption>
+<figcaption markdown="span"><strong>Figura 5.3</strong> — Módulos DDR3 e DDR4: o mesmo comprimento, com o chanfro em posições diferentes. Redesenhado a partir de figura usada nos slides da disciplina.</figcaption>
 </figure>
 
-Na [Figura 5.2](#fig-ddr3-ddr4-chanfro), os dois módulos têm o mesmo comprimento, mas o chanfro da DDR4 fica em outra posição ao longo da fileira de contatos. Como o slot de cada geração tem a saliência no lugar do seu chanfro, um módulo DDR3 não entra num slot DDR4, e vice-versa.
+Na [Figura 5.3](#fig-ddr3-ddr4-chanfro), os dois módulos têm o mesmo comprimento, mas o chanfro da DDR4 fica em outra posição ao longo da fileira de contatos. Como o slot de cada geração tem a saliência no lugar do seu chanfro, um módulo DDR3 não entra num slot DDR4, e vice-versa.
 
 ## 5.7 Dual Channel e Flex Mode
 
@@ -167,10 +170,10 @@ Como **hardware**, a *cache da CPU* é a memória física, construída em tecnol
 
 <figure id="fig-cache-hierarquia" markdown="1">
 <img src="imagens/cache-hierarquia.png" alt="Diagrama de um processador com quatro núcleos. Cada núcleo (vermelho) tem logo abaixo a sua cache L1, de instrução e dado (laranja), e a sua cache L2 (laranja-claro); as quatro L2 apontam para uma única cache L3 compartilhada (amarela). Fora do processador, abaixo, fica a memória RAM (azul-claro), ligada à L3 por uma seta rotulada “cache miss na L3”. À esquerda, o caminho de uma requisição: pede o dado, procura na L1, miss: procura na L2, miss: procura na L3, miss: busca na RAM. No topo, uma barra em degradê do vermelho ao azul indica a escala de “mais rápida, menor” a “mais lenta, maior”.">
-<figcaption markdown="span"><strong>Figura 5.3</strong> — Hierarquia de cache num processador de quatro núcleos e o caminho de um *cache miss* até a RAM.</figcaption>
+<figcaption markdown="span"><strong>Figura 5.4</strong> — Hierarquia de cache num processador de quatro núcleos e o caminho de um *cache miss* até a RAM.</figcaption>
 </figure>
 
-Na [Figura 5.3](#fig-cache-hierarquia), quanto mais perto do núcleo, menor e mais rápida a memória. Cada núcleo tem suas próprias L1 e L2; a L3 é uma só para todos. Um pedido de dado só desce para o nível seguinte quando não é encontrado no atual (*cache miss*), e só chega à RAM se faltar em todos os níveis de cache. As cores seguem a mesma escala de velocidade da pirâmide de memória do Capítulo 1 ([Figura 1.5](01_fundamentos_o_que_e_um_computador.md#fig-piramide-memoria)).
+Na [Figura 5.4](#fig-cache-hierarquia), quanto mais perto do núcleo, menor e mais rápida a memória. Cada núcleo tem suas próprias L1 e L2; a L3 é uma só para todos. Um pedido de dado só desce para o nível seguinte quando não é encontrado no atual (*cache miss*), e só chega à RAM se faltar em todos os níveis de cache. As cores seguem a mesma escala de velocidade da pirâmide de memória do Capítulo 1 ([Figura 1.5](01_fundamentos_o_que_e_um_computador.md#fig-piramide-memoria)).
 
 ## 5.9 Memória virtual (*swap*)
 
@@ -216,10 +219,10 @@ Por depender de peças móveis — motor, prato girando, braço atuador —, o H
 
 <figure id="fig-disco-trilha-setor" markdown="1">
 <img src="imagens/disco-trilha-setor.png" alt="À esquerda, vista de cima de um prato de HD (azul-claro) com vários círculos concêntricos. Uma trilha está destacada em laranja; um setor, um pequeno trecho dessa trilha, está em vermelho; um cluster, um grupo de setores consecutivos, está em verde. Um braço atuador roxo, com eixo fora do prato, leva a cabeça de leitura e escrita até a trilha. À direita, uma vista lateral menor: o prato atravessado pelo eixo do motor, com uma face superior e uma face inferior, e um braço com duas cabeças, uma acima e outra abaixo do prato. Redesenhado a partir de diagrama de medium.com/@andrewjmarkham1.">
-<figcaption markdown="span"><strong>Figura 5.4</strong> — Prato de HD visto de cima (trilha, setor e cluster) e de lado (duas faces, duas cabeças). Redesenhado a partir de diagrama de medium.com/@andrewjmarkham1.</figcaption>
+<figcaption markdown="span"><strong>Figura 5.5</strong> — Prato de HD visto de cima (trilha, setor e cluster) e de lado (duas faces, duas cabeças). Redesenhado a partir de diagrama de medium.com/@andrewjmarkham1.</figcaption>
 </figure>
 
-O endereço de um dado no HD combina as partes indicadas na [Figura 5.4](#fig-disco-trilha-setor): em qual face do prato ele está, em qual trilha (o círculo concêntrico) e em qual setor (o trecho da trilha). Como as duas faces de cada prato são gravadas, o braço atuador leva uma cabeça para cada face, e todas se movem juntas.
+O endereço de um dado no HD combina as partes indicadas na [Figura 5.5](#fig-disco-trilha-setor): em qual face do prato ele está, em qual trilha (o círculo concêntrico) e em qual setor (o trecho da trilha). Como as duas faces de cada prato são gravadas, o braço atuador leva uma cabeça para cada face, e todas se movem juntas.
 
 ## 5.11 Unidade de alocação: clusters e metadados
 
@@ -258,10 +261,10 @@ A memória flash é historicamente descendente da família de memórias **ROM** 
 
 <figure id="fig-mosfet-porta-flutuante" markdown="1">
 <img src="imagens/mosfet-porta-flutuante.png" alt="Dois cortes lado a lado do mesmo transistor de porta flutuante. Em ambos: substrato de silício tipo P (rosa) com duas regiões N+ (azul), a fonte e o dreno; sobre o canal, de baixo para cima, o óxido de túnel (fino, creme, com pontos escuros que indicam desgaste), a porta flutuante (roxa), um óxido isolante e a porta de controle (verde-azulada). No corte da esquerda, a célula programada: a porta flutuante tem elétrons presos (círculos amarelos), setas mostram os elétrons entrando pelo óxido de túnel na gravação, e lê-se 0. No da direita, a célula apagada: a porta flutuante está sem elétrons, setas mostram os elétrons saindo no apagamento, e lê-se 1. Uma legenda associa cada cor a uma camada.">
-<figcaption markdown="span"><strong>Figura 5.5</strong> — Célula de memória flash (transistor de porta flutuante) programada e apagada. Redesenhado a partir de diagrama usado nos slides da disciplina.</figcaption>
+<figcaption markdown="span"><strong>Figura 5.6</strong> — Célula de memória flash (transistor de porta flutuante) programada e apagada. Redesenhado a partir de diagrama usado nos slides da disciplina.</figcaption>
 </figure>
 
-Como mostra a [Figura 5.5](#fig-mosfet-porta-flutuante), a gravação e o apagamento fazem elétrons atravessarem o óxido de túnel, a camada fina entre o substrato e a porta flutuante. Com elétrons presos, a célula está programada e é lida como 0; sem eles, está apagada e é lida como 1 — a convenção usada pelos fabricantes de memória flash NAND. Cada travessia danifica um pouco esse óxido (os pontos na figura), e é esse desgaste que limita o número de escritas de uma memória flash.
+Como mostra a [Figura 5.6](#fig-mosfet-porta-flutuante), a gravação e o apagamento fazem elétrons atravessarem o óxido de túnel, a camada fina entre o substrato e a porta flutuante. Com elétrons presos, a célula está programada e é lida como 0; sem eles, está apagada e é lida como 1 — a convenção usada pelos fabricantes de memória flash NAND. Cada travessia danifica um pouco esse óxido (os pontos na figura), e é esse desgaste que limita o número de escritas de uma memória flash.
 
 !!! warning "Figura pendente"
     HD aberto ao lado de um SSD aberto, evidenciando ausência de partes móveis no SSD
@@ -302,10 +305,10 @@ A segurança real de um dado não vem de escolher a "melhor" mídia, mas de cria
 
 <figure id="fig-backup-redundancia" markdown="1">
 <img src="imagens/backup-redundancia.png" alt="Dois esquemas lado a lado. À esquerda, em vermelho, “três cópias, um só lugar”: laptop, HD externo e pendrive dentro de uma mochila, riscada com um X, e a legenda: um único roubo, incêndio ou enchente leva todas as cópias de uma vez. À direita, em verde, “mídias diferentes, lugares diferentes”: laptop e HD externo em casa, pendrive ou disco ótico em outro endereço e uma cópia num servidor remoto, na nuvem; legenda: cada tecnologia falha por um motivo diferente, e nenhum desastre local alcança todas as cópias ao mesmo tempo.">
-<figcaption markdown="span"><strong>Figura 5.6</strong> — Backup: três cópias num só lugar (a mochila) contra mídias diferentes em lugares diferentes.</figcaption>
+<figcaption markdown="span"><strong>Figura 5.7</strong> — Backup: três cópias num só lugar (a mochila) contra mídias diferentes em lugares diferentes.</figcaption>
 </figure>
 
-A [Figura 5.6](#fig-backup-redundancia) contrapõe o caso da mochila a um arranjo seguro: as cópias continuam sendo três, mas agora em tecnologias diferentes e em lugares diferentes.
+A [Figura 5.7](#fig-backup-redundancia) contrapõe o caso da mochila a um arranjo seguro: as cópias continuam sendo três, mas agora em tecnologias diferentes e em lugares diferentes.
 
 **Redundância e longevidade no extremo: o Arctic Code Vault.** Em fevereiro de 2020, o GitHub capturou um *snapshot* de todos os repositórios públicos ativos da plataforma (cerca de 21 TB) e o depositou no Arctic World Archive, um cofre numa mina de carvão desativada em Svalbard (Noruega), perto do banco global de sementes. Os dados foram gravados em filme de haleto de prata sobre poliéster, em imagens semelhantes a QR codes — nem flash nem magnética, por nenhuma delas garantir preservação por séculos —, e a fabricante do filme (Piql) declara durabilidade superior a mil anos `[16]`. É um "backup do backup do backup": não busca disponibilidade (ler o acervo exige escanear e decodificar o filme), e sim resistência a perdas de longo prazo. Mesmo esse projeto tem prazo, o que ilustra que nenhuma mídia dura para sempre.
 

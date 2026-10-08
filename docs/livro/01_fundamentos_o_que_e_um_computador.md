@@ -202,7 +202,7 @@ Essas unidades formam uma progressão: 8 bits formam um **byte**; 1024 bytes ($2
 <figcaption markdown="span"><strong>Figura 1.5</strong> — Pirâmide da hierarquia de memória: velocidade, custo e capacidade típica de cada nível.</figcaption>
 </figure>
 
-Na [Figura 1.5](#fig-piramide-memoria), a largura de cada faixa representa a capacidade típica daquele nível, e a cor representa a velocidade: do vermelho (registradores, os mais rápidos) ao azul (armazenamento secundário, o mais lento). A mesma escala de cores é usada na [Figura 5.3](05_memoria.md#fig-cache-hierarquia), no Capítulo 5, para os níveis de cache dentro do processador.
+Na [Figura 1.5](#fig-piramide-memoria), a largura de cada faixa representa a capacidade típica daquele nível, e a cor representa a velocidade: do vermelho (registradores, os mais rápidos) ao azul (armazenamento secundário, o mais lento). A mesma escala de cores é usada na [Figura 5.4](05_memoria.md#fig-cache-hierarquia), no Capítulo 5, para os níveis de cache dentro do processador.
 
 ### 1.10.4 Aplicações práticas
 

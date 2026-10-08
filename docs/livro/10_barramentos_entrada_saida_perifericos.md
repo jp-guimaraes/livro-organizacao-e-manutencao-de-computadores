@@ -139,10 +139,12 @@ O **USB** (*Universal Serial Bus*, barramento serial universal) ilustra, num ún
 
 Note que essa tabela reflete diretamente o princípio de heterogeneidade apresentado na Seção 10.2.1: um teclado não pode tolerar que uma tecla pressionada demore segundos para ser reconhecida (por isso usa transferência de interrupção, com prioridade sobre atraso), enquanto um fluxo de áudio tolera perder uma amostra ocasional, mas não tolera que o ritmo de entrega varie (por isso usa transferência isócrona) — e uma impressora tolera esperar, desde que nenhum byte do documento se perca (por isso usa transferência em massa). O mesmo protocolo físico (USB) acomoda, portanto, contratos de entrega completamente diferentes, escolhidos pelo fabricante do periférico conforme a natureza do dado transmitido.
 
+<figure id="fig-usb-tipos-transferencia" markdown="1">
+<img src="imagens/usb-tipos-transferencia.png" alt="Um computador com controlador USB, à esquerda, ligado por linhas a quatro caixas: controle (dispositivo recém-conectado se apresenta; entrega garantida), em massa (pendrive, impressora; entrega garantida, tempo não garantido), interrupção (teclado, mouse; entrega garantida, pequenos atrasos) e isócrona (headset, webcam; ritmo garantido, amostras podem se perder). Legenda: um mesmo cabo USB, quatro contratos de entrega.">
+<figcaption markdown="span"><strong>Figura 10.4</strong> — Os quatro tipos de transferência USB, com exemplos de periférico e a garantia de cada um.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    diagrama de um cabo USB com quatro balões apontando para exemplos de periférico — teclado (interrupção), pendrive (massa), headset (isócrona), dispositivo genérico sendo conectado (controle)
-
+A [Figura 10.4](#fig-usb-tipos-transferencia) resume a tabela acima associando cada tipo de transferência a periféricos do dia a dia.
 
 ### 10.2.6 Especificação de periféricos
 
