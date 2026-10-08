@@ -94,7 +94,9 @@ A operação de leitura e escrita não esgota o funcionamento de um chip de mem�
 
 Esses sinais — de ligar/desligar, de habilitar saída, de selecionar entre operações possíveis de um chip — reaparecem em praticamente todo circuito digital: um somador, um circuito de memória, um controlador de barramento. Entender que eles existem é o que permite compreender a camada seguinte da abstração, tratada na próxima seção.
 
-[IMAGEM: registrador de 4 bits com entradas de dados, clock, reset e habilitação de saída identificadas]
+![Registrador de 4 bits: entradas de dados, saídas e os sinais de controle.](imagens/registrador-4-bits.png){#fig:registrador-4-bits alt="Um bloco chamado registrador de 4 bits, com 4 flip-flops. À esquerda, quatro entradas de dados, D0 a D3 (azul); à direita, quatro saídas, Q0 a Q3 (vermelho). Embaixo, três sinais de controle: clock (pulso que sincroniza), reset (zera o valor) e habilitação de escrita. No alto, a habilitação de saída."}
+
+A @fig:registrador-4-bits reúne os sinais desta seção num único chip: os dados entram por D0–D3 e saem por Q0–Q3, mas só são gravados no pulso de clock e com a escrita habilitada, e só aparecem na saída quando ela está habilitada.
 
 ## 2.5 A hierarquia de linguagens: de L0 a L5
 

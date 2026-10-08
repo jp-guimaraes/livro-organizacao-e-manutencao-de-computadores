@@ -61,7 +61,10 @@ Reduzir a litografia traz dois benefícios simultâneos e vinculados por física
 Historicamente, a Intel controlava tanto o projeto quanto a fabricação (fundição) de seus próprios chips. Outros fabricantes — AMD, Apple, Qualcomm — projetam seus chips mas terceirizam a fabricação para fundições especializadas, principalmente a TSMC (*Taiwan Semiconductor Manufacturing Company*), sediada em Taiwan. A dificuldade da Intel em reduzir sua própria litografia abaixo de 10 nm é um fator relevante da perda de competitividade da empresa nos últimos anos, a ponto de ela também ter passado a recorrer a fundições terceirizadas para parte de sua produção. A concentração geográfica dessa capacidade de fabricação de semicondutores de ponta em Taiwan é, adicionalmente, um fator de tensão geopolítica relevante, dado o contexto de disputa territorial entre Taiwan e a China — um ponto que tem desdobramentos diretos sobre preço e disponibilidade de chips no mercado global.
 
 [IMAGEM: fotografia de um wafer de silício antes e depois do processo de litografia]
-[IMAGEM: gráfico da contagem de transistores por chip ao longo do tempo, 1970–2016 — se adaptado de fonte de terceiros (ex.: Our World in Data), creditar a fonte e confirmar a licença antes de publicar; alternativa: construir com dados brutos próprios/públicos para evitar qualquer dúvida de direito autoral]
+
+![Transistores por chip de 1971 a 2016, em escala logarítmica. Dados: Wikipedia, “Transistor count” `[11]`.](imagens/transistores-tempo.png){#fig:transistores-tempo alt="Gráfico com o ano no eixo horizontal (1970 a 2020) e o número de transistores no eixo vertical, em escala logarítmica (mil, 1 milhão, 1 bilhão). Os pontos sobem quase em linha reta: Intel 4004 (1971, 2.250), 8086 (1978, 29.000), 80386 (1985, 275.000), 80486 (1989, cerca de 1,18 milhão), Pentium (1993, 3,1 milhões), Pentium 4 (2000, 42 milhões), Core 2 Duo (2006, 291 milhões) e Xeon Broadwell (2016, 7,2 bilhões)."}
+
+Na @fig:transistores-tempo, como o eixo vertical é logarítmico (cada linha de grade vale mil vezes a anterior), dobrar a cada dois anos aparece como uma linha reta: em 45 anos, a contagem passou de 2.250 para 7,2 bilhões de transistores `[11]`.
 
 ## 4.4 Calor, thermal throttling e o fim do núcleo único
 
@@ -73,7 +76,9 @@ O *thermal throttling* deixou de ser apenas uma medida de emergência e passa a 
 
 **O limite que originou o multicore.** No início dos anos 2000, a Intel chegou a planejar um Pentium 4 de 4 GHz, mas cancelou o lançamento em outubro de 2004: a dissipação de calor necessária tornava o produto inviável para os computadores da época `[5]`. A solução encontrada pela indústria não foi continuar aumentando a densidade de transistores num único núcleo, mas **duplicar o número de núcleos de processamento** dentro do mesmo encapsulamento — cada um mais simples e mais frio do que seria um único núcleo hipertrofiado. Nasceu assim a era **multicore** no mercado de desktop, por volta de 2005, com o lançamento do Pentium D pela Intel e do Athlon X2 pela AMD `[6]`. Essa mudança de direção arquitetural se mantém até hoje: não houve retorno ao paradigma de núcleo único, apenas a adição de novas unidades de processamento especializadas (GPU, NPU), tratadas ao final deste capítulo.
 
-[IMAGEM: gráfico comparando temperatura e FPS de um processador com e sem cooler durante um jogo]
+![Thermal throttling: temperatura e clock/FPS com e sem cooler (curvas ilustrativas, sem escala).](imagens/throttling-cooler.png){#fig:throttling-cooler alt="Dois gráficos lado a lado, com o tempo de jogo no eixo horizontal e uma linha tracejada marcando o limite de temperatura. Com cooler: a temperatura (vermelho) sobe e se estabiliza abaixo do limite, e o clock/FPS (azul) fica constante. Sem cooler: a temperatura bate no limite e passa a oscilar logo abaixo dele, e o clock/FPS cai e volta repetidamente, num sobe e desce."}
+
+A @fig:throttling-cooler mostra o ciclo descrito acima: sem refrigeração suficiente, toda vez que a temperatura encosta no limite o processador reduz o clock, o FPS do jogo cai junto, e o ciclo se repete enquanto a carga durar.
 
 ## 4.5 A era multicore: núcleos, cache e hyper-threading
 
@@ -133,3 +138,4 @@ Este capítulo apresentou o processador como peça central da tarefa de especifi
 8. INTEL. Especificações oficiais, "Intel® Core™ i5-12400F Processor (18M Cache, up to 4.40 GHz)." Disponível em: <https://www.intel.com/content/www/us/en/products/sku/134587/intel-core-i512400f-processor-18m-cache-up-to-4-40-ghz/specifications.html>.
 9. PATTERSON, David A.; HENNESSY, John L. *Computer Organization and Design: The Hardware/Software Interface* — RISC-V Edition. Cambridge, MA: Morgan Kaufmann, 2017. ISBN 978-0-12-812275-4.
 10. TECHPOWERUP. "AMD Announces Socket AM5 Longevity till 2029." Disponível em: <https://www.techpowerup.com/349541/amd-announces-socket-am5-longevity-till-2029>; VIDEOCARDZ. Disponível em: <https://videocardz.com/newz/amd-extends-am5-socket-support-through-2029-with-future-ryzen-cpus>.
+11. WIKIPEDIA. "Transistor count." Disponível em: <https://en.wikipedia.org/wiki/Transistor_count>.

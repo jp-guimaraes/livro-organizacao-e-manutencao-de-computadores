@@ -68,9 +68,12 @@ Historicamente, a Intel controlava tanto o projeto quanto a fabricação (fundi�
     fotografia de um wafer de silício antes e depois do processo de litografia
 
 
-!!! warning "Figura pendente"
-    gráfico da contagem de transistores por chip ao longo do tempo, 1970–2016 — se adaptado de fonte de terceiros (ex.: Our World in Data), creditar a fonte e confirmar a licença antes de publicar; alternativa: construir com dados brutos próprios/públicos para evitar qualquer dúvida de direito autoral
+<figure id="fig-transistores-tempo" markdown="1">
+<img src="imagens/transistores-tempo.png" alt="Gráfico com o ano no eixo horizontal (1970 a 2020) e o número de transistores no eixo vertical, em escala logarítmica (mil, 1 milhão, 1 bilhão). Os pontos sobem quase em linha reta: Intel 4004 (1971, 2.250), 8086 (1978, 29.000), 80386 (1985, 275.000), 80486 (1989, cerca de 1,18 milhão), Pentium (1993, 3,1 milhões), Pentium 4 (2000, 42 milhões), Core 2 Duo (2006, 291 milhões) e Xeon Broadwell (2016, 7,2 bilhões).">
+<figcaption markdown="span"><strong>Figura 4.1</strong> — Transistores por chip de 1971 a 2016, em escala logarítmica. Dados: Wikipedia, “Transistor count” `[11]`.</figcaption>
+</figure>
 
+Na [Figura 4.1](#fig-transistores-tempo), como o eixo vertical é logarítmico (cada linha de grade vale mil vezes a anterior), dobrar a cada dois anos aparece como uma linha reta: em 45 anos, a contagem passou de 2.250 para 7,2 bilhões de transistores `[11]`.
 
 ## 4.4 Calor, thermal throttling e o fim do núcleo único
 
@@ -82,10 +85,12 @@ O *thermal throttling* deixou de ser apenas uma medida de emergência e passa a 
 
 **O limite que originou o multicore.** No início dos anos 2000, a Intel chegou a planejar um Pentium 4 de 4 GHz, mas cancelou o lançamento em outubro de 2004: a dissipação de calor necessária tornava o produto inviável para os computadores da época `[5]`. A solução encontrada pela indústria não foi continuar aumentando a densidade de transistores num único núcleo, mas **duplicar o número de núcleos de processamento** dentro do mesmo encapsulamento — cada um mais simples e mais frio do que seria um único núcleo hipertrofiado. Nasceu assim a era **multicore** no mercado de desktop, por volta de 2005, com o lançamento do Pentium D pela Intel e do Athlon X2 pela AMD `[6]`. Essa mudança de direção arquitetural se mantém até hoje: não houve retorno ao paradigma de núcleo único, apenas a adição de novas unidades de processamento especializadas (GPU, NPU), tratadas ao final deste capítulo.
 
+<figure id="fig-throttling-cooler" markdown="1">
+<img src="imagens/throttling-cooler.png" alt="Dois gráficos lado a lado, com o tempo de jogo no eixo horizontal e uma linha tracejada marcando o limite de temperatura. Com cooler: a temperatura (vermelho) sobe e se estabiliza abaixo do limite, e o clock/FPS (azul) fica constante. Sem cooler: a temperatura bate no limite e passa a oscilar logo abaixo dele, e o clock/FPS cai e volta repetidamente, num sobe e desce.">
+<figcaption markdown="span"><strong>Figura 4.2</strong> — Thermal throttling: temperatura e clock/FPS com e sem cooler (curvas ilustrativas, sem escala).</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    gráfico comparando temperatura e FPS de um processador com e sem cooler durante um jogo
-
+A [Figura 4.2](#fig-throttling-cooler) mostra o ciclo descrito acima: sem refrigeração suficiente, toda vez que a temperatura encosta no limite o processador reduz o clock, o FPS do jogo cai junto, e o ciclo se repete enquanto a carga durar.
 
 ## 4.5 A era multicore: núcleos, cache e hyper-threading
 
@@ -114,10 +119,10 @@ O ciclo básico de funcionamento de uma CPU consiste em três etapas repetidas c
 
 <figure id="fig-pipeline-lavanderia" markdown="1">
 <img src="imagens/pipeline-lavanderia.png" alt="Grade com as horas de 1 a 7 nas colunas e os cestos de 1 a 4 nas linhas. Cada cesto passa por quatro etapas coloridas — lavar (azul), secar (laranja), dobrar (verde) e guardar (roxo) —, e cada cesto começa uma hora depois do anterior, em escada. Uma linha tracejada vermelha na 4ª hora marca o momento em que as quatro estações trabalham ao mesmo tempo. Embaixo: com pipeline, 7 horas para os 4 cestos; sem pipeline, 4 × 4 = 16 horas.">
-<figcaption markdown="span"><strong>Figura 4.1</strong> — Pipeline na analogia da lavanderia: quatro cestos passam por lavar, secar, dobrar e guardar em 7 horas, em vez de 16.</figcaption>
+<figcaption markdown="span"><strong>Figura 4.3</strong> — Pipeline na analogia da lavanderia: quatro cestos passam por lavar, secar, dobrar e guardar em 7 horas, em vez de 16.</figcaption>
 </figure>
 
-Na [Figura 4.1](#fig-pipeline-lavanderia), cada cesto continua levando 4 horas, mas, a partir da 4ª hora, as quatro estações trabalham ao mesmo tempo, cada uma num cesto diferente. É assim que o pipeline do processador sobrepõe busca, decodificação e execução de instruções diferentes: nenhuma instrução fica mais rápida, mas o conjunto termina muito antes.
+Na [Figura 4.3](#fig-pipeline-lavanderia), cada cesto continua levando 4 horas, mas, a partir da 4ª hora, as quatro estações trabalham ao mesmo tempo, cada uma num cesto diferente. É assim que o pipeline do processador sobrepõe busca, decodificação e execução de instruções diferentes: nenhuma instrução fica mais rápida, mas o conjunto termina muito antes.
 
 ## 4.7 Soquete, geração e compatibilidade de mercado
 
@@ -154,3 +159,4 @@ Este capítulo apresentou o processador como peça central da tarefa de especifi
 8. INTEL. Especificações oficiais, "Intel® Core™ i5-12400F Processor (18M Cache, up to 4.40 GHz)." Disponível em: <https://www.intel.com/content/www/us/en/products/sku/134587/intel-core-i512400f-processor-18m-cache-up-to-4-40-ghz/specifications.html>.
 9. PATTERSON, David A.; HENNESSY, John L. *Computer Organization and Design: The Hardware/Software Interface* — RISC-V Edition. Cambridge, MA: Morgan Kaufmann, 2017. ISBN 978-0-12-812275-4.
 10. TECHPOWERUP. "AMD Announces Socket AM5 Longevity till 2029." Disponível em: <https://www.techpowerup.com/349541/amd-announces-socket-am5-longevity-till-2029>; VIDEOCARDZ. Disponível em: <https://videocardz.com/newz/amd-extends-am5-socket-support-through-2029-with-future-ryzen-cpus>.
+11. WIKIPEDIA. "Transistor count." Disponível em: <https://en.wikipedia.org/wiki/Transistor_count>.

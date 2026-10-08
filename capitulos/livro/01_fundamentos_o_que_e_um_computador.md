@@ -208,7 +208,9 @@ A Seção 1.9 apresentou os quatro componentes mínimos de um desktop, e a Seç�
 - **DSP** (*Digital Signal Processor*) — processador especializado em processar sinais contínuos (áudio, imagem, rádio) por meio de operações matemáticas repetitivas (somas e multiplicações em sequência) sobre grandes volumes de amostras. Diferente da CPU, que precisa lidar com qualquer tipo de instrução, o DSP é otimizado apenas para esse tipo de cálculo — e por isso executa essas operações com muito mais eficiência energética. Está presente, por exemplo, no microfone e na câmera de um smartphone, processando o sinal bruto antes que ele chegue à CPU ou à NPU.
 - **SoC** (*System on a Chip*, sistema em um único chip) — não é um tipo de processador, mas uma **estratégia de integração**: reunir, num único encapsulamento, CPU, GPU, controlador de memória, modem de rede e demais controladores que, num desktop, estariam espalhados entre processador, chipset e placa-mãe (Capítulo 10, §10.1.2, trata do chipset e da interconexão desses componentes). Praticamente todo smartphone, tablet e Raspberry Pi é organizado em torno de um SoC.
 
-[IMAGEM: diagrama de um SoC de smartphone mostrando CPU, GPU, NPU, DSP e modem integrados no mesmo chip, ao lado de um diagrama de desktop com CPU, GPU discreta e chipset como blocos separados]
+![SoC de smartphone (tudo num chip) e desktop (blocos separados na placa-mãe).](imagens/soc-vs-desktop.png){#fig:soc-vs-desktop alt="À esquerda, Smartphone: SoC — um único chip contendo CPU, GPU, NPU, DSP, modem e controlador de memória. À direita, Desktop: blocos separados — CPU, GPU dedicada (placa de vídeo), chipset e placa de rede, ligados entre si sobre a placa-mãe. Nota: SoC, menos espaço e menos consumo, mas nada se troca; desktop, cada bloco pode ser substituído (modularidade)."}
+
+A @fig:soc-vs-desktop contrapõe as duas estratégias: no SoC, a integração economiza espaço e energia; no desktop, a separação em blocos é o que permite trocar um componente sem trocar o resto — a modularidade da Seção 1.8.
 
 ### 1.11.2 Hardware para diferentes perfis de uso
 

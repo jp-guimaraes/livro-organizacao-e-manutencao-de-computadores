@@ -30,10 +30,12 @@ A diferença entre os dois cenários é de aproximadamente 4,5 vezes — um salt
 
 Vale registrar que nem toda queda de desempenho percebida em jogos multijogador tem origem no processamento local: quando o computador atua como cliente de um servidor remoto (típico de jogos *online*), atrasos de rede (Wi-Fi, latência do provedor, disponibilidade do servidor) também produzem sensação de travamento, independentemente da capacidade da CPU e da GPU locais.
 
+<figure id="fig-resolucao-pixels" markdown="1">
+<img src="imagens/resolucao-pixels.png" alt="Duas grades com um círculo vermelho desenhado pixel a pixel. Em resolução baixa, os pixels são grandes e o círculo fica serrilhado, quase uma cruz. Em resolução alta, com três vezes mais pixels em cada direção (nove vezes mais pixels por quadro), o contorno fica bem mais suave. Rodapé: 720p a 30 FPS, cerca de 27,6 milhões de pixels por segundo; 1080p a 60 FPS, cerca de 124,4 milhões (cerca de 4,5 vezes).">
+<figcaption markdown="span"><strong>Figura 13.1</strong> — A mesma imagem em duas resoluções: mais pixels deixam o contorno mais suave e dão mais trabalho a cada quadro.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    comparação lado a lado da mesma imagem renderizada em diferentes resoluções, evidenciando o tamanho dos pixels
-
+Na [Figura 13.1](#fig-resolucao-pixels), cada quadradinho é um pixel que a placa de vídeo precisa calcular: aumentar a resolução multiplica esse trabalho em cada quadro, e aumentar o FPS multiplica o número de quadros por segundo.
 
 ## 13.2 Benchmark: metodologia de comparação e dimensionamento
 
@@ -63,9 +65,12 @@ Uma forma particularmente útil de visualizar essas comparações é o gráfico 
     captura de tela do PassMark comparando dois processadores lado a lado, com notas single-thread e multi-thread destacadas
 
 
-!!! warning "Figura pendente"
-    gráfico de dispersão (scatter plot) de nota de benchmark por preço, com pontos coloridos por fabricante
+<figure id="fig-dispersao-custo-beneficio" markdown="1">
+<img src="imagens/dispersao-custo-beneficio.png" alt="Gráfico com a nota de benchmark no eixo horizontal (até 30.000) e o preço em reais no vertical (até 6.000). GPU A: 22.000 pontos, R$ 2.890, cerca de 7,6 pontos por real. GPU B: 28.000 pontos, R$ 4.600, cerca de 6,1 pontos por real. Uma região verde no canto inferior direito marca o melhor custo-benefício, e uma seta indica: mais à direita e mais embaixo, mais desempenho por real.">
+<figcaption markdown="span"><strong>Figura 13.2</strong> — Dispersão nota × preço com as duas placas de vídeo do exemplo.</figcaption>
+</figure>
 
+Na [Figura 13.2](#fig-dispersao-custo-beneficio), a GPU B tem a nota mais alta, mas a GPU A está mais perto do canto inferior direito: entrega cerca de 7,6 pontos por real, contra 6,1 da B.
 
 ## 13.3 Diagnóstico em campo: CPU-Z e HWMonitor
 
@@ -116,14 +121,16 @@ O **gargalo** de um sistema computacional é o componente que, em um dado moment
 | Placa-mãe, RAM e ventoinhas | 80 W |
 | **Total de pico** | **850 W** |
 
-Esse valor de 850 W representa o **pico teórico**, isto é, a soma dos consumos máximos individuais — um cenário raro na prática, já que dificilmente todos os componentes operam simultaneamente no limite. Em uso típico, um servidor como esse opera perto de 40% da carga de pico (cerca de 340 W neste exemplo). Retomando o Capítulo 11: a eficiência elétrica de uma fonte ATX é máxima justamente perto de 50% de sua carga nominal. Escolher uma fonte de exatos 850 W deixaria a operação típica numa faixa de baixa eficiência (cerca de 40% de 850 W) e sem margem alguma para upgrades futuros. A escolha tecnicamente correta é uma fonte de capacidade nominal maior — por exemplo, entre 1.000 W e 1.500 W —, de modo que a operação típica do servidor caia próxima da faixa de melhor eficiência da fonte, com folga de segurança para os momentos de pico.
+Esse valor de 850 W representa o **pico teórico**, isto é, a soma dos consumos máximos individuais — um cenário raro na prática, já que dificilmente todos os componentes operam simultaneamente no limite. Em uso típico, um servidor como esse opera perto de 40% da carga de pico (cerca de 340 W neste exemplo). Retomando o Capítulo 11: a eficiência elétrica de uma fonte ATX é máxima justamente perto de 50% de sua carga nominal. Uma fonte de exatos 850 W até deixaria o uso típico perto da faixa de melhor eficiência (340 W são 40% de 850 W), mas operaria no limite máximo durante os picos, sem nenhuma margem de segurança nem espaço para upgrades. A escolha tecnicamente correta é uma fonte um pouco maior — por exemplo, de 1.000 W: o pico passa a ocupar 85% da capacidade, com folga, e o uso típico fica em torno de 34%, ainda numa região de boa eficiência. Superdimensionar demais também não ajuda: numa fonte de 1.500 W, o uso típico cairia para cerca de 23% da carga, perto da faixa de baixa carga, em que a eficiência começa a cair — além de a fonte custar mais.
 
 Esse raciocínio fecha o ciclo entre o dimensionamento do processador (e dos demais componentes de processamento) e o dimensionamento da fonte de alimentação: nenhuma escolha de hardware de processamento pode ser tomada de forma isolada da capacidade de entrega de energia do sistema.
 
+<figure id="fig-orcamento-servidor" markdown="1">
+<img src="imagens/orcamento-servidor.png" alt="À esquerda, uma barra empilhada com o consumo máximo de cada componente: processador 150 W, GPUs 500 W, discos 120 W, placa-mãe, RAM e ventoinhas 80 W, totalizando o pico de 850 W; uma linha tracejada vermelha marca o uso típico, cerca de 40% do pico (340 W). À direita, uma curva de eficiência da fonte em função da carga, que sobe, atinge o máximo perto de 50% da carga nominal e depois cai levemente; curva ilustrativa, sem escala.">
+<figcaption markdown="span"><strong>Figura 13.3</strong> — Orçamento de potência do servidor e a curva de eficiência de uma fonte ATX (curva ilustrativa).</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    tabela de orçamento de potência de um servidor, com a soma dos componentes e a faixa de operação típica marcada sobre a curva de eficiência de uma fonte ATX
-
+A [Figura 13.3](#fig-orcamento-servidor) junta os dois lados do dimensionamento: a barra mostra quanto o servidor consome no pico e no uso típico, e a curva mostra que a fonte trabalha melhor longe dos extremos — nem muito vazia, nem perto do limite.
 
 ---
 

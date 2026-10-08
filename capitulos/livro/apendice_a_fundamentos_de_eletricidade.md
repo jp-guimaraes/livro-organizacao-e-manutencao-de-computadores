@@ -12,7 +12,9 @@ Toda análise elétrica de um computador começa na tomada, e toda tomada é, fi
 
 O mesmo raciocínio se aplica à eletricidade: a diferença de potencial elétrico só existe entre dois pontos. É por essa razão que toda tomada elétrica possui, no mínimo, dois furos — um representando cada um dos dois pontos entre os quais existe a diferença de potencial. A grandeza que quantifica essa diferença de potencial é chamada de **tensão** ou **voltagem**, medida em **volts** (V).
 
-[IMAGEM: diagrama dos pontos A, B e C em mesas empilhadas, com setas indicando as diferenças de potencial gravitacional entre cada par]
+![Analogia do potencial gravitacional: lápis no chão, sobre uma mesa e sobre uma mesa empilhada.](imagens/mesas-potencial.png){#fig:mesas-potencial alt="Um lápis no chão (ponto B), outro sobre uma mesa (ponto A) e um terceiro sobre uma segunda mesa empilhada sobre a primeira (ponto C). Setas verticais indicam a diferença de altura entre A e B, entre C e A e, a maior delas, entre C e B. Legenda: o potencial só se compara entre dois pontos; na tomada, cada furo é um dos pontos."}
+
+Na @fig:mesas-potencial, cada lápis tem uma energia potencial que depende da altura em que está, mas só faz sentido falar em diferença entre dois deles: entre A e B, entre C e A ou, a maior, entre C e B. Com a tensão elétrica é igual — ela sempre se mede entre dois pontos.
 
 Quando um caminho condutor é fornecido entre dois pontos de potenciais elétricos diferentes, os elétrons se deslocam da região de maior potencial para a de menor potencial — exatamente como o lápis cai da mesa para o chão, transformando energia potencial gravitacional em energia cinética. Esse movimento de elétrons pode ser aproveitado para realizar trabalho: aquecer uma resistência, acender um LED, ou acionar os transistores que formam os circuitos lógicos de um computador.
 
@@ -70,7 +72,9 @@ Essa segunda forma é especialmente importante porque descreve a **potência dis
 
 A rede elétrica gera energia em uma determinada tensão e, antes de transportá-la por longas distâncias até os centros consumidores, eleva essa tensão para valores muito mais altos (por meio de transformadores, tratados na Seção A.5), reduzindo-a de volta a 220 V apenas próximo ao ponto de consumo. Essa escolha de projeto decorre diretamente da equação $P = R \times I^2$: para transportar uma mesma potência, é possível usar uma tensão alta com corrente baixa, ou uma tensão baixa com corrente alta. Como a perda por efeito Joule cresce com o quadrado da corrente, transportar a energia com uma corrente menor (elevando a tensão) reduz drasticamente as perdas ao longo dos cabos de transmissão — o que explica também o zumbido característico dos transformadores de poste, resultado da conversão eletromagnética de tensão em andamento.
 
-[IMAGEM: diagrama simplificado da rede elétrica — geração, elevação de tensão para transporte, redução de tensão em subestações e no poste, chegada em 220 V à residência]
+![Da usina à residência: a tensão é elevada para o transporte e reduzida perto do consumo.](imagens/rede-eletrica.png){#fig:rede-eletrica alt="Fluxo em cinco blocos: usina (gera a energia); subestação elevadora (eleva a tensão); linhas de transmissão em alta tensão, com corrente menor, representadas por uma seta vermelha grossa; subestação rebaixadora; transformador do poste; residência, com 220 V. Uma chave sob os três últimos blocos indica que a tensão vai sendo reduzida por transformadores até 220 V. Nota: P = R × I² — com menos corrente, a perda nos cabos cai muito."}
+
+A @fig:rede-eletrica mostra onde ficam os transformadores ao longo do caminho: um para elevar a tensão logo depois da usina e outros para reduzi-la por etapas, até os 220 V da tomada.
 
 ---
 
@@ -86,7 +90,9 @@ Uma instalação elétrica é organizada hierarquicamente: da rede pública, a e
 
 A instalação pode ser **monofásica** (uma única fase de 220 V mais um neutro de referência) ou **trifásica** (três fases de 220 V, cada uma referenciada ao mesmo neutro, usadas para distribuir cargas maiores entre três circuitos independentes).
 
-[IMAGEM: hierarquia poste → quadro geral → quadros de distribuição → disjuntores individuais por circuito]
+![Hierarquia de uma instalação elétrica: do poste aos disjuntores de cada circuito.](imagens/quadro-distribuicao.png){#fig:quadro-distribuicao alt="Diagrama em árvore: rede pública (poste) liga-se ao quadro geral, que alimenta dois quadros de distribuição (1º andar e laboratório). Cada quadro de distribuição tem três disjuntores, um por circuito: iluminação, tomadas e ar-condicionado. Nota: uma falha num circuito desarma só o disjuntor dele; o resto da instalação continua funcionando."}
+
+Na @fig:quadro-distribuicao, cada circuito termina no seu próprio disjuntor — é por isso que um curto nas tomadas de uma sala não apaga as luzes do prédio inteiro.
 
 ### A.3.2 Dimensionamento de condutores
 
@@ -104,7 +110,9 @@ O terceiro pino presente na maioria das tomadas modernas corresponde ao **aterra
 
 O **ar** é naturalmente isolante — seus átomos mantêm os elétrons presos com energia suficiente para impedir a condução em condições normais — o que explica por que é seguro aproximar a mão de um fio energizado sem tocá-lo diretamente. Quando, porém, a diferença de potencial entre dois pontos se torna extrema (como entre uma nuvem carregada e o solo), a rigidez elétrica do ar é rompida, e ele passa a conduzir: esse fenômeno é o **raio**. O trajeto irregular de um raio decorre do fato de que a descarga segue o caminho de menor resistência entre as moléculas de ar naquele instante. Estruturas pontiagudas, como para-raios, favorecem a descarga por um efeito conhecido como **poder das pontas**: a geometria fina concentra o campo elétrico, oferecendo um caminho de menor resistência para a corrente até o fio terra.
 
-[IMAGEM: ilustração do trajeto irregular de um raio e de um para-raios conduzindo a descarga até o fio terra]
+![Raio e para-raios: a descarga é conduzida por um cabo até a haste de aterramento.](imagens/raio-para-raios.png){#fig:raio-para-raios alt="Uma nuvem carregada no alto; dela sai um raio em ziguezague até a ponta de um para-raios no topo de um prédio. Do para-raios, um cabo vermelho desce pela lateral do prédio até uma haste enterrada no solo. Notas: o ar, que é isolante, conduz quando a diferença de potencial é extrema; o cabo de descida leva a carga até a haste de aterramento, e a Terra a absorve."}
+
+Na @fig:raio-para-raios, o raio é o ar rompendo a sua rigidez elétrica, e o para-raios oferece à descarga um caminho de baixa resistência até a Terra — o mesmo papel que o fio terra cumpre, em escala muito menor, numa tomada.
 
 **Exemplo.** Um carregador ou notebook com gabinete metálico, ligado a um cabo de alimentação de apenas dois pinos (sem aterramento), pode transmitir ao usuário uma leve sensação de formigamento ao ser tocado enquanto carrega. Essa sensação ocorre porque um pequeno vazamento de corrente se acumula no chassi metálico e, na ausência de um caminho de aterramento de baixa resistência, o próprio corpo do usuário se torna o caminho disponível para o escoamento dessas cargas até a terra.
 

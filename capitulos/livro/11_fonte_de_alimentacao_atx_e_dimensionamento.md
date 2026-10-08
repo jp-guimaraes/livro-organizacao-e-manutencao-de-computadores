@@ -125,12 +125,14 @@ Ao especificar uma fonte, o fabricante não apenas informa a potência total nom
 | B | 5 V | 25 A | 125 W |
 | A + B (combinados) | — | — | 150 W (máximo compartilhado) |
 | C | 12 V | 52 A | 624 W |
-| D | 12 V (auxiliar) | 0,5 A | 6 W |
-| E | 5 V (auxiliar) | 2,5 A | 12,5 W |
+| D | −12 V | 0,5 A | 6 W |
+| E | +5 V *standby* (+5 VSB) | 2,5 A | 12,5 W |
 
 Somando a potência máxima teórica de todos os trilhos individualmente ($150 + 624 + 6 + 12{,}5 = 792{,}5$ W), o resultado ultrapassa os 650 W nominais da fonte. Isso não significa que o fabricante esteja anunciando uma especificação incorreta: significa que os 650 W nominais são **compartilhados** entre os trilhos, e que não é possível extrair a corrente máxima de todos os trilhos simultaneamente. Na prática, o trilho de 12 V (tipicamente o que alimenta processador e placa de vídeo, os dois maiores consumidores de um desktop) concentra a maior reserva de potência da fonte, e os demais trilhos (3,3 V e 5 V, tipicamente usados por memória, armazenamento e portas USB) compartilham uma parcela menor do total.
 
-[IMAGEM: tabela de trilhos de uma fonte real com tensões e correntes máximas por rail]
+![Etiqueta da fonte de 650 W do exemplo: corrente e potência máximas por trilho.](imagens/etiqueta-fonte-trilhos.png){#fig:etiqueta-fonte-trilhos alt="Etiqueta retangular, FONTE ATX — 650 W, com cinco colunas de saída: +3,3 V (25 A), +5 V (25 A), +12 V (52 A), −12 V (0,5 A) e +5 VSB (2,5 A). Na linha de potência máxima: 150 W para +3,3 V e +5 V juntos, 624 W, 6 W e 12,5 W. Embaixo, potência total combinada: 650 W. Nota: somando os trilhos, 150 + 624 + 6 + 12,5 = 792,5 W; os 650 W nominais são compartilhados."}
+
+A @fig:etiqueta-fonte-trilhos mostra a mesma tabela como ela aparece na lateral de uma fonte real: é nessa etiqueta que o técnico confere quanto cada trilho pode fornecer — e repara que a soma passa da potência nominal.
 
 ### 11.4.2 Metodologia de dimensionamento
 

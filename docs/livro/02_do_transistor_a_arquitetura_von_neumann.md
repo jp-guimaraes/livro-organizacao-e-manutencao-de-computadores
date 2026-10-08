@@ -103,10 +103,12 @@ A operação de leitura e escrita não esgota o funcionamento de um chip de mem�
 
 Esses sinais — de ligar/desligar, de habilitar saída, de selecionar entre operações possíveis de um chip — reaparecem em praticamente todo circuito digital: um somador, um circuito de memória, um controlador de barramento. Entender que eles existem é o que permite compreender a camada seguinte da abstração, tratada na próxima seção.
 
+<figure id="fig-registrador-4-bits" markdown="1">
+<img src="imagens/registrador-4-bits.png" alt="Um bloco chamado registrador de 4 bits, com 4 flip-flops. À esquerda, quatro entradas de dados, D0 a D3 (azul); à direita, quatro saídas, Q0 a Q3 (vermelho). Embaixo, três sinais de controle: clock (pulso que sincroniza), reset (zera o valor) e habilitação de escrita. No alto, a habilitação de saída.">
+<figcaption markdown="span"><strong>Figura 2.4</strong> — Registrador de 4 bits: entradas de dados, saídas e os sinais de controle.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    registrador de 4 bits com entradas de dados, clock, reset e habilitação de saída identificadas
-
+A [Figura 2.4](#fig-registrador-4-bits) reúne os sinais desta seção num único chip: os dados entram por D0–D3 e saem por Q0–Q3, mas só são gravados no pulso de clock e com a escrita habilitada, e só aparecem na saída quando ela está habilitada.
 
 ## 2.5 A hierarquia de linguagens: de L0 a L5
 
@@ -150,10 +152,10 @@ No computador desktop moderno, a via de dados que interliga processador, memóri
 
 <figure id="fig-von-neumann" markdown="1">
 <img src="imagens/von-neumann.png" alt="Diagrama da arquitetura de von Neumann: uma faixa horizontal cinza, o barramento, ao centro. Acima dela, à esquerda, o processador (CPU), com a unidade de controle e a ULA, e, à direita, a memória, que guarda o programa (instruções) e os dados — ambos com setas de ida e volta até o barramento. Abaixo, à esquerda, a unidade de entrada (teclado, mouse, câmera), com seta para o barramento; à direita, a unidade de saída (monitor, alto-falante), com seta vinda do barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).">
-<figcaption markdown="span"><strong>Figura 2.4</strong> — Arquitetura de von Neumann: processador, memória, entrada e saída ligados pelo barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).</figcaption>
+<figcaption markdown="span"><strong>Figura 2.5</strong> — Arquitetura de von Neumann: processador, memória, entrada e saída ligados pelo barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).</figcaption>
 </figure>
 
-Na [Figura 2.4](#fig-von-neumann), as quatro unidades não se ligam diretamente umas às outras: toda a comunicação passa pelo barramento. Processador e memória trocam dados nos dois sentidos; a entrada só envia dados para o barramento, e a saída só os recebe dele.
+Na [Figura 2.5](#fig-von-neumann), as quatro unidades não se ligam diretamente umas às outras: toda a comunicação passa pelo barramento. Processador e memória trocam dados nos dois sentidos; a entrada só envia dados para o barramento, e a saída só os recebe dele.
 
 ## 2.7 O gargalo de von Neumann
 

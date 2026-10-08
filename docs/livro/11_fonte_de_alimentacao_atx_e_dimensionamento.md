@@ -134,15 +134,17 @@ Ao especificar uma fonte, o fabricante não apenas informa a potência total nom
 | B | 5 V | 25 A | 125 W |
 | A + B (combinados) | — | — | 150 W (máximo compartilhado) |
 | C | 12 V | 52 A | 624 W |
-| D | 12 V (auxiliar) | 0,5 A | 6 W |
-| E | 5 V (auxiliar) | 2,5 A | 12,5 W |
+| D | −12 V | 0,5 A | 6 W |
+| E | +5 V *standby* (+5 VSB) | 2,5 A | 12,5 W |
 
 Somando a potência máxima teórica de todos os trilhos individualmente ($150 + 624 + 6 + 12{,}5 = 792{,}5$ W), o resultado ultrapassa os 650 W nominais da fonte. Isso não significa que o fabricante esteja anunciando uma especificação incorreta: significa que os 650 W nominais são **compartilhados** entre os trilhos, e que não é possível extrair a corrente máxima de todos os trilhos simultaneamente. Na prática, o trilho de 12 V (tipicamente o que alimenta processador e placa de vídeo, os dois maiores consumidores de um desktop) concentra a maior reserva de potência da fonte, e os demais trilhos (3,3 V e 5 V, tipicamente usados por memória, armazenamento e portas USB) compartilham uma parcela menor do total.
 
+<figure id="fig-etiqueta-fonte-trilhos" markdown="1">
+<img src="imagens/etiqueta-fonte-trilhos.png" alt="Etiqueta retangular, FONTE ATX — 650 W, com cinco colunas de saída: +3,3 V (25 A), +5 V (25 A), +12 V (52 A), −12 V (0,5 A) e +5 VSB (2,5 A). Na linha de potência máxima: 150 W para +3,3 V e +5 V juntos, 624 W, 6 W e 12,5 W. Embaixo, potência total combinada: 650 W. Nota: somando os trilhos, 150 + 624 + 6 + 12,5 = 792,5 W; os 650 W nominais são compartilhados.">
+<figcaption markdown="span"><strong>Figura 11.4</strong> — Etiqueta da fonte de 650 W do exemplo: corrente e potência máximas por trilho.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    tabela de trilhos de uma fonte real com tensões e correntes máximas por rail
-
+A [Figura 11.4](#fig-etiqueta-fonte-trilhos) mostra a mesma tabela como ela aparece na lateral de uma fonte real: é nessa etiqueta que o técnico confere quanto cada trilho pode fornecer — e repara que a soma passa da potência nominal.
 
 ### 11.4.2 Metodologia de dimensionamento
 
@@ -185,10 +187,10 @@ Uma distinção importante deve ser observada nesses conectores: **botões** (po
 
 <figure id="fig-painel-frontal-pinos" markdown="1">
 <img src="imagens/painel-frontal-pinos.png" alt="Conector de 10 posições em duas fileiras, com os pares contornados por cor. Fileira de cima: pinos 2 (+) e 4 (−), LED de energia, com polaridade (verde); pinos 6 e 8, botão de liga, sem polaridade (laranja); posição 10 sem pino (chave). Fileira de baixo: pinos 1 (+) e 3 (−), LED do HD, com polaridade (amarelo); pinos 5 e 7, reset, sem polaridade (cinza); pino 9, não usado. Uma nota ao lado avisa que a ordem pode variar e que o pino 9 é saída de +5 V nas placas Intel e sem conexão em muitas outras.">
-<figcaption markdown="span"><strong>Figura 11.4</strong> — Conector do painel frontal no arranjo de referência de 10 posições: pares de LEDs com polaridade e pares de botões sem polaridade.</figcaption>
+<figcaption markdown="span"><strong>Figura 11.5</strong> — Conector do painel frontal no arranjo de referência de 10 posições: pares de LEDs com polaridade e pares de botões sem polaridade.</figcaption>
 </figure>
 
-Na [Figura 11.4](#fig-painel-frontal-pinos), os contornos agrupam os pinos que recebem cada cabo do gabinete: nos dois pares de LED, o sinal + precisa coincidir com o fio positivo; nos dois pares de botão, a orientação é indiferente.
+Na [Figura 11.5](#fig-painel-frontal-pinos), os contornos agrupam os pinos que recebem cada cabo do gabinete: nos dois pares de LED, o sinal + precisa coincidir com o fio positivo; nos dois pares de botão, a orientação é indiferente.
 
 ### 11.5.2 Aterramento do gabinete
 

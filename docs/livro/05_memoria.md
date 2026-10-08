@@ -45,7 +45,7 @@ A geração seguinte de memória dinâmica introduziu o **sincronismo**: em vez 
 
 A frequência desse clock, medida em megahertz (MHz) ou gigahertz (GHz), determina quantas operações de leitura/escrita a memória realiza por segundo — é o número de frequência de trabalho estampado na embalagem de qualquer memória RAM vendida no mercado.
 
-A partir da SDRAM, o mercado consolidou a tecnologia **DDR** (*Double Data Rate*), cujas gerações sucessivas — DDR, DDR2, DDR3, DDR4, DDR5 — dobram, a cada geração, o número de operações realizadas por ciclo de clock, além de aumentar a densidade da célula e reduzir o consumo de energia. A tabela a seguir resume as principais características discutidas em aula:
+A partir da SDRAM, o mercado consolidou a tecnologia **DDR** (*Double Data Rate*), que transfere dados nas **duas bordas** do sinal de clock — na subida e na descida —, fazendo duas transferências por ciclo (daí o nome *Double Data Rate*). As gerações sucessivas — DDR2, DDR3, DDR4, DDR5 — aumentaram a taxa de transferência principalmente elevando a frequência da interface entre a memória e o controlador e o volume de dados buscado internamente a cada acesso, além de aumentar a densidade da célula e reduzir a tensão de operação `[20]`. A tabela a seguir resume as principais características discutidas em aula:
 
 | Geração | Taxa de transferência (aprox.) | Tensão de operação | Observação |
 |---|---|---|---|
@@ -358,3 +358,4 @@ Este capítulo aprofundou a hierarquia de memória introduzida no Capítulo 1, m
 17. MICROSOFT. "Master File Table." *Microsoft Learn*. Disponível em: <https://learn.microsoft.com/en-us/windows/win32/devnotes/master-file-table>.
 18. THE LINUX KERNEL DOCUMENTATION. "ext4 Data Structures and Algorithms — Index Nodes." Disponível em: <https://docs.kernel.org/filesystems/ext4/inodes.html>.
 19. UEFI FORUM. *UEFI Specification 2.11*, cap. 5, "GUID Partition Table (GPT) Disk Layout". Disponível em: <https://uefi.org/specs/UEFI/2.11/05_GUID_Partition_Table_Format.html>.
+20. WIKIPEDIA. "DDR SDRAM"; "Synchronous dynamic random-access memory" (seção sobre as gerações DDR). Disponível em: <https://en.wikipedia.org/wiki/DDR_SDRAM>; <https://en.wikipedia.org/wiki/Synchronous_dynamic_random-access_memory>.
