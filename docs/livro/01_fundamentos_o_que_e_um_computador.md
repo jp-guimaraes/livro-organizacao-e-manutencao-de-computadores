@@ -14,22 +14,24 @@ Essa definição ampla, no entanto, é insuficiente para descrever o computador 
 
 Essa definição contém três elementos essenciais:
 
-- **Máquina** — o computador é, antes de tudo, um dispositivo físico (hardware).
+- **Máquina** — o computador é, antes de tudo, um dispositivo físico (hardware). A definição de Tanenbaum, inclusive, é restrita aos computadores mais comuns hoje em dia: os computadores digitais.
 - **Resolve problemas de forma genérica** — diferentemente de uma calculadora, que executa um conjunto fixo de operações, o computador recebe um programa e pode, em princípio, resolver qualquer problema computável.
-- **Executa instruções que lhe são dadas** — o software é ele próprio um dado de entrada, e não uma característica fixa do hardware.
+- **Executa instruções que lhe são dadas** — o software é ele próprio um dado de entrada, e não uma característica fixa do hardware. O software recebe outros nomes, dependendo do contexto: na matemática, fala-se em *algoritmo*; nos dispositivos móveis, em *app* (aplicativo). Em todos os casos, a ideia central é a mesma: um conjunto de instruções que desempenha uma tarefa operando sobre o hardware do computador.
 
-**Aplicação da definição.** Uma calculadora de padaria realiza operações de soma, subtração, multiplicação e divisão, mas não pode receber um programa genérico — não é possível, por exemplo, instalar nela um aplicativo de mensagens. Por essa razão, ela se enquadra na definição ampla de computação, mas não na definição de computador digital de uso geral. Essa distinção entre "dispositivo que computa" e "computador de uso geral" é usada ao longo de todo o capítulo.
+**Aplicação da definição.** Uma calculadora de padaria — máquina que, inclusive, utiliza hardware baseado em lógica digital — realiza operações de soma, subtração, multiplicação e divisão, mas não pode receber um programa genérico — não é possível, por exemplo, instalar nela um aplicativo de mensagens. Por essa razão, ela se enquadra na definição ampla de computação, mas não na definição de computador digital de uso geral. Essa distinção entre "dispositivo que computa" e "computador de uso geral" é usada ao longo de todo o capítulo.
+
+A [Figura 1.1](#fig-linha-do-tempo) mostra uma linha do tempo dos instrumentos de cálculo colocada lado a lado com os vários estágios do desenvolvimento humano.
 
 <figure id="fig-linha-do-tempo" markdown="1">
 <img src="imagens/linha-do-tempo-historia-do-calculo.png" alt="Linha do tempo comparada entre dispositivos de cálculo e estágios de desenvolvimento humano, em dois eixos paralelos. Eixo “dispositivos de cálculo”: mãos (contagem unária) → pedrinhas e fichas → ábaco → ossos de Napier → régua de cálculo → calculadora Curta → calculadora científica → laptop. Eixo “desenvolvimento humano”, pareado ponto a ponto com o eixo acima: caçador-coletor → agricultor → mercador → navegador → cientista → engenheiro → astronauta → era da rede global. As datas vão de aproximadamente 35.000 a.C. (mãos/caçador-coletor) a 2010 (laptop/rede global); o espaçamento entre marcos consecutivos encolhe de milênios, no início da linha, para décadas, no final — representando visualmente a aceleração do ritmo de inovação.">
 <figcaption markdown="span"><strong>Figura 1.1</strong> — Linha do tempo dos instrumentos de cálculo, pareada com os estágios do desenvolvimento humano.</figcaption>
 </figure>
 
-Repare como o espaçamento entre marcos consecutivos encolhe ao longo da linha do tempo da [Figura 1.1](#fig-linha-do-tempo): são muitos mil anos entre o uso das mãos para contar e as primeiras pedrinhas/fichas de contagem, mas apenas décadas entre a calculadora científica e o laptop conectado à rede global. Esse padrão de crescimento exponencial é o que ajuda a narrar como os grandes modelos de linguagem baseados em redes neurais estão a contribuir para a resolução de problemas matemáticos em aberto nos dias atuais. É também o pano de fundo de todo o restante deste livro: cada capítulo seguinte cobre uma fatia cada vez mais estreita — e cada vez mais recente — dessa mesma linha do tempo.
+Repare como o espaçamento entre marcos consecutivos encolhe ao longo dessa linha do tempo: são muitos mil anos entre o uso das mãos para contar e as primeiras pedrinhas/fichas de contagem, mas apenas décadas entre a calculadora científica e o laptop conectado à rede global. Esse padrão de crescimento exponencial é o que ajuda a narrar como os grandes modelos de linguagem baseados em redes neurais estão contribuindo para a resolução de problemas matemáticos em aberto nos dias atuais. É também o pano de fundo de todo o restante deste livro: cada capítulo seguinte cobre uma fatia cada vez mais estreita — e cada vez mais recente — dessa mesma linha do tempo.
 
 ## 1.2 Evolução histórica: dos instrumentos mecânicos ao transistor
 
-A tabela a seguir situa os principais marcos na evolução dos instrumentos de cálculo:
+A linha do tempo da [Figura 1.1](#fig-linha-do-tempo) mostra o ritmo dessa evolução; a tabela a seguir detalha os marcos que levaram ao componente decisivo dessa história — o transistor:
 
 | Período | Dispositivo | Característica |
 |---|---|---|
@@ -37,9 +39,9 @@ A tabela a seguir situa os principais marcos na evolução dos instrumentos de c
 | 1617 | Ossos de Napier `[2]` | Auxílio a multiplicações |
 | Até anos 1970 | Régua de cálculo | Cálculo analógico por escalas logarítmicas |
 | Anos 1940 | Calculadora Curta | Mecanismo de engrenagens |
-| — | Dispositivos eletromecânicos | Baseados em relés |
-| — | Válvulas | Eletrônicos, porém volumosos e de alto consumo energético |
-| — | Transistor | Chave eletrônica miniaturizada e de baixo custo |
+| Anos 1940 | Dispositivos eletromecânicos (ex.: Harvard Mark I, 1944) | Baseados em relés |
+| 1946 | Válvulas (ex.: ENIAC) | Eletrônicos, porém volumosos e de alto consumo energético |
+| 1947 | Transistor (Bell Labs) | Chave eletrônica miniaturizada e de baixo custo |
 
 O **transistor** é o componente que viabilizou a computação moderna. Fisicamente, é constituído por um arranjo de material semicondutor dopado (uma junção N-P-N ou P-N-P), que funciona como uma chave eletrônica capaz de ligar e desligar em altíssima velocidade, ocupar espaço microscópico e ser fabricado em larga escala a baixo custo. A substituição progressiva de válvulas por transistores, ao longo da segunda metade do século XX, é o que permitiu a redução de tamanho e custo que tornou o computador pessoal viável.
 
@@ -50,24 +52,26 @@ O **transistor** é o componente que viabilizou a computação moderna. Fisicame
 
 ## 1.3 Alan Turing e o conceito de máquina de propósito geral
 
-Durante a Segunda Guerra Mundial, as forças alemãs utilizavam a máquina Enigma para criptografar comunicações militares. O matemático britânico Alan Turing foi recrutado para desenvolver métodos de decifração dessas mensagens `[3]`.
+Antes mesmo do transistor, porém, era preciso responder a uma pergunta conceitual: o que torna uma máquina "de uso geral"?
 
-A contribuição central de Turing para a computação não foi construir uma máquina especializada apenas em quebrar aquele código específico, mas conceber uma **máquina de propósito geral**: um dispositivo capaz de receber diferentes programas e, a partir deles, resolver diferentes classes de problemas. O primeiro problema resolvido por essa máquina foi, historicamente, a quebra do código Enigma.
+Em 1936, o matemático britânico Alan Turing respondeu a essa pergunta no plano teórico, ao conceber uma **máquina de propósito geral** (hoje chamada de *máquina de Turing universal*): um dispositivo capaz de receber diferentes programas e, a partir deles, resolver diferentes classes de problemas `[3]`.
 
-Essa distinção — entre uma máquina que executa uma operação fixa e uma máquina que recebe o próprio algoritmo como entrada — é o critério que separa uma calculadora de um computador de uso geral, conforme apresentado na Seção 1.1.
+Poucos anos depois, durante a Segunda Guerra Mundial, as forças alemãs utilizavam a máquina Enigma para criptografar comunicações militares, e Turing foi recrutado para desenvolver métodos de decifração dessas mensagens. A máquina que ele ajudou a projetar para isso, a **Bombe**, era eletromecânica e **especializada**: fazia apenas uma coisa — testar, em alta velocidade, as configurações possíveis do Enigma.
+
+A trajetória de Turing ilustra, assim, os dois lados da mesma distinção: de um lado, uma máquina que executa uma operação fixa (a Bombe); de outro, uma máquina que recebe o próprio algoritmo como entrada (a máquina universal). Esse é o critério que separa uma calculadora de um computador de uso geral, conforme apresentado na Seção 1.1.
 
 
 !!! warning "Figura pendente"
-    ilustração/foto da máquina Bombe de Turing
+    ilustração/foto da máquina Bombe — exemplo de máquina especializada
 
 
 ## 1.4 John von Neumann e o programa armazenado
 
-De forma paralela e complementar ao trabalho de Turing, o conceito de **programa armazenado** foi formalizado por escrito no relatório *Preliminary Discussion of the Logical Design of an Electronic Computing Instrument* (1946), assinado por Arthur Burks, Herman Goldstine e John von Neumann `[4]`: a ideia de que as instruções de um programa — e não apenas os dados que ele manipula — devem residir na mesma memória do computador. O nome consagrado do conceito, "arquitetura de von Neumann", é o que este livro adota, mas a formalização foi, de fato, um trabalho conjunto dos três autores.
+De forma paralela e complementar ao trabalho de Turing, o conceito de **programa armazenado** foi formalizado por escrito em 1945, no *First Draft of a Report on the EDVAC*, de John von Neumann, e detalhado em 1946 no relatório *Preliminary Discussion of the Logical Design of an Electronic Computing Instrument*, assinado por Arthur Burks, Herman Goldstine e von Neumann `[4]`: a ideia de que as instruções de um programa — e não apenas os dados que ele manipula — devem residir na mesma memória do computador. O nome consagrado do conceito, "arquitetura de von Neumann", é o que este livro adota, mas o detalhamento de 1946 foi um trabalho conjunto dos três autores — e a própria autoria da ideia é disputada, como mostra o Capítulo 2 (§2.6).
 
 Antes dessa formalização, o algoritmo existia apenas como um procedimento mental ou registrado em papel, executado passo a passo por um operador humano. Com o programa armazenado, o computador passa a executar a sequência completa de instruções de forma autônoma, sem intervenção humana a cada etapa.
 
-O conceito de programa armazenado é a base da **arquitetura de von Neumann**, tratada em profundidade no Capítulo 3.
+O conceito de programa armazenado é a base da **arquitetura de von Neumann**, formalizada no Capítulo 2 (§2.6) e aprofundada no Capítulo 3 (§3.2).
 
 ## 1.5 O modelo entrada–processamento–saída
 
@@ -75,7 +79,7 @@ Todo computador, para operar, requer três elementos: **entrada** de dados, **pr
 
 **Exemplo.** No cálculo da média entre duas notas (N1 e N2), a entrada consiste nos valores de N1 e N2; o processamento consiste na soma dos dois valores seguida da divisão por dois; a saída é o valor da média resultante. A [Figura 1.2](#fig-entrada-processamento-saida) mostra esse exemplo com N1 = 7 e N2 = 9.
 
-Uma distinção relevante deve ser observada: ao realizar esse cálculo numa calculadora convencional, é o usuário humano quem executa o algoritmo, decidindo a sequência de operações. Num computador de uso geral, o próprio algoritmo é tratado como um dado de entrada e é a máquina que o executa de forma autônoma — reforçando a definição apresentada na Seção 1.1.
+Uma distinção relevante deve ser observada: ao realizar esse cálculo numa calculadora convencional, é o usuário humano quem executa o algoritmo, decidindo a sequência de operações. Num computador de uso geral, o próprio algoritmo é tratado como um dado de entrada — armazenado na memória, como visto na Seção 1.4 — e é a máquina que o executa de forma autônoma, reforçando a definição apresentada na Seção 1.1.
 
 <figure id="fig-entrada-processamento-saida" markdown="1">
 <img src="imagens/entrada-processamento-saida.png" alt="Diagrama com três caixas ligadas por setas, da esquerda para a direita: Entrada (azul), com N1 = 7 e N2 = 9; Processamento (laranja), com a soma 7 + 9 = 16 seguida da divisão por 2; e Saída (verde), com média = 8.">
@@ -110,29 +114,19 @@ O computador é um dispositivo **modular**, constituído por submódulos substit
 2. Substituir esse módulo por um equivalente sabidamente funcional.
 3. Observar se o sistema volta a operar corretamente.
 
-Esse princípio de modularidade é o fundamento metodológico da disciplina de Manutenção de Computadores (2026.1).
-
+Esse princípio de modularidade é o fundamento metodológico que permite realizar manutenção em sistemas computacionais. As próximas seções contam a origem histórica dessa modularidade — que se consolida com o padrão aberto do IBM PC (Seção 1.8) —, e cada módulo é aprofundado nos capítulos seguintes.
 
 ## 1.7 Da computação corporativa ao computador pessoal
 
 Até meados da década de 1970, a computação era predominantemente corporativa e institucional, realizada por grandes **mainframes** utilizados por bancos, governos, universidades e agências como a NASA.
 
-A tabela a seguir reúne declarações históricas frequentemente citadas para ilustrar a dificuldade de prever a trajetória da computação pessoal:
-
-| Ano | Declaração | Autor/fonte |
-|---|---|---|
-| 1949 | "No futuro os computadores não pesarão mais do que uma tonelada e meia." `[6]` | Revista Popular Mechanics |
-| 1977 | "Não há razão para alguém querer um computador em casa." `[5]` | Presidente da Digital Equipment Corporation |
-
-**Nota sobre a citação de 1977.** A declaração é real — foi feita por Ken Olsen, presidente e fundador da Digital Equipment Corporation, na World Future Society, em 1977 — mas costuma circular fora de contexto: Olsen se referia a um computador central controlando toda a casa (um único sistema automatizando iluminação, eletrodomésticos etc.), não ao PC pessoal como se tornaria comum. Ele próprio já possuía um computador doméstico na época `[5]`.
+Foi nesse contexto que a revista técnica Popular Mechanics previu, em 1949: "No futuro os computadores não pesarão mais do que uma tonelada e meia" `[5]`. Os computadores eram tão grandes que um episódio dessa época ajudou a popularizar o termo *bug*, usado para designar um defeito de software: em 1947, a equipe do Harvard Mark II — um computador eletromecânico baseado em relés — encontrou uma mariposa presa em um dos relés da máquina, impedindo seu funcionamento. O inseto foi colado no diário de operação com a anotação "primeiro caso real de *bug* encontrado" — uma piada, já que engenheiros usavam a palavra para designar defeitos desde o século XIX.
 
 ### 1.7.1 Os primeiros computadores pessoais
 
 - **Altair 8800** (1975): programado por meio de chaves binárias (posição alta = 1, posição baixa = 0), sem monitor, com saída representada por luzes indicadoras. Utilizava o processador **Intel 8080**, herdeiro da linhagem iniciada pelo **Intel 4004** (1971) — o primeiro microprocessador comercial, originalmente projetado para a calculadora Busicom — e continuada pelo **Intel 8008** (1972). Essa mesma linhagem leva, poucos anos depois, ao Intel 8086/8088 usado no IBM PC (Seção 1.8).
 - **Apple I** (1976): placa de circuito artesanal, sem gabinete próprio, dependente de um televisor externo como monitor.
 - **Apple II**, **Commodore** e **TRS-80** (1977): computadores já equipados com teclado integrado e gabinete, marcando o início da popularização comercial da computação pessoal.
-
-**Nota terminológica.** O termo *bug*, usado para designar um defeito de software, tem origem num inseto encontrado literalmente causando um curto-circuito em um relé de um computador mainframe antigo.
 
 
 !!! warning "Figura pendente"
@@ -151,12 +145,12 @@ Esse processo ilustra um efeito de mercado relevante para a área de tecnologia:
 
 <figure id="fig-ibm-pc-5150" markdown="1">
 <img src="imagens/ibm-pc-5150.jpg" alt="Fotografia do IBM PC 5150 (1981), modelo original: gabinete horizontal bege com duas unidades de disquete de 5,25 polegadas, teclado destacado na frente e monitor monocromático verde-sobre-preto apoiado sobre o gabinete, exibindo uma tela de texto de diagnóstico do sistema.">
-<figcaption markdown="span"><strong>Figura 1.4</strong> — IBM PC 5150 (1981), o modelo original. Foto: Reseletti, Wikimedia Commons, CC BY-SA 3.0 `[7]`.</figcaption>
+<figcaption markdown="span"><strong>Figura 1.4</strong> — IBM PC 5150 (1981), o modelo original. Foto: Reseletti, Wikimedia Commons, CC BY-SA 3.0 `[6]`.</figcaption>
 </figure>
 
 ## 1.9 Componentes mínimos de um computador desktop
 
-São necessários quatro componentes para que um computador do tipo desktop seja capaz de ligar e operar minimamente:
+Os computadores atuais herdam muitas características desse padrão imposto pelo IBM PC. Uma dessas características é a necessidade de ao menos quatro componentes para que um computador do tipo desktop seja capaz de ligar e operar minimamente:
 
 1. **Fonte de alimentação** — fornece energia ao sistema (tratada em detalhe no Capítulo 8 e no Capítulo 11).
 2. **Processador (CPU)** — unidade responsável pelo processamento.
@@ -174,7 +168,9 @@ Componentes como placa de rede, impressora ou webcam não são necessários para
 
 ## 1.10 Introdução à hierarquia de memória
 
-O computador utiliza dois tipos de memória de natureza distinta: **memória principal** (RAM) e **memória secundária** (armazenamento).
+Ao usarmos aplicativos, estamos carregando esses programas na memória do computador. Esses programas operam sobre dados que precisam se manter a longo prazo dentro da máquina. Dessa forma, além da velocidade nas operações de leitura e escrita, é preciso considerar a retenção da informação a longo prazo. Sob essa perspectiva, as memórias podem ser classificadas como **voláteis**, quando precisam de energia para reter a informação, e **não voláteis**, quando isso não é necessário. As memórias disponíveis hoje impõem um *trade-off*: nenhuma tecnologia atual consegue reunir, ao mesmo tempo, a não volatilidade e a velocidade necessária para acompanhar o processador. Por isso, os fabricantes optaram por combinar memórias de naturezas diferentes para driblar essa limitação.
+
+Atualmente, a grande maioria dos computadores utiliza dois tipos de memória de natureza distinta: uma **memória principal** (RAM), voltada à velocidade, e uma **memória secundária**, voltada à retenção da informação a longo prazo, mesmo sem energia.
 
 ### 1.10.1 Memória RAM
 
@@ -190,12 +186,12 @@ A memória secundária (armazenamento) é **não volátil** — mantém seus dad
 
 Da camada mais rápida (e mais cara) para a mais lenta (e mais barata):
 
-1. **Registradores** — internos ao processador, capacidade da ordem de kilobytes.
+1. **Registradores** — internos ao processador, capacidade total de poucos kilobytes, no máximo.
 2. **Memória cache (L1, L2, L3)** — associada ao processador, capacidade da ordem de megabytes; a cache L3 é tipicamente compartilhada entre múltiplos núcleos.
 3. **Memória RAM** — capacidade da ordem de gigabytes.
 4. **Armazenamento secundário** — capacidade da ordem de terabytes.
 
-Essas unidades formam uma progressão: 8 bits formam um **byte**; 1024 bytes ($2^{10}$) formam um **kilobyte**; e cada unidade seguinte (megabyte, gigabyte, terabyte...) é 1024× a anterior — não 1000× como nas demais unidades do dia a dia (quilograma, quilômetro), porque a contagem nasce de potências de base 2, não de base 10. É essa progressão que explica por que a pirâmide se estreita: quanto mais alto o nível de memória, menor a capacidade típica disponível hoje — terabytes no armazenamento secundário, gigabytes na RAM, megabytes no cache, bytes no registrador.
+Essas unidades formam uma progressão: 8 bits formam um **byte**; 1024 bytes ($2^{10}$) formam um **kilobyte**; e cada unidade seguinte (megabyte, gigabyte, terabyte...) é 1024× a anterior — não 1000× como nas demais unidades do dia a dia (quilograma, quilômetro), porque a contagem nasce de potências de base 2, não de base 10. É essa progressão que explica por que a pirâmide se estreita: quanto mais alto o nível de memória, menor a capacidade típica disponível hoje — terabytes no armazenamento secundário, gigabytes na RAM, megabytes no cache, poucos kilobytes nos registradores.
 
 <figure id="fig-piramide-memoria" markdown="1">
 <img src="imagens/piramide-memoria.png" alt="Pirâmide dividida em quatro faixas horizontais. Do topo para a base: registradores (vermelho), cache L1, L2 e L3 (degradê de laranja para amarelo), memória RAM (azul-claro) e armazenamento secundário (azul). À direita, a capacidade típica de cada nível: kilobytes, megabytes, gigabytes e terabytes. À esquerda, uma barra com o mesmo degradê de cores vai de “mais rápida, mais cara”, no topo, a “mais lenta, mais barata, maior capacidade”, na base.">
@@ -210,30 +206,17 @@ Na [Figura 1.5](#fig-piramide-memoria), a largura de cada faixa representa a cap
 - A substituição de um HD por um SSD reduz o tempo de inicialização por aumentar a velocidade da memória secundária.
 - O conceito de *cache* é aplicado também fora do hardware local — por exemplo, em serviços de streaming de vídeo, que priorizam conteúdo popular em memória de acesso mais rápido.
 
-### 1.10.5 Processadores especializados: CPU, GPU e NPU
-
-Um computador moderno tipicamente integra mais de um tipo de processador — a Seção 1.11 aprofunda essa taxonomia e a estende a outros tipos de processador e a outros perfis de máquina além do desktop.
-
-- **CPU** (*Central Processing Unit*) — processamento de propósito geral.
-- **GPU** (*Graphical Processing Unit*) — processador dedicado a tarefas gráficas, com memória de alta velocidade própria (VRAM).
-- **NPU** (*Neural Processing Unit*) — processador dedicado a cargas de trabalho de inteligência artificial, cada vez mais comum em dispositivos móveis e notebooks.
-
-
-!!! warning "Figura pendente"
-    anúncio comentado de um processador e de uma placa de vídeo, com cache/núcleos/memória destacados
-
-
 ---
 
 ## 1.11 Processadores especializados e perfis de máquina
 
-A Seção 1.9 apresentou os quatro componentes mínimos de um desktop, e a Seção 1.10 introduziu a hierarquia de memória e uma primeira taxonomia de processadores (CPU, GPU, NPU). Esta seção fecha o Capítulo 1 respondendo a uma pergunta que fica em aberto até aqui: um computador moderno raramente tem *um* processador — ele tem vários, cada um especializado numa tarefa —, e a combinação desses processadores muda radicalmente conforme o tipo de máquina considerado (um desktop, um notebook, um smartphone ou um servidor).
+A Seção 1.9 apresentou os quatro componentes mínimos de um desktop, e a Seção 1.10 mostrou como as memórias se organizam em torno do processador. Esta seção fecha o Capítulo 1 respondendo a uma pergunta que fica em aberto até aqui: um computador moderno raramente tem *um* processador — ele tem vários, cada um especializado numa tarefa —, e a combinação desses processadores muda radicalmente conforme o tipo de máquina considerado (um desktop, um notebook, um smartphone ou um servidor).
 
 ### 1.11.1 Taxonomia de processadores
 
-- **CPU** (*Central Processing Unit*) — processamento de propósito geral; já apresentado na Seção 1.10.5.
-- **GPU** (*Graphics Processing Unit*) — processador dedicado a tarefas gráficas, com memória de alta velocidade própria (VRAM); já apresentado na Seção 1.10.5.
-- **NPU** (*Neural Processing Unit*) — processador dedicado a cargas de trabalho de inteligência artificial, cada vez mais comum em dispositivos móveis e notebooks; já apresentado na Seção 1.10.5.
+- **CPU** (*Central Processing Unit*) — processamento de propósito geral.
+- **GPU** (*Graphics Processing Unit*) — processador dedicado a tarefas gráficas, com memória de alta velocidade própria (VRAM).
+- **NPU** (*Neural Processing Unit*) — processador dedicado a cargas de trabalho de inteligência artificial, cada vez mais comum em dispositivos móveis e notebooks.
 - **APU** (*Accelerated Processing Unit*) — termo usado para designar um chip que combina, no mesmo encapsulamento, uma CPU e uma GPU integrada. Hoje praticamente todo processador de desktop e notebook tem vídeo integrado (Capítulo 8, §8.7.2), então "APU" deixou de ser uma categoria à parte e passou a descrever quase qualquer CPU moderna — o termo sobrevive principalmente como nome comercial de determinadas linhas de produto.
 - **DSP** (*Digital Signal Processor*) — processador especializado em processar sinais contínuos (áudio, imagem, rádio) por meio de operações matemáticas repetitivas (somas e multiplicações em sequência) sobre grandes volumes de amostras. Diferente da CPU, que precisa lidar com qualquer tipo de instrução, o DSP é otimizado apenas para esse tipo de cálculo — e por isso executa essas operações com muito mais eficiência energética. Está presente, por exemplo, no microfone e na câmera de um smartphone, processando o sinal bruto antes que ele chegue à CPU ou à NPU.
 - **SoC** (*System on a Chip*, sistema em um único chip) — não é um tipo de processador, mas uma **estratégia de integração**: reunir, num único encapsulamento, CPU, GPU, controlador de memória, modem de rede e demais controladores que, num desktop, estariam espalhados entre processador, chipset e placa-mãe (Capítulo 10, §10.1.2, trata do chipset e da interconexão desses componentes). Praticamente todo smartphone, tablet e Raspberry Pi é organizado em torno de um SoC.
@@ -243,7 +226,7 @@ A Seção 1.9 apresentou os quatro componentes mínimos de um desktop, e a Seç�
 <figcaption markdown="span"><strong>Figura 1.6</strong> — SoC de smartphone (tudo num chip) e desktop (blocos separados na placa-mãe).</figcaption>
 </figure>
 
-A [Figura 1.6](#fig-soc-vs-desktop) contrapõe as duas estratégias: no SoC, a integração economiza espaço e energia; no desktop, a separação em blocos é o que permite trocar um componente sem trocar o resto — a modularidade da Seção 1.8.
+A [Figura 1.6](#fig-soc-vs-desktop) contrapõe as duas estratégias: no SoC, a integração economiza espaço e energia; no desktop, a separação em blocos é o que permite trocar um componente sem trocar o resto — a modularidade da Seção 1.6.2.
 
 ### 1.11.2 Hardware para diferentes perfis de uso
 
@@ -257,7 +240,7 @@ O mesmo conjunto de conceitos — CPU, memória, armazenamento, interconexão �
 | Prioridade de projeto | Custo-benefício e desempenho bruto | Portabilidade e autonomia de bateria | Autonomia de bateria acima de tudo | Disponibilidade contínua (*uptime*) e capacidade de processar muitas requisições simultâneas |
 | Forma física | Gabinete de mesa (torre, *desk*) | Chassi único e fino | Chassi único, sem abertura para manutenção | Chassi em formato *rack*, dimensionado em unidades **U** (1U, 2U, 4U) para empilhamento em um armário de rede |
 
-**Servidores: redundância como princípio de projeto.** Um servidor difere de um desktop não por processar "mais rápido" — muitas vezes o processador de um servidor tem clock por núcleo *menor* que o de um desktop, priorizando número de núcleos e eficiência energética sob operação contínua —, mas por ser projetado para **nunca parar**. Essa exigência se traduz em componentes redundantes: duas ou mais fontes de alimentação (se uma falha, a outra assume sem interrupção), discos organizados em arranjos com redundância de dados (de forma que a falha de um disco não cause perda de dados, tema aprofundado na disciplina de Manutenção de Computadores), placas-mãe capazes de hospedar mais de um processador físico simultaneamente, e memória **ECC** — tratada em detalhe, junto com o fenômeno físico que ela existe para corrigir (o *bit flip*), no Capítulo 5, §5.15.
+**Servidores: redundância como princípio de projeto.** Um servidor difere de um desktop não por processar "mais rápido" — muitas vezes o processador de um servidor tem clock por núcleo *menor* que o de um desktop, priorizando número de núcleos e eficiência energética sob operação contínua —, mas por ser projetado para **nunca parar**. Essa exigência se traduz em componentes redundantes: duas ou mais fontes de alimentação (se uma falha, a outra assume sem interrupção), discos organizados em arranjos com redundância de dados (de forma que a falha de um disco não cause perda de dados — tema que foge ao escopo deste livro), placas-mãe capazes de hospedar mais de um processador físico simultaneamente, e memória **ECC** — tratada em detalhe, junto com o fenômeno físico que ela existe para corrigir (o *bit flip*), no Capítulo 5, §5.15.
 
 **Notebooks: compromisso entre modularidade e portabilidade.** O princípio de modularidade apresentado na Seção 1.6.2 — trocar um módulo suspeito para diagnosticar uma falha — se aplica com menos liberdade a um notebook do que a um desktop. Para reduzir espessura, peso e consumo de energia, fabricantes de notebook soldam diretamente à placa componentes que, num desktop, seriam módulos substituíveis: a memória RAM e, cada vez mais, também o processador. Um técnico ainda consegue substituir bateria, SSD (quando não soldado) e tela na maioria dos modelos, mas a possibilidade de "testar trocando o módulo" (Seção 1.6.2) fica mais restrita — e, quando o componente soldado falha, a reparação deixa de ser uma troca simples e passa a exigir retrabalho de solda em nível de placa, ou a substituição da placa-mãe inteira.
 
@@ -272,7 +255,9 @@ O mesmo conjunto de conceitos — CPU, memória, armazenamento, interconexão �
 
 ## Síntese do capítulo
 
-Este capítulo apresentou a definição técnica de computador, sua origem histórica e evolução até o computador pessoal moderno, o princípio de modularidade que fundamenta a manutenção de computadores, uma primeira introdução à hierarquia de memória, e como esses mesmos componentes se recombinam em diferentes perfis de máquina — do desktop ao servidor. Esses conceitos serão retomados e aprofundados nos capítulos seguintes: memória (Capítulo 5), sistema operacional (Capítulo 6), instalação (Capítulo 7), hardware físico e montagem (Capítulo 8) e arquitetura de processadores (Capítulo 3).
+Este capítulo apresentou a definição técnica de computador, sua origem histórica e evolução até o computador pessoal moderno, o princípio de modularidade que fundamenta a manutenção de computadores, uma primeira introdução à hierarquia de memória, e como esses mesmos componentes se recombinam em diferentes perfis de máquina — do desktop ao servidor.
+
+Cada um desses temas é retomado adiante, na ordem do livro: o transistor e o programa armazenado (Seções 1.2 a 1.4) ganham forma de circuito e de arquitetura no Capítulo 2; a distinção entre máquina especializada e de uso geral reaparece na discussão sobre instrução e dado do Capítulo 3 (§3.2); a hierarquia de memória (Seção 1.10) é aprofundada no Capítulo 5; o software que opera sobre o hardware, no sistema operacional (Capítulo 6) e na sua instalação (Capítulo 7); os componentes mínimos do desktop (Seção 1.9), na montagem física (Capítulo 8) e na fonte de alimentação (Capítulo 11); e a tríade hardware–software–pessoas, a manutenção corretiva e preventiva e a modularidade (Seção 1.6), no método de manutenção do Capítulo 12.
 
 ---
 
@@ -282,6 +267,5 @@ Este capítulo apresentou a definição técnica de computador, sua origem hist�
 2. Data de 1617 para os "Ossos de Napier" (publicação de *Rabdologiae*, Edimburgo) confirmada em: MACTUTOR HISTORY OF MATHEMATICS ARCHIVE, University of St Andrews, verbete "John Napier"; SCIENCE MUSEUM GROUP, coleção de instrumentos de cálculo. Note-se que o livro-texto local de Tangon & Santos atribui erroneamente 1614 a este marco — essa é a data de outra obra de Napier (*Mirifici Logarithmorum Canonis Descriptio*, sobre logaritmos), não dos ossos.
 3. HODGES, Andrew. *Alan Turing: The Enigma*. Londres: Burnett Books, 1983; Nova York: Simon & Schuster, 1983.
 4. BURKS, A. W.; GOLDSTINE, H. H.; VON NEUMANN, J. *Preliminary Discussion of the Logical Design of an Electronic Computing Instrument*. Princeton: Institute for Advanced Study, 1946.
-5. Sobre o contexto da declaração de Ken Olsen (1977, World Future Society): QUOTE INVESTIGATOR. "There Is No Reason for Any Individual to Have a Computer in Their Home"; TECHRADAR, reportagens sobre a origem e o contexto da citação.
-6. POPULAR MECHANICS. "Brains That Click." mar. 1949.
-7. Fotografia do IBM PC 5150. Autor: Reseletti. Wikimedia Commons, 2022. Licença CC BY-SA 3.0. Disponível em: https://commons.wikimedia.org/wiki/File:IBM_PC_5150.jpg.
+5. POPULAR MECHANICS. "Brains That Click." mar. 1949.
+6. Fotografia do IBM PC 5150. Autor: Reseletti. Wikimedia Commons, 2022. Licença CC BY-SA 3.0. Disponível em: https://commons.wikimedia.org/wiki/File:IBM_PC_5150.jpg.
