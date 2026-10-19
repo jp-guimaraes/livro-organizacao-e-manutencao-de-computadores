@@ -19,7 +19,7 @@ Como o UEFI é retrocompatível com o BIOS (Capítulo 6, §6.5.2), um pendrive g
 | MBR | Sim | Sim |
 | GPT | Não | Sim |
 
-**Procedimento de identificação.** Ao inicializar o computador e entrar no *setup* (menu de configuração do firmware, acessado durante o POST): se o menu responde ao mouse, o firmware é UEFI/GPT; se o menu só é navegável pelo teclado, o firmware é BIOS/MBR legado.
+**Procedimento de identificação.** Ao inicializar o computador e entrar no *setup* (menu de configuração do firmware, acessado durante o POST): se o menu responde ao mouse, o firmware é UEFI. A recíproca não vale: há firmwares UEFI com menu só em modo texto, navegável apenas pelo teclado. O teste definitivo é pelo sistema operacional já instalado: no Windows, o utilitário `msinfo32` informa "Modo da BIOS: UEFI" ou "Herdado"; no Linux, a pasta `/sys/firmware/efi` existe quando o boot foi feito por UEFI.
 
 **Aplicação prática.** Se um dado computador não reconhece o pendrive de instalação, ou apresenta uma mensagem de erro mencionando GPT e EFI (ou MBR), a causa mais provável é uma incompatibilidade entre o esquema de partição gravado na mídia e o tipo de firmware daquele computador.
 

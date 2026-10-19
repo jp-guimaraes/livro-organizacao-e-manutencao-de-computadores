@@ -23,7 +23,7 @@ Essa definição contém três elementos essenciais:
 A [Figura 1.1](#fig-linha-do-tempo) mostra uma linha do tempo dos instrumentos de cálculo colocada lado a lado com os vários estágios do desenvolvimento humano.
 
 <figure id="fig-linha-do-tempo" markdown="1">
-<img src="imagens/linha-do-tempo-historia-do-calculo.png" alt="Linha do tempo comparada entre dispositivos de cálculo e estágios de desenvolvimento humano, em dois eixos paralelos. Eixo “dispositivos de cálculo”: mãos (contagem unária) → pedrinhas e fichas → ábaco → ossos de Napier → régua de cálculo → calculadora Curta → calculadora científica → laptop. Eixo “desenvolvimento humano”, pareado ponto a ponto com o eixo acima: caçador-coletor → agricultor → mercador → navegador → cientista → engenheiro → astronauta → era da rede global. As datas vão de aproximadamente 35.000 a.C. (mãos/caçador-coletor) a 2010 (laptop/rede global); o espaçamento entre marcos consecutivos encolhe de milênios, no início da linha, para décadas, no final — representando visualmente a aceleração do ritmo de inovação.">
+![Linha do tempo comparada entre dispositivos de cálculo e estágios de desenvolvimento humano, em dois eixos paralelos. Eixo “dispositivos de cálculo”: mãos (contagem unária) → pedrinhas e fichas → ábaco → ossos de Napier → régua de cálculo → calculadora Curta → calculadora científica → laptop. Eixo “desenvolvimento humano”, pareado ponto a ponto com o eixo acima: caçador-coletor → agricultor → mercador → navegador → cientista → engenheiro → astronauta → era da rede global. As datas vão de aproximadamente 35.000 a.C. (mãos/caçador-coletor) a 2010 (laptop/rede global); o espaçamento entre marcos consecutivos encolhe de milênios, no início da linha, para décadas, no final — representando visualmente a aceleração do ritmo de inovação.](imagens/linha-do-tempo-historia-do-calculo.png)
 <figcaption markdown="span"><strong>Figura 1.1</strong> — Linha do tempo dos instrumentos de cálculo, pareada com os estágios do desenvolvimento humano.</figcaption>
 </figure>
 
@@ -82,7 +82,7 @@ Todo computador, para operar, requer três elementos: **entrada** de dados, **pr
 Uma distinção relevante deve ser observada: ao realizar esse cálculo numa calculadora convencional, é o usuário humano quem executa o algoritmo, decidindo a sequência de operações. Num computador de uso geral, o próprio algoritmo é tratado como um dado de entrada — armazenado na memória, como visto na Seção 1.4 — e é a máquina que o executa de forma autônoma, reforçando a definição apresentada na Seção 1.1.
 
 <figure id="fig-entrada-processamento-saida" markdown="1">
-<img src="imagens/entrada-processamento-saida.png" alt="Diagrama com três caixas ligadas por setas, da esquerda para a direita: Entrada (azul), com N1 = 7 e N2 = 9; Processamento (laranja), com a soma 7 + 9 = 16 seguida da divisão por 2; e Saída (verde), com média = 8.">
+![Diagrama com três caixas ligadas por setas, da esquerda para a direita: Entrada (azul), com N1 = 7 e N2 = 9; Processamento (laranja), com a soma 7 + 9 = 16 seguida da divisão por 2; e Saída (verde), com média = 8.](imagens/entrada-processamento-saida.png)
 <figcaption markdown="span"><strong>Figura 1.2</strong> — O modelo entrada–processamento–saída aplicado ao cálculo da média de duas notas.</figcaption>
 </figure>
 
@@ -93,7 +93,7 @@ Um sistema computacional não é composto apenas por hardware e software; inclui
 Em contextos de suporte técnico, é comum que um problema relatado como falha de hardware ou software seja, na verdade, decorrente de erro de operação — por exemplo, um cabo de alimentação desconectado. A identificação correta da origem do problema (hardware, software ou operação humana) é o primeiro passo de qualquer diagnóstico técnico — retomado como filtro central de toda manutenção no Capítulo 12 (§12.2).
 
 <figure id="fig-sistema-computacional" markdown="1">
-<img src="imagens/sistema-computacional.png" alt="Três círculos que se sobrepõem: Hardware (laranja; processador, memória, cabos, mouse…), Software (verde; sistema operacional, aplicativos…) e Pessoas (roxo; quem opera, usa e mantém o sistema). Na região em que os três se cruzam está escrito “sistema computacional”. Ao lado, a pergunta inicial do diagnóstico: a origem do defeito está no hardware, no software ou na operação (pessoas)?">
+![Três círculos que se sobrepõem: Hardware (laranja; processador, memória, cabos, mouse…), Software (verde; sistema operacional, aplicativos…) e Pessoas (roxo; quem opera, usa e mantém o sistema). Na região em que os três se cruzam está escrito “sistema computacional”. Ao lado, a pergunta inicial do diagnóstico: a origem do defeito está no hardware, no software ou na operação (pessoas)?](imagens/sistema-computacional.png)
 <figcaption markdown="span"><strong>Figura 1.3</strong> — O sistema computacional como a interseção de hardware, software e pessoas.</figcaption>
 </figure>
 
@@ -144,7 +144,7 @@ Um terceiro realizou a engenharia reversa do BIOS da IBM e distribuiu uma versã
 Esse processo ilustra um efeito de mercado relevante para a área de tecnologia: plataformas com maior base de usuários tendem a atrair mais desenvolvimento de software, o que por sua vez amplia ainda mais sua base de usuários — um mecanismo análogo ao que hoje explica a predominância do desenvolvimento de aplicativos para a plataforma Android em relação a plataformas minoritárias. A [Figura 1.4](#fig-ibm-pc-5150) mostra o modelo original, de 1981.
 
 <figure id="fig-ibm-pc-5150" markdown="1">
-<img src="imagens/ibm-pc-5150.jpg" alt="Fotografia do IBM PC 5150 (1981), modelo original: gabinete horizontal bege com duas unidades de disquete de 5,25 polegadas, teclado destacado na frente e monitor monocromático verde-sobre-preto apoiado sobre o gabinete, exibindo uma tela de texto de diagnóstico do sistema.">
+![Fotografia do IBM PC 5150 (1981), modelo original: gabinete horizontal bege com duas unidades de disquete de 5,25 polegadas, teclado destacado na frente e monitor monocromático verde-sobre-preto apoiado sobre o gabinete, exibindo uma tela de texto de diagnóstico do sistema.](imagens/ibm-pc-5150.jpg)
 <figcaption markdown="span"><strong>Figura 1.4</strong> — IBM PC 5150 (1981), o modelo original. Foto: Reseletti, Wikimedia Commons, CC BY-SA 3.0 `[6]`.</figcaption>
 </figure>
 
@@ -194,7 +194,7 @@ Da camada mais rápida (e mais cara) para a mais lenta (e mais barata):
 Essas unidades formam uma progressão: 8 bits formam um **byte**; 1024 bytes ($2^{10}$) formam um **kilobyte**; e cada unidade seguinte (megabyte, gigabyte, terabyte...) é 1024× a anterior — não 1000× como nas demais unidades do dia a dia (quilograma, quilômetro), porque a contagem nasce de potências de base 2, não de base 10. É essa progressão que explica por que a pirâmide se estreita: quanto mais alto o nível de memória, menor a capacidade típica disponível hoje — terabytes no armazenamento secundário, gigabytes na RAM, megabytes no cache, poucos kilobytes nos registradores.
 
 <figure id="fig-piramide-memoria" markdown="1">
-<img src="imagens/piramide-memoria.png" alt="Pirâmide dividida em quatro faixas horizontais. Do topo para a base: registradores (vermelho), cache L1, L2 e L3 (degradê de laranja para amarelo), memória RAM (azul-claro) e armazenamento secundário (azul). À direita, a capacidade típica de cada nível: kilobytes, megabytes, gigabytes e terabytes. À esquerda, uma barra com o mesmo degradê de cores vai de “mais rápida, mais cara”, no topo, a “mais lenta, mais barata, maior capacidade”, na base.">
+![Pirâmide dividida em quatro faixas horizontais. Do topo para a base: registradores (vermelho), cache L1, L2 e L3 (degradê de laranja para amarelo), memória RAM (azul-claro) e armazenamento secundário (azul). À direita, a capacidade típica de cada nível: kilobytes, megabytes, gigabytes e terabytes. À esquerda, uma barra com o mesmo degradê de cores vai de “mais rápida, mais cara”, no topo, a “mais lenta, mais barata, maior capacidade”, na base.](imagens/piramide-memoria.png)
 <figcaption markdown="span"><strong>Figura 1.5</strong> — Pirâmide da hierarquia de memória: velocidade, custo e capacidade típica de cada nível.</figcaption>
 </figure>
 
@@ -222,7 +222,7 @@ A Seção 1.9 apresentou os quatro componentes mínimos de um desktop, e a Seç�
 - **SoC** (*System on a Chip*, sistema em um único chip) — não é um tipo de processador, mas uma **estratégia de integração**: reunir, num único encapsulamento, CPU, GPU, controlador de memória, modem de rede e demais controladores que, num desktop, estariam espalhados entre processador, chipset e placa-mãe (Capítulo 10, §10.1.2, trata do chipset e da interconexão desses componentes). Praticamente todo smartphone, tablet e Raspberry Pi é organizado em torno de um SoC.
 
 <figure id="fig-soc-vs-desktop" markdown="1">
-<img src="imagens/soc-vs-desktop.png" alt="À esquerda, Smartphone: SoC — um único chip contendo CPU, GPU, NPU, DSP, modem e controlador de memória. À direita, Desktop: blocos separados — CPU, GPU dedicada (placa de vídeo), chipset e placa de rede, ligados entre si sobre a placa-mãe. Nota: SoC, menos espaço e menos consumo, mas nada se troca; desktop, cada bloco pode ser substituído (modularidade).">
+![À esquerda, Smartphone: SoC — um único chip contendo CPU, GPU, NPU, DSP, modem e controlador de memória. À direita, Desktop: blocos separados — CPU, GPU dedicada (placa de vídeo), chipset e placa de rede, ligados entre si sobre a placa-mãe. Nota: SoC, menos espaço e menos consumo, mas nada se troca; desktop, cada bloco pode ser substituído (modularidade).](imagens/soc-vs-desktop.png)
 <figcaption markdown="span"><strong>Figura 1.6</strong> — SoC de smartphone (tudo num chip) e desktop (blocos separados na placa-mãe).</figcaption>
 </figure>
 

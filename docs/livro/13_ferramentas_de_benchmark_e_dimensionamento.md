@@ -31,7 +31,7 @@ A diferença entre os dois cenários é de aproximadamente 4,5 vezes — um salt
 Vale registrar que nem toda queda de desempenho percebida em jogos multijogador tem origem no processamento local: quando o computador atua como cliente de um servidor remoto (típico de jogos *online*), atrasos de rede (Wi-Fi, latência do provedor, disponibilidade do servidor) também produzem sensação de travamento, independentemente da capacidade da CPU e da GPU locais.
 
 <figure id="fig-resolucao-pixels" markdown="1">
-<img src="imagens/resolucao-pixels.png" alt="Duas grades com um círculo vermelho desenhado pixel a pixel. Em resolução baixa, os pixels são grandes e o círculo fica serrilhado, quase uma cruz. Em resolução alta, com três vezes mais pixels em cada direção (nove vezes mais pixels por quadro), o contorno fica bem mais suave. Rodapé: 720p a 30 FPS, cerca de 27,6 milhões de pixels por segundo; 1080p a 60 FPS, cerca de 124,4 milhões (cerca de 4,5 vezes).">
+![Duas grades com um círculo vermelho desenhado pixel a pixel. Em resolução baixa, os pixels são grandes e o círculo fica serrilhado, quase uma cruz. Em resolução alta, com três vezes mais pixels em cada direção (nove vezes mais pixels por quadro), o contorno fica bem mais suave. Rodapé: 720p a 30 FPS, cerca de 27,6 milhões de pixels por segundo; 1080p a 60 FPS, cerca de 124,4 milhões (cerca de 4,5 vezes).](imagens/resolucao-pixels.png)
 <figcaption markdown="span"><strong>Figura 13.1</strong> — A mesma imagem em duas resoluções: mais pixels deixam o contorno mais suave e dão mais trabalho a cada quadro.</figcaption>
 </figure>
 
@@ -66,7 +66,7 @@ Uma forma particularmente útil de visualizar essas comparações é o gráfico 
 
 
 <figure id="fig-dispersao-custo-beneficio" markdown="1">
-<img src="imagens/dispersao-custo-beneficio.png" alt="Gráfico com a nota de benchmark no eixo horizontal (até 30.000) e o preço em reais no vertical (até 6.000). GPU A: 22.000 pontos, R$ 2.890, cerca de 7,6 pontos por real. GPU B: 28.000 pontos, R$ 4.600, cerca de 6,1 pontos por real. Uma região verde no canto inferior direito marca o melhor custo-benefício, e uma seta indica: mais à direita e mais embaixo, mais desempenho por real.">
+![Gráfico com a nota de benchmark no eixo horizontal (até 30.000) e o preço em reais no vertical (até 6.000). GPU A: 22.000 pontos, R$ 2.890, cerca de 7,6 pontos por real. GPU B: 28.000 pontos, R$ 4.600, cerca de 6,1 pontos por real. Uma região verde no canto inferior direito marca o melhor custo-benefício, e uma seta indica: mais à direita e mais embaixo, mais desempenho por real.](imagens/dispersao-custo-beneficio.png)
 <figcaption markdown="span"><strong>Figura 13.2</strong> — Dispersão nota × preço com as duas placas de vídeo do exemplo.</figcaption>
 </figure>
 
@@ -126,7 +126,7 @@ Esse valor de 850 W representa o **pico teórico**, isto é, a soma dos consumos
 Esse raciocínio fecha o ciclo entre o dimensionamento do processador (e dos demais componentes de processamento) e o dimensionamento da fonte de alimentação: nenhuma escolha de hardware de processamento pode ser tomada de forma isolada da capacidade de entrega de energia do sistema.
 
 <figure id="fig-orcamento-servidor" markdown="1">
-<img src="imagens/orcamento-servidor.png" alt="À esquerda, uma barra empilhada com o consumo máximo de cada componente: processador 150 W, GPUs 500 W, discos 120 W, placa-mãe, RAM e ventoinhas 80 W, totalizando o pico de 850 W; uma linha tracejada vermelha marca o uso típico, cerca de 40% do pico (340 W). À direita, uma curva de eficiência da fonte em função da carga, que sobe, atinge o máximo perto de 50% da carga nominal e depois cai levemente; curva ilustrativa, sem escala.">
+![À esquerda, uma barra empilhada com o consumo máximo de cada componente: processador 150 W, GPUs 500 W, discos 120 W, placa-mãe, RAM e ventoinhas 80 W, totalizando o pico de 850 W; uma linha tracejada vermelha marca o uso típico, cerca de 40% do pico (340 W). À direita, uma curva de eficiência da fonte em função da carga, que sobe, atinge o máximo perto de 50% da carga nominal e depois cai levemente; curva ilustrativa, sem escala.](imagens/orcamento-servidor.png)
 <figcaption markdown="span"><strong>Figura 13.3</strong> — Orçamento de potência do servidor e a curva de eficiência de uma fonte ATX (curva ilustrativa).</figcaption>
 </figure>
 

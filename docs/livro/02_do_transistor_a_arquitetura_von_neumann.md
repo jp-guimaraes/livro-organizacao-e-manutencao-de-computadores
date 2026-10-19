@@ -15,7 +15,7 @@ Essa organização em camadas — software sobre navegador, navegador sobre sist
 A estratégia de camadas não é exclusiva da relação hardware-software: a mesma lógica organiza, por exemplo, os protocolos de rede em camadas (física, enlace, transporte, aplicação). Este capítulo adota uma abordagem **top-down** (do software visível ao usuário até o hardware que o executa) para, nas seções seguintes, reconstruir a mesma pilha de forma **bottom-up** (do transistor até a linguagem de programação).
 
 <figure id="fig-pilha-plataformas" markdown="1">
-<img src="imagens/pilha-plataformas.png" alt="Pilha de quatro camadas ligadas por setas “roda sobre” que apontam para baixo: Software aplicativo (verde; ex.: bloqueador de anúncios, gerenciador de senhas…), Navegador (verde-água; ex.: Firefox, Chrome, Safari…), Sistema operacional (azul; Windows, macOS, Linux, Android, iOS…) e Hardware (laranja; processador — Snapdragon, Apple M1, Intel… — e memória, disco, câmera, placa de rede…).">
+![Pilha de quatro camadas ligadas por setas “roda sobre” que apontam para baixo: Software aplicativo (verde; ex.: bloqueador de anúncios, gerenciador de senhas…), Navegador (verde-água; ex.: Firefox, Chrome, Safari…), Sistema operacional (azul; Windows, macOS, Linux, Android, iOS…) e Hardware (laranja; processador — Snapdragon, Apple M1, Intel… — e memória, disco, câmera, placa de rede…).](imagens/pilha-plataformas.png)
 <figcaption markdown="span"><strong>Figura 2.1</strong> — Abstração em camadas: cada software roda sobre a camada de baixo, que é a sua plataforma.</figcaption>
 </figure>
 
@@ -44,7 +44,7 @@ A partir dessa chave elementar, é possível construir as portas lógicas estuda
 Esse "modelo de chave" (série = AND, paralelo = OR) é uma simplificação útil para a intuição, coerente com a lógica CMOS moderna; circuitos comerciais TTL/DTL, por exemplo, podem implementar as portas AND e OR também com diodos, deixando o transistor para casos como o inversor `[2]`.
 
 <figure id="fig-portas-logicas-transistores" markdown="1">
-<img src="imagens/portas-logicas-transistores.png" alt="Três circuitos lado a lado, cada um com a sua tabela-verdade embaixo. Porta AND: dois transistores ligados em série entre a alimentação +V e a saída S, com as entradas A (azul) e B (verde) nas bases e um resistor da saída até o terra; S só é 1 quando A e B são 1. Porta OR: dois transistores ligados em paralelo entre +V e a saída S; S é 1 quando A ou B é 1. Porta NOT: um resistor de +V até a saída S e um transistor da saída até o terra, com a entrada A na base; S é o inverso de A. Rodapé: modelo de chave — com 1 na base, o transistor conduz; com 0, não conduz.">
+![Três circuitos lado a lado, cada um com a sua tabela-verdade embaixo. Porta AND: dois transistores ligados em série entre a alimentação +V e a saída S, com as entradas A (azul) e B (verde) nas bases e um resistor da saída até o terra; S só é 1 quando A e B são 1. Porta OR: dois transistores ligados em paralelo entre +V e a saída S; S é 1 quando A ou B é 1. Porta NOT: um resistor de +V até a saída S e um transistor da saída até o terra, com a entrada A na base; S é o inverso de A. Rodapé: modelo de chave — com 1 na base, o transistor conduz; com 0, não conduz.](imagens/portas-logicas-transistores.png)
 <figcaption markdown="span"><strong>Figura 2.2</strong> — Portas AND, OR e NOT no modelo de chave, com a tabela-verdade de cada uma.</figcaption>
 </figure>
 
@@ -68,7 +68,7 @@ Observando essa tabela, nota-se que a coluna "Soma" corresponde exatamente à ta
 O circuito que combina uma porta XOR (para o bit de soma) e uma porta AND (para o bit de vai-um), ambas recebendo as mesmas duas entradas A e B, é chamado **meio-somador** (*half adder*). Ele soma dois bits e produz dois resultados: o bit de soma e o bit de transporte para a próxima posição. Encadeando vários meios-somadores (com o acréscimo da entrada de vai-um recebido da posição anterior, o que dá origem ao **somador completo**, ou *full adder*), constrói-se um circuito capaz de somar números de qualquer quantidade de bits — o tamanho da palavra binária que um processador consegue somar de uma vez (32 bits, 64 bits) está diretamente ligado a quantos desses circuitos estão encadeados no hardware — tema que reaparece no Capítulo 3 (§3.4), na transição de 32 para 64 bits.
 
 <figure id="fig-meio-somador" markdown="1">
-<img src="imagens/meio-somador.png" alt="Diagrama de um meio-somador dentro de um quadro tracejado. As entradas A (azul) e B (verde) se dividem e chegam às duas portas: em cima, uma porta XOR, cuja saída é Soma (vermelho); embaixo, uma porta AND, cuja saída é Vai-um (carry).">
+![Diagrama de um meio-somador dentro de um quadro tracejado. As entradas A (azul) e B (verde) se dividem e chegam às duas portas: em cima, uma porta XOR, cuja saída é Soma (vermelho); embaixo, uma porta AND, cuja saída é Vai-um (carry).](imagens/meio-somador.png)
 <figcaption markdown="span"><strong>Figura 2.3</strong> — Meio-somador: uma porta XOR gera o bit de soma e uma porta AND gera o vai-um.</figcaption>
 </figure>
 
@@ -104,7 +104,7 @@ A operação de leitura e escrita não esgota o funcionamento de um chip de mem�
 Esses sinais — de ligar/desligar, de habilitar saída, de selecionar entre operações possíveis de um chip — reaparecem em praticamente todo circuito digital: um somador, um circuito de memória, um controlador de barramento. Entender que eles existem é o que permite compreender a camada seguinte da abstração, tratada na próxima seção.
 
 <figure id="fig-registrador-4-bits" markdown="1">
-<img src="imagens/registrador-4-bits.png" alt="Um bloco chamado registrador de 4 bits, com 4 flip-flops. À esquerda, quatro entradas de dados, D0 a D3 (azul); à direita, quatro saídas, Q0 a Q3 (vermelho). Embaixo, três sinais de controle: clock (pulso que sincroniza), reset (zera o valor) e habilitação de escrita. No alto, a habilitação de saída.">
+![Um bloco chamado registrador de 4 bits, com 4 flip-flops. À esquerda, quatro entradas de dados, D0 a D3 (azul); à direita, quatro saídas, Q0 a Q3 (vermelho). Embaixo, três sinais de controle: clock (pulso que sincroniza), reset (zera o valor) e habilitação de escrita. No alto, a habilitação de saída.](imagens/registrador-4-bits.png)
 <figcaption markdown="span"><strong>Figura 2.4</strong> — Registrador de 4 bits: entradas de dados, saídas e os sinais de controle.</figcaption>
 </figure>
 
@@ -151,7 +151,7 @@ Essa arquitetura organiza o computador em quatro unidades funcionais — as trê
 No computador desktop moderno, a via de dados que interliga processador, memória e dispositivos de entrada e saída — o **barramento**, tema do Capítulo 10 — é fisicamente provida pela placa-mãe. É por causa dele que a habilitação de saída da Seção 2.4.1 é indispensável: todos os componentes estão pendurados nos mesmos fios.
 
 <figure id="fig-von-neumann" markdown="1">
-<img src="imagens/von-neumann.png" alt="Diagrama da arquitetura de von Neumann: uma faixa horizontal cinza, o barramento, ao centro. Acima dela, à esquerda, o processador (CPU), com a unidade de controle e a ULA, e, à direita, a memória, que guarda o programa (instruções) e os dados — ambos com setas de ida e volta até o barramento. Abaixo, à esquerda, a unidade de entrada (teclado, mouse, câmera), com seta para o barramento; à direita, a unidade de saída (monitor, alto-falante), com seta vinda do barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).">
+![Diagrama da arquitetura de von Neumann: uma faixa horizontal cinza, o barramento, ao centro. Acima dela, à esquerda, o processador (CPU), com a unidade de controle e a ULA, e, à direita, a memória, que guarda o programa (instruções) e os dados — ambos com setas de ida e volta até o barramento. Abaixo, à esquerda, a unidade de entrada (teclado, mouse, câmera), com seta para o barramento; à direita, a unidade de saída (monitor, alto-falante), com seta vinda do barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).](imagens/von-neumann.png)
 <figcaption markdown="span"><strong>Figura 2.5</strong> — Arquitetura de von Neumann: processador, memória, entrada e saída ligados pelo barramento. Redesenhado a partir de diagrama de EMERICK, Adailton (automacoes.blogspot.com).</figcaption>
 </figure>
 

@@ -13,7 +13,7 @@ Toda análise elétrica de um computador começa na tomada, e toda tomada é, fi
 O mesmo raciocínio se aplica à eletricidade: a diferença de potencial elétrico só existe entre dois pontos. É por essa razão que toda tomada elétrica possui, no mínimo, dois furos — um representando cada um dos dois pontos entre os quais existe a diferença de potencial. A grandeza que quantifica essa diferença de potencial é chamada de **tensão** ou **voltagem**, medida em **volts** (V).
 
 <figure id="fig-mesas-potencial" markdown="1">
-<img src="imagens/mesas-potencial.png" alt="Um lápis no chão (ponto B), outro sobre uma mesa (ponto A) e um terceiro sobre uma segunda mesa empilhada sobre a primeira (ponto C). Setas verticais indicam a diferença de altura entre A e B, entre C e A e, a maior delas, entre C e B. Legenda: o potencial só se compara entre dois pontos; na tomada, cada furo é um dos pontos.">
+![Um lápis no chão (ponto B), outro sobre uma mesa (ponto A) e um terceiro sobre uma segunda mesa empilhada sobre a primeira (ponto C). Setas verticais indicam a diferença de altura entre A e B, entre C e A e, a maior delas, entre C e B. Legenda: o potencial só se compara entre dois pontos; na tomada, cada furo é um dos pontos.](imagens/mesas-potencial.png)
 <figcaption markdown="span"><strong>Figura A.1</strong> — Analogia do potencial gravitacional: lápis no chão, sobre uma mesa e sobre uma mesa empilhada.</figcaption>
 </figure>
 
@@ -40,7 +40,7 @@ onde V é a tensão (volts), R é a **resistência elétrica** (ohms, Ω) e I é
 Essa relação também explica por que um **curto-circuito** é perigoso. Um curto-circuito ocorre quando um caminho de resistência próxima de zero é criado entre dois pontos de potenciais diferentes — por exemplo, um pequeno objeto condutor (um clipe de papel, um grampo metálico) tocando acidentalmente os dois pinos de uma tomada. Como a corrente é inversamente proporcional à resistência, uma resistência próxima de zero produz uma corrente extremamente alta — teoricamente, o máximo que a fonte for capaz de fornecer. Esse pico de corrente é o que provoca aquecimento excessivo dos condutores, podendo causar incêndio se não houver um dispositivo de proteção interrompendo o circuito (ver Seção A.3.1).
 
 <figure id="fig-circuito-led-ohm" markdown="1">
-<img src="imagens/circuito-led-ohm.png" alt="Circuito retangular com uma fonte de tensão V à esquerda, um resistor R no lado de cima e um LED no lado direito, todos em série. Setas vermelhas indicam a corrente I no sentido convencional, saindo do polo positivo da fonte, passando pelo resistor e pelo LED e voltando à fonte. À direita, em destaque, a fórmula V = R × I e a frase: mais tensão, mesma resistência, implica mais corrente e LED mais forte.">
+![Circuito retangular com uma fonte de tensão V à esquerda, um resistor R no lado de cima e um LED no lado direito, todos em série. Setas vermelhas indicam a corrente I no sentido convencional, saindo do polo positivo da fonte, passando pelo resistor e pelo LED e voltando à fonte. À direita, em destaque, a fórmula V = R × I e a frase: mais tensão, mesma resistência, implica mais corrente e LED mais forte.](imagens/circuito-led-ohm.png)
 <figcaption markdown="span"><strong>Figura A.2</strong> — Circuito com fonte, resistor e LED em série e a primeira Lei de Ohm.</figcaption>
 </figure>
 
@@ -79,7 +79,7 @@ Essa segunda forma é especialmente importante porque descreve a **potência dis
 A rede elétrica gera energia em uma determinada tensão e, antes de transportá-la por longas distâncias até os centros consumidores, eleva essa tensão para valores muito mais altos (por meio de transformadores, tratados na Seção A.5), reduzindo-a de volta a 220 V apenas próximo ao ponto de consumo. Essa escolha de projeto decorre diretamente da equação $P = R \times I^2$: para transportar uma mesma potência, é possível usar uma tensão alta com corrente baixa, ou uma tensão baixa com corrente alta. Como a perda por efeito Joule cresce com o quadrado da corrente, transportar a energia com uma corrente menor (elevando a tensão) reduz drasticamente as perdas ao longo dos cabos de transmissão — o que explica também o zumbido característico dos transformadores de poste, resultado da conversão eletromagnética de tensão em andamento.
 
 <figure id="fig-rede-eletrica" markdown="1">
-<img src="imagens/rede-eletrica.png" alt="Fluxo em cinco blocos: usina (gera a energia); subestação elevadora (eleva a tensão); linhas de transmissão em alta tensão, com corrente menor, representadas por uma seta vermelha grossa; subestação rebaixadora; transformador do poste; residência, com 220 V. Uma chave sob os três últimos blocos indica que a tensão vai sendo reduzida por transformadores até 220 V. Nota: P = R × I² — com menos corrente, a perda nos cabos cai muito.">
+![Fluxo em cinco blocos: usina (gera a energia); subestação elevadora (eleva a tensão); linhas de transmissão em alta tensão, com corrente menor, representadas por uma seta vermelha grossa; subestação rebaixadora; transformador do poste; residência, com 220 V. Uma chave sob os três últimos blocos indica que a tensão vai sendo reduzida por transformadores até 220 V. Nota: P = R × I² — com menos corrente, a perda nos cabos cai muito.](imagens/rede-eletrica.png)
 <figcaption markdown="span"><strong>Figura A.3</strong> — Da usina à residência: a tensão é elevada para o transporte e reduzida perto do consumo.</figcaption>
 </figure>
 
@@ -100,7 +100,7 @@ Uma instalação elétrica é organizada hierarquicamente: da rede pública, a e
 A instalação pode ser **monofásica** (uma única fase de 220 V mais um neutro de referência) ou **trifásica** (três fases de 220 V, cada uma referenciada ao mesmo neutro, usadas para distribuir cargas maiores entre três circuitos independentes).
 
 <figure id="fig-quadro-distribuicao" markdown="1">
-<img src="imagens/quadro-distribuicao.png" alt="Diagrama em árvore: rede pública (poste) liga-se ao quadro geral, que alimenta dois quadros de distribuição (1º andar e laboratório). Cada quadro de distribuição tem três disjuntores, um por circuito: iluminação, tomadas e ar-condicionado. Nota: uma falha num circuito desarma só o disjuntor dele; o resto da instalação continua funcionando.">
+![Diagrama em árvore: rede pública (poste) liga-se ao quadro geral, que alimenta dois quadros de distribuição (1º andar e laboratório). Cada quadro de distribuição tem três disjuntores, um por circuito: iluminação, tomadas e ar-condicionado. Nota: uma falha num circuito desarma só o disjuntor dele; o resto da instalação continua funcionando.](imagens/quadro-distribuicao.png)
 <figcaption markdown="span"><strong>Figura A.4</strong> — Hierarquia de uma instalação elétrica: do poste aos disjuntores de cada circuito.</figcaption>
 </figure>
 
@@ -123,7 +123,7 @@ O terceiro pino presente na maioria das tomadas modernas corresponde ao **aterra
 O **ar** é naturalmente isolante — seus átomos mantêm os elétrons presos com energia suficiente para impedir a condução em condições normais — o que explica por que é seguro aproximar a mão de um fio energizado sem tocá-lo diretamente. Quando, porém, a diferença de potencial entre dois pontos se torna extrema (como entre uma nuvem carregada e o solo), a rigidez elétrica do ar é rompida, e ele passa a conduzir: esse fenômeno é o **raio**. O trajeto irregular de um raio decorre do fato de que a descarga segue o caminho de menor resistência entre as moléculas de ar naquele instante. Estruturas pontiagudas, como para-raios, favorecem a descarga por um efeito conhecido como **poder das pontas**: a geometria fina concentra o campo elétrico, oferecendo um caminho de menor resistência para a corrente até o fio terra.
 
 <figure id="fig-raio-para-raios" markdown="1">
-<img src="imagens/raio-para-raios.png" alt="Uma nuvem carregada no alto; dela sai um raio em ziguezague até a ponta de um para-raios no topo de um prédio. Do para-raios, um cabo vermelho desce pela lateral do prédio até uma haste enterrada no solo. Notas: o ar, que é isolante, conduz quando a diferença de potencial é extrema; o cabo de descida leva a carga até a haste de aterramento, e a Terra a absorve.">
+![Uma nuvem carregada no alto; dela sai um raio em ziguezague até a ponta de um para-raios no topo de um prédio. Do para-raios, um cabo vermelho desce pela lateral do prédio até uma haste enterrada no solo. Notas: o ar, que é isolante, conduz quando a diferença de potencial é extrema; o cabo de descida leva a carga até a haste de aterramento, e a Terra a absorve.](imagens/raio-para-raios.png)
 <figcaption markdown="span"><strong>Figura A.5</strong> — Raio e para-raios: a descarga é conduzida por um cabo até a haste de aterramento.</figcaption>
 </figure>
 
@@ -162,7 +162,7 @@ Como a energia não se perde nessa conversão (idealmente), o produto tensão ×
 Como o funcionamento do transformador depende de variação de campo magnético, ele **exige corrente alternada** para operar: não é possível usar um transformador diretamente sobre uma tensão contínua constante, pois esta não gera a variação de campo magnético necessária à indução.
 
 <figure id="fig-transformador" markdown="1">
-<img src="imagens/transformador.png" alt="Núcleo ferromagnético retangular, cinza, com duas bobinas. À esquerda, o primário (vermelho), com muitas espiras, ligado a uma fonte de tensão alternada de 220 V. À direita, o secundário (azul), com poucas espiras, entregando 10 V em corrente alternada. Setas tracejadas no núcleo indicam o campo magnético variável. Abaixo, em destaque: V2/V1 = N2/N1 e V1 × I1 ≈ V2 × I2.">
+![Núcleo ferromagnético retangular, cinza, com duas bobinas. À esquerda, o primário (vermelho), com muitas espiras, ligado a uma fonte de tensão alternada de 220 V. À direita, o secundário (azul), com poucas espiras, entregando 10 V em corrente alternada. Setas tracejadas no núcleo indicam o campo magnético variável. Abaixo, em destaque: V2/V1 = N2/N1 e V1 × I1 ≈ V2 × I2.](imagens/transformador.png)
 <figcaption markdown="span"><strong>Figura A.6</strong> — Transformador: o primário, com muitas espiras, recebe 220 V; o secundário, com poucas, entrega 10 V.</figcaption>
 </figure>
 
@@ -184,7 +184,7 @@ O modelo mais simples de conversão é a **fonte linear**, construída por meio 
 Fontes lineares são robustas e relativamente simples de projetar, mas apresentam uma desvantagem física significativa: para uma mesma potência, seus componentes (especialmente o transformador) são consideravelmente maiores e mais pesados do que os de uma fonte chaveada equivalente. Por essa razão, fontes lineares praticamente não são mais utilizadas em computadores modernos, restringindo-se a aplicações específicas, como equipamentos de áudio de alta fidelidade, em que a característica do circuito linear é tecnicamente desejável.
 
 <figure id="fig-fonte-linear-blocos" markdown="1">
-<img src="imagens/fonte-linear-blocos.png" alt="Quatro blocos em sequência: transformador, retificador (ponte de diodos), filtro capacitivo e regulador de tensão, da entrada de 220 V CA à saída em corrente contínua estável. Abaixo, a forma de onda em cada ponto: senoide grande (220 V CA), senoide menor (10 V CA), onda retificada com todos os semiciclos positivos (pulsante), onda quase plana com pequena oscilação em dente de serra (ripple) e, por fim, uma linha reta (contínua estável).">
+![Quatro blocos em sequência: transformador, retificador (ponte de diodos), filtro capacitivo e regulador de tensão, da entrada de 220 V CA à saída em corrente contínua estável. Abaixo, a forma de onda em cada ponto: senoide grande (220 V CA), senoide menor (10 V CA), onda retificada com todos os semiciclos positivos (pulsante), onda quase plana com pequena oscilação em dente de serra (ripple) e, por fim, uma linha reta (contínua estável).](imagens/fonte-linear-blocos.png)
 <figcaption markdown="span"><strong>Figura A.7</strong> — Fonte linear em quatro estágios, com a forma de onda em cada ponto.</figcaption>
 </figure>
 

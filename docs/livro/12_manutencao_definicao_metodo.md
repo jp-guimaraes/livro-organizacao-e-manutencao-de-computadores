@@ -27,7 +27,7 @@ A tríade hardware, software e pessoas — apresentada no Capítulo 1 (§1.6) �
 Repare que, no terceiro caso, não há defeito de hardware nem de software: o problema está inteiramente na operação. É comum que problemas relatados como falha técnica sejam, na prática, erro de uso — por isso o técnico precisa investigar as três frentes antes de concluir qualquer diagnóstico.
 
 <figure id="fig-mouse-tres-hipoteses" markdown="1">
-<img src="imagens/mouse-tres-hipoteses.png" alt="Uma caixa no alto, Chamado: o mouse não está funcionando, com três setas para baixo: Software (verde) — driver do trackpad não instalado, o SO não reconhece o dispositivo; Hardware (laranja) — mouse com defeito ou sem pilha, o componente não opera; Pessoa, usuário (roxo) — mouse sem fio não pareado, hardware e software estão certos. Rodapé: investigar as três frentes antes de concluir o diagnóstico; no terceiro caso, não há defeito nenhum.">
+![Uma caixa no alto, Chamado: o mouse não está funcionando, com três setas para baixo: Software (verde) — driver do trackpad não instalado, o SO não reconhece o dispositivo; Hardware (laranja) — mouse com defeito ou sem pilha, o componente não opera; Pessoa, usuário (roxo) — mouse sem fio não pareado, hardware e software estão certos. Rodapé: investigar as três frentes antes de concluir o diagnóstico; no terceiro caso, não há defeito nenhum.](imagens/mouse-tres-hipoteses.png)
 <figcaption markdown="span"><strong>Figura 12.1</strong> — O chamado “o mouse não está funcionando” e uma hipótese em cada frente do sistema computacional.</figcaption>
 </figure>
 
