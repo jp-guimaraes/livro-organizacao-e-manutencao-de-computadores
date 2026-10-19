@@ -6,17 +6,21 @@ Neste capítulo você vai estudar o processo completo de instalação de um sist
 
 ## 7.1 Preparação da mídia de instalação
 
-Para instalar um sistema operacional, é necessário preparar previamente uma mídia de instalação — tipicamente um pendrive — contendo o instalador em um formato reconhecível pelo firmware do computador de destino. O procedimento envolve duas etapas conceitualmente distintas: baixar a imagem do sistema operacional (arquivo `.iso`) e, em seguida, gravar essa imagem no pendrive de forma que ele se torne inicializável — o que exige, ele próprio, criar uma tabela de partições e um sistema de arquivo válidos na mídia.
+Para instalar um sistema operacional, é necessário preparar previamente uma mídia de instalação — tipicamente um pendrive — contendo o instalador em um formato reconhecível pelo firmware do computador de destino. O procedimento envolve duas etapas conceitualmente distintas: baixar a imagem do sistema operacional (arquivo `.iso`) e, em seguida, gravar essa imagem no pendrive de forma que ele se torne inicializável — o que exige, ele próprio, criar uma tabela de partições e um sistema de arquivo válidos na mídia. Qualquer pendrive serve, desde que tenha capacidade suficiente para a imagem: a partir de 8 GB cabe a grande maioria dos sistemas operacionais atuais.
 
 **Procedimento de segurança.** A imagem de instalação (ISO) deve ser obtida diretamente do fabricante — no caso do Windows, do site oficial da Microsoft. Imagens obtidas de fontes intermediárias não confiáveis podem vir acompanhadas de software malicioso embutido no próprio instalador.
 
+![Os dois pré-requisitos da instalação: definir a partição/disco alvo (com backup, porque a formatação apaga os dados) e ter a origem dos dados — uma mídia de instalação criada por uma ferramenta.](imagens/instalacao-pre-requisitos.png){#fig:instalacao-pre-requisitos alt="Diagrama em duas colunas sob o título 'Pré-requisitos para instalar o sistema operacional'. Coluna 1, em azul: 'Definir partição / disco alvo' com seta para 'Formatação / Instalação', ambos agrupados por uma chave com o rótulo 'Instalador do S.O.'; da formatação sai uma seta dupla vermelha para 'Perda de dados!!'; à esquerda, uma caixa verde 'Fez o backup?' aponta para a formatação com o rótulo 'antes'. Coluna 2, em roxo: 'Origem dos dados: instalador?' com seta para 'Pendrive de instalação', que leva à caixa âmbar 'Como eu crio um pendrive desses?'; desta sai uma seta para o grupo tracejado 'Ferramenta', com 'Do fabricante do S.O. (ex.: Microsoft)', 'Rufus' e 'Argos'; uma chave em Rufus e Argos aponta para 'UEFI + GPT' (teal) e 'BIOS + MBR' (marrom). Legenda de cores: etapa, fonte da instalação, ação do técnico, risco, proteção, moderno, legado."}
+
+A @fig:instalacao-pre-requisitos resume o que precisa estar resolvido antes de começar: de um lado, **onde** o sistema será gravado — a partição ou disco alvo, cuja formatação apaga os dados e por isso exige backup prévio (Seção 7.2.1); de outro, **de onde** vêm os dados — o pendrive de instalação, que por sua vez exige uma ferramenta capaz de gravá-lo no esquema certo para o firmware de destino (Seções 7.1.1 e 7.1.2).
+
 ### 7.1.1 BIOS/MBR e UEFI/GPT
 
-Como o UEFI é retrocompatível com o BIOS (Capítulo 6, §6.5.2), um pendrive gravado em **MBR** funciona tanto em computadores com firmware BIOS quanto UEFI, enquanto um pendrive gravado em **GPT** funciona apenas em computadores com UEFI. Por essa razão, ao preparar uma única mídia de instalação para um parque de máquinas heterogêneo — com computadores antigos e recentes —, a opção mais segura é gravar em MBR, garantindo compatibilidade universal.
+Como o UEFI é retrocompatível com o BIOS (Capítulo 6, §6.5.2), um pendrive gravado em **MBR** funciona em computadores com firmware BIOS e, na maioria dos computadores UEFI, por meio do **modo de compatibilidade** (CSM, ou *Legacy*), em que o firmware UEFI se comporta como um BIOS; um pendrive gravado em **GPT** funciona apenas em computadores com UEFI. Por essa razão, ao preparar uma única mídia de instalação para um parque de máquinas heterogêneo — com computadores antigos e recentes —, gravar em MBR costuma ser a opção mais segura. A exceção são as máquinas UEFI sem CSM ou com *Secure Boot* obrigatório, que exigem GPT.
 
 | Esquema gravado | Funciona em BIOS | Funciona em UEFI |
 |---|---|---|
-| MBR | Sim | Sim |
+| MBR | Sim | Sim, com CSM ativo |
 | GPT | Não | Sim |
 
 **Procedimento de identificação.** Ao inicializar o computador e entrar no *setup* (menu de configuração do firmware, acessado durante o POST): se o menu responde ao mouse, o firmware é UEFI. A recíproca não vale: há firmwares UEFI com menu só em modo texto, navegável apenas pelo teclado. O teste definitivo é pelo sistema operacional já instalado: no Windows, o utilitário `msinfo32` informa "Modo da BIOS: UEFI" ou "Herdado"; no Linux, a pasta `/sys/firmware/efi` existe quando o boot foi feito por UEFI.
@@ -29,12 +33,15 @@ Como o UEFI é retrocompatível com o BIOS (Capítulo 6, §6.5.2), um pendrive g
 |---|---|
 | Assistente de instalação da Microsoft (*Media Creation Tool*) | Gera diretamente um pendrive UEFI/GPT (acerta para a maioria dos computadores novos) ou permite apenas baixar o arquivo ISO para uso posterior com outra ferramenta |
 | **Rufus** | Ferramenta leve (poucos megabytes), gratuita e de código aberto `[1]`, que permite escolher explicitamente o tipo de sistema-alvo (BIOS/MBR ou UEFI/GPT); recomendada para gravar uma única imagem por vez com controle preciso do padrão de destino |
+| **Argos** | Ferramenta livre e multiplataforma (Linux e macOS), no espírito do Rufus: grava pendrives de Windows e de Linux com escolha explícita entre BIOS/MBR e UEFI/GPT, dispensando um computador com Windows para preparar mídia para máquinas legadas `[8]` |
 | **YUMI** | Permite reunir múltiplos instaladores (por exemplo, várias distribuições Linux e versões do Windows) em um único pendrive, funcionando como um "GRUB de instaladores"; menos direta de configurar que o Rufus |
 | **Ventoy** | Alternativa multi-imagem semelhante ao YUMI |
 
 *Especificações e comportamento de cada ferramenta conforme suas páginas oficiais `[5]`.*
 
 O Assistente de instalação da Microsoft, quando usado no modo "unidade flash USB", automaticamente grava a mídia como UEFI/GPT — o que funciona para a grande maioria dos computadores novos, mas falha em máquinas antigas com BIOS/MBR. Para instalar em uma máquina legada, é necessário baixar apenas o arquivo ISO e utilizar o Rufus, selecionando manualmente o esquema de partição BIOS/MBR compatível com aquele hardware.
+
+Ao gravar uma imagem do Windows, o Rufus seleciona o sistema de arquivo **NTFS** para o pendrive. O motivo é o tamanho: o principal arquivo do instalador (`install.wim`) ultrapassa 4 GB, limite de tamanho de arquivo do FAT32. Como o firmware UEFI só reconhece FAT32 nativamente, o Rufus acrescenta um pequeno carregador (UEFI:NTFS) para que o pendrive também inicialize em modo UEFI. Para o Windows 11, o Rufus oferece ainda remover exigências de hardware do instalador (TPM, *Secure Boot*), útil em máquinas mais antigas.
 
 [IMAGEM: captura de tela do Rufus com os campos de esquema de partição (MBR/GPT) e sistema de destino (BIOS/UEFI) destacados]
 
@@ -48,7 +55,13 @@ O processo de instalação de um sistema operacional pode ser descrito, de forma
 2. Executar o instalador: aceitar os termos de uso, escolher a partição de destino e, se necessário, formatá-la (Capítulo 6, §6.3) para realizar uma **instalação limpa** — isto é, uma instalação que parte do zero, sem preservar dados anteriores daquela partição.
 3. Aguardar a conclusão da cópia dos arquivos do sistema operacional para a partição de destino e a reinicialização automática da máquina, que volta a carregar normalmente a partir do disco — sem necessidade de nova intervenção no teclado.
 
+![Desvio de fluxo para iniciar o instalador: a tecla do boot menu, pressionada durante o POST, abre o seletor de boot; o pendrive só assume se uma tecla for pressionada na mensagem "Para iniciar, aperte qualquer tecla".](imagens/instalacao-desvio-de-fluxo.png){#fig:instalacao-desvio-de-fluxo alt="Fluxograma horizontal. A caixa azul 'POST' tem três saídas: para baixo, em cinza, 'sem desvio' leva a 'Carrega o S.O. do disco alvo'; para cima, tracejada em cinza, a 'alternativa' leva ao 'Setup — USB como prioridade', que desce até o Boot Menu; para a direita, uma seta âmbar 'tecla do boot menu — desvio de fluxo' leva à caixa azul 'Boot Menu (seletor de boot)'. Do Boot Menu, uma seta roxa 'USB' leva à caixa roxa 'Instalador do S.O. (no pendrive)', e dela à caixa âmbar 'Para iniciar, aperte qualquer tecla (instalador do Windows)'. Desta saem dois ramos: 'apertou: desvio de fluxo' em verde, para 'Instalação completa', e 'não apertou' em cinza, para 'S.O. do disco (se houver)'. Legenda de cores: firmware, fonte da instalação, ação do técnico, objetivo, fluxo normal/alternativo. Nota: a tecla do boot menu varia por fabricante (F8, F9, F11, F12, Esc...)."}
+
+A @fig:instalacao-desvio-de-fluxo mostra os dois desvios que levam ao instalador. O primeiro é a tecla do boot menu durante o POST — que varia por fabricante (F8, F9, F11, F12, Esc…) —, que troca o disco pelo pendrive como dispositivo de partida; alternativamente, o mesmo efeito se obtém colocando o USB como primeira prioridade no Setup. O segundo, típico do instalador do Windows, é a tecla pressionada na mensagem "aperte qualquer tecla". Sem o primeiro desvio, o computador carrega o sistema já existente no disco; sem o segundo, segue para o disco mesmo com o pendrive selecionado.
+
 Um ponto de atenção recorrente é que, ao chegar pela primeira vez à tela do instalador, costuma ser necessário pressionar qualquer tecla para confirmar a inicialização a partir da mídia externa; esse gesto não deve ser repetido após a primeira reinicialização automática do processo de instalação, sob pena de reiniciar a instalação do zero (Seção 7.2.2).
+
+**Aplicação prática — excluir ou formatar.** No instalador do Windows, a opção **Personalizada** é a que permite escolher a partição de destino; a opção **Atualização**, que preserva arquivos e aplicativos, só funciona quando iniciada de dentro do próprio Windows. Na tela de partições, **formatar** apaga os dados de uma partição mas a mantém; **excluir** remove a partição e deixa o espaço como *não alocado*. Excluir todas as partições de um disco com instalações anteriores e criar uma nova no espaço não alocado deixa o próprio instalador criar, corretamente, as partições auxiliares de que o Windows precisa — como a *Partição Reservada pelo Sistema*, em instalações BIOS/MBR. Instalar sem formatar a partição antiga, por outro lado, move o sistema anterior para uma pasta `Windows.old`, o que não elimina erros nem malware.
 
 Também é preciso observar que, uma vez que o sistema operacional em execução está instalado em determinada partição, essa mesma partição não pode ser formatada enquanto está em uso — de forma análoga a tentar remover o alicerce sobre o qual se está de pé. Formatar a partição ativa do sistema em execução interrompe o próprio funcionamento do computador.
 
@@ -62,6 +75,8 @@ Antes de reinstalar um sistema operacional em uma máquina com dados relevantes 
 2. Copiar para essa partição os dados que precisam ser preservados.
 3. Realizar a instalação limpa apenas na partição de destino do sistema operacional, deixando intacta a partição de backup.
 
+Quando o sistema operacional está danificado mas o disco funciona, há outras duas formas de salvar os dados antes da reinstalação: **retirar o disco** e conectá-lo a outro computador funcional, copiando os dados para ele; ou **inicializar a máquina por um Live USB** (Seção 7.3) e, a partir dele, copiar os dados para a nuvem ou para um dispositivo removível. O procedimento de partição separada descrito acima é a abordagem mais avançada das três, pois recupera a máquina sem que os dados saiam dela.
+
 **Aplicação prática — reparo de software.** Quando o hardware de uma máquina está íntegro e o problema diagnosticado está no sistema operacional (arquivos corrompidos, desempenho degradado, incompatibilidades), a instalação limpa — precedida de backup dos dados necessários — é um dos procedimentos de reparo mais comuns em manutenção de computadores, por "reiniciar o ciclo de vida" do software.
 
 Um cuidado adicional é necessário quando a causa do problema é um software malicioso (**malware**): se o backup incluir arquivos infectados, o malware é copiado junto com os dados legítimos e pode se propagar para o próximo computador em que esse backup for restaurado. Por isso, um procedimento de backup responsável inclui a verificação e remoção de arquivos contaminados antes da restauração.
@@ -70,7 +85,7 @@ Um cuidado adicional é necessário quando a causa do problema é um software ma
 
 Um problema comum na primeira experiência com instalação de sistemas operacionais ocorre quando o dispositivo USB de instalação permanece como primeira opção na ordem de boot (Capítulo 6, §6.6.3). Nesse cenário, ao final da instalação, o computador reinicia, identifica novamente o pendrive como primeira opção de boot, e reinicia o processo de instalação do zero — repetindo esse ciclo indefinidamente, sem nunca chegar a carregar o sistema recém-instalado a partir do disco interno.
 
-A correção consiste em, após concluída a instalação, remover a mídia USB ou reconfigurar a ordem de boot no Setup para priorizar o disco interno (HD ou SSD) sobre a mídia externa.
+O mesmo ciclo ocorre se, na reinicialização, o técnico desviar o fluxo de novo para o pendrive — escolhendo-o outra vez no boot menu ou pressionando uma tecla na mensagem do instalador (às vezes por ainda estar apertando a tecla do boot menu). A correção consiste em não pressionar nada após a primeira reinicialização; se o ciclo já se instalou, remover a mídia USB com o computador desligado ou reconfigurar a ordem de boot no Setup para priorizar o disco interno (HD ou SSD) sobre a mídia externa. Diferentemente de instaladores Linux como o do Ubuntu, que ao final pedem explicitamente para remover a mídia e pressionar Enter, o instalador do Windows não dá esse aviso.
 
 [IMAGEM: tela típica de instalador solicitando "pressione qualquer tecla para iniciar a partir do CD ou DVD"]
 
@@ -226,3 +241,4 @@ Este capítulo apresentou o processo integral de instalação de um sistema oper
 5. Páginas oficiais: RUFUS, <https://rufus.ie>; VENTOY, <https://www.ventoy.net>; YUMI, <https://www.pendrivelinux.com>.
 6. KASPERSKY (Securelist). "TDL4 – Top Bot." 27 jun. 2011. Disponível em: <https://securelist.com/tdl4-top-bot/36152/>.
 7. CONSTANTIN, Lucian. "Notorious TDL4 rootkit retooled to better withstand antivirus programs." *InfoWorld*, 21 out. 2011. Disponível em: <https://www.infoworld.com/article/2308753/notorious-tdl4-rootkit-retooled-to-better-withstand-antivirus-programs.html>.
+8. ARGOS. Página oficial. Disponível em: <https://jp-guimaraes.github.io/argos/>.
