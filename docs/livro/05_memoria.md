@@ -210,11 +210,11 @@ Uma vez magnetizada, a região do disco mantém sua orientação **sem necessida
 
 Como a cabeça de leitura/escrita precisa se posicionar fisicamente sobre a trilha correta e aguardar a rotação do prato até o setor desejado passar por baixo dela, o HD tem **acesso sequencial**: o tempo de acesso depende da posição física do dado no disco, ao contrário do acesso aleatório da memória RAM. Cada face de cada prato é organizada em **trilhas** (círculos concêntricos) subdivididas em **setores**; o endereço de um dado no disco é dado pela combinação face/trilha/setor.
 
-Um HD com múltiplos pratos acrescenta mais uma coordenada: além da face, da trilha e do setor, é preciso saber em qual prato está o dado. A [Figura 5.5](#fig-disco-trilha-setor) mostra essas partes.
+Um HD com múltiplos pratos acrescenta mais uma coordenada: além da face, da trilha e do setor, é preciso saber em qual prato está o dado. A [Figura 5.5](#fig-disco-trilha-setor) mostra essas partes `[22]`.
 
 <figure id="fig-disco-trilha-setor" markdown="1">
 ![À esquerda, vista de cima de um prato de HD (azul-claro) com vários círculos concêntricos. Uma trilha está destacada em laranja; um setor, um pequeno trecho dessa trilha, está em vermelho; um cluster, um grupo de setores consecutivos, está em verde. Um braço atuador roxo, com eixo fora do prato, leva a cabeça de leitura e escrita até a trilha. À direita, uma vista lateral menor: o prato atravessado pelo eixo do motor, com uma face superior e uma face inferior, e um braço com duas cabeças, uma acima e outra abaixo do prato. Redesenhado a partir de diagrama de medium.com/@andrewjmarkham1.](imagens/disco-trilha-setor.png)
-<figcaption markdown="span"><strong>Figura 5.5</strong> — Prato de HD visto de cima (trilha, setor e cluster) e de lado (duas faces, duas cabeças). Redesenhado a partir de diagrama de medium.com/@andrewjmarkham1.</figcaption>
+<figcaption markdown="span"><strong>Figura 5.5</strong> — Prato de HD visto de cima (trilha, setor e cluster) e de lado (duas faces, duas cabeças). Redesenhado a partir de diagrama da Wikipédia.</figcaption>
 </figure>
 
 O endereço de um dado no HD combina as partes indicadas na [Figura 5.5](#fig-disco-trilha-setor): em qual face do prato ele está, em qual trilha (o círculo concêntrico) e em qual setor (o trecho da trilha). Como as duas faces de cada prato são gravadas, o braço atuador leva uma cabeça para cada face, e todas se movem juntas.
@@ -367,3 +367,4 @@ Este capítulo aprofundou a hierarquia de memória introduzida no Capítulo 1, m
 19. UEFI FORUM. *UEFI Specification 2.11*, cap. 5, "GUID Partition Table (GPT) Disk Layout". Disponível em: <https://uefi.org/specs/UEFI/2.11/05_GUID_Partition_Table_Format.html>.
 20. WIKIPEDIA. "DDR SDRAM"; "Synchronous dynamic random-access memory" (seção sobre as gerações DDR). Disponível em: <https://en.wikipedia.org/wiki/DDR_SDRAM>; <https://en.wikipedia.org/wiki/Synchronous_dynamic_random-access_memory>.
 21. RABAEY, Jan M.; CHANDRAKASAN, Anantha; NIKOLIĆ, Borivoje. *Digital Integrated Circuits: A Design Perspective*. 2. ed. Upper Saddle River: Prentice Hall, 2003, cap. 5, seção "Power, Energy, and Energy-Delay".
+22. WIKIPEDIA. *Disk sector*. Disponível em: <https://en.wikipedia.org/wiki/Disk_sector>.
