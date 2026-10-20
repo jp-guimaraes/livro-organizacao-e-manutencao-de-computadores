@@ -63,7 +63,18 @@ Um ponto de atenção recorrente é que, ao chegar pela primeira vez à tela do 
 
 **Aplicação prática — excluir ou formatar.** No instalador do Windows, a opção **Personalizada** é a que permite escolher a partição de destino; a opção **Atualização**, que preserva arquivos e aplicativos, só funciona quando iniciada de dentro do próprio Windows. Na tela de partições, **formatar** apaga os dados de uma partição mas a mantém; **excluir** remove a partição e deixa o espaço como *não alocado*. Excluir todas as partições de um disco com instalações anteriores e criar uma nova no espaço não alocado deixa o próprio instalador criar, corretamente, as partições auxiliares de que o Windows precisa — como a *Partição Reservada pelo Sistema*, em instalações BIOS/MBR. Instalar sem formatar a partição antiga, por outro lado, move o sistema anterior para uma pasta `Windows.old`, o que não elimina erros nem malware.
 
-Também é preciso observar que, uma vez que o sistema operacional em execução está instalado em determinada partição, essa mesma partição não pode ser formatada enquanto está em uso — de forma análoga a tentar remover o alicerce sobre o qual se está de pé. Formatar a partição ativa do sistema em execução interrompe o próprio funcionamento do computador.
+**Edições do Windows.** O instalador oferece edições diferentes (Home, Pro e outras). Todas têm o mesmo núcleo; o que muda são recursos voltados a empresas e usuários avançados `[9]`:
+
+| Recurso | Home | Pro |
+|---|---|---|
+| BitLocker (criptografia de unidades, com gerenciamento completo) | Não; só a *criptografia de dispositivo*, automática | Sim |
+| Hyper-V (máquinas virtuais) | Não | Sim |
+| Área de Trabalho Remota como computador acessado | Não | Sim |
+| RAM máxima (64 bits) | 128 GB | 2 TB |
+
+Trocar de edição não exige reinstalar: o Home passa a Pro com a inserção de uma chave do Pro.
+
+Também é preciso observar que, uma vez que o sistema operacional em execução está instalado em determinada partição, essa mesma partição não pode ser formatada enquanto está em uso — de forma análoga a tentar remover o alicerce sobre o qual se está de pé. Formatar a partição ativa do sistema em execução interrompe o próprio funcionamento do computador. É por isso que a instalação precisa partir de outro dispositivo, como o pendrive com o instalador: o sistema em execução consegue se **atualizar**, mas não apagar nem reparticionar o disco de que depende para funcionar.
 
 ### 7.2.1 Backup antes de reinstalar
 
@@ -74,6 +85,10 @@ Antes de reinstalar um sistema operacional em uma máquina com dados relevantes 
 1. Criar (ou reaproveitar) uma partição separada, que não será formatada durante a instalação.
 2. Copiar para essa partição os dados que precisam ser preservados.
 3. Realizar a instalação limpa apenas na partição de destino do sistema operacional, deixando intacta a partição de backup.
+
+![Reinstalação preservando dados: criar uma partição de dados (zona segura), copiar os dados do usuário para ela e reinstalar o sistema só na partição alvo.](imagens/backup-particao-dados.png){#fig:backup-particao-dados alt="Três etapas. 1: 'Disco com o S.O. instalado': faixa estreita azul 'aux.' (chave: 'partição auxiliar — arranque do S.O.') e a partição 'Sistema operacional', com 'dados do usuário (ex.: Área de Trabalho)' em verde. 2: 'Encolher C: e criar D: (dados)': faixa 'aux.', partição azul 'C: S.O.' com 'dados' e partição verde 'D: Dados' com 'cópia'; uma seta âmbar passa por baixo das partições, de 'dados' até 'cópia', rotulada 'copiar'; ao lado de D:, 'zona segura (backup)'. 3: caixa âmbar 'Reinstalar o S.O. na partição alvo (C:)', com seta vermelha para C:, e dois desfechos: 'Dados no C:? Perdidos (formatado)' em vermelho e 'Cópia no D:? Preservada' em verde. Legenda: sistema e partições, ação do técnico, dados preservados/backup, perda de dados."}
+
+A @fig:backup-particao-dados mostra o procedimento. Na tela de partições, o instalador **não mostra os nomes C: e D:**, atribuídos pelo sistema operacional: identifica cada partição pelo número e pelo **tamanho**. Por isso, convém criar a partição de dados com um tamanho bem diferente e fácil de reconhecer (por exemplo, 10 GB para 5 GB de dados, um tamanho em que nem o sistema caberia), nunca do mesmo tamanho da partição do sistema.
 
 Quando o sistema operacional está danificado mas o disco funciona, há outras duas formas de salvar os dados antes da reinstalação: **retirar o disco** e conectá-lo a outro computador funcional, copiando os dados para ele; ou **inicializar a máquina por um Live USB** (Seção 7.3) e, a partir dele, copiar os dados para a nuvem ou para um dispositivo removível. O procedimento de partição separada descrito acima é a abordagem mais avançada das três, pois recupera a máquina sem que os dados saiam dela.
 
@@ -86,6 +101,10 @@ Um cuidado adicional é necessário quando a causa do problema é um software ma
 Um problema comum na primeira experiência com instalação de sistemas operacionais ocorre quando o dispositivo USB de instalação permanece como primeira opção na ordem de boot (Capítulo 6, §6.6.3). Nesse cenário, ao final da instalação, o computador reinicia, identifica novamente o pendrive como primeira opção de boot, e reinicia o processo de instalação do zero — repetindo esse ciclo indefinidamente, sem nunca chegar a carregar o sistema recém-instalado a partir do disco interno.
 
 O mesmo ciclo ocorre se, na reinicialização, o técnico desviar o fluxo de novo para o pendrive — escolhendo-o outra vez no boot menu ou pressionando uma tecla na mensagem do instalador (às vezes por ainda estar apertando a tecla do boot menu). A correção consiste em não pressionar nada após a primeira reinicialização; se o ciclo já se instalou, remover a mídia USB com o computador desligado ou reconfigurar a ordem de boot no Setup para priorizar o disco interno (HD ou SSD) sobre a mídia externa. Diferentemente de instaladores Linux como o do Ubuntu, que ao final pedem explicitamente para remover a mídia e pressionar Enter, o instalador do Windows não dá esse aviso.
+
+![O fluxo padrão de inicialização, o desvio de fluxo para instalar e a ordem de boot do Setup que, com o USB à frente do disco, provoca o loop de instalação.](imagens/instalacao-ordem-de-boot-loop.png){#fig:instalacao-ordem-de-boot-loop alt="Diagrama em duas linhas. 'Fluxo padrão': POST (azul) → Disco com S.O. (cinza) → S.O. (verde). 'Desvio de fluxo após o POST': POST → seta âmbar 'tecla do boot menu' → USB (instalador, roxo) → caixa âmbar 'Aperte qualquer tecla p/ iniciar o instalador (instalador do Windows)' → Instalador do S.O. (roxo) → Reinicia (azul) → Fluxo normal, termina a instalação (verde). Abaixo, caixa cinza 'Ordem de boot (configuração do Setup)' com '1. HD' e '2. USB'; uma seta vermelha sai de '2. USB' e aponta para uma marca acima de '1. HD', rotulada 'USB passa para cá'. Ao lado, em vermelho: 'USB à frente do HD + tecla apertada de novo na reinicialização ⇒ o instalador reabre: loop'. Legenda: firmware, instalador, ação do técnico, objetivo, fluxo padrão, armadilha."}
+
+A @fig:instalacao-ordem-de-boot-loop resume a causa. Reconhece-se o loop quando a instalação chega ao fim e o instalador reaparece: basta fechá-lo para o computador seguir para o disco e concluir a instalação. Ao remover o pendrive, convém conferir antes se o sistema ainda precisa dele após a reinicialização. Concluída a instalação, o técnico deve deixar o disco interno à frente do USB na ordem de boot, porque o USB como prioridade é uma falha de segurança (Capítulo 6, §6.6.4).
 
 [IMAGEM: tela típica de instalador solicitando "pressione qualquer tecla para iniciar a partir do CD ou DVD"]
 
@@ -146,6 +165,10 @@ Para instalar Windows e Linux em dual boot no mesmo disco, a **ordem de instala�
 
 Concluída a instalação do sistema operacional, um computador plenamente funcional ainda depende da instalação dos **drivers** apropriados. Um driver é um software, desenvolvido pelo fabricante de determinado componente de hardware, responsável por fazer a interface específica entre aquele hardware e o sistema operacional.
 
+![O driver como interface entre o sistema operacional e o hardware: cada hardware usa o driver do seu fabricante.](imagens/driver-interface.png){#fig:driver-interface alt="Diagrama em camadas: no topo, Apps e Usuário (cinza) ligados ao S.O. (azul); abaixo, Driver (roxo), ligado ao S.O. e ao Hardware (elipse cinza) por setas de duplo sentido. Do Hardware saem três exemplos em cinza: GPU, Wi-Fi e Impressora. A GPU leva, com um 'ou' entre elas, a 'exemplo 1: AMD RX 580 → driver da AMD' e 'exemplo 2: NVIDIA RTX 5080 → driver da NVIDIA'; Wi-Fi leva a 'exemplo: placa Wi-Fi Intel → driver da Intel'; Impressora leva a 'exemplo: impressora Epson → driver da Epson'. Legenda: usuário, aplicativos e hardware; sistema operacional; driver (software do fabricante); exemplos (um fabricante, um driver)."}
+
+A @fig:driver-interface mostra a posição do driver: entre o sistema operacional, que serve aos aplicativos e ao usuário, e cada componente de hardware, cada um com o driver do seu fabricante.
+
 Sistemas operacionais diferentes exigem versões diferentes do mesmo driver — por exemplo, uma placa de vídeo tem uma versão de driver para Windows 10 e outra para Windows 11, desenvolvidas e distribuídas separadamente pelo fabricante da placa. Isso ocorre porque, embora o hardware seja o mesmo, o software que faz a comunicação com ele precisa ser compatível com a arquitetura interna de cada sistema operacional.
 
 **Exemplo.** O procedimento padrão de instalação do Windows instala automaticamente **drivers genéricos** — versões simplificadas, capazes de operar minimamente qualquer hardware compatível, mas sem extrair seu desempenho pleno. Uma placa de vídeo de alto desempenho, adquirida separadamente do fabricante (por exemplo, uma GPU de gama alta), só entrega sua capacidade real de processamento gráfico depois que o driver **específico** fornecido pelo fabricante é instalado.
@@ -153,6 +176,8 @@ Sistemas operacionais diferentes exigem versões diferentes do mesmo driver — 
 Um efeito visível e didático da instalação de um driver de vídeo específico é o aumento na **resolução** disponível para a tela — a contagem de pixels em largura e altura que a placa de vídeo consegue endereçar corretamente (por exemplo, o padrão Full HD, de 1920×1080 pixels, seguido pelos padrões 2K e 4K, múltiplos dessa resolução).
 
 Historicamente, drivers eram distribuídos em mídias físicas (CD, disquete) que acompanhavam o hardware adquirido; com a popularização da internet, passaram a ser baixados diretamente do site do fabricante e, mais recentemente, os próprios sistemas operacionais passaram a identificar e instalar automaticamente o driver recomendado (por exemplo, via Windows Update), desde que haja conexão à internet disponível no momento.
+
+Precisam de driver tanto os componentes internos (vídeo, Wi-Fi, Bluetooth, som, webcam, touchpad) quanto os periféricos externos, como uma impressora USB, cujo fabricante fornece o driver que ensina o sistema a comandá-la. O **Linux** adota outro modelo: muitos drivers vêm embutidos no próprio núcleo do sistema, e por isso versões mais novas tendem a funcionar melhor em hardware recente. O modelo cobra seu preço quando um fabricante negligencia o sistema: por muitos anos, drivers para placas NVIDIA no Linux tiveram de ser escritos pela comunidade, o que ajudou o Windows a se firmar como plataforma de jogos, cenário que vem mudando com iniciativas como o Steam Deck, da Valve, baseado em Linux.
 
 **Aplicação prática.** Um computador sem driver de placa de rede Wi-Fi instalado enfrenta um problema de dependência circular: não é possível baixar o driver da internet, porque o driver necessário para acessar a internet é justamente o que está faltando. Nesse cenário, o procedimento é obter o driver em outro computador com acesso à internet, transferi-lo por mídia física (pendrive) e instalá-lo localmente.
 
@@ -242,3 +267,4 @@ Este capítulo apresentou o processo integral de instalação de um sistema oper
 6. KASPERSKY (Securelist). "TDL4 – Top Bot." 27 jun. 2011. Disponível em: <https://securelist.com/tdl4-top-bot/36152/>.
 7. CONSTANTIN, Lucian. "Notorious TDL4 rootkit retooled to better withstand antivirus programs." *InfoWorld*, 21 out. 2011. Disponível em: <https://www.infoworld.com/article/2308753/notorious-tdl4-rootkit-retooled-to-better-withstand-antivirus-programs.html>.
 8. ARGOS. Página oficial. Disponível em: <https://jp-guimaraes.github.io/argos/>.
+9. MICROSOFT. *BitLocker overview*, <https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/>; *Install Hyper-V in Windows and Windows Server*, <https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/install-hyper-v>; *Memory Limits for Windows and Windows Server Releases*, <https://learn.microsoft.com/en-us/windows/win32/memory/memory-limits-for-windows-releases>; *How to use Remote Desktop*, <https://support.microsoft.com/en-us/windows/how-to-use-remote-desktop-5fe128d5-8fb1-7a23-3b8a-41e636865e8c>.

@@ -228,7 +228,7 @@ Para saber onde procurar o sistema operacional entre as possivelmente várias pa
 | O que a placa-mãe guarda | A ordem dos dispositivos | As entradas (arquivo + GUID da partição) e a ordem entre elas |
 | Edição a partir do sistema operacional | Sem padrão | `efibootmgr`, `bcdedit` |
 
-É possível interromper esse fluxo padrão e forçar a inicialização a partir de outro dispositivo — como um pendrive — de duas formas: alterando permanentemente a ordem de boot dentro do Setup, ou acionando, na tela do POST, um atalho de teclado que abre o chamado **boot menu**, uma lista de dispositivos disponíveis para inicialização imediata (nas máquinas descritas em aula, a tecla de atalho variava entre **F9**, **F11**/**F12** ou a sequência **10 → F12**, dependendo do fabricante).
+É possível interromper esse fluxo padrão e forçar a inicialização a partir de outro dispositivo — como um pendrive — de duas formas: alterando permanentemente a ordem de boot dentro do Setup, ou acionando, na tela do POST, um atalho de teclado que abre o chamado **boot menu**, uma lista de dispositivos disponíveis para inicialização imediata (nas máquinas descritas em aula, a tecla de atalho variava entre **F9**, **F11**/**F12** ou a sequência **10 → F12**, dependendo do fabricante). O boot menu vale só para aquela inicialização: é uma **exceção** pontual, que não altera a ordem de boot guardada no Setup. Computadores mais antigos não tinham boot menu; o técnico precisava entrar no Setup, pôr o USB à frente do disco, reiniciar, instalar e depois voltar ao Setup para devolver a prioridade ao disco.
 
 [IMAGEM: tela de POST/BIOS de um computador real, mostrando o logotipo do fabricante e a instrução para acessar o boot menu]
 
