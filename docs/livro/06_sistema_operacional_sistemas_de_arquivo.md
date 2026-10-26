@@ -40,7 +40,19 @@ O **sistema de arquivo** é o protocolo — o conjunto de combinados — pelo qu
 
 Um programa não acessa o disco diretamente: quando um editor de texto salva um arquivo (em Python, por exemplo, com `open(...)`), ele faz **chamadas de sistema**, pedindo ao sistema operacional que crie e grave o arquivo — por isso o mesmo programa é executado de formas diferentes no Windows, no Linux ou no macOS. O sistema de arquivo, por sua vez, guarda bytes sem interpretá-los: quem decide que a letra `a` vira o byte `0x61` (`0110 0001`) é o programa, seguindo uma tabela de codificação como a ASCII ou a UTF-8; o sistema de arquivo registra onde esses bytes estão e quais metadados os acompanham.
 
-Para que uma mídia removível funcione em sistemas operacionais diferentes, ela precisa usar um sistema de arquivo que todos reconheçam — caso do **FAT32**, antigo e simples, ainda comum em pendrives e câmeras, e do seu sucessor **exFAT**, padrão de fábrica de pendrives e cartões acima de 32 GB. O FAT32 tem um limite prático importante: não aceita arquivos maiores que 4 GB.
+Para que uma mídia removível funcione em sistemas operacionais diferentes, ela precisa usar um sistema de arquivo que todos reconheçam — caso do **FAT32**, antigo e simples, ainda comum em pendrives e câmeras, e do seu sucessor **exFAT**, padrão de fábrica de pendrives e cartões acima de 32 GB. O FAT32 tem dois limites que o técnico encontra na prática: partições de no máximo 2 TB e, mais comum no dia a dia, **arquivos de no máximo 4 GB**. O segundo vem do tamanho do campo em que o FAT32 registra o tamanho de cada arquivo, que tem 32 bits: $2^{32}$ bytes são 4 GB, o mesmo raciocínio do endereçamento de 32 bits do Capítulo 3. O limite é, portanto, do sistema de arquivo, e não do espaço disponível. Um pendrive de 32 GB vazio, formatado em FAT32, recusa um arquivo de 4,8 GB (como a imagem ISO de instalação do Windows) com a mensagem de que o arquivo é grande demais para o sistema de arquivos de destino. Reformatar a mídia em exFAT resolve o problema sem perder a compatibilidade entre sistemas operacionais.
+
+Os sistemas de arquivo mais recentes acrescentam o ***journaling***: antes de alterar a estrutura do disco, o sistema de arquivo anota num registro (o *journal*) o que vai fazer, e só depois faz. Se a energia cair no meio da operação, ao religar ele consulta o registro e refaz ou descarta o que ficou pela metade, em vez de deixar a estrutura do disco inconsistente. O journaling não se confunde com os metadados do arquivo (§6.3.1): ele protege as operações de escrita, não descreve os arquivos.
+
+| Sistema de arquivo | Feito para | Destaques | Principal limitação |
+|---|---|---|---|
+| FAT32 | Windows 95 (OSR2) e 98; hoje, mídias removíveis | Simples, rápido, lido por praticamente todos os sistemas | Arquivos de até 4 GB, partições de até 2 TB; sem journaling |
+| exFAT | Mídias removíveis (pendrives, cartões) | Rápido, multiplataforma, sem o limite de 4 GB | Sem journaling nem permissões |
+| NTFS | Windows (do NT ao 11) | Journaling, permissões, criptografia, compactação | O macOS só lê; o Linux usa um driver próprio |
+| EXT4 | Linux | Journaling; arquivos de até 16 TB e volumes de até 1 EB | Sem suporte nativo no Windows nem no macOS |
+| APFS | Apple (desde 2017, no lugar do HFS+) | Otimizado para SSD e memória flash | Restrito ao ecossistema Apple |
+
+Não existe o melhor sistema de arquivo, mas o adequado: a escolha depende do sistema operacional e do uso. Num pendrive que circula entre sistemas diferentes, FAT32 ou exFAT (este, para arquivos maiores que 4 GB); num disco de uso no Windows, NTFS; na partição de um Linux, EXT4.
 
 A unidade mínima de alocação de espaço em disco para arquivos e diretórios é o **cluster**: um grupo de setores consecutivos (o setor é a menor unidade que o próprio disco lê ou grava — Capítulo 5) que o sistema de arquivo trata como uma unidade só. Dentro de uma mesma partição, todos os clusters têm o mesmo tamanho.
 
@@ -129,6 +141,13 @@ Cada partição pode ter atrelado a si um sistema de arquivo próprio, independe
 
 Quando um computador com múltiplos sistemas operacionais instalados é ligado e apresenta uma tela de escolha entre eles, esse mecanismo é chamado de **dual boot** (ou *multi boot*, se houver mais de dois sistemas). *Boot* é o termo em inglês para o procedimento de inicialização; dual boot significa, portanto, que há mais de uma forma possível de inicializar aquele computador, cada uma delas carregando um sistema operacional diferente, tratado em detalhe no Capítulo 7, §7.5.
 
+Ter dois sistemas operacionais no mesmo disco não significa que um enxergue os arquivos do outro. Cada sistema operacional entende de fábrica apenas os sistemas de arquivo que implementa. O Windows não lê partições EXT4 sem um software adicional, como o DiskInternals Linux Reader (somente leitura) ou o comando `wsl --mount` do WSL 2. Já o Linux lê e grava NTFS nativamente desde a versão 5.15 do kernel (driver *ntfs3*). Esse **software de interface**, um programa ou um driver, permite **ler e escrever** a partição do outro sistema, mas não **rodar sobre** ela: o Windows continua dependendo da sua partição NTFS, e o Linux, da sua EXT4 ([Figura 6.3](#fig-dual-boot-interface)). Há também um custo de segurança: se um sistema tem acesso de escrita à partição do outro, um *malware* ativo nele pode corromper também os arquivos do outro sistema.
+
+<figure id="fig-dual-boot-interface" markdown="1">
+![Disco com dual boot: retângulo dividido em tabela de partições (azul, à esquerda, com seta para a caixa “Tabela de partições”), partição “Windows — NTFS” e partição “Linux — ext4” (roxas). Abaixo, uma caixa âmbar “Interface — software de interface”, ligada por setas de duas pontas à partição Windows e à partição Linux. Texto: cada sistema operacional lê e escreve a partição do outro pela interface (Windows → ext4, Linux → NTFS), mas continua rodando sobre a sua própria. Legenda: tabela de partições, partições (SO + sistema de arquivo), software de interface (programa ou driver).](imagens/dual-boot-interface.png)
+<figcaption markdown="span"><strong>Figura 6.3</strong> — Dual boot: por meio de um software de interface, cada sistema operacional lê e escreve a partição do outro, mas continua rodando sobre a sua própria.</figcaption>
+</figure>
+
 | Sistema operacional | Sistema de arquivo típico |
 |---|---|
 | Windows | NTFS (historicamente, FAT) |
@@ -162,10 +181,10 @@ Essa informação é gravada no início do próprio disco — e não na placa-m�
 
 <figure id="fig-disco-particoes-tabela" markdown="1">
 ![Diagrama de um único disco, representado como um retângulo dividido em três partições lógicas, A, B e C, cada uma associada a um sistema de arquivo próprio (SA I, SA II e SA III); uma faixa hachurada no início do disco representa a tabela de partições, e uma chave sobre o retângulo indica que todo o conjunto é uma única peça de hardware.](imagens/disco-particoes-tabela.png)
-<figcaption markdown="span"><strong>Figura 6.3</strong> — Um disco dividido em três partições, cada uma com seu sistema de arquivo, e a tabela de partições no início.</figcaption>
+<figcaption markdown="span"><strong>Figura 6.4</strong> — Um disco dividido em três partições, cada uma com seu sistema de arquivo, e a tabela de partições no início.</figcaption>
 </figure>
 
-Na [Figura 6.3](#fig-disco-particoes-tabela), o disco é uma única unidade física, mas está dividido logicamente em três partições, cada uma com seu próprio sistema de arquivo. A região no início do disco é a tabela de partições, que registra onde começa e onde termina cada uma das três partições.
+Na [Figura 6.4](#fig-disco-particoes-tabela), o disco é uma única unidade física, mas está dividido logicamente em três partições, cada uma com seu próprio sistema de arquivo. A região no início do disco é a tabela de partições, que registra onde começa e onde termina cada uma das três partições.
 
 Existem duas soluções de tabela de partição amplamente utilizadas: **MBR** (mais antiga) e **GPT** (mais recente).
 
@@ -182,10 +201,10 @@ Esse formato surgiu em 1983, com o PC DOS 2.0, para o disco rígido de 10 MB do 
 
 <figure id="fig-mbr-layout" markdown="1">
 ![Diagrama vertical do layout de um disco MBR. No topo, o primeiro setor do disco (512 bytes): código de boot mestre (446 bytes), quatro entradas da tabela de partições (16 bytes cada), cada uma na cor da partição para onde aponta, e a assinatura 55AA (2 bytes); código de boot e assinatura em cinza. Abaixo, três partições primárias, cada uma formada por um setor de inicialização seguido de dados, apontadas pelas entradas 1 a 3. A entrada 4 aponta para a partição estendida, onde cada partição lógica é precedida por um registro EBR, com sua própria tabela e assinatura, que aponta para o EBR seguinte.](imagens/mbr-layout.png)
-<figcaption markdown="span"><strong>Figura 6.4</strong> — Layout de um disco MBR: o primeiro setor, as partições primárias e a cadeia de partições lógicas. Redesenhado a partir de diagrama de knowitlikepro.com.</figcaption>
+<figcaption markdown="span"><strong>Figura 6.5</strong> — Layout de um disco MBR: o primeiro setor, as partições primárias e a cadeia de partições lógicas. Redesenhado a partir de diagrama de knowitlikepro.com.</figcaption>
 </figure>
 
-Na [Figura 6.4](#fig-mbr-layout), o primeiro setor do disco reúne três elementos: o código de boot mestre, as quatro entradas da tabela e uma assinatura de fim de setor (55AA). Cada entrada aponta para o início de uma partição, e cada partição começa com seu próprio setor de inicialização, seguido dos dados. Quando uma das entradas aponta para uma partição estendida, as partições lógicas dentro dela formam uma cadeia: cada uma é precedida por um EBR que descreve aquela partição e aponta para a próxima.
+Na [Figura 6.5](#fig-mbr-layout), o primeiro setor do disco reúne três elementos: o código de boot mestre, as quatro entradas da tabela e uma assinatura de fim de setor (55AA). Cada entrada aponta para o início de uma partição, e cada partição começa com seu próprio setor de inicialização, seguido dos dados. Quando uma das entradas aponta para uma partição estendida, as partições lógicas dentro dela formam uma cadeia: cada uma é precedida por um EBR que descreve aquela partição e aponta para a próxima.
 
 ### 6.5.2 GUID Partition Table (GPT)
 
@@ -208,11 +227,11 @@ Cada disco e cada partição em GPT recebem um **GUID** (*Globally Unique Identi
 
 ## 6.6 BIOS, UEFI e o procedimento de inicialização
 
-O **BIOS** (*Basic Input/Output System*), introduzido no Capítulo 1 a propósito do IBM PC, é o conjunto de softwares gravado na placa-mãe responsável por inicializar o hardware e oferecer uma interface básica de entrada e saída antes de qualquer sistema operacional ser carregado. Ele é composto, entre outros elementos, por dois programas centrais: o **POST** e o **Setup**. Nas origens da computação pessoal, essa interface básica chegou a fazer o papel de um proto-sistema operacional; hoje, a função do firmware se restringe a verificar o hardware e dar a partida no sistema operacional. O **UEFI** (*Unified Extensible Firmware Interface*) é a evolução moderna desse firmware. Assim como o GPT sucedeu o MBR na tabela de partições, o UEFI sucedeu o BIOS no firmware. As duas trocas caminharam juntas, porque é o firmware que precisa entender a tabela de partições do disco para dar a partida no sistema ([Figura 6.5](#fig-bios-uefi-tabelas)). Muitos firmwares UEFI oferecem uma interface gráfica navegável por mouse, em contraste com as telas de texto do BIOS tradicional, mas nem todos: há UEFI com interface só em modo texto.
+O **BIOS** (*Basic Input/Output System*), introduzido no Capítulo 1 a propósito do IBM PC, é o conjunto de softwares gravado na placa-mãe responsável por inicializar o hardware e oferecer uma interface básica de entrada e saída antes de qualquer sistema operacional ser carregado. Ele é composto, entre outros elementos, por dois programas centrais: o **POST** e o **Setup**. Nas origens da computação pessoal, essa interface básica chegou a fazer o papel de um proto-sistema operacional; hoje, a função do firmware se restringe a verificar o hardware e dar a partida no sistema operacional. O **UEFI** (*Unified Extensible Firmware Interface*) é a evolução moderna desse firmware. Assim como o GPT sucedeu o MBR na tabela de partições, o UEFI sucedeu o BIOS no firmware. As duas trocas caminharam juntas, porque é o firmware que precisa entender a tabela de partições do disco para dar a partida no sistema ([Figura 6.6](#fig-bios-uefi-tabelas)). Muitos firmwares UEFI oferecem uma interface gráfica navegável por mouse, em contraste com as telas de texto do BIOS tradicional, mas nem todos: há UEFI com interface só em modo texto.
 
 <figure id="fig-bios-uefi-tabelas" markdown="1">
 ![Duas chaves. A primeira, Tabelas de partição, mostra as soluções GPT (recente), ligada ao firmware UEFI, e MBR (antiga), ligada ao firmware BIOS (software); a coluna da direita é o firmware da placa-mãe. A segunda chave, Configurações, mostra o BIOS ligado à placa-mãe e, dentro da caixa do BIOS, dois programas: Setup e POST.](imagens/bios-uefi-tabelas.png)
-<figcaption markdown="span"><strong>Figura 6.5</strong> — Tabelas de partição e firmware da placa-mãe: GPT com UEFI, MBR com BIOS; Setup e POST como programas do BIOS.</figcaption>
+<figcaption markdown="span"><strong>Figura 6.6</strong> — Tabelas de partição e firmware da placa-mãe: GPT com UEFI, MBR com BIOS; Setup e POST como programas do BIOS.</figcaption>
 </figure>
 
 ### 6.6.1 POST
@@ -235,11 +254,11 @@ Concluído o POST com sucesso, o próximo passo padrão é o **boot** (inicializ
 
 Essa cópia não é feita diretamente pelo firmware. Concluído o POST, o firmware lê o início do disco escolhido para a inicialização e executa o **código de boot** gravado ali — num disco MBR, o código de boot mestre descrito na Seção 6.5.1. É esse pequeno programa que consulta a tabela de partições, localiza a partição de onde o sistema deve ser carregado e passa adiante a tarefa de carregá-lo. Por isso, uma tabela de partições corrompida ou mal configurada pode impedir a inicialização de um computador cujo hardware e sistema operacional estão perfeitamente íntegros.
 
-O firmware não sabe *qual programa* executar: sabe **onde** procurá-lo. Esse "onde" (qual disco e, adiante, qual partição) é uma configuração definida no Setup. A [Figura 6.6](#fig-sequencia-inicializacao) resume a sequência: o comando de ligar é interpretado pela placa-mãe, que aciona o BIOS; o POST testa o hardware e, durante o teste, controla o processador; ao final, passa o controle do processador ao programa gravado no lugar definido no Setup.
+O firmware não sabe *qual programa* executar: sabe **onde** procurá-lo. Esse "onde" (qual disco e, adiante, qual partição) é uma configuração definida no Setup. A [Figura 6.7](#fig-sequencia-inicializacao) resume a sequência: o comando de ligar é interpretado pela placa-mãe, que aciona o BIOS; o POST testa o hardware e, durante o teste, controla o processador; ao final, passa o controle do processador ao programa gravado no lugar definido no Setup.
 
 <figure id="fig-sequencia-inicializacao" markdown="1">
 ![À esquerda, o comando de ligar entra na placa-mãe e chega ao BIOS, que contém os programas Setup e POST. Uma seta sai do POST para o bloco POST / Autoteste, que se desdobra em teste do hardware e processador sob controle do POST (executando). Do autoteste, uma seta leva a: passa o controle do processador para um programa pré-definido. À direita, a pergunta Aonde? aponta para Definido no Setup, que aponta para Qual disco?. No alto, o título Inicialização | Boot-up.](imagens/sequencia-inicializacao.png)
-<figcaption markdown="span"><strong>Figura 6.6</strong> — Sequência de inicialização: do comando de ligar ao POST, que passa o controle do processador ao programa do disco definido no Setup.</figcaption>
+<figcaption markdown="span"><strong>Figura 6.7</strong> — Sequência de inicialização: do comando de ligar ao POST, que passa o controle do processador ao programa do disco definido no Setup.</figcaption>
 </figure>
 
 Cada etapa depende da anterior, como uma sequência de condições encadeadas: hardware vital funcionando para o POST passar; disco conectado e detectado; ordem de boot apontando para ele; tabela de partições e código de boot íntegros. Diante de um computador que não inicializa, o diagnóstico consiste em identificar qual dessas condições falhou. Um computador sem imagem e com bipes aponta para o hardware (Capítulo 9); um que conclui o POST e pede um disco de inicialização aponta para as etapas seguintes.
