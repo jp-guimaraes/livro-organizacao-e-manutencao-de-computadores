@@ -134,7 +134,16 @@ Uma distribuição Linux como o Ubuntu, ao ser inicializada a partir de um pendr
 
 No modo Live CD/USB, o sistema operacional completo é executado diretamente a partir da memória RAM, carregado da mídia externa, sem necessidade de gravar nada no disco interno da máquina — nem sequer é necessário que a máquina possua um disco de armazenamento funcional. Nesse modo, o usuário tem privilégios de administrador daquela sessão, o que abre uma série de possibilidades diagnósticas.
 
+A [Figura 7.5](#fig-live-usb-testar-ou-instalar) resume o caminho até essa escolha: com os pré-requisitos da instalação prontos (§7.1 e §7.2), o desvio de fluxo leva ao boot pela mídia, e o técnico decide entre testar o sistema sem instalar nada ou instalá-lo na partição alvo.
+
+<figure id="fig-live-usb-testar-ou-instalar" markdown="1">
+![Fluxograma. À esquerda, sob o título &#x27;Pré-requisitos da instalação&#x27;, duas setas: uma para &#x27;Partição / disco alvo&#x27; (azul), que aponta para &#x27;Backup&#x27; (verde); outra para &#x27;Mídia de instalação&#x27; (roxo), que aponta para &#x27;ISO (imagem)&#x27;. Da ISO, uma seta desce para &#x27;Mídia de instalação — CD | USB&#x27; e daí para &#x27;Live CD/USB&#x27; (azul), que aponta para um losango âmbar &#x27;Testar ou instalar?&#x27;. À direita, no alto, &#x27;Desvio de fluxo (tecla do boot menu: F8, F9, F11, F12, Esc… — varia)&#x27; (âmbar) aponta para &#x27;Boot no pendrive (flash drive)&#x27; (azul), que chega ao losango por uma seta tracejada. Do losango saem dois ramos: &#x27;testar&#x27; leva a &#x27;Carrego um S.O. sem instalar nada&#x27; (verde); &#x27;instalar&#x27; leva a &#x27;Instalo o S.O. na partição / disco alvo&#x27; (azul). Legenda: azul = etapa; roxo = mídia/imagem; âmbar = ação do técnico; verde = proteção/objetivo.](imagens/live-usb-testar-ou-instalar.png)
+<figcaption markdown="span"><strong>Figura 7.5</strong> — Pré-requisitos da instalação e a decisão do Live CD/USB: testar o sistema sem instalar nada ou instalá-lo na partição alvo.</figcaption>
+</figure>
+
 **Aplicação prática — diagnóstico hardware versus software.** Se o som não funciona no Windows instalado em determinada máquina, inicializar um Live USB e testar o som nele permite isolar a causa: se o som funcionar no Live USB, o problema está no software (driver ou configuração do Windows); se não funcionar em nenhum dos dois ambientes, a causa mais provável é hardware. O mesmo raciocínio se aplica a problemas de conectividade de rede ou de qualquer outro subsistema.
+
+**Outras aplicações em manutenção.** Com um sistema completo no controle da máquina, o técnico também pode fazer testes de estresse da memória RAM e do processador sem tocar no sistema instalado; copiar os arquivos de um usuário que não consegue mais entrar no Windows, abrindo a partição dele pelo gerenciador de arquivos do Live e transferindo os dados para outra mídia ou pela rede; e apagar um arquivo malicioso que se regrava sempre que é removido no Windows, já que a rotina que o recria foi feita para o Windows e não é carregada no Linux.
 
 Por oferecer privilégios administrativos completos sobre uma máquina sem exigir senha, o Live CD/USB é também a ferramenta central por trás do risco de segurança descrito no Capítulo 6, §6.6.4: qualquer pessoa com acesso físico e um pendrive de instalação preparado pode acessar dados de um disco sem autenticação.
 
@@ -149,15 +158,27 @@ Por oferecer privilégios administrativos completos sobre uma máquina sem exigi
 
 A instalação de uma distribuição Linux introduz um nível adicional de complexidade em relação à instalação do Windows, decorrente de sua organização de diretórios e do uso de uma partição de memória virtual.
 
+O Linux não é distribuído como um produto único, mas em **distribuições** ("distros"): conjuntos de software empacotados numa configuração própria por quem os mantém. Todas partem do **kernel** Linux — o núcleo, que controla o hardware —, mas cada uma escolhe a versão e os ajustes desse kernel, a **parte gráfica** (ambientes como KDE e GNOME), o sistema de **gerenciamento de pacotes** (como novos programas são instalados) e os aplicativos que acompanham o sistema; por isso, o mesmo computador pode parecer bem diferente de uma distribuição para outra ([Figura 7.6](#fig-linux-distribuicao-camadas)). Por serem, em geral, software livre, qualquer pessoa pode modificar uma distribuição ou montar a sua. O Ubuntu, mantido pela empresa Canonical e pensado para ser amigável ao usuário, publica versões em abril e outubro, numeradas por ano e mês (24.04, 24.10…); a cada dois anos, a versão de abril é uma **LTS** (*Long Term Support*), com cinco anos de suporte padrão — a escolha usual para computadores de uso real.
+
+<figure id="fig-linux-distribuicao-camadas" markdown="1">
+![Diagrama de camadas. Embaixo, uma caixa larga cinza &#x27;Hardware&#x27;. Acima, uma caixa azul grande &#x27;S.O. — distribuição Linux (ex.: Ubuntu, Debian, Fedora)&#x27;, ligada ao hardware por uma seta dupla rotulada &#x27;controla o hardware&#x27;. Dentro do S.O., embaixo, uma caixa tracejada &#x27;Kernel — núcleo Linux&#x27;; acima dela, lado a lado, duas caixas tracejadas: &#x27;Parte gráfica — KDE, GNOME, …&#x27; e &#x27;Pacotes — ex.: GParted&#x27;, ambas ligadas ao kernel. Acima do S.O., fora dele, duas caixas cinza tracejadas: &#x27;Usuário&#x27;, ligada ao S.O. por uma seta dupla rotulada &#x27;interface visual&#x27;, e &#x27;Apps&#x27;, ligada por uma seta dupla rotulada &#x27;usam o S.O.&#x27;. À direita, uma chave cobre de Usuário/Apps até o Kernel com o texto &#x27;muda conforme a distribuição&#x27;. Legenda: azul = sistema operacional; cinza = contexto; tracejado = muda com a distro.](imagens/linux-distribuicao-camadas.png)
+<figcaption markdown="span"><strong>Figura 7.6</strong> — Camadas de um sistema Linux: o kernel controla o hardware; a parte gráfica e os pacotes ficam acima dele, e cada distribuição faz suas escolhas em todas essas camadas.</figcaption>
+</figure>
+
 No Linux, ao contrário do Windows — que atribui letras (C:\, D:\...) a cada unidade —, toda a estrutura de arquivos parte de uma única **raiz**, representada pela barra (`/`). Diretórios de sistema relevantes incluem `/dev` (arquivos que representam dispositivos conectados, como discos e pendrives), `/home` (pastas pessoais dos usuários) e `/tmp` e `/var` (arquivos temporários e variáveis do sistema), entre outros.
 
-Discos conectados via SATA são identificados com o prefixo `sd` seguido de uma letra por disco (`sda` para o primeiro disco, `sdb` para o segundo, e assim por diante) e um número por partição dentro desse disco (`sda1`, `sda2`...).
+Discos conectados via SATA são identificados com o prefixo `sd` seguido de uma letra por disco (`sda` para o primeiro disco, `sdb` para o segundo, e assim por diante) e um número por partição dentro desse disco (`sda1`, `sda2`...). Em discos com tabela **MBR**, os números de 1 a 4 são reservados às partições primárias (incluindo a estendida), e as partições **lógicas** são numeradas a partir de 5 — por isso é comum ver um disco com `sda1` e `sda5`, sem `sda2` a `sda4` visíveis. Em discos GPT não há partição lógica.
 
 Durante a instalação, é necessário indicar em qual partição o sistema deseja **montar** (*mount*) a raiz `/` — isto é, associar aquela partição ao ponto de entrada de toda a estrutura de diretórios do sistema. É essa exigência — decidir "onde vai a barra" — que costuma ser o ponto de maior dificuldade para quem instala Linux pela primeira vez.
 
-Além da partição raiz, a instalação típica de uma distribuição Linux requer uma segunda partição, chamada **swap** (área de troca): um espaço reservado em disco para funcionar como extensão da memória RAM, retomando o conceito de memória virtual e a hierarquia de memória apresentados no Capítulo 5. O dimensionamento da partição swap é função da quantidade de RAM instalada na máquina — não um valor fixo independente dela `[2]`; para uma máquina com 8–16 GB de RAM, uma faixa comum de referência é reservar entre 8 GB e 10 GB para a partição swap, destinando o restante do espaço disponível à partição raiz.
+Além da partição raiz, recomenda-se criar uma segunda partição, chamada **swap** (área de troca): um espaço reservado em disco para funcionar como extensão da memória RAM, retomando o conceito de memória virtual e a hierarquia de memória apresentados no Capítulo 5. O dimensionamento da partição swap é função da quantidade de RAM instalada na máquina — não um valor fixo independente dela `[2]`; para uma máquina com 8–16 GB de RAM, uma faixa comum de referência é reservar entre 8 GB e 10 GB para a partição swap, destinando o restante do espaço disponível à partição raiz. Em computadores antigos, com pouca RAM, é comum usar o mesmo tamanho da RAM ou o dobro (4 GB de RAM → 8 GB de swap); e a swap precisa ser pelo menos do tamanho da RAM quando se quer usar hibernação. A swap não é obrigatória: sem ela, o instalador apenas avisa que é recomendada e permite continuar — e as instalações automáticas do Ubuntu, desde a versão 17.04, usam um *arquivo* de swap no lugar da partição. Na instalação manual, porém, criá-la continua sendo a prática recomendada.
 
-**Exemplo de particionamento típico para instalação do Ubuntu:** partição de swap de 8–10 GB e partição raiz (`/`) ocupando o espaço restante — por exemplo, em um espaço livre de 100 GB, aproximadamente 90 GB para `/` e 10 GB para swap.
+**Exemplo de particionamento típico para instalação do Ubuntu:** na opção avançada do instalador (no Ubuntu, "Algo diferente"), apagam-se as partições do disco alvo até ele virar espaço livre e, nele, criam-se a swap e a partição raiz (`/`), em ext4, com o restante — o resultado aparece na [Figura 7.7](#fig-linux-particionamento-swap-raiz). Por exemplo, em um espaço livre de 100 GB, aproximadamente 10 GB para swap e 90 GB para `/`. Outros discos do computador, se houver, não são tocados.
+
+<figure id="fig-linux-particionamento-swap-raiz" markdown="1">
+![Uma faixa horizontal representando o disco alvo sda, fora de escala, dividida em duas partições. À esquerda, estreita, em roxo: &#x27;swap — ex.: 8000 MB&#x27;, com a anotação &#x27;usar como área de troca&#x27;. À direita, larga, em azul: &#x27;/ (barra, a raiz) — ext4 com journaling, o restante do espaço livre&#x27;, com a anotação &#x27;usar como ext4, ponto de montagem /&#x27;. Legenda: roxo = swap (memória virtual); azul = sistema (/).](imagens/linux-particionamento-swap-raiz.png)
+<figcaption markdown="span"><strong>Figura 7.7</strong> — Particionamento típico de uma instalação Linux: uma partição de swap e a raiz (`/`) com o restante do disco.</figcaption>
+</figure>
 
 
 !!! warning "Figura pendente"
@@ -194,10 +215,10 @@ Concluída a instalação do sistema operacional, um computador plenamente funci
 
 <figure id="fig-driver-interface" markdown="1">
 ![Diagrama em camadas: no topo, Apps e Usuário (cinza) ligados ao S.O. (azul); abaixo, Driver (roxo), ligado ao S.O. e ao Hardware (elipse cinza) por setas de duplo sentido. Do Hardware saem três exemplos em cinza: GPU, Wi-Fi e Impressora. A GPU leva, com um &#x27;ou&#x27; entre elas, a &#x27;exemplo 1: AMD RX 580 → driver da AMD&#x27; e &#x27;exemplo 2: NVIDIA RTX 5080 → driver da NVIDIA&#x27;; Wi-Fi leva a &#x27;exemplo: placa Wi-Fi Intel → driver da Intel&#x27;; Impressora leva a &#x27;exemplo: impressora Epson → driver da Epson&#x27;. Legenda: usuário, aplicativos e hardware; sistema operacional; driver (software do fabricante); exemplos (um fabricante, um driver).](imagens/driver-interface.png)
-<figcaption markdown="span"><strong>Figura 7.5</strong> — O driver como interface entre o sistema operacional e o hardware: cada hardware usa o driver do seu fabricante.</figcaption>
+<figcaption markdown="span"><strong>Figura 7.8</strong> — O driver como interface entre o sistema operacional e o hardware: cada hardware usa o driver do seu fabricante.</figcaption>
 </figure>
 
-A [Figura 7.5](#fig-driver-interface) mostra a posição do driver: entre o sistema operacional, que serve aos aplicativos e ao usuário, e cada componente de hardware, cada um com o driver do seu fabricante.
+A [Figura 7.8](#fig-driver-interface) mostra a posição do driver: entre o sistema operacional, que serve aos aplicativos e ao usuário, e cada componente de hardware, cada um com o driver do seu fabricante.
 
 Sistemas operacionais diferentes exigem versões diferentes do mesmo driver — por exemplo, uma placa de vídeo tem uma versão de driver para Windows 10 e outra para Windows 11, desenvolvidas e distribuídas separadamente pelo fabricante da placa. Isso ocorre porque, embora o hardware seja o mesmo, o software que faz a comunicação com ele precisa ser compatível com a arquitetura interna de cada sistema operacional.
 
@@ -283,10 +304,10 @@ Ainda assim, a reinstalação continua sendo uma ferramenta legítima de manuten
 
 <figure id="fig-diagnostico-fluxograma" markdown="1">
 ![Fluxograma: sintoma relatado; hipótese — origem no hardware, no software ou no usuário; testar primeiro a hipótese mais barata (tempo e custo de teste); decisão “causa identificada?”. Se sim, correção pontual. Se não, decisão “diagnóstico pontual demoraria mais que reinstalar?”: se não, volta para a próxima hipótese; se sim, reinstalação do SO, com backup antes. Depois da reinstalação, decisão “sintoma voltou?”: se sim, a hipótese de hardware sobe de prioridade; se não, resolvido.](imagens/diagnostico-fluxograma.png)
-<figcaption markdown="span"><strong>Figura 7.6</strong> — Fluxograma de decisão: da hipótese mais barata à reinstalação, e de volta ao hardware se o sintoma persistir.</figcaption>
+<figcaption markdown="span"><strong>Figura 7.9</strong> — Fluxograma de decisão: da hipótese mais barata à reinstalação, e de volta ao hardware se o sintoma persistir.</figcaption>
 </figure>
 
-A [Figura 7.6](#fig-diagnostico-fluxograma) organiza essas regras: a reinstalação entra quando o diagnóstico pontual não compensa, sempre precedida de backup — e, se o sintoma voltar, a suspeita passa ao hardware.
+A [Figura 7.9](#fig-diagnostico-fluxograma) organiza essas regras: a reinstalação entra quando o diagnóstico pontual não compensa, sempre precedida de backup — e, se o sintoma voltar, a suspeita passa ao hardware.
 
 ---
 
