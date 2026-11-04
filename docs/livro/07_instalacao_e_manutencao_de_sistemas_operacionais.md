@@ -72,6 +72,8 @@ Um ponto de atenção recorrente é que, ao chegar pela primeira vez à tela do 
 
 **Aplicação prática — excluir ou formatar.** No instalador do Windows, a opção **Personalizada** é a que permite escolher a partição de destino; a opção **Atualização**, que preserva arquivos e aplicativos, só funciona quando iniciada de dentro do próprio Windows. Na tela de partições, **formatar** apaga os dados de uma partição mas a mantém; **excluir** remove a partição e deixa o espaço como *não alocado*. Excluir todas as partições de um disco com instalações anteriores e criar uma nova no espaço não alocado deixa o próprio instalador criar, corretamente, as partições auxiliares de que o Windows precisa — como a *Partição Reservada pelo Sistema*, em instalações BIOS/MBR. Instalar sem formatar a partição antiga, por outro lado, move o sistema anterior para uma pasta `Windows.old`, o que não elimina erros nem malware.
 
+**Partição de sistema e partição de inicialização.** A Partição Reservada pelo Sistema só é criada quando o instalador recebe **espaço não alocado**. Num disco MBR vazio, ele cria três partições: a **Reservada pelo Sistema**, pequena (50 MB no Windows 10 20H2; o tamanho varia entre versões), marcada como **Sistema** e **Ativa**, com o gerenciador de inicialização do Windows e o BCD; a partição do Windows (C:), marcada como **Inicialização**; e, no fim do disco, uma **Partição de Recuperação** (cerca de 500 MB), com o ambiente de recuperação do Windows. Quando, ao contrário, o instalador recebe uma partição **que já existe** — o caso típico do dual boot (§7.5) —, ele não cria partição nova: grava os arquivos de inicialização no próprio C:, que aparece no Gerenciamento de Disco como **Sistema, Inicialização e Ativo** ao mesmo tempo. *Sistema* é a partição de onde o computador começa a carregar o Windows; *Inicialização* é a partição onde o Windows está instalado. Separá-las permite, por exemplo, criptografar o C: com o BitLocker: o computador começa pela partição reservada, que não é criptografada `[9]`.
+
 **Edições do Windows.** O instalador oferece edições diferentes (Home, Pro e outras). Todas têm o mesmo núcleo; o que muda são recursos voltados a empresas e usuários avançados `[9]`:
 
 | Recurso | Home | Pro |
@@ -193,19 +195,39 @@ Ao instalar uma distribuição Linux como o Ubuntu, é instalado também, por pa
 
 Essa lista de opções inclui não apenas diferentes sistemas operacionais, mas também diferentes versões do **kernel** do Linux, o núcleo do sistema, atualizado periodicamente. Como programas podem depender de uma versão específica do kernel para funcionar corretamente, a possibilidade de escolher, no momento do boot, qual versão carregar é uma funcionalidade prática relevante do GRUB.
 
-Para instalar Windows e Linux em dual boot no mesmo disco, a **ordem de instalação é determinante**: o Windows deve ser instalado **antes** do Linux. Isso ocorre porque o instalador do Windows sobrescreve o setor de inicialização do disco (a região do MBR descrita no Capítulo 6, §6.5.1) sem preservar um gerenciador de boot alternativo ali presente `[3]`. Se o GRUB for instalado primeiro (ao instalar o Linux) e o Windows for instalado depois, a instalação do Windows sobrescreve o GRUB, tornando o Linux inacessível na inicialização — embora os arquivos do sistema Linux continuem fisicamente intactos no disco, apenas inacessíveis por falta do menu de entrada. Recuperar o GRUB nessa situação é um procedimento de manutenção mais avançado.
+Para instalar Windows e Linux em dual boot no mesmo disco, a **ordem de instalação é determinante**: o Windows deve ser instalado **antes** do Linux. Isso ocorre porque o instalador do Windows grava o próprio código de boot no primeiro setor do disco — o **código de boot mestre** do MBR (Capítulo 6, §6.5.1) — sem preservar um gerenciador de boot alternativo ali presente `[3]` `[10]`. Se o GRUB for instalado primeiro (ao instalar o Linux) e o Windows for instalado depois, a instalação do Windows sobrescreve o GRUB, tornando o Linux inacessível na inicialização — embora os arquivos do sistema Linux continuem fisicamente intactos no disco, apenas inacessíveis por falta do menu de entrada. Recuperar o GRUB nessa situação é um procedimento de manutenção mais avançado. A [Figura 7.8](#fig-dual-boot-ordem-de-instalacao) compara as duas ordens.
 
-**Sequência recomendada para dual boot:**
+<figure id="fig-dual-boot-ordem-de-instalacao" markdown="1">
+![Diagrama em duas colunas. À esquerda, a ordem errada: primeiro se instala o Linux, que grava o GRUB no primeiro setor do disco; depois o Windows, que sobrescreve o código de boot mestre com o seu próprio código; resultado: o computador inicia direto no Windows e o Linux fica inacessível, embora seus arquivos continuem no disco; uma seta tracejada leva ao reparo, um procedimento de manutenção: dar boot num Live CD em modo Testar e reinstalar o GRUB. À direita, a ordem certa: primeiro o Windows, depois o Linux, cujo instalador grava o GRUB por último; resultado: o menu do GRUB oferece Linux e Windows a cada inicialização. A legenda de cores distingue etapas de instalação (azul), erro ou perda (vermelho), resultado esperado (verde) e procedimento de reparo (cinza).](imagens/dual-boot-ordem-de-instalacao.png)
+<figcaption markdown="span"><strong>Figura 7.8</strong> — A ordem de instalação em dual boot (BIOS + MBR): o Windows instalado depois do Linux sobrescreve o código de boot mestre e apaga o GRUB; instalando o Windows primeiro, o GRUB, gravado por último, lista os dois sistemas.</figcaption>
+</figure>
+
+Na ordem errada (à esquerda na figura), o último código gravado no primeiro setor do disco é o do Windows, que carrega direto o Windows; na ordem certa (à direita), o último é o GRUB, que, ao ser instalado, procura os outros sistemas do disco e os coloca no seu menu. É fácil verificar isso lendo esse setor: logo depois da instalação do Windows, ele contém o código do Windows (com mensagens como "Missing operating system"); depois da instalação do Ubuntu, contém o do GRUB, gravado por cima.
+
+Esse mecanismo é o dos computadores com **BIOS e disco MBR**. Em computadores **UEFI com GPT**, o GRUB é um arquivo na partição de sistema EFI (ESP, §7.1.1) e não é apagado pela instalação do Windows: o que o Windows faz é se colocar em primeiro lugar na ordem de boot do firmware, e o computador passa a iniciar direto nele. O conserto, então, não é reinstalar o GRUB, e sim reordenar as entradas de boot.
+
+**Sequência A — encolher o Windows:**
 
 1. Instalar o Windows normalmente.
 2. Reduzir (diminuir) a partição do Windows para liberar espaço não alocado.
 3. Inicializar a mídia do Linux nesse espaço livre, criando a partição raiz (`/`) e a partição swap.
 4. Ao final, o GRUB é instalado automaticamente e passa a apresentar, a cada boot, a opção de carregar Windows ou Linux.
 
+**Sequência B — preparar a tabela de partições antes:**
 
-!!! warning "Figura pendente"
-    tela do menu GRUB listando as opções de inicialização Windows e Ubuntu
+1. Dar boot num Live CD do Linux e, com o GParted, criar a tabela: uma partição **primária** NTFS para o Windows e uma **estendida** com todo o restante (num disco MBR, a estendida contorna o limite de quatro primárias, §6.5.1).
+2. Instalar o Windows **na partição primária** (opção Personalizada, sem excluir as demais).
+3. Instalar o Linux nas partições **lógicas** criadas dentro da estendida: uma ext4 como `/` e uma swap.
+4. Reiniciar: o GRUB, instalado por último, lista os dois sistemas.
 
+Nas duas sequências o Windows vem antes, e o GRUB é o último a ser gravado. O instalador do Ubuntu reconhece o Windows já instalado e oferece "Instalar o Ubuntu ao lado do Windows", que executa sozinho o passo de encolher a partição; para usar partições preparadas antes (sequência B), escolhe-se a **Opção avançada**.
+
+<figure id="fig-grub-menu-dual-boot" markdown="1">
+![Tela de texto em fundo preto com o título GNU GRUB versão 2.04 e uma lista de cinco entradas: Ubuntu, destacada; Opções avançadas para Ubuntu; Memory test (memtest86+); Memory test (memtest86+, serial console 115200); e Windows 10 (em /dev/sda1). Abaixo, instruções de uso das setas e da tecla Enter e a contagem regressiva para carregar a entrada destacada.](imagens/grub-menu-dual-boot.png)
+<figcaption markdown="span"><strong>Figura 7.9</strong> — Menu do GRUB 2.04 num computador em dual boot: Ubuntu (opção padrão), opções avançadas, testes de memória e Windows 10 (em /dev/sda1); a contagem regressiva de 10 segundos carrega a opção destacada.</figcaption>
+</figure>
+
+Na [Figura 7.9](#fig-grub-menu-dual-boot), o GRUB lista as entradas do Ubuntu e, por último, o Windows, encontrado na primeira partição do disco. Se ninguém escolher nada, a opção destacada é carregada ao fim da contagem regressiva.
 
 ---
 
@@ -215,10 +237,10 @@ Concluída a instalação do sistema operacional, um computador plenamente funci
 
 <figure id="fig-driver-interface" markdown="1">
 ![Diagrama em camadas: no topo, Apps e Usuário (cinza) ligados ao S.O. (azul); abaixo, Driver (roxo), ligado ao S.O. e ao Hardware (elipse cinza) por setas de duplo sentido. Do Hardware saem três exemplos em cinza: GPU, Wi-Fi e Impressora. A GPU leva, com um &#x27;ou&#x27; entre elas, a &#x27;exemplo 1: AMD RX 580 → driver da AMD&#x27; e &#x27;exemplo 2: NVIDIA RTX 5080 → driver da NVIDIA&#x27;; Wi-Fi leva a &#x27;exemplo: placa Wi-Fi Intel → driver da Intel&#x27;; Impressora leva a &#x27;exemplo: impressora Epson → driver da Epson&#x27;. Legenda: usuário, aplicativos e hardware; sistema operacional; driver (software do fabricante); exemplos (um fabricante, um driver).](imagens/driver-interface.png)
-<figcaption markdown="span"><strong>Figura 7.8</strong> — O driver como interface entre o sistema operacional e o hardware: cada hardware usa o driver do seu fabricante.</figcaption>
+<figcaption markdown="span"><strong>Figura 7.10</strong> — O driver como interface entre o sistema operacional e o hardware: cada hardware usa o driver do seu fabricante.</figcaption>
 </figure>
 
-A [Figura 7.8](#fig-driver-interface) mostra a posição do driver: entre o sistema operacional, que serve aos aplicativos e ao usuário, e cada componente de hardware, cada um com o driver do seu fabricante.
+A [Figura 7.10](#fig-driver-interface) mostra a posição do driver: entre o sistema operacional, que serve aos aplicativos e ao usuário, e cada componente de hardware, cada um com o driver do seu fabricante.
 
 Sistemas operacionais diferentes exigem versões diferentes do mesmo driver — por exemplo, uma placa de vídeo tem uma versão de driver para Windows 10 e outra para Windows 11, desenvolvidas e distribuídas separadamente pelo fabricante da placa. Isso ocorre porque, embora o hardware seja o mesmo, o software que faz a comunicação com ele precisa ser compatível com a arquitetura interna de cada sistema operacional.
 
@@ -304,10 +326,10 @@ Ainda assim, a reinstalação continua sendo uma ferramenta legítima de manuten
 
 <figure id="fig-diagnostico-fluxograma" markdown="1">
 ![Fluxograma: sintoma relatado; hipótese — origem no hardware, no software ou no usuário; testar primeiro a hipótese mais barata (tempo e custo de teste); decisão “causa identificada?”. Se sim, correção pontual. Se não, decisão “diagnóstico pontual demoraria mais que reinstalar?”: se não, volta para a próxima hipótese; se sim, reinstalação do SO, com backup antes. Depois da reinstalação, decisão “sintoma voltou?”: se sim, a hipótese de hardware sobe de prioridade; se não, resolvido.](imagens/diagnostico-fluxograma.png)
-<figcaption markdown="span"><strong>Figura 7.9</strong> — Fluxograma de decisão: da hipótese mais barata à reinstalação, e de volta ao hardware se o sintoma persistir.</figcaption>
+<figcaption markdown="span"><strong>Figura 7.11</strong> — Fluxograma de decisão: da hipótese mais barata à reinstalação, e de volta ao hardware se o sintoma persistir.</figcaption>
 </figure>
 
-A [Figura 7.9](#fig-diagnostico-fluxograma) organiza essas regras: a reinstalação entra quando o diagnóstico pontual não compensa, sempre precedida de backup — e, se o sintoma voltar, a suspeita passa ao hardware.
+A [Figura 7.11](#fig-diagnostico-fluxograma) organiza essas regras: a reinstalação entra quando o diagnóstico pontual não compensa, sempre precedida de backup — e, se o sintoma voltar, a suspeita passa ao hardware.
 
 ---
 
@@ -328,3 +350,4 @@ Este capítulo apresentou o processo integral de instalação de um sistema oper
 7. CONSTANTIN, Lucian. "Notorious TDL4 rootkit retooled to better withstand antivirus programs." *InfoWorld*, 21 out. 2011. Disponível em: <https://www.infoworld.com/article/2308753/notorious-tdl4-rootkit-retooled-to-better-withstand-antivirus-programs.html>.
 8. ARGOS. Página oficial. Disponível em: <https://jp-guimaraes.github.io/argos/>.
 9. MICROSOFT. *BitLocker overview*, <https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/>; *Install Hyper-V in Windows and Windows Server*, <https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/install-hyper-v>; *Memory Limits for Windows and Windows Server Releases*, <https://learn.microsoft.com/en-us/windows/win32/memory/memory-limits-for-windows-releases>; *How to use Remote Desktop*, <https://support.microsoft.com/en-us/windows/how-to-use-remote-desktop-5fe128d5-8fb1-7a23-3b8a-41e636865e8c>.
+10. RED HAT. "How to restore GRUB after installing Windows." *Red Hat Customer Portal*. Disponível em: <https://access.redhat.com/articles/2078>.
