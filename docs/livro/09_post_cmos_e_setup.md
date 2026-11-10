@@ -51,6 +51,10 @@ A placa-mãe mantém, em uma pequena memória volátil (a memória **CMOS**), as
 
 A ausência ou descarga dessa bateria não impede o POST, mas faz com que as configurações do setup sejam perdidas a cada desligamento — por exemplo, a data e a hora voltam a um valor padrão, exigindo reconfiguração a cada inicialização.
 
+**Sintoma típico e reparo.** Com a bateria descarregada, o computador costuma parar no POST com uma mensagem, em geral em inglês, informando que a data e a hora (ou as configurações) foram perdidas e pedindo que se pressione uma tecla para continuar ou para entrar no Setup. O reparo é trocar a bateria, em geral uma pilha de lítio tipo moeda **CR2032**, de 3 V e baixo custo, e reconfigurar data, hora e as demais opções.
+
+**Valores padrão e Clear CMOS.** Apagar de propósito o conteúdo da CMOS faz o Setup voltar às configurações de fábrica. Esse procedimento, o *Clear CMOS*, é feito pelo jumper descrito no Capítulo 8, §8.7.3, ou retirando a bateria com o computador fora da tomada. Os valores padrão não ficam na CMOS: quem os fornece é o próprio programa Setup, gravado no firmware, ao encontrar a memória de configurações vazia. Um cuidado prático: com o jumper esquecido na posição de limpeza, muitas placas não ligam. Diante de um computador sem imagem que já passou pelas mãos de outro técnico, vale conferir a posição desse jumper. O manual da placa traz o mapa dos conectores internos, com a bateria (geralmente rotulada BAT) e o jumper (CLR_CMOS, CLRTC ou similar).
+
 **Exemplo.** Do ponto de vista de programação, o comportamento pode ser descrito por uma variável de controle (uma *flag*) que indica se a data e a hora já foram configuradas. Sem a bateria, essa flag não é preservada entre desligamentos: a cada nova inicialização, o sistema encontra a flag "não configurada" e sinaliza a ausência de data e hora válidas.
 
 
@@ -61,6 +65,13 @@ A ausência ou descarga dessa bateria não impede o POST, mas faz com que as con
 ## 9.3 Setup: configuração de firmware
 
 O **Setup** é o programa, parte do mesmo firmware BIOS/UEFI do POST, que permite alterar as configurações de hardware do computador — frequência do processador e da memória (overclock), habilitação ou desabilitação de funcionalidades, data e hora do sistema, e a **ordem de inicialização** (*boot order*), entre outras. É justamente essa memória de configurações que a bateria CMOS (Seção 9.2) mantém energizada entre desligamentos.
+
+As configurações se encadeiam. A data e a hora são mantidas por um relógio da própria placa-mãe, o **RTC** (*Real Time Clock*), e muitos Setups permitem usá-lo para **ligar o computador automaticamente** num dia e horário programados. A opção recebe nomes como *RTC Alarm*, *Resume by Alarm* ou *BIOS Power-On*, conforme o fabricante. Um uso típico é um computador de backup instalado em outro endereço: ele liga sozinho todo domingo às 3 horas, o sistema operacional sincroniza os dados pela internet e desliga em seguida, sem ficar ligado o tempo todo ([Figura 9.2](#fig-setup-configuracoes)). Para isso funcionar, a data e a hora do firmware precisam estar corretas: mais uma razão para cuidar da bateria da Seção 9.2.
+
+<figure id="fig-setup-configuracoes" markdown="1">
+![Diagrama. No alto, um quadro azul rotulado Firmware (BIOS/UEFI) contém duas elipses, Setup e POST. Do Setup desce uma seta até a caixa Configuração (Ajustes), da qual partem itens: data e hora do sistema, ordem de inicialização, frequência de trabalho da CPU e reticências. À direita, uma caixa RTC, relógio da placa, ligada à data e hora. Da data e hora sai uma seta para a caixa Ligar o computador periodicamente, e dela para a caixa de exemplo: todo domingo, 3h, liga sozinho para a rotina de backup. Uma legenda de cores identifica firmware, contexto, dado guardado (relógio), configuração programada e objetivo.](imagens/setup-configuracoes.png)
+<figcaption markdown="span"><strong>Figura 9.2</strong> — O Setup no firmware e algumas de suas configurações; a data e a hora, mantidas pelo RTC, permitem programar o computador para ligar sozinho.</figcaption>
+</figure>
 
 O Capítulo 6, §6.6.2, trata o Setup em detalhe do ponto de vista do procedimento de inicialização — como acessá-lo, como ele se relaciona com o boot menu, e sua relação com a segurança do acesso físico a uma máquina.
 
