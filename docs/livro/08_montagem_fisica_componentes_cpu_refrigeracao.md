@@ -84,6 +84,13 @@ Como decorrência do modelo de hardware aberto adotado desde o IBM PC (Capítulo
 
 O botão de liga/desliga é, mecanicamente, um interruptor momentâneo com apenas dois terminais. Em repouso, uma mola mantém os dois terminais desconectados. Ao ser pressionado, o botão conecta momentaneamente os dois terminais, permitindo a passagem de corrente entre eles; ao ser solto, a mola desfaz essa conexão.
 
+Diferentemente do interruptor de luz de uma parede, que permanece travado na posição em que é deixado, o botão de energia volta sozinho à posição de repouso — comportamento semelhante ao dos botões de volume de um celular ([Figura 8.1](#fig-botao-power-momentaneo)). Essa característica permite verificar o botão com um multímetro em modo de **teste de continuidade**: com as pontas de prova nos dois terminais e o botão solto, o instrumento não deve apitar; com o botão pressionado, deve apitar. Um apito com o botão solto indica que os terminais estão permanentemente ligados — botão com defeito.
+
+<figure id="fig-botao-power-momentaneo" markdown="1">
+![Dois desenhos lado a lado do corte de um botão. À esquerda, Solto: o botão fica acima do corpo; a haste desce por um apoio interno e tem um anel sobre o qual se apoia uma mola larga; na ponta da haste, uma ponte azul fica acima de dois contatos fixos separados por uma abertura marcada em vermelho; de cada contato fixo sai um terminal. Texto: terminais separados, potenciais diferentes; multímetro em continuidade não apita. À direita, Apertado: uma seta indica o aperto, o botão encosta no corpo, a mola fica comprimida e a ponte desce e encosta nos dois contatos fixos, que ficam verdes junto com os terminais. Texto: a ponte fecha a abertura, mesmo potencial (curto); multímetro em continuidade apita. Uma seta tracejada indica que, ao soltar, a mola devolve o botão. Legenda: âmbar, ação do usuário; azul, contatos e terminais; cinza, corpo e mola; verde, mesmo potencial.](imagens/botao-power-momentaneo.png)
+<figcaption markdown="span"><strong>Figura 8.1</strong> — O botão de energia é um interruptor momentâneo: pressionado, a ponte móvel une os dois contatos (mesmo potencial); solto, a mola o devolve. Redesenhado a partir de diagrama da Fab Academy.</figcaption>
+</figure>
+
 O sinal relevante para a placa-mãe é a **transição momentânea** de "desconectado" para "conectado" — não é necessário manter o botão pressionado. Uma pressão breve é interpretada como o comando padrão de ligar (ou desligar de forma controlada, se o sistema já estiver ligado); manter o botão pressionado por um período prolongado é interpretado como um comando distinto, tipicamente o desligamento forçado.
 
 ### 8.3.2 Diagnóstico por curto controlado
@@ -97,10 +104,12 @@ Esse procedimento é usado como técnica de diagnóstico para isolar o painel fr
 
 O painel frontal também disponibiliza, tipicamente, um segundo botão equivalente: o botão de **reset**.
 
+<figure id="fig-painel-frontal-jpanel" markdown="1">
+![Fotografia em close de um conector de pinos numa placa-mãe verde, identificado como JPANEL1. Os pinos estão cobertos por conectores coloridos e rotulados na serigrafia da placa: SLP, POW LED e ON/OFF na fileira de cima; SPK, HLED e RST na fileira de baixo.](imagens/painel-frontal-jpanel.jpg)
+<figcaption markdown="span"><strong>Figura 8.2</strong> — Conector do painel frontal de uma placa-mãe, com o par do botão de energia identificado como ON/OFF na serigrafia. Foto: Hans Haase, Wikimedia Commons, CC BY-SA 4.0 `[6]`.</figcaption>
+</figure>
 
-!!! warning "Figura pendente"
-    detalhe do conector de pinos do painel frontal na placa-mãe, com o par correspondente ao botão de power identificado
-
+Na [Figura 8.2](#fig-painel-frontal-jpanel), os pinos do botão de energia aparecem na serigrafia como ON/OFF. A disposição varia de placa para placa e deve ser conferida no manual; o arranjo de referência mais comum é apresentado no Capítulo 11, §11.5.1.
 
 ## 8.4 CPU: fabricantes, soquetes e gerações
 
@@ -116,6 +125,8 @@ Além da compatibilidade entre fabricantes, é preciso observar a compatibilidad
 - A **AMD** tende a manter um mesmo soquete (por exemplo, o soquete AM4, mantido de 2016 a 2022) por várias gerações consecutivas de processadores, por vezes exigindo apenas uma atualização de BIOS para suportar uma geração mais recente `[1]`.
 
 **Exemplo real.** O soquete LGA1155, usado em algumas placas-mãe Intel, suporta processadores de 2ª geração (nome de código Sandy Bridge) e de 3ª geração (Ivy Bridge) `[2]`. Identificar qual geração uma determinada placa-mãe suporta é informação disponível no manual do fabricante — não é conhecimento a ser memorizado, mas sim consultado no momento da especificação ou do reparo. **Atenção:** o soquete compartilhado não garante, por si só, compatibilidade total — o chipset **H61**, por exemplo, é LGA1155 mas não suporta Ivy Bridge mesmo com atualização de BIOS.
+
+**Atenção.** Quando a placa-mãe só passa a suportar um processador após uma atualização de BIOS, surge um impasse: com o processador novo instalado, a placa não o reconhece, não completa o POST e não "dá tela" — e, portanto, não permite entrar no *setup* para atualizar o firmware. A atualização é possível porque o firmware reside em memória *flash*, regravável, mas precisa ser feita com um processador compatível instalado temporariamente, ou por meio de um recurso presente em algumas placas que grava o firmware diretamente a partir de um pendrive, sem processador nem memória instalados (comercializado sob nomes como *BIOS FlashBack* e *Q-Flash Plus*).
 
 ### 8.4.2 Diferenças físicas entre os soquetes Intel e AMD
 
@@ -186,10 +197,10 @@ Em um sistema de refrigeração líquida, um fluido (água destilada ou um líqu
 
 <figure id="fig-refrigeracao-ar-agua" markdown="1">
 ![À esquerda, refrigeração a ar: sobre o processador, a base de um dissipador com muitas aletas e, em cima, uma ventoinha que puxa ar frio; o ar quente sai pelas laterais. À direita, refrigeração líquida: sobre o processador, um bloco de base metálica; o líquido quente sai do bloco por um tubo vermelho até um radiador com ventoinha, de onde o calor sai pelo ar; o líquido frio volta por um tubo azul até a bomba e daí ao bloco. Rodapé: a água conduz calor cerca de 22 vezes melhor que o ar.](imagens/refrigeracao-ar-agua.png)
-<figcaption markdown="span"><strong>Figura 8.1</strong> — Refrigeração a ar (dissipador e ventoinha) e líquida (bloco, bomba e radiador em circuito fechado).</figcaption>
+<figcaption markdown="span"><strong>Figura 8.3</strong> — Refrigeração a ar (dissipador e ventoinha) e líquida (bloco, bomba e radiador em circuito fechado).</figcaption>
 </figure>
 
-Na [Figura 8.1](#fig-refrigeracao-ar-agua), os dois sistemas acabam entregando o calor ao ar; a diferença é o caminho. No sistema a ar, o calor sobe direto pelas aletas; no líquido, ele é levado pelo fluido até um radiador, onde há muito mais área em contato com o ar.
+Na [Figura 8.3](#fig-refrigeracao-ar-agua), os dois sistemas acabam entregando o calor ao ar; a diferença é o caminho. No sistema a ar, o calor sobe direto pelas aletas; no líquido, ele é levado pelo fluido até um radiador, onde há muito mais área em contato com o ar.
 
 ## 8.6 Pasta térmica: função física e procedimento de troca
 
@@ -277,3 +288,4 @@ Este capítulo tratou dos componentes físicos de um computador desktop, do proc
 3. TECHPOWERUP. "AMD Socket AM5 an LGA of 1,718 Pins with DDR5 and PCIe Gen 4." Disponível em: <https://www.techpowerup.com/282532/amd-socket-am5-an-lga-of-1-718-pins-with-ddr5-and-pcie-gen-4>.
 4. PRÄSS, Alberto Ricardo. "Condutividade Térmica — Constantes Físicas." fisica.net. Disponível em: <https://www.fisica.net/constantes/condutividade-termica-(k).php>.
 5. WIKIPEDIA. "ATX." Disponível em: <https://en.wikipedia.org/wiki/ATX>; "MicroATX." Disponível em: <https://en.wikipedia.org/wiki/MicroATX>; "Mini-ITX." Disponível em: <https://en.wikipedia.org/wiki/Mini-ITX>.
+6. Conector do painel frontal (JPANEL1). Autor: Hans Haase. Wikimedia Commons. Licença CC BY-SA 4.0. Disponível em: <https://commons.wikimedia.org/wiki/File:JPANEL_MB_IMG_1121.JPG>.

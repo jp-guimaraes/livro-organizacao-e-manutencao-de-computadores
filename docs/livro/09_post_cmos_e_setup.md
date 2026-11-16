@@ -18,7 +18,7 @@ Para que o POST seja executado com sucesso, quatro submódulos precisam estar op
 |---|---|
 | Fonte de alimentação | Sem energia, nenhum programa pode ser executado. |
 | CPU | As instruções do POST precisam ser processadas por um processador funcional. |
-| Memória RAM | Executar um programa exige carregar suas instruções na memória primária. |
+| Memória RAM | O código do POST reside na memória *flash* da placa-mãe e começa a ser executado antes de a RAM ser inicializada; sem memória primária funcional, porém, o autoteste não se completa, e a falha é sinalizada por bipes (Seção 9.1.3). |
 | Placa-mãe (incluindo o BIOS) | Promove a interconexão entre fonte, CPU e RAM, e é onde o próprio programa POST reside. |
 
 ### 9.1.2 Componentes que não afetam o POST
