@@ -149,9 +149,9 @@ A bateria de um notebook é uma célula de íon de lítio (ou polímero de líti
 
 ### 13.5.2 Refrigeração: o desafio do espaço reduzido
 
-A Seção 7.7 apresentou dissipador e ventoinha como os dois componentes do resfriamento a ar. Num notebook, o mesmo princípio se aplica, mas dentro de um volume drasticamente menor — o que tem duas consequências práticas diretas:
+O Capítulo 8 (§8.5) apresentou dissipador e ventoinha como os dois componentes do resfriamento a ar. Num notebook, o mesmo princípio se aplica, mas dentro de um volume drasticamente menor — o que tem duas consequências práticas diretas:
 
-- **Acúmulo de poeira em menos espaço, com efeito proporcionalmente maior.** As aletas do dissipador de um notebook são mais finas e mais próximas entre si do que as de um cooler de desktop, para caber no chassi fino. Uma mesma quantidade de poeira acumulada obstrui, proporcionalmente, uma fração muito maior da área de passagem de ar — o que explica por que notebooks tendem a apresentar thermal throttling (Capítulo 4, §4.4) por acúmulo de poeira num intervalo de tempo menor do que um desktop equivalente. A limpeza preventiva do dissipador e da ventoinha (normalmente com ar comprimido, sem desmontar o notebook por completo) é, por essa razão, mais frequente em notebooks do que em desktops.
+- **Acúmulo de poeira em menos espaço, com efeito proporcionalmente maior.** As aletas do dissipador de um notebook são mais finas e mais próximas entre si do que as de um cooler de desktop, para caber no chassi fino. Uma mesma quantidade de poeira acumulada obstrui, proporcionalmente, uma fração muito maior da área de passagem de ar — o que explica por que notebooks tendem a apresentar thermal throttling (Capítulo 4, §4.4) por acúmulo de poeira num intervalo de tempo menor do que um desktop equivalente. A limpeza preventiva do dissipador e da ventoinha (normalmente com ar comprimido, sem desmontar o notebook por completo) é, por essa razão, mais frequente em notebooks do que em desktops. Para levar o calor do processador e da placa de vídeo, que ficam no centro, até as aletas e ventoinhas nas extremidades do chassi, os notebooks usam ***heat pipes***: tubos metálicos selados que conduzem calor de forma muito eficiente.
 - **Repasse de pasta térmica mais delicado.** O procedimento de troca de pasta térmica (Capítulo 8, §8.6) segue o mesmo princípio físico num notebook, mas a desmontagem para acessar o processador é, em geral, mais invasiva: exige remover a placa inteira do chassi em muitos modelos, em vez de apenas liberar um dissipador preso por presilhas externas como num desktop. Por isso, esse é um procedimento tipicamente reservado a um técnico com experiência prévia em desmontagem daquele modelo específico — um manual de serviço (*service manual*) do fabricante, quando disponível, é a referência mais confiável para essa etapa.
 
 ### 13.5.3 Componentes soldados: o que muda no diagnóstico por substituição
@@ -165,6 +165,18 @@ O Capítulo 1 (§1.11.2) já apresentou o compromisso entre modularidade e porta
 ### 13.5.4 Reparos mais comuns: tela e teclado
 
 Diferente do processador e da memória, tela e teclado são, na prática de bancada, os componentes de notebook mais frequentemente substituídos — não por serem tecnologicamente mais frágeis, mas por estarem fisicamente mais expostos a dano por impacto, derramamento de líquido e desgaste de uso repetitivo. Em praticamente todo modelo de notebook, ambos são módulos destacáveis (presos por parafusos e conectores do tipo *ribbon cable*, uma fita plana de contatos), o que os torna reparáveis por substituição direta mesmo em modelos que soldam processador e RAM — uma peça de reposição compatível, comprada do fabricante ou de um fornecedor terceirizado, restaura o equipamento sem exigir retrabalho de solda.
+
+### 13.5.5 Abrir o notebook: parafusos escondidos, presilhas e a troca do SSD
+
+Abrir um notebook exige mais cuidado do que abrir um gabinete de desktop, e cada modelo tem o seu procedimento. Alguns cuidados, porém, valem para quase todos.
+
+**Parafusos.** Os parafusos da tampa inferior costumam ficar **escondidos**, debaixo dos pés de borracha ou de etiquetas, e são pequenos demais para as chaves comuns: é preciso uma **chave de precisão** com *bits* de tamanhos diferentes. Alguns parafusos ficam presos à tampa e só se soltam da rosca.
+
+**Presilhas.** Retirados os parafusos, a tampa ainda é presa por **presilhas** plásticas em toda a volta. Elas se soltam com **palhetas de plástico**, inseridas na junção entre a tampa e o corpo e usadas como alavanca; ferramenta metálica marca o plástico. Cada presilha que solta faz um clique. Se a tampa resiste, a causa mais provável é um **parafuso escondido** (às vezes sob o teclado). Forçar quebra as presilhas. Antes de abrir um modelo desconhecido, vale consultar o manual de serviço do fabricante ou um vídeo da desmontagem daquele modelo.
+
+**Por dentro.** As diferenças em relação ao desktop aparecem logo: a **bateria** ocupa boa parte do espaço (§13.5.1); a **fonte é externa**, e a energia entra por um conector (em modelos recentes, a USB-C); processador e placa de vídeo ficam sob uma cobertura metálica, e o calor é levado por ***heat pipes*** até os dissipadores (§13.5.2).
+
+**Troca do SSD NVMe.** O SSD M.2 é preso por um único parafuso na extremidade oposta ao conector. Solto o parafuso, ele levanta num ângulo e sai deslizando do slot; o novo entra inclinado e é abaixado até o parafuso. Num notebook com dois slots M.2, identificar o disco antes de abrir (pela marca e pelo modelo, no Gerenciamento de Disco ou no Gerenciador de Dispositivos, Capítulo 7, §7.6) evita retirar o errado.
 
 
 !!! warning "Figura pendente"
